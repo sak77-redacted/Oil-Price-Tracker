@@ -1,0 +1,161 @@
+{
+  "includeGitInstructions": false,
+  "permissions": {
+    "allow": [
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(pnpm *)",
+      "Bash(yarn *)",
+      "Bash(bun *)",
+      "Bash(node *)",
+      "Bash(git *)",
+      "Bash(vercel *)",
+      "Bash(railway *)",
+      "Bash(supabase *)",
+      "Bash(playwright *)",
+      "Bash(prisma *)",
+      "Bash(uv *)",
+      "Bash(tsc *)",
+      "Bash(eslint *)",
+      "Bash(docker *)",
+      "Bash(cat *)",
+      "Bash(ls *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(touch *)",
+      "Bash(echo *)",
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(sort *)",
+      "Bash(sed *)",
+      "Bash(awk *)",
+      "Bash(date *)",
+      "Bash(jq *)",
+      "Bash(curl *)",
+      "Bash(claude *)",
+      "Bash(codex *)",
+      "Bash(kimi *)",
+      "Bash(gemini *)",
+      "Bash(aider *)",
+      "Bash(*--help)",
+      "Bash(*--version)",
+      "Bash(./scripts/*)",
+      "Bash(bash *)",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "Task(*)",
+      "WebFetch(domain:*)",
+      "WebSearch"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(sudo *)",
+      "Bash(su *)",
+      "Bash(*--no-verify)",
+      "Bash(git push --force*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'echo \"<genius_team_context>\"; echo \"Version: 17.0 | 42 skills | 4 modes (Omni Mode \u2014 Multi-Provider Orchestration)\"; echo \"\"; echo \"<omni_providers>\"; for cmd in codex kimi gemini; do if command -v $cmd &>/dev/null; then echo \"\u2713 $cmd: $($cmd --version 2>/dev/null | head -1 || echo installed)\"; else echo \"\u2717 $cmd: not found (fallback \u2192 Claude Code)\"; fi; done; echo \"</omni_providers>\"; echo \"\"; bash scripts/memory-briefing.sh 2>/dev/null; echo \"\"; if [ -f .genius/memory/BRIEFING.md ]; then echo \"<briefing>\"; cat .genius/memory/BRIEFING.md; echo \"</briefing>\"; fi; echo \"\"; if [ -f .genius/state.json ]; then echo \"<state>\"; jq -r \".phase, .currentSkill\" .genius/state.json 2>/dev/null; echo \"</state>\"; fi; echo \"\"; STORED_VER=$(cat .genius/claude-code-version.txt 2>/dev/null || echo unknown); CURRENT_VER=$(claude --version 2>/dev/null | head -1 || echo unknown); if [ \"$STORED_VER\" != \"$CURRENT_VER\" ] && [ \"$CURRENT_VER\" != \"unknown\" ]; then echo \"<version_change>Claude Code updated: $STORED_VER -> $CURRENT_VER. Consider running /update-check.</version_change>\"; fi; if [ -f .claude/plan.md ]; then echo \"<tasks>\"; total=$(grep -c \"^- \\\\[\" .claude/plan.md 2>/dev/null || echo 0); completed=$(grep -c \"^- \\\\[x\\\\]\" .claude/plan.md 2>/dev/null || echo 0); pending=$(grep -c \"^- \\\\[ \\\\]\" .claude/plan.md 2>/dev/null || echo 0); in_progress=$(grep -c \"^- \\\\[~\\\\]\" .claude/plan.md 2>/dev/null || echo 0); echo \"TASKS: $completed/$total complete ($pending pending, $in_progress in-progress)\"; next=$(grep -m1 \"^- \\\\[ \\\\]\" .claude/plan.md 2>/dev/null | sed \"s/^- \\\\[ \\\\] //\"); if [ -n \"$next\" ]; then echo \"NEXT: $next\"; fi; echo \"</tasks>\"; fi; echo \"</genius_team_context>\"'"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c '\n# Generate critical context before compaction\necho \"<critical_context_snapshot>\"\necho \"## Snapshot at: $(date)\"\necho \"\"\n\n# Current state\nif [ -f .genius/state.json ]; then\n  echo \"## Current State\"\n  jq -r '\"Phase: \\(.phase) | Skill: \\(.currentSkill // \"none\") | Task: \\(.currentTask // \"none\")\"' .genius/state.json 2>/dev/null || true\n  echo \"\"\nfi\n\n# BRIEFING\nif [ -f .genius/memory/BRIEFING.md ]; then\n  echo \"## Project Briefing\"\n  head -80 .genius/memory/BRIEFING.md\n  echo \"\"\nfi\n\n# Last 5 completed tasks from plan\nif [ -f .claude/plan.md ]; then\n  echo \"## Recently Completed\"\n  grep -E \"^- \\[x\\]\" .claude/plan.md | tail -5 2>/dev/null || true\n  echo \"## Next Up\"\n  grep -E \"^- \\[ \\]\" .claude/plan.md | head -5 2>/dev/null || true\n  echo \"\"\nfi\n\necho \"</critical_context_snapshot>\"\n\n# Also run the memory extract\nbash scripts/memory-extract.sh \"$(cat PROGRESS.md 2>/dev/null | head -30; echo ---; grep -E \"^- \\[\" .claude/plan.md 2>/dev/null | head -20)\" 2>/dev/null || true\n'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if [ -f .claude/plan.md ] && [ -f .genius/state.json ]; then total=$(grep -c \"^- \\\\[\" .claude/plan.md 2>/dev/null || echo 0); completed=$(grep -c \"^- \\\\[x\\\\]\" .claude/plan.md 2>/dev/null || echo 0); jq --arg t \"$total\" --arg c \"$completed\" --arg now \"$(date -Iseconds 2>/dev/null || date)\" \".tasks.total = ($t | tonumber) | .tasks.completed = ($c | tonumber) | .updated_at = \\\"$now\\\"\" .genius/state.json > .genius/state.json.tmp && mv .genius/state.json.tmp .genius/state.json; fi 2>/dev/null || true'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if [ -n \"$GENIUS_WEBHOOK_URL\" ]; then SKILL=$(jq -r \".currentSkill // \\\"none\\\"\" .genius/state.json 2>/dev/null || echo \"none\"); PHASE=$(jq -r \".phase // \\\"unknown\\\"\" .genius/state.json 2>/dev/null || echo \"unknown\"); curl -s -X POST \"$GENIUS_WEBHOOK_URL\" -H \"Content-Type: application/json\" -d \"{\\\"event\\\":\\\"session_stop\\\",\\\"skill\\\":\\\"$SKILL\\\",\\\"phase\\\":\\\"$PHASE\\\",\\\"agent\\\":\\\"$TOOL_NAME\\\",\\\"timestamp\\\":\\\"$(date -Iseconds)\\\"}\" > /dev/null 2>&1 || true; fi'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if [ -f scripts/update-dual-bridge.sh ]; then bash scripts/update-dual-bridge.sh claude \"${GENIUS_CURRENT_TASK:-session}\"; fi 2>/dev/null || true'",
+            "once": true
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'echo \"[$(date +%H:%M:%S)] FILE: $TOOL_INPUT\" >> .genius/activity.log 2>/dev/null || true'"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if [ -n \"$GENIUS_WEBHOOK_URL\" ]; then SKILL=$(jq -r \".currentSkill // \\\"none\\\"\" .genius/state.json 2>/dev/null || echo \"none\"); PHASE=$(jq -r \".phase // \\\"unknown\\\"\" .genius/state.json 2>/dev/null || echo \"unknown\"); FILE=\"${TOOL_INPUT:-unknown}\"; curl -s -X POST \"$GENIUS_WEBHOOK_URL\" -H \"Content-Type: application/json\" -d \"{\\\"event\\\":\\\"file_modified\\\",\\\"skill\\\":\\\"$SKILL\\\",\\\"phase\\\":\\\"$PHASE\\\",\\\"file\\\":\\\"$FILE\\\",\\\"agent\\\":\\\"$TOOL_NAME\\\",\\\"timestamp\\\":\\\"$(date -Iseconds)\\\"}\" > /dev/null 2>&1 || true; fi'"
+          }
+        ]
+      }
+    ],
+    "InstructionsLoaded": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'GUARD=$([ -f GENIUS_GUARD.md ] && echo \"\u2705\" || echo \"\u26a0\ufe0f MISSING\"); MEM=$([ -f .genius/memory/BRIEFING.md ] && echo \"\u2705\" || echo \"\u26a0\ufe0f not generated yet\"); echo \"\ud83d\udee1\ufe0f Genius Team v17.0 loaded | Model: claude-opus-4-6 | Effort: high | Guard: $GUARD | Memory: $MEM\"'"
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "GENIUS_TEAM_VERSION": "19.0.0",
+    "GENIUS_TEAM_MODE": "omni",
+    "ANTHROPIC_MODEL": "claude-opus-4-6",
+    "CLAUDE_CODE_EFFORT_LEVEL": "high"
+  },
+  "compaction": {
+    "postCompactionSections": [
+      "## Genius Team Core Rules",
+      "## \ud83d\udea8 ANTI-DRIFT RULES",
+      "## \ud83e\udde0 Memory",
+      "## Commands",
+      "## Two Phases"
+    ]
+  }
+}

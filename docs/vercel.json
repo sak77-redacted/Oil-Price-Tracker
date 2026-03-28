@@ -1,0 +1,31 @@
+{
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "framework": null,
+  "alias": ["genius.w3art.io"],
+  "rewrites": [
+    { "source": "/api/chat", "destination": "/api/chat.js" },
+    { "source": "/proposition1", "destination": "/proposition1.html" },
+    { "source": "/proposition2", "destination": "/proposition2.html" },
+    { "source": "/proposition3", "destination": "/proposition3.html" },
+    { "source": "/proposition4", "destination": "/proposition4.html" },
+    { "source": "/proposition5", "destination": "/proposition5.html" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+      ]
+    },
+    {
+      "source": "/updates/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Content-Type", "value": "application/octet-stream" }
+      ]
+    }
+  ]
+}
