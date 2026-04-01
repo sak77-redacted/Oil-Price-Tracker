@@ -1,9 +1,12 @@
 "use client";
 
-import type { ExtendedSignalData, FuturesData } from "@/lib/types";
+import type { ExtendedSignalData, FuturesData, CrackSpreadData, ForwardCurveData } from "@/lib/types";
 import VerdictBanner from "./VerdictBanner";
 import CriticalDeadlines from "./CriticalDeadlines";
 import FuturesDesk from "./FuturesDesk";
+import CrackSpreads from "./CrackSpreads";
+import ForwardCurve from "./ForwardCurve";
+import TradeExpression from "./TradeExpression";
 import InsuranceSignal from "./InsuranceSignal";
 import ShipTransitSignal from "./ShipTransitSignal";
 import OilSpreadSignal from "./OilSpreadSignal";
@@ -15,9 +18,11 @@ import CrisisTimeline from "./CrisisTimeline";
 interface DashboardProps {
   data: ExtendedSignalData;
   futuresData?: FuturesData;
+  crackData?: CrackSpreadData;
+  forwardData?: ForwardCurveData;
 }
 
-export default function Dashboard({ data, futuresData }: DashboardProps) {
+export default function Dashboard({ data, futuresData, crackData, forwardData }: DashboardProps) {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 1. Verdict Banner — compact direction call */}
@@ -30,6 +35,25 @@ export default function Dashboard({ data, futuresData }: DashboardProps) {
 
       {/* 3. Energy Futures Desk — actionable price exposure */}
       {futuresData && <FuturesDesk data={futuresData} signalData={data} />}
+
+      {/* 3a. Crack Spreads — refining margins */}
+      {crackData && (
+        <section className="mt-6">
+          <CrackSpreads data={crackData} />
+        </section>
+      )}
+
+      {/* 3b. Forward Curve Structure */}
+      {forwardData && (
+        <section className="mt-6">
+          <ForwardCurve data={forwardData} />
+        </section>
+      )}
+
+      {/* 3c. Trade Expression — how to position */}
+      <section className="mt-8">
+        <TradeExpression oilPrice={forwardData?.promptPrice ?? 105} />
+      </section>
 
       {/* 4. Early Warning Signals — ranked by indicator quality */}
       <section className="mt-8">

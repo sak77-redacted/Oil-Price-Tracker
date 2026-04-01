@@ -120,3 +120,26 @@ export interface FuturesData {
   contracts: FuturesContract[];
   timestamp: string;
 }
+
+export interface CrackSpreadData {
+  gasolineCrack: number;    // RBOB price - CL price (per barrel, RBOB is per gallon * 42)
+  heatingOilCrack: number;  // HO price - CL price (per barrel, HO is per gallon * 42)
+  gasolineCrackChange: number;
+  heatingOilCrackChange: number;
+  timestamp: string;
+}
+
+export interface ForwardPoint {
+  month: string;      // "May 26", "Jun 26", etc.
+  price: number;
+  diffFromPrompt: number; // negative = backwardation
+}
+
+export interface ForwardCurveData {
+  contract: string;   // "Brent Crude" or "WTI"
+  symbol: string;     // "BZ=F"
+  promptPrice: number;
+  curve: ForwardPoint[];
+  structure: "backwardation" | "contango" | "flat";
+  timestamp: string;
+}

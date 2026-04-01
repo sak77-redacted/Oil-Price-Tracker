@@ -29,8 +29,7 @@ export default function Footer() {
           >
             Nakul Sarda
           </a>{" "}
-          (@nakul_sarda) — Fund Manager &amp; Proprietary Investor, ProfitGate
-          Group.
+          (@nakul_sarda).
         </p>
         <p className="text-xs font-medium text-[var(--text-secondary)]">
           Built for signal, not noise.

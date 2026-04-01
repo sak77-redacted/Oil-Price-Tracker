@@ -1,11 +1,15 @@
 import { getSignalData } from "@/lib/signals";
-import { fetchFuturesData } from "@/lib/futures-api";
+import { fetchFuturesData, fetchCrackSpreads, fetchForwardCurve } from "@/lib/futures-api";
 import Dashboard from "@/components/Dashboard";
 import Footer from "@/components/Footer";
 
 export default async function Home() {
   const signalData = getSignalData();
-  const futuresData = await fetchFuturesData();
+  const [futuresData, crackData, forwardData] = await Promise.all([
+    fetchFuturesData(),
+    fetchCrackSpreads(),
+    fetchForwardCurve(),
+  ]);
 
   return (
     <main className="flex min-h-full flex-col">
@@ -16,8 +20,20 @@ export default async function Home() {
         <p className="mt-2 text-base text-[var(--text-secondary)]">
           4 signals. Zero noise.
         </p>
+        <p className="mt-3 text-sm text-[var(--text-secondary)]">
+          Signal framework by{" "}
+          <a
+            href="https://x.com/nakul_sarda"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-[var(--accent)] hover:underline"
+          >
+            Nakul Sarda
+          </a>{" "}
+          (@nakul_sarda)
+        </p>
       </header>
-      <Dashboard data={signalData} futuresData={futuresData} />
+      <Dashboard data={signalData} futuresData={futuresData} crackData={crackData} forwardData={forwardData} />
       <Footer />
     </main>
   );
