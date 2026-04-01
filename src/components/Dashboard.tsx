@@ -1,6 +1,6 @@
 "use client";
 
-import type { ExtendedSignalData, FuturesData, CrackSpreadData, ForwardCurveData } from "@/lib/types";
+import type { ExtendedSignalData, FuturesData, CrackSpreadData, ForwardCurveData, WTIBrentSpreadData } from "@/lib/types";
 import VerdictBanner from "./VerdictBanner";
 import CriticalDeadlines from "./CriticalDeadlines";
 import FuturesDesk from "./FuturesDesk";
@@ -14,15 +14,20 @@ import StraitStatus from "./StraitStatus";
 import VesselMapWrapper from "./VesselMapWrapper";
 import GlobalSupplyDisruption from "./GlobalSupplyDisruption";
 import CrisisTimeline from "./CrisisTimeline";
+import RecoveryClock from "./RecoveryClock";
+import SPRStatusBoard from "./SPRStatusBoard";
+import DemandDestruction from "./DemandDestruction";
+import InflationThreshold from "./InflationThreshold";
 
 interface DashboardProps {
   data: ExtendedSignalData;
   futuresData?: FuturesData;
   crackData?: CrackSpreadData;
   forwardData?: ForwardCurveData;
+  wtiBrentData?: WTIBrentSpreadData;
 }
 
-export default function Dashboard({ data, futuresData, crackData, forwardData }: DashboardProps) {
+export default function Dashboard({ data, futuresData, crackData, forwardData, wtiBrentData }: DashboardProps) {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 1. Verdict Banner — compact direction call */}
@@ -55,7 +60,80 @@ export default function Dashboard({ data, futuresData, crackData, forwardData }:
         <TradeExpression oilPrice={forwardData?.promptPrice ?? 105} />
       </section>
 
-      {/* 4. Early Warning Signals — ranked by indicator quality */}
+      {/* 3d. WTI-Brent Spread — Hormuz-specific dislocation */}
+      {wtiBrentData && (
+        <section className="mt-6">
+          <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-5">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              WTI-Brent Spread
+            </h3>
+            <p className="mt-1 mb-4 text-sm text-[var(--text-secondary)]">
+              Collapsed from $15 to ${wtiBrentData.spread.toFixed(2)} — fair value is ~${wtiBrentData.fairValue} (TD25 freight economics)
+            </p>
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <div className="rounded-lg bg-[var(--background)] p-3 text-center">
+                <span className="block text-xl font-bold tabular-nums text-[var(--text-primary)]">
+                  ${wtiBrentData.wtiPrice.toFixed(2)}
+                </span>
+                <span className="text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">WTI (CL)</span>
+              </div>
+              <div className="rounded-lg bg-[var(--background)] p-3 text-center">
+                <span className="block text-xl font-bold tabular-nums text-[var(--text-primary)]">
+                  ${wtiBrentData.brentPrice.toFixed(2)}
+                </span>
+                <span className="text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">Brent (BZ)</span>
+              </div>
+              <div className="rounded-lg bg-[var(--background)] p-3 text-center">
+                <span className={`block text-xl font-bold tabular-nums ${wtiBrentData.spread < wtiBrentData.fairValue ? 'text-amber-400' : 'text-[var(--text-primary)]'}`}>
+                  ${wtiBrentData.spread.toFixed(2)}
+                </span>
+                <span className="text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">Spread</span>
+              </div>
+              <div className="rounded-lg bg-[var(--background)] p-3 text-center">
+                <span className="block text-xl font-bold tabular-nums text-[var(--text-secondary)]">
+                  ${wtiBrentData.fairValue.toFixed(1)}
+                </span>
+                <span className="text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">Fair Value</span>
+              </div>
+            </div>
+            <p className="mt-3 text-xs leading-relaxed text-[var(--text-secondary)]">
+              WTI flowing to new destinations (Greece for first time in 4 years). When spread &lt; fair value,
+              WTI is overvalued relative to Brent — or Brent is not carrying the Hormuz premium it should.
+              Your MCL (WTI) position benefits from convergence, but Hormuz-specific alpha is in Brent.
+            </p>
+            {!wtiBrentData.live && (
+              <p className="mt-2 text-[10px] text-amber-400">Using fallback prices — market may be closed</p>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* 4. Inflation Threshold — macro transmission chain */}
+      <InflationThreshold
+        data={data.inflationThreshold}
+        currentOilPrice={forwardData?.promptPrice}
+      />
+
+      {/* 4a. Recovery Clock — how long until normal? */}
+      <section className="mt-8">
+        <div className="mb-4">
+          <h2 className="text-xl font-bold text-[var(--text-primary)]">
+            Crisis Recovery Timeline
+          </h2>
+          <p className="mt-1 text-sm text-[var(--text-secondary)]">
+            From Sparta Commodities & Palmer Energy — Asia needs 4-5 months to normalize even after reopening
+          </p>
+        </div>
+        <RecoveryClock data={data.recoveryClock} />
+      </section>
+
+      {/* 4b. SPR Status Board — who's released, who's holding */}
+      <SPRStatusBoard data={data.sprStatus} />
+
+      {/* 4c. Demand Destruction — the counter-signal */}
+      <DemandDestruction data={data.demandDestruction} />
+
+      {/* 5. Early Warning Signals — ranked by indicator quality */}
       <section className="mt-8">
         <div className="mb-4">
           <h2 className="text-xl font-bold text-[var(--text-primary)]">

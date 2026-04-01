@@ -1,4 +1,4 @@
-import type { FuturesContract, FuturesData, CrackSpreadData, ForwardCurveData, ForwardPoint } from "./types";
+import type { FuturesContract, FuturesData, CrackSpreadData, ForwardCurveData, ForwardPoint, WTIBrentSpreadData } from "./types";
 
 interface ContractConfig {
   symbol: string;
@@ -303,6 +303,51 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
         diffFromPrompt: discounts[i],
       })),
       structure: "backwardation",
+      timestamp: new Date().toISOString(),
+    };
+  }
+}
+
+/**
+ * Fetch WTI-Brent spread.
+ * Jun Goh (Sparta): spread collapsed from $15 to $1.50. Fair value is $4-5
+ * based on TD25 freight economics (cost to ship WTI to Europe).
+ * When spread < fair value, WTI is overvalued relative to Brent (or Brent
+ * is not carrying the Hormuz premium it should).
+ * Never throws -- always returns valid WTIBrentSpreadData.
+ */
+export async function fetchWTIBrentSpread(): Promise<WTIBrentSpreadData> {
+  const FALLBACK_CL = 108;
+  const FALLBACK_BZ = 112;
+  const FAIR_VALUE = 4.5; // TD25 freight economics
+
+  try {
+    const [cl, bz] = await Promise.all([
+      fetchSinglePrice("CL=F", FALLBACK_CL),
+      fetchSinglePrice("BZ=F", FALLBACK_BZ),
+    ]);
+
+    const spread = Math.round((bz.price - cl.price) * 100) / 100;
+    const previousSpread =
+      Math.round((bz.previousClose - cl.previousClose) * 100) / 100;
+
+    return {
+      wtiPrice: cl.price,
+      brentPrice: bz.price,
+      spread,
+      fairValue: FAIR_VALUE,
+      previousSpread,
+      live: true,
+      timestamp: new Date().toISOString(),
+    };
+  } catch {
+    return {
+      wtiPrice: FALLBACK_CL,
+      brentPrice: FALLBACK_BZ,
+      spread: FALLBACK_BZ - FALLBACK_CL,
+      fairValue: FAIR_VALUE,
+      previousSpread: FALLBACK_BZ - FALLBACK_CL,
+      live: false,
       timestamp: new Date().toISOString(),
     };
   }

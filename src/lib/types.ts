@@ -99,11 +99,75 @@ export interface GlobalImpactData {
   lastUpdated: string;
 }
 
+export interface RecoveryPhase {
+  phase: string;
+  durationMonths: string;
+  description: string;
+  status: "not-started" | "in-progress" | "complete";
+}
+
+export interface RecoveryClockData {
+  crisisStartDate: string;
+  estimatedNormalizationDate: string;
+  totalMonths: number;
+  phases: RecoveryPhase[];
+  keyInsight: string;
+  source: string;
+  lastUpdated: string;
+}
+
+export interface SPRCountryStatus {
+  country: string;
+  flag: string;
+  released: boolean;
+  reserveDays: number;
+  releasedMb: number;
+  totalMb: number;
+  notes: string;
+}
+
+export interface SPRStatusData {
+  countries: SPRCountryStatus[];
+  chinaSignal: string;
+  lastUpdated: string;
+}
+
+export interface DemandEvent {
+  country: string;
+  event: string;
+  category: "rationing" | "force-majeure" | "production-cut" | "export-ban" | "substitution";
+  date: string;
+  impact: string;
+}
+
+export interface DemandDestructionData {
+  events: DemandEvent[];
+  estimatedDemandLossMbd: number;
+  lastUpdated: string;
+}
+
+export interface InflationThresholdData {
+  thresholdPrice: number;
+  currentCPI: number;
+  projectedCPILow: number;
+  projectedCPIHigh: number;
+  fedConstrained: boolean;
+  recessionRisk: "low" | "moderate" | "high" | "critical";
+  marchAvgOilPrice: number;
+  transmissionChain: string[];
+  notes: string;
+  lastUpdated: string;
+}
+
 export interface ExtendedSignalData extends SignalData {
   straitStatus: StraitStatus;
   globalImpact: GlobalImpactData;
   regionalImpact: CountryImpact[];
   crisisTimeline: CrisisEvent[];
+  recoveryClock: RecoveryClockData;
+  sprStatus: SPRStatusData;
+  demandDestruction: DemandDestructionData;
+  inflationThreshold: InflationThresholdData;
 }
 
 export interface FuturesContract {
@@ -133,6 +197,16 @@ export interface ForwardPoint {
   month: string;      // "May 26", "Jun 26", etc.
   price: number;
   diffFromPrompt: number; // negative = backwardation
+}
+
+export interface WTIBrentSpreadData {
+  wtiPrice: number;
+  brentPrice: number;
+  spread: number;          // Brent - WTI (positive = Brent premium)
+  fairValue: number;       // ~$4-5 based on TD25 freight economics
+  previousSpread: number;  // for change calc
+  live: boolean;
+  timestamp: string;
 }
 
 export interface ForwardCurveData {

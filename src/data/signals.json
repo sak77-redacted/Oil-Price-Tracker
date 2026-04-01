@@ -176,5 +176,157 @@
     { "date": "2026-03-14", "category": "economic", "title": "US releases 400M barrels from Strategic Petroleum Reserve", "description": "Largest SPR release in history. Estimated 95 days of supply at current drawdown rate. Global coordinated release with IEA members." },
     { "date": "2026-03-07", "category": "military", "title": "US Navy deploys carrier strike group to Gulf of Oman", "description": "USS Eisenhower carrier strike group positioned in Gulf of Oman. Additional destroyer deployments to escort allied vessels. Iran IRGC navy conducts counter-exercises." },
     { "date": "2026-03-02", "category": "military", "title": "Iran restricts Strait of Hormuz transit", "description": "Iran begins controlled transit regime following escalation of US-Iran tensions over nuclear program. Initial blockade affects all non-allied vessels. Oil prices spike 15% overnight." }
-  ]
+  ],
+  "recoveryClock": {
+    "crisisStartDate": "2026-03-02",
+    "estimatedNormalizationDate": "2026-09-01",
+    "totalMonths": 5,
+    "phases": [
+      {
+        "phase": "Ceasefire & Strait Reopening",
+        "durationMonths": "Unknown",
+        "description": "Diplomatic resolution, ceasefire agreement, and physical reopening of strait. China-Pakistan 5-point ceasefire initiative in progress.",
+        "status": "in-progress"
+      },
+      {
+        "phase": "Crude Flow Renormalization",
+        "durationMonths": "2-3",
+        "description": "Even after strait reopens, it takes 2-3 months for tanker schedules, port logistics, and crude flows to renormalize. Ships need to reposition, insurance rates need to fall, and loading schedules must reset.",
+        "status": "not-started"
+      },
+      {
+        "phase": "Refinery & Petrochemical Restart",
+        "durationMonths": "1-2",
+        "description": "Steam crackers and shut-in refineries across Asia need full restart cycles. Naphtha supply chain must rebuild. Force majeures across petrochemical sector will take months to unwind.",
+        "status": "not-started"
+      },
+      {
+        "phase": "Full Market Normalization",
+        "durationMonths": "1",
+        "description": "Inventory rebuilding, SPR replenishment, insurance rate normalization, and return to pre-crisis pricing. Consensus estimate: September 2026 at the earliest.",
+        "status": "not-started"
+      }
+    ],
+    "keyInsight": "Asia passed the point of no return by the second week of the closure. Even if the strait reopens tomorrow, 4-5 months before any sense of normalcy returns. — Jun Goh, Sparta Commodities",
+    "source": "Sparta Commodities / MB Commodity Corner / Palmer Energy",
+    "lastUpdated": "2026-04-01T08:00:00Z"
+  },
+  "sprStatus": {
+    "countries": [
+      {
+        "country": "United States",
+        "flag": "US",
+        "released": true,
+        "reserveDays": 95,
+        "releasedMb": 400,
+        "totalMb": 700,
+        "notes": "Largest SPR release in history. 400M barrels released Mar 14. Running dry ~Apr 15 at current drawdown rate."
+      },
+      {
+        "country": "Japan",
+        "flag": "JP",
+        "released": true,
+        "reserveDays": 65,
+        "releasedMb": 30,
+        "totalMb": 175,
+        "notes": "IEA coordinated release. 65% oil import dependency via Hormuz. Industrial production threatened."
+      },
+      {
+        "country": "South Korea",
+        "flag": "KR",
+        "released": true,
+        "reserveDays": 90,
+        "releasedMb": 25,
+        "totalMb": 97,
+        "notes": "IEA member. 70% Hormuz dependency. Refiner margins under severe pressure."
+      },
+      {
+        "country": "China",
+        "flag": "CN",
+        "released": false,
+        "reserveDays": 80,
+        "releasedMb": 0,
+        "totalMb": 950,
+        "notes": "Has NOT tapped strategic reserves despite being largest importer. Massive stockpiles untouched. Reduced run rates + product export ban instead."
+      },
+      {
+        "country": "India",
+        "flag": "IN",
+        "released": true,
+        "reserveDays": 10,
+        "releasedMb": 5,
+        "totalMb": 40,
+        "notes": "Limited SPR capacity. 45% Hormuz dependency. Permitted limited transits via negotiation."
+      }
+    ],
+    "chinaSignal": "China holds ~950M barrels in strategic reserves and has NOT released any. Japan and South Korea (IEA members) have already released. When China taps its SPR, it signals peak crisis — they're saving it for worst case.",
+    "lastUpdated": "2026-04-01T08:00:00Z"
+  },
+  "demandDestruction": {
+    "events": [
+      {
+        "country": "Indonesia",
+        "event": "50-liter petrol rationing for 4-wheel vehicles",
+        "category": "rationing",
+        "date": "2026-04-01",
+        "impact": "President announced fuel cap to prevent panic during Eid al-Fitr exodus period"
+      },
+      {
+        "country": "China",
+        "event": "Product export ban + reduced refinery run rates",
+        "category": "export-ban",
+        "date": "2026-03-07",
+        "impact": "State + teapot refineries cut runs; only producing for domestic. Australia, Philippines, Vietnam losing Chinese fuel supply"
+      },
+      {
+        "country": "China",
+        "event": "Selling diesel to Philippines & Vietnam",
+        "category": "export-ban",
+        "date": "2026-03-28",
+        "impact": "Selective diesel exports to neighbors — shows China managing regional supply as strategic lever"
+      },
+      {
+        "country": "Thailand",
+        "event": "Maximizing coal power capacity factors",
+        "category": "substitution",
+        "date": "2026-03-25",
+        "impact": "Switching from gas to coal for power generation to reduce oil/gas dependency"
+      },
+      {
+        "country": "Asia-wide",
+        "event": "Petrochemical force majeures across region",
+        "category": "force-majeure",
+        "date": "2026-03-14",
+        "impact": "Chandra Asri, IPCC, and multiple SE Asian petrochemical players declare force majeure. Naphtha imports stopped."
+      },
+      {
+        "country": "Australia",
+        "event": "Fuel supply disruption from China export cuts",
+        "category": "production-cut",
+        "date": "2026-03-20",
+        "impact": "Major importer of Chinese refined products. Scrambling for alternative diesel and fuel supplies."
+      }
+    ],
+    "estimatedDemandLossMbd": 3.5,
+    "lastUpdated": "2026-04-01T08:00:00Z"
+  },
+  "inflationThreshold": {
+    "thresholdPrice": 105,
+    "currentCPI": 2.8,
+    "projectedCPILow": 3.2,
+    "projectedCPIHigh": 3.5,
+    "fedConstrained": true,
+    "recessionRisk": "high",
+    "marchAvgOilPrice": 100,
+    "transmissionChain": [
+      "Oil above $105/bbl sustained",
+      "March CPI prints 3.2-3.5%",
+      "Fed boxed — cannot cut rates",
+      "Bond market stress (Trump watching closely)",
+      "Emerging markets suffer — Asia, Europe still absorbing",
+      "Global recession if this doesn't go back"
+    ],
+    "notes": "Every day oil averages above $105, the markets suffer. We're now in the zone of actually causing a global recession if it doesn't go back. — MB Commodity Corner",
+    "lastUpdated": "2026-04-01T08:00:00Z"
+  }
 }

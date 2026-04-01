@@ -1,14 +1,15 @@
 import { getSignalData } from "@/lib/signals";
-import { fetchFuturesData, fetchCrackSpreads, fetchForwardCurve } from "@/lib/futures-api";
+import { fetchFuturesData, fetchCrackSpreads, fetchForwardCurve, fetchWTIBrentSpread } from "@/lib/futures-api";
 import Dashboard from "@/components/Dashboard";
 import Footer from "@/components/Footer";
 
 export default async function Home() {
   const signalData = getSignalData();
-  const [futuresData, crackData, forwardData] = await Promise.all([
+  const [futuresData, crackData, forwardData, wtiBrentData] = await Promise.all([
     fetchFuturesData(),
     fetchCrackSpreads(),
     fetchForwardCurve(),
+    fetchWTIBrentSpread(),
   ]);
 
   return (
@@ -33,7 +34,7 @@ export default async function Home() {
           (@nakul_sarda)
         </p>
       </header>
-      <Dashboard data={signalData} futuresData={futuresData} crackData={crackData} forwardData={forwardData} />
+      <Dashboard data={signalData} futuresData={futuresData} crackData={crackData} forwardData={forwardData} wtiBrentData={wtiBrentData} />
       <Footer />
     </main>
   );
