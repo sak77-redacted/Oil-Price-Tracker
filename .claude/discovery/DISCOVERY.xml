@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<discovery version="1.0" date="2026-04-01" status="complete">
+
+  <executive-summary>
+    Public dashboard tracking 4 market-priced signals for the Hormuz strait crisis.
+    Built for fund managers who need signal over noise. Ships today.
+  </executive-summary>
+
+  <problem-space>
+    <core-problem>
+      Information environment around the Hormuz crisis is garbage. Trump says war ends tomorrow,
+      Iran says Hormuz shut forever. Analysts range $60-$150. Can't build a portfolio view on noise.
+    </core-problem>
+    <context>
+      India imports 85% of crude. Half normally passes through Hormuz.
+      User runs India-focused equity fund — crisis directly affects portfolio.
+    </context>
+    <insight>
+      4 signals are priced by people with real money on the line. They don't lie.
+      Everything else is noise.
+    </insight>
+  </problem-space>
+
+  <signals>
+    <signal id="1" name="Ship Insurance Premiums">
+      <description>Lloyd's underwriter war risk premium as % of hull value</description>
+      <baseline>0.25% pre-war</baseline>
+      <current>3.5-10% (almost nobody buying)</current>
+      <threshold direction="below">2% = getting safer</threshold>
+      <data-source>HormuzTracker aggregation + manual broker quotes from Lloyd's List</data-source>
+      <rationale>Underwriters have billions at stake on every pricing call. No press conference replicates this.</rationale>
+    </signal>
+
+    <signal id="2" name="AIS Ship Transit Count">
+      <description>Daily vessel crossings through Hormuz via AIS GPS tracking</description>
+      <baseline>100+ per day pre-war</baseline>
+      <current>~8 per day (92% collapse)</current>
+      <threshold direction="above">30-40 = trade resuming</threshold>
+      <data-source>WTO Hormuz Trade Tracker, free AIS data sources</data-source>
+      <rationale>You can't spin a ship being somewhere it isn't.</rationale>
+      <nuances>
+        <nuance source="Kush Agarwal">Return legs (ships heading BACK to reload) are the real leading indicator. 4-5 trips/month needed for India.</nuance>
+        <nuance source="Capt. Rahul Gohel">AIS switching off is normal in risky zones — absolute count is unreliable.</nuance>
+        <nuance source="Nakul Sarda">AIS accuracy itself is the signal. When operators feel safe enough to keep AIS on, risk environment is normalizing. Until then, dark fleet = elevated risk.</nuance>
+      </nuances>
+    </signal>
+
+    <signal id="3" name="Paper vs Physical Oil Spread">
+      <description>Gap between Brent crude (paper/futures) and Dubai physical (what Asian buyers actually pay)</description>
+      <baseline>~$1-2 normal spread</baseline>
+      <current>$14 gap (Brent $112 vs Dubai $126)</current>
+      <threshold direction="narrowing">Spread narrowing = paper catching up to reality</threshold>
+      <data-source>Free oil price APIs for Brent, Dubai physical from commodity data feeds</data-source>
+      <rationale>Trump's jawboning pushes paper prices down. Refiners buying cargo get no discount. If you watch Brent for India's oil bill, you're watching the wrong number.</rationale>
+    </signal>
+
+    <signal id="4" name="Mid-April Supply Cliff">
+      <description>Multiple emergency measures expiring simultaneously around April 15</description>
+      <events>
+        <event date="2026-04-01">Formosa Plastics force majeure declared</event>
+        <event date="2026-04-15" approximate="true">400M barrel SPR release runs dry</event>
+        <event date="2026-04-15" approximate="true">US waiver for India buying Russian crude expires</event>
+      </events>
+      <current-gap>~5 mb/d supply gap (with stopgaps)</current-gap>
+      <projected-gap>~10 mb/d without stopgaps (BCA Research) — largest crude disruption ever</projected-gap>
+      <threshold>If Hormuz doesn't reopen by mid-April = uncharted territory</threshold>
+    </signal>
+  </signals>
+
+  <users>
+    <persona id="primary">
+      <role>India-focused equity fund managers</role>
+      <need>Actionable signals to assess India oil exposure without drowning in headlines</need>
+      <current-solution>Manual tracking across multiple sources, news reading</current-solution>
+    </persona>
+    <persona id="secondary">
+      <role>Commodity traders, energy analysts, macro strategists</role>
+      <need>Real-time crisis dashboard for Hormuz shipping disruption</need>
+    </persona>
+    <access>Public URL, no auth, shareable</access>
+  </users>
+
+  <technical-decisions>
+    <stack>Next.js 15 (App Router) + Tailwind CSS + Vercel</stack>
+    <data-strategy>Free tier: oil price APIs + free AIS sources + HormuzTracker scraping + manual admin input for insurance quotes</data-strategy>
+    <alerts>Dashboard only — visual threshold indicators, no push notifications</alerts>
+    <timeline>Ship today (2026-04-01)</timeline>
+  </technical-decisions>
+
+  <business-model>
+    <monetization>None — credibility/utility tool for the fund</monetization>
+    <success-metric>Dashboard live and usable before mid-April cliff</success-metric>
+  </business-model>
+
+  <risks>
+    <risk severity="high">Free AIS data may be delayed or incomplete (dark fleet problem)</risk>
+    <risk severity="medium">Insurance premium data requires manual updates — no public API</risk>
+    <risk severity="medium">Dubai physical price may not be available from free APIs — may need proxy</risk>
+    <risk severity="low">Hormuz crisis resolves quickly making tracker less relevant</risk>
+  </risks>
+
+  <next-steps>
+    <step>Skip market analysis — problem is validated, urgency is clear</step>
+    <step>Fast-track to genius-architect for stack decisions and task breakdown</step>
+    <step>Ship MVP today with hardcoded/manual data where APIs unavailable</step>
+  </next-steps>
+
+</discovery>

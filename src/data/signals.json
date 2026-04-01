@@ -1,0 +1,180 @@
+{
+  "insurance": {
+    "current": 1.0,
+    "baseline": 0.15,
+    "threshold": 2.0,
+    "unit": "%",
+    "history": [
+      { "date": "2026-02-27", "value": 0.15 },
+      { "date": "2026-02-28", "value": 0.30 },
+      { "date": "2026-03-01", "value": 0.60 },
+      { "date": "2026-03-03", "value": 0.85 },
+      { "date": "2026-03-05", "value": 1.2 },
+      { "date": "2026-03-07", "value": 1.5 },
+      { "date": "2026-03-10", "value": 1.8 },
+      { "date": "2026-03-12", "value": 2.0 },
+      { "date": "2026-03-15", "value": 2.2 },
+      { "date": "2026-03-18", "value": 2.0 },
+      { "date": "2026-03-20", "value": 1.8 },
+      { "date": "2026-03-22", "value": 1.5 },
+      { "date": "2026-03-25", "value": 1.3 },
+      { "date": "2026-03-27", "value": 1.2 },
+      { "date": "2026-03-29", "value": 1.1 },
+      { "date": "2026-04-01", "value": 1.0 }
+    ],
+    "lastUpdated": "2026-04-01T08:00:00Z",
+    "source": "Lloyd's List / HormuzTracker"
+  },
+  "shipTransit": {
+    "dailyCount": 6,
+    "returnLegs": 2,
+    "baseline": 60,
+    "threshold": 35,
+    "darkFleetNote": "Many vessels transit with AIS disabled. Low AIS count confirms elevated risk \u2014 when operators feel safe enough to keep transponders on, that\u2019s the normalcy signal.",
+    "history": [
+      { "date": "2026-02-27", "count": 105, "returnCount": 48 },
+      { "date": "2026-02-28", "count": 68, "returnCount": 30 },
+      { "date": "2026-03-01", "count": 22, "returnCount": 10 },
+      { "date": "2026-03-03", "count": 18, "returnCount": 8 },
+      { "date": "2026-03-05", "count": 15, "returnCount": 6 },
+      { "date": "2026-03-07", "count": 12, "returnCount": 5 },
+      { "date": "2026-03-10", "count": 10, "returnCount": 4 },
+      { "date": "2026-03-12", "count": 9, "returnCount": 3 },
+      { "date": "2026-03-15", "count": 8, "returnCount": 3 },
+      { "date": "2026-03-18", "count": 10, "returnCount": 4 },
+      { "date": "2026-03-20", "count": 9, "returnCount": 3 },
+      { "date": "2026-03-22", "count": 8, "returnCount": 3 },
+      { "date": "2026-03-25", "count": 9, "returnCount": 4 },
+      { "date": "2026-03-27", "count": 8, "returnCount": 3 },
+      { "date": "2026-03-29", "count": 7, "returnCount": 2 },
+      { "date": "2026-04-01", "count": 6, "returnCount": 2 }
+    ],
+    "lastUpdated": "2026-04-01T08:00:00Z",
+    "source": "WTO Hormuz Trade Tracker / AIS Data"
+  },
+  "oilSpread": {
+    "brent": 104,
+    "dubai": 120,
+    "spread": 16,
+    "history": [
+      { "date": "2026-02-27", "brent": 78, "dubai": 80 },
+      { "date": "2026-02-28", "brent": 82, "dubai": 85 },
+      { "date": "2026-03-01", "brent": 88, "dubai": 93 },
+      { "date": "2026-03-03", "brent": 91, "dubai": 97 },
+      { "date": "2026-03-05", "brent": 95, "dubai": 102 },
+      { "date": "2026-03-07", "brent": 98, "dubai": 106 },
+      { "date": "2026-03-10", "brent": 101, "dubai": 111 },
+      { "date": "2026-03-12", "brent": 103, "dubai": 114 },
+      { "date": "2026-03-15", "brent": 105, "dubai": 118 },
+      { "date": "2026-03-18", "brent": 107, "dubai": 120 },
+      { "date": "2026-03-20", "brent": 109, "dubai": 122 },
+      { "date": "2026-03-22", "brent": 108, "dubai": 122 },
+      { "date": "2026-03-25", "brent": 107, "dubai": 122 },
+      { "date": "2026-03-27", "brent": 106, "dubai": 121 },
+      { "date": "2026-03-29", "brent": 105, "dubai": 121 },
+      { "date": "2026-04-01", "brent": 104, "dubai": 120 }
+    ],
+    "lastUpdated": "2026-04-01T08:00:00Z",
+    "brentSource": "commodities-api.com",
+    "dubaiSource": "S&P Global Platts"
+  },
+  "timeline": {
+    "events": [
+      {
+        "id": "formosa-fm",
+        "event": "Formosa Plastics force majeure",
+        "date": "2026-04-01",
+        "status": "active",
+        "impact": "Major petrochemical supply disruption",
+        "supplyGapMbd": 0.5
+      },
+      {
+        "id": "trump-deadline",
+        "event": "Trump deadline for Iran to reopen Strait (extended to Apr 6)",
+        "date": "2026-04-06",
+        "status": "active",
+        "impact": "Military escalation threatened if Strait not reopened",
+        "supplyGapMbd": 0
+      },
+      {
+        "id": "spr-depletion",
+        "event": "US SPR 400M barrel release runs dry",
+        "date": "2026-04-15",
+        "status": "active",
+        "impact": "Emergency buffer exhausted \u2014 no more cushion",
+        "supplyGapMbd": 2.0
+      },
+      {
+        "id": "russia-waiver",
+        "event": "US waiver for India buying Russian crude expires",
+        "date": "2026-04-15",
+        "status": "active",
+        "impact": "India loses alternative supply route",
+        "supplyGapMbd": 1.5
+      },
+      {
+        "id": "hormuz-reopen",
+        "event": "Strait of Hormuz reopening deadline",
+        "date": "2026-04-15",
+        "status": "active",
+        "impact": "If not open by mid-April \u2014 uncharted territory",
+        "supplyGapMbd": 6.0
+      }
+    ],
+    "currentGapMbd": 5,
+    "projectedGapMbd": 10,
+    "lastUpdated": "2026-04-01T08:00:00Z"
+  },
+  "straitStatus": {
+    "status": "restricted",
+    "since": "2026-03-02",
+    "description": "Iran maintains selective control through controlled transit regime. Limited passage for approved nations (China, Russia, India, Iraq, Pakistan, Malaysia, Thailand); blockade of US, Israel, and allied vessels. Approximately 90% of normal traffic blocked.",
+    "lastUpdated": "2026-04-01T08:00:00Z"
+  },
+  "globalImpact": {
+    "worldOilAtRiskPct": 20,
+    "dailyCostBillions": 3.5,
+    "worldLngAtRiskPct": 20,
+    "dailyLngCostBillions": 0.8,
+    "shippingRateIncreasePct": 350,
+    "cpiImpactPct": 2.1,
+    "sprReserveDays": 95,
+    "alternativeRoutes": [
+      {
+        "route": "Cape of Good Hope",
+        "addedDays": 15,
+        "addedCost": "+$450K",
+        "description": "Significantly increased rerouting activity; capacity constraints emerging at East African ports."
+      },
+      {
+        "route": "East-West Pipeline (Saudi/UAE)",
+        "addedDays": 0,
+        "addedCost": "+$200K",
+        "description": "Pipeline capacity maxed; unable to compensate for maritime closure; limited additional throughput."
+      },
+      {
+        "route": "Red Sea-Suez Canal",
+        "addedDays": 8,
+        "addedCost": "+$320K",
+        "description": "Constrained by Red Sea security concerns and Houthi threats; increased insurance costs."
+      }
+    ],
+    "lastUpdated": "2026-04-01T08:00:00Z"
+  },
+  "regionalImpact": [
+    { "country": "China", "dependency": 40, "severity": "critical", "description": "Imports 40% of oil and 30% of LNG via Hormuz. 55 Chinese-flagged ships trapped in Persian Gulf." },
+    { "country": "Japan", "dependency": 65, "severity": "high", "description": "Heavily dependent on Middle East oil via Hormuz; supply disruption threatens industrial production." },
+    { "country": "South Korea", "dependency": 70, "severity": "high", "description": "Import-dependent nation; oil import costs surging, affecting refiner margins and energy sector." },
+    { "country": "Europe", "dependency": 35, "severity": "high", "description": "12-14% of LNG sourced from Qatar via Hormuz; alternative sourcing expensive and limited." },
+    { "country": "India", "dependency": 45, "severity": "moderate", "description": "Permitted limited vessel transits through negotiation; still facing supply constraints and higher costs." }
+  ],
+  "crisisTimeline": [
+    { "date": "2026-04-01", "category": "diplomatic", "title": "Status quo: controlled transit, ongoing negotiations", "description": "Strait under selective Iranian control with ~6% of normal traffic. Trump extended deadline to April 6. Estimated 2000 ships stranded. War risk insurance still 6-7x normal." },
+    { "date": "2026-03-31", "category": "diplomatic", "title": "China-Pakistan present 5-point ceasefire initiative", "description": "China and Pakistan jointly present peace proposal including immediate ceasefire, halt to infrastructure attacks, safe passage through Strait, and framework for comprehensive peace." },
+    { "date": "2026-03-26", "category": "diplomatic", "title": "Iran selectively allows approved nations to transit", "description": "Iran permits passage for vessels from China, Russia, India, Iraq, Pakistan. Malaysia and Thailand granted access following direct talks. UN humanitarian and fertilizer shipments permitted." },
+    { "date": "2026-03-21", "category": "military", "title": "Trump issues 48-hour ultimatum to open Strait", "description": "Trump warns Iran that power plants will be obliterated unless Strait fully opens within 48 hours. Iran responds with threats to target US/Israeli energy infrastructure and lay sea mines." },
+    { "date": "2026-03-14", "category": "economic", "title": "US releases 400M barrels from Strategic Petroleum Reserve", "description": "Largest SPR release in history. Estimated 95 days of supply at current drawdown rate. Global coordinated release with IEA members." },
+    { "date": "2026-03-07", "category": "military", "title": "US Navy deploys carrier strike group to Gulf of Oman", "description": "USS Eisenhower carrier strike group positioned in Gulf of Oman. Additional destroyer deployments to escort allied vessels. Iran IRGC navy conducts counter-exercises." },
+    { "date": "2026-03-02", "category": "military", "title": "Iran restricts Strait of Hormuz transit", "description": "Iran begins controlled transit regime following escalation of US-Iran tensions over nuclear program. Initial blockade affects all non-allied vessels. Oil prices spike 15% overnight." }
+  ]
+}
