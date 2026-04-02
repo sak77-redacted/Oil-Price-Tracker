@@ -26,7 +26,7 @@ export const getAISummary = unstable_cache(
     if (!apiKey) return null;
 
     try {
-      const signalData = getSignalData();
+      const signalData = await getSignalData();
       const context = buildContext(signalData);
       const headlines = await fetchNewsHeadlines();
 
@@ -84,7 +84,7 @@ Write the briefing now.`,
 );
 
 function buildContext(
-  data: ReturnType<typeof getSignalData>,
+  data: Awaited<ReturnType<typeof getSignalData>>,
 ): string {
   return `- Strait Status: ${data.straitStatus.status} since ${data.straitStatus.since}. ${data.straitStatus.description}
 - Insurance Premium: ${data.insurance.current}% hull value (baseline: ${data.insurance.baseline}%, threshold: ${data.insurance.threshold}%)

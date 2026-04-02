@@ -9,8 +9,8 @@ import Footer from "@/components/Footer";
 export const revalidate = 900;
 
 export default async function Home() {
-  const signalData = getSignalData();
-  const [futuresData, crackData, forwardData, wtiBrentData, aiSummary] = await Promise.all([
+  const [signalData, futuresData, crackData, forwardData, wtiBrentData, aiSummary] = await Promise.all([
+    getSignalData(),
     fetchFuturesData(),
     fetchCrackSpreads(),
     fetchForwardCurve(),
