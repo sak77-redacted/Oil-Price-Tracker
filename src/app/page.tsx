@@ -3,6 +3,9 @@ import { fetchFuturesData, fetchCrackSpreads, fetchForwardCurve, fetchWTIBrentSp
 import Dashboard from "@/components/Dashboard";
 import Footer from "@/components/Footer";
 
+// Revalidate every 15 minutes so futures prices stay fresh
+export const revalidate = 900;
+
 export default async function Home() {
   const signalData = getSignalData();
   const [futuresData, crackData, forwardData, wtiBrentData] = await Promise.all([
