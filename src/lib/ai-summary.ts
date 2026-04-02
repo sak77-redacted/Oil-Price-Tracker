@@ -34,7 +34,7 @@ export const getAISummary = unstable_cache(
 
       const message = await client.messages.create({
         model: "claude-haiku-4-5-20251001",
-        max_tokens: 1500,
+        max_tokens: 2000,
         messages: [
           {
             role: "user",
@@ -43,13 +43,15 @@ export const getAISummary = unstable_cache(
 CURRENT SIGNAL DATA:
 ${context}
 
-${headlines ? `RECENT NEWS HEADLINES:\n${headlines}\n` : ""}
+${headlines ? `RECENT NEWS HEADLINES (grouped by category):\n${headlines}\n` : ""}
 
 REQUIREMENTS:
-- Focus specifically on UAE impact: trade, energy, logistics, business environment, real estate, tourism, aviation
+- Open with the most significant breaking news events from the last 24 hours — what happened, who said what, what moved markets
+- Dedicate a paragraph to analyzing which specific news events moved oil prices (and in which direction — up or down), citing the headlines above where relevant
+- Explain how these developments connect to UAE impact: trade, energy, logistics, business environment, real estate, tourism, aviation
 - Include: current military situation, diplomatic developments, economic impact, outlook
 - Tone: professional, analytical, no sensationalism
-- Length: 3-4 paragraphs, ~300 words
+- Length: 4-5 paragraphs, ~400 words
 - End with a 1-sentence "Bottom line" assessment
 - Do NOT use markdown formatting, headers, or bullet points — write in flowing prose paragraphs
 - Include today's date (${new Date().toISOString().split("T")[0]}) at the start
@@ -99,10 +101,26 @@ function buildContext(
 - Regional: UAE dependency on Hormuz: ~30% of oil exports. East-West pipeline (Habshan-Fujairah) operational but vulnerable to drone attacks. Dubai logistics hub disrupted. JAFZA trade volumes down.`;
 }
 
-async function fetchNewsHeadlines(): Promise<string> {
+interface NewsFeedConfig {
+  query: string;
+  label: string;
+}
+
+const NEWS_FEEDS: NewsFeedConfig[] = [
+  { query: "Trump+Iran+oil+war", label: "US/IRAN POLICY" },
+  { query: "oil+price+crude+today", label: "OIL MARKETS" },
+  { query: "UAE+economy+war+impact", label: "UAE IMPACT" },
+  { query: "Hormuz+strait+shipping", label: "STRAIT/SHIPPING" },
+  { query: "OPEC+oil+supply+production", label: "OPEC/SUPPLY" },
+  { query: "Iran+sanctions+nuclear", label: "IRAN GEOPOLITICS" },
+];
+
+async function fetchSingleFeed(
+  feed: NewsFeedConfig,
+): Promise<{ label: string; titles: string[] }> {
   try {
     const response = await fetch(
-      "https://news.google.com/rss/search?q=Iran+UAE+war+oil+Hormuz&hl=en&gl=US&ceid=US:en",
+      `https://news.google.com/rss/search?q=${feed.query}&hl=en&gl=US&ceid=US:en`,
       {
         signal: AbortSignal.timeout(5000),
         headers: {
@@ -111,21 +129,66 @@ async function fetchNewsHeadlines(): Promise<string> {
       },
     );
 
-    if (!response.ok) return "";
+    if (!response.ok) return { label: feed.label, titles: [] };
 
     const xml = await response.text();
     const titles: string[] = [];
     const titleRegex =
       /<title><!\[CDATA\[(.*?)\]\]><\/title>|<title>(.*?)<\/title>/g;
     let match;
-    while ((match = titleRegex.exec(xml)) !== null && titles.length < 8) {
+    while ((match = titleRegex.exec(xml)) !== null && titles.length < 5) {
       const title = match[1] || match[2];
       if (title && title !== "Google News" && title.length > 10) {
         titles.push(title);
       }
     }
 
-    return titles.map((t, i) => `${i + 1}. ${t}`).join("\n");
+    return { label: feed.label, titles };
+  } catch {
+    return { label: feed.label, titles: [] };
+  }
+}
+
+function isDuplicate(title: string, existing: string[]): boolean {
+  const normalized = title.toLowerCase();
+  return existing.some((t) => {
+    const existingNorm = t.toLowerCase();
+    return (
+      normalized.includes(existingNorm.slice(0, 40)) ||
+      existingNorm.includes(normalized.slice(0, 40))
+    );
+  });
+}
+
+async function fetchNewsHeadlines(): Promise<string> {
+  try {
+    const results = await Promise.allSettled(
+      NEWS_FEEDS.map((feed) => fetchSingleFeed(feed)),
+    );
+
+    const allTitles: string[] = [];
+    const sections: string[] = [];
+
+    for (const result of results) {
+      if (result.status !== "fulfilled") continue;
+      const { label, titles } = result.value;
+      if (titles.length === 0) continue;
+
+      const dedupedTitles = titles.filter(
+        (t) => !isDuplicate(t, allTitles),
+      );
+      if (dedupedTitles.length === 0) continue;
+
+      allTitles.push(...dedupedTitles);
+      const numbered = dedupedTitles
+        .map((t, i) => `  ${i + 1}. ${t}`)
+        .join("\n");
+      sections.push(`${label}:\n${numbered}`);
+
+      if (allTitles.length >= 15) break;
+    }
+
+    return sections.join("\n\n");
   } catch {
     return "";
   }
