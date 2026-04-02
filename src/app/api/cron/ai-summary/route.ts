@@ -14,12 +14,18 @@ export const maxDuration = 60;
  * Generates a UAE-focused analysis of the Iran crisis using Claude.
  */
 export async function GET(request: Request) {
-  // Verify cron secret
+  // Verify auth — accepts Bearer token (Vercel Cron) or ?secret= query param (manual trigger)
   const authHeader = request.headers.get("authorization");
+  const { searchParams } = new URL(request.url);
+  const querySecret = searchParams.get("secret");
   const cronSecret = process.env.CRON_SECRET;
 
-  if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (cronSecret) {
+    const authorized =
+      authHeader === `Bearer ${cronSecret}` || querySecret === cronSecret;
+    if (!authorized) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
