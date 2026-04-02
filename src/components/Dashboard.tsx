@@ -1,6 +1,7 @@
 "use client";
 
 import type { ExtendedSignalData, FuturesData, CrackSpreadData, ForwardCurveData, WTIBrentSpreadData } from "@/lib/types";
+import type { AISummaryData } from "@/lib/ai-summary";
 import VerdictBanner from "./VerdictBanner";
 import CriticalDeadlines from "./CriticalDeadlines";
 import FuturesDesk from "./FuturesDesk";
@@ -18,6 +19,7 @@ import RecoveryClock from "./RecoveryClock";
 import SPRStatusBoard from "./SPRStatusBoard";
 import DemandDestruction from "./DemandDestruction";
 import InflationThreshold from "./InflationThreshold";
+import AISummary from "./AISummary";
 
 interface DashboardProps {
   data: ExtendedSignalData;
@@ -25,9 +27,10 @@ interface DashboardProps {
   crackData?: CrackSpreadData;
   forwardData?: ForwardCurveData;
   wtiBrentData?: WTIBrentSpreadData;
+  aiSummary?: AISummaryData | null;
 }
 
-export default function Dashboard({ data, futuresData, crackData, forwardData, wtiBrentData }: DashboardProps) {
+export default function Dashboard({ data, futuresData, crackData, forwardData, wtiBrentData, aiSummary }: DashboardProps) {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 1. Verdict Banner — compact direction call */}
@@ -209,6 +212,9 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
       <section className="mt-8">
         <CrisisTimeline data={data.crisisTimeline} />
       </section>
+
+      {/* 9. AI Daily Briefing — UAE impact analysis */}
+      {aiSummary && <AISummary data={aiSummary} />}
     </div>
   );
 }

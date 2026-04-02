@@ -1,5 +1,6 @@
 import { getSignalData } from "@/lib/signals";
 import { fetchFuturesData, fetchCrackSpreads, fetchForwardCurve, fetchWTIBrentSpread } from "@/lib/futures-api";
+import { getAISummary } from "@/lib/ai-summary";
 import Dashboard from "@/components/Dashboard";
 import Footer from "@/components/Footer";
 
@@ -8,6 +9,7 @@ export const revalidate = 900;
 
 export default async function Home() {
   const signalData = getSignalData();
+  const aiSummary = getAISummary();
   const [futuresData, crackData, forwardData, wtiBrentData] = await Promise.all([
     fetchFuturesData(),
     fetchCrackSpreads(),
@@ -37,7 +39,7 @@ export default async function Home() {
           (@nakul_sarda)
         </p>
       </header>
-      <Dashboard data={signalData} futuresData={futuresData} crackData={crackData} forwardData={forwardData} wtiBrentData={wtiBrentData} />
+      <Dashboard data={signalData} futuresData={futuresData} crackData={crackData} forwardData={forwardData} wtiBrentData={wtiBrentData} aiSummary={aiSummary} />
       <Footer />
     </main>
   );
