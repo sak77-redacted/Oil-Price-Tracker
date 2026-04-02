@@ -1,6 +1,7 @@
 import { getSignalData } from "@/lib/signals";
 import { fetchFuturesData, fetchCrackSpreads, fetchForwardCurve, fetchWTIBrentSpread } from "@/lib/futures-api";
 import { getAISummary } from "@/lib/ai-summary";
+
 import Dashboard from "@/components/Dashboard";
 import Footer from "@/components/Footer";
 
@@ -9,12 +10,12 @@ export const revalidate = 900;
 
 export default async function Home() {
   const signalData = getSignalData();
-  const aiSummary = getAISummary();
-  const [futuresData, crackData, forwardData, wtiBrentData] = await Promise.all([
+  const [futuresData, crackData, forwardData, wtiBrentData, aiSummary] = await Promise.all([
     fetchFuturesData(),
     fetchCrackSpreads(),
     fetchForwardCurve(),
     fetchWTIBrentSpread(),
+    getAISummary(),
   ]);
 
   return (
