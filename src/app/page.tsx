@@ -21,7 +21,7 @@ export default async function Home() {
   return (
     <main className="flex min-h-full flex-col">
       <header className="px-4 pt-12 pb-4 text-center sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
+        <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
           Hormuz Signal Tracker
         </h1>
         <p className="mt-2 text-base text-[var(--text-secondary)]">
