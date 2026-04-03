@@ -75,9 +75,12 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
 
       {/* 2. Early Warning Signals — compact horizontal strip */}
       <section className="mt-6">
-        <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-[var(--text-secondary)]">
+        <h2 className="mb-1 text-sm font-bold uppercase tracking-wider text-[var(--text-secondary)]">
           Early Warning Signals
         </h2>
+        <p className="mb-3 text-xs text-[var(--text-secondary)]">
+          These are priced by people with real money on the line — insurance premiums, ship counts, and physical crude spreads don&apos;t lie. Everything else is noise.
+        </p>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {/* Insurance Premium */}
           <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3">

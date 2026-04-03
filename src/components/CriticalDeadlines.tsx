@@ -53,20 +53,12 @@ export default function CriticalDeadlines({ data }: CriticalDeadlinesProps) {
   const nextEventDays =
     futureEvents.length > 0 ? getDaysUntil(futureEvents[0].date) : 999;
 
-  // Find the supply cliff event (the one with the largest supply gap contribution)
-  const supplyCliffEvent = [...futureEvents].sort(
-    (a, b) => b.supplyGapMbd - a.supplyGapMbd
-  )[0];
-  const supplyCliffDays = supplyCliffEvent
-    ? getDaysUntil(supplyCliffEvent.date)
-    : 999;
-
   // Determine if any event is within 7 days for red border treatment
   const hasUrgentEvent = nextEventDays < 7;
 
   return (
     <div
-      className={`rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6 ${
+      className={`rounded-xl border border-[var(--card-border)] bg-[var(--card)] px-5 py-4 ${
         hasUrgentEvent ? "border-l-4 border-l-red-500" : ""
       }`}
       style={
@@ -75,141 +67,54 @@ export default function CriticalDeadlines({ data }: CriticalDeadlinesProps) {
           : undefined
       }
     >
-      {/* Header */}
-      <h2 className="mb-5 text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
-        Critical Deadlines
-      </h2>
-
-      {/* Top stat boxes */}
-      <div className="mb-6 grid grid-cols-3 gap-3">
-        {/* Next Event */}
-        <div className="rounded-lg border border-[var(--card-border)] bg-[var(--background)] p-4 text-center">
-          <span
-            className="text-3xl font-bold tabular-nums"
-            style={{ color: getDaysColor(nextEventDays) }}
-          >
+      {/* Header with inline stats */}
+      <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+          Critical Deadlines
+        </h2>
+        <span className="text-xs text-[var(--text-secondary)]">
+          Next event in{" "}
+          <span className="font-bold tabular-nums" style={{ color: getDaysColor(nextEventDays) }}>
             {nextEventDays}
-          </span>
-          <span
-            className="ml-1 text-sm font-medium"
-            style={{ color: getDaysColor(nextEventDays) }}
-          >
-            {nextEventDays === 1 ? "day" : "days"}
-          </span>
-          <p className="mt-1 text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
-            Next Event
-          </p>
-        </div>
-
-        {/* Supply Cliff */}
-        <div className="rounded-lg border border-[var(--card-border)] bg-[var(--background)] p-4 text-center">
-          <span
-            className="text-3xl font-bold tabular-nums"
-            style={{ color: getDaysColor(supplyCliffDays) }}
-          >
-            {supplyCliffDays}
-          </span>
-          <span
-            className="ml-1 text-sm font-medium"
-            style={{ color: getDaysColor(supplyCliffDays) }}
-          >
-            {supplyCliffDays === 1 ? "day" : "days"}
-          </span>
-          <p className="mt-1 text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
-            Supply Cliff
-          </p>
-        </div>
-
-        {/* Projected Gap */}
-        <div className="rounded-lg border border-[var(--card-border)] bg-[var(--background)] p-4 text-center">
-          <span className="text-2xl font-bold tabular-nums text-red-400">
-            {data.currentGapMbd}
-          </span>
-          <span className="mx-1 text-sm text-[var(--text-secondary)]">
-            &rarr;
-          </span>
-          <span className="text-2xl font-bold tabular-nums text-red-400">
-            {data.projectedGapMbd}
-          </span>
-          <span className="ml-1 text-xs text-[var(--text-secondary)]">
-            mb/d
-          </span>
-          <p className="mt-1 text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
-            Projected Gap
-          </p>
-        </div>
+          </span>{" "}
+          {nextEventDays === 1 ? "day" : "days"} | Supply gap:{" "}
+          <span className="font-bold tabular-nums text-red-400">{data.currentGapMbd}</span>
+          &rarr;
+          <span className="font-bold tabular-nums text-red-400">{data.projectedGapMbd}</span> mb/d
+        </span>
       </div>
 
-      {/* Event list */}
-      <div className="flex flex-col gap-3">
+      {/* Compact event chips */}
+      <div className="flex flex-wrap gap-2">
         {futureEvents.map((event) => {
           const days = getDaysUntil(event.date);
           const badge = getUrgencyBadge(days);
           const isUrgent = days < 7;
-          const isWarning = days >= 7 && days < 21;
+          const isCritical = days >= 7 && days < 14;
+
+          const chipClass = isUrgent
+            ? "bg-red-500/15 text-red-400 border border-red-500/30"
+            : isCritical
+              ? "bg-amber-500/15 text-amber-400 border border-amber-500/30"
+              : "bg-[var(--background)] text-[var(--text-secondary)] border border-[var(--card-border)]";
 
           return (
-            <div
+            <span
               key={event.id}
-              className="flex items-start justify-between gap-3"
+              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 ${chipClass}`}
             >
-              {/* Left: icon + event details */}
-              <div className="flex items-start gap-2.5 min-w-0 flex-1">
-                <span className="mt-0.5 shrink-0 text-sm" role="img" aria-label="event icon">
-                  {isUrgent ? "\u26A1" : "\uD83D\uDD34"}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span
-                      className={`text-sm leading-tight ${
-                        isUrgent
-                          ? "font-bold text-red-400"
-                          : isWarning
-                            ? "font-semibold text-amber-400"
-                            : "font-medium text-[var(--text-secondary)]"
-                      }`}
-                    >
-                      {formatEventDate(event.date)} &mdash; {event.event}
-                    </span>
-                    <span
-                      className="text-xs tabular-nums"
-                      style={{ color: getDaysColor(days) }}
-                    >
-                      ({days === 0 ? "today" : `${days}d`})
-                    </span>
-                    {event.supplyGapMbd > 0 && (
-                      <span
-                        className="inline-flex items-center rounded-full px-1.5 py-0.5 text-[10px] font-semibold"
-                        style={{
-                          background: "rgba(239, 68, 68, 0.1)",
-                          color: "var(--danger)",
-                        }}
-                      >
-                        +{event.supplyGapMbd} mb/d
-                      </span>
-                    )}
-                  </div>
-                  <p
-                    className={`mt-0.5 text-xs ${
-                      isUrgent
-                        ? "text-red-400/70"
-                        : "text-[var(--text-secondary)]"
-                    }`}
-                  >
-                    {event.impact}
-                  </p>
-                </div>
-              </div>
-
-              {/* Right: urgency badge */}
+              <span className="text-xs font-medium">
+                {formatEventDate(event.date)} &mdash; {event.event}
+              </span>
+              <span className="text-[10px] tabular-nums opacity-80">
+                ({days === 0 ? "today" : `${days}d`})
+              </span>
               {badge && (
-                <span
-                  className={`shrink-0 inline-flex items-center rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${badge.className}`}
-                >
+                <span className="text-[10px] font-bold uppercase tracking-wider">
                   {badge.label}
                 </span>
               )}
-            </div>
+            </span>
           );
         })}
       </div>
