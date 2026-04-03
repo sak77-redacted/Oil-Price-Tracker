@@ -89,6 +89,36 @@ const straitStatusPatterns: RegExp[] = [
   /strait\s*(?:is\s*)?(?:currently\s*)?(open|closed|restricted|blocked)/i,
 ];
 
+/** Convert number words in headlines to digits. */
+function wordToNumber(text: string): string {
+  const words: Record<string, string> = {
+    'zero': '0', 'one': '1', 'two': '2', 'three': '3', 'four': '4',
+    'five': '5', 'six': '6', 'seven': '7', 'eight': '8', 'nine': '9',
+    'ten': '10', 'eleven': '11', 'twelve': '12', 'fifteen': '15', 'twenty': '20',
+    'thirty': '30', 'forty': '40', 'fifty': '50',
+  };
+  return text.replace(
+    /\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|fifteen|twenty|thirty|forty|fifty)\b/gi,
+    (m) => words[m.toLowerCase()] || m,
+  );
+}
+
+/** Headline-specific transit patterns (short text from RSS titles). */
+const headlineTransitPatterns: RegExp[] = [
+  /(\d+)\s*(?:vessels?|ships?)\s*(?:per|a|each)\s*day/i,
+  /(\d+)\s*(?:more\s*)?(?:ships?|vessels?)\s*(?:through|via)/i,
+  /allows?\s*(\d+)\s*(?:ships?|vessels?)/i,
+  /(\d+)\s*(?:ships?|vessels?)\s*(?:granted|permitted|allowed)/i,
+  /(?:send|transit|pass)\s*(\d+)\s*(?:ships?|vessels?)/i,
+];
+
+/** Headline-specific insurance patterns (short text from RSS titles). */
+const headlineInsurancePatterns: RegExp[] = [
+  /premium[s]?\s*(?:at|reach|hit|surge[sd]?\s*to)\s*(\d+\.?\d*)\s*%/i,
+  /(\d+\.?\d*)\s*%\s*(?:war\s*risk|premium|insurance)/i,
+  /insurance[^.]*?(\d+\.?\d*)\s*(?:%|percent)/i,
+];
+
 /** Try each regex in order against `text`, return first valid match group 1. */
 function firstMatch(text: string, patterns: RegExp[]): string | null {
   for (const re of patterns) {
@@ -131,6 +161,15 @@ async function scrapeHormuzMonitor(): Promise<ScrapedSignals> {
     }
   }
 
+  // If page indicates closure with no transits, report 0
+  if (!transitVal) {
+    const closedIndicators =
+      /(?:closed|blockade|suspended|no\s*(?:commercial\s*)?transits)/i;
+    if (closedIndicators.test(html)) {
+      results.shipTransit = { dailyCount: 0, lastUpdated: now };
+    }
+  }
+
   // Brent crude price (backup — Yahoo Finance is the primary source)
   const brentVal = firstMatch(html, brentPatterns);
   if (brentVal) {
@@ -155,8 +194,8 @@ async function scrapeHormuzMonitor(): Promise<ScrapedSignals> {
  */
 async function scrapeGCaptain(): Promise<ScrapedSignals> {
   const [insurancePage, transitPage] = await Promise.all([
-    safeFetch("https://gcaptain.com/tag/war-risk-insurance/"),
-    safeFetch("https://gcaptain.com/tag/strait-of-hormuz/"),
+    safeFetch("https://gcaptain.com/?s=war+risk+insurance+hormuz"),
+    safeFetch("https://gcaptain.com/?s=hormuz+strait+transit+ships"),
   ]);
 
   const results: ScrapedSignals = {};
@@ -209,8 +248,22 @@ async function scrapeGoogleNewsRSS(): Promise<ScrapedSignals> {
   const results: ScrapedSignals = {};
   const now = new Date().toISOString();
 
+  // Extract all <title> texts from RSS XML and concatenate them
+  const titleRegex = /<title[^>]*>([\s\S]*?)<\/title>/gi;
+
   if (insuranceFeed) {
-    const insVal = firstMatch(insuranceFeed, insurancePatterns);
+    const titles: string[] = [];
+    let m: RegExpExecArray | null;
+    while ((m = titleRegex.exec(insuranceFeed)) !== null) {
+      titles.push(m[1]);
+    }
+    const headlineText = wordToNumber(titles.join(" "));
+
+    // Try headline-specific patterns first, then fall back to general patterns
+    const insVal =
+      firstMatch(headlineText, headlineInsurancePatterns) ??
+      firstMatch(headlineText, insurancePatterns) ??
+      firstMatch(insuranceFeed, insurancePatterns);
     if (insVal) {
       const premium = parseFloat(insVal);
       if (premium > 0 && premium < 50) {
@@ -220,7 +273,20 @@ async function scrapeGoogleNewsRSS(): Promise<ScrapedSignals> {
   }
 
   if (transitFeed) {
-    const transitVal = firstMatch(transitFeed, transitPatterns);
+    // Reset regex lastIndex for reuse
+    titleRegex.lastIndex = 0;
+    const titles: string[] = [];
+    let m: RegExpExecArray | null;
+    while ((m = titleRegex.exec(transitFeed)) !== null) {
+      titles.push(m[1]);
+    }
+    const headlineText = wordToNumber(titles.join(" "));
+
+    // Try headline-specific patterns first, then fall back to general patterns
+    const transitVal =
+      firstMatch(headlineText, headlineTransitPatterns) ??
+      firstMatch(headlineText, transitPatterns) ??
+      firstMatch(transitFeed, transitPatterns);
     if (transitVal) {
       const count = parseInt(transitVal, 10);
       if (count >= 0 && count < 200) {
