@@ -11,6 +11,7 @@ interface OilSpreadSignalProps {
 
 export default function OilSpreadSignal({ data }: OilSpreadSignalProps) {
   const status = getSpreadStatus(data.spread);
+  const isLiveBrent = /yahoo|live/i.test(data.brentSource);
 
   const statusLabel =
     status === "red"
@@ -38,14 +39,20 @@ export default function OilSpreadSignal({ data }: OilSpreadSignalProps) {
         <div className="grid grid-cols-2 gap-3">
           {/* Brent (Paper) */}
           <div className="rounded-lg bg-[var(--background)] px-4 py-4">
-            <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-secondary)]">
+            <p className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-[var(--text-secondary)]">
               Brent (Paper)
+              {isLiveBrent && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-green-500/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-green-400 border border-green-500/30">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+                  Live
+                </span>
+              )}
             </p>
             <p className="mt-1 text-3xl font-bold text-[var(--text-primary)]">
               {formatCurrency(data.brent)}
             </p>
             <p className="mt-1 text-xs text-[var(--text-secondary)]">
-              What headlines report
+              {isLiveBrent ? "Yahoo Finance — 15 min refresh" : "What headlines report"}
             </p>
           </div>
 

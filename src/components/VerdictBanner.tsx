@@ -6,6 +6,7 @@ import { getDaysUntil } from "@/lib/utils";
 
 interface VerdictBannerProps {
   data: SignalData;
+  liveBrentPrice?: number;
 }
 
 const directionConfig: Record<
@@ -66,8 +67,20 @@ function formatCliffDate(event: { label: string; days: number }): string {
   return `${event.days}d`;
 }
 
-export default function VerdictBanner({ data }: VerdictBannerProps) {
-  const verdict = computeVerdict(data);
+export default function VerdictBanner({ data, liveBrentPrice }: VerdictBannerProps) {
+  // If live Brent price is available, compute verdict with live spread data
+  const verdictData: SignalData = liveBrentPrice != null
+    ? {
+        ...data,
+        oilSpread: {
+          ...data.oilSpread,
+          brent: liveBrentPrice,
+          dubai: liveBrentPrice + (data.oilSpread.dubai - data.oilSpread.brent),
+          spread: data.oilSpread.dubai - data.oilSpread.brent, // premium stays constant
+        },
+      }
+    : data;
+  const verdict = computeVerdict(verdictData);
   const config = directionConfig[verdict.direction];
   const nextCliff = getNextCliff(data);
 

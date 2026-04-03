@@ -31,10 +31,30 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ data, futuresData, crackData, forwardData, wtiBrentData, aiSummary }: DashboardProps) {
+  // Wire live Brent price from Yahoo Finance into the Oil Spread signal
+  const bzContract = futuresData?.contracts.find((c) => c.symbol === "BZ=F");
+  const liveBrent = bzContract?.price;
+
+  // Build merged oil spread data: live Brent + derived Dubai (static premium preserved)
+  const oilSpreadData = (() => {
+    if (liveBrent == null) return data.oilSpread;
+    const dubaiPremium = data.oilSpread.dubai - data.oilSpread.brent;
+    const liveDubai = liveBrent + dubaiPremium;
+    const liveSpread = liveDubai - liveBrent;
+    return {
+      ...data.oilSpread,
+      brent: liveBrent,
+      dubai: liveDubai,
+      spread: liveSpread,
+      lastUpdated: futuresData?.timestamp ?? data.oilSpread.lastUpdated,
+      brentSource: "Yahoo Finance (live)",
+    };
+  })();
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 1. Verdict Banner — compact direction call */}
-      <VerdictBanner data={data} />
+      <VerdictBanner data={data} liveBrentPrice={liveBrent} />
 
       {/* 2. Critical Deadlines — "when does the cliff hit?" */}
       <div className="mt-6">
@@ -166,7 +186,7 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
             <span className="absolute -top-2 left-3 z-10 rounded bg-blue-500/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-blue-400 border border-blue-500/30">
               Market Repricing
             </span>
-            <OilSpreadSignal data={data.oilSpread} />
+            <OilSpreadSignal data={oilSpreadData} />
           </div>
         </div>
       </section>
