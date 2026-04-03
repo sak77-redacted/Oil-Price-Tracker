@@ -43,13 +43,6 @@ const CONTRACTS: ContractConfig[] = [
       "Henry Hub natural gas. Less directly Hormuz-impacted, but watch for LNG substitution effects.",
     fallbackPrice: 4.5,
   },
-  {
-    symbol: "GC=F",
-    name: "Gold",
-    explanation:
-      "Gold \u2014 the fear trade. Rising gold + rising oil = markets pricing sustained crisis.",
-    fallbackPrice: 2950,
-  },
 ];
 
 /**
@@ -364,6 +357,13 @@ interface IndexConfig {
 }
 
 const MARKET_INDICES: IndexConfig[] = [
+  {
+    symbol: "GC=F",
+    name: "Gold",
+    description:
+      "Safe haven \u2014 rising gold + rising oil = markets pricing sustained crisis",
+    fallbackPrice: 2950,
+  },
   {
     symbol: "BTC=F",
     name: "Bitcoin Futures",

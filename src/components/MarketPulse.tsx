@@ -39,7 +39,7 @@ export default function MarketPulse({ data }: MarketPulseProps) {
       <p className="mt-1 mb-3 text-xs text-[var(--text-secondary)]">
         Cross-asset context &mdash; how the crisis is rippling through broader markets
       </p>
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
         {data.indices.map((index) => {
           const isPositive = index.change >= 0;
           const changeColor = isPositive ? "text-emerald-400" : "text-red-400";
