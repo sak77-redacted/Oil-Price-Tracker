@@ -21,23 +21,17 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-full flex-col">
-      <header className="px-4 pt-12 pb-4 text-center sm:px-6 lg:px-8">
+      <header className="px-4 pt-10 pb-2 text-center sm:px-6 lg:px-8">
         <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
           Hormuz Signal Tracker
         </h1>
-        <p className="mt-2 text-base text-[var(--text-secondary)]">
-          4 signals. Zero noise.
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[var(--text-secondary)]">
+          The Strait of Hormuz carries 20% of the world&apos;s oil supply. It is now effectively closed.
+          This tracker monitors the only signals that matter — priced by people with real money at risk — and translates them into actionable trade intelligence.
         </p>
-        <p className="mt-3 text-sm text-[var(--text-secondary)]">
+        <p className="mt-3 text-xs text-[var(--text-secondary)]">
           Signal framework by{" "}
-          <a
-            href="https://x.com/nakul_sarda"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-[var(--accent)] hover:underline"
-          >
-            Nakul Sarda
-          </a>{" "}
+          <a href="https://x.com/nakul_sarda" target="_blank" rel="noopener noreferrer" className="font-semibold text-[var(--accent)] hover:underline">Nakul Sarda</a>{" "}
           (@nakul_sarda)
         </p>
       </header>

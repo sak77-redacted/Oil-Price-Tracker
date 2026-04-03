@@ -75,15 +75,14 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
       {/* 1. Verdict Banner */}
       <VerdictBanner data={data} liveBrentPrice={liveBrent} />
 
-      {/* 2. Early Warning Signals — compact horizontal strip */}
-      <section className="mt-6">
-        <h2 className="mb-1 text-sm font-bold uppercase tracking-wider text-[var(--text-secondary)]">
-          Early Warning Signals
-        </h2>
-        <p className="mb-3 text-xs text-[var(--text-secondary)]">
-          These are priced by people with real money on the line — insurance premiums, ship counts, and physical crude spreads don&apos;t lie. Everything else is noise.
-        </p>
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+      {/* ─── SECTION A: THE SIGNAL ─── */}
+      {/* Verdict + Early Warning Signals */}
+      <section>
+        {/* Verdict Banner */}
+        {/* (already rendered above) */}
+
+        {/* Early Warning Signal strip */}
+        <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
           {/* Insurance Premium */}
           <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3">
             <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
@@ -99,6 +98,9 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
               </span>
             </div>
             <div className="mt-0.5 text-xs text-[var(--text-secondary)]">{insuranceLabel}</div>
+            <div className="mt-1.5 text-[11px] leading-snug text-[var(--text-secondary)] italic">
+              Lloyd&apos;s underwriters price real risk — when premiums spike, smart money sees danger
+            </div>
           </div>
 
           {/* Strait Transits */}
@@ -116,6 +118,9 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
               </span>
             </div>
             <div className="mt-0.5 text-xs text-[var(--text-secondary)]">{shipLabel}</div>
+            <div className="mt-1.5 text-[11px] leading-snug text-[var(--text-secondary)] italic">
+              AIS ship counts are physical proof — vessels either transit or they don&apos;t
+            </div>
           </div>
 
           {/* Paper vs Physical */}
@@ -143,41 +148,66 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
             <div className="mt-1.5 text-[11px] leading-snug text-[var(--text-secondary)]">
               Brent ${oilSpreadData.brent.toFixed(0)} vs Dubai Physical ${oilSpreadData.dubai.toFixed(0)} — Asia pays the physical price, not the paper headline. Political jawboning compresses Brent but refiners get no discount.
             </div>
+            <div className="mt-1.5 text-[11px] leading-snug text-[var(--text-secondary)] italic">
+              Refiners pay physical prices, not paper — this gap reveals the real cost
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 3. Critical Deadlines */}
-      <div className="mt-6">
+      {/* ─── SECTION B: THE TIMELINE ─── */}
+      <div className="mt-10 mb-6 flex items-center gap-4">
+        <div className="h-px flex-1 bg-[var(--card-border)]" />
+        <div className="flex flex-col items-center">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+            What Happens Next
+          </span>
+        </div>
+        <div className="h-px flex-1 bg-[var(--card-border)]" />
+      </div>
+
+      <div>
         <CriticalDeadlines data={data.timeline} />
       </div>
 
-      {/* 4. Energy Futures Desk */}
+      {/* ─── SECTION C: THE TRADE ─── */}
+      <div className="mt-10 mb-6 flex items-center gap-4">
+        <div className="h-px flex-1 bg-[var(--card-border)]" />
+        <div className="flex flex-col items-center">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+            Actionable Intelligence
+          </span>
+          <span className="mt-0.5 text-xs text-[var(--text-secondary)]">Live futures prices with signal-based impact projections — where the signals meet the market</span>
+        </div>
+        <div className="h-px flex-1 bg-[var(--card-border)]" />
+      </div>
+
+      {/* Energy Futures Desk */}
       {futuresData && <FuturesDesk data={futuresData} signalData={data} />}
 
-      {/* 4b. Market Pulse */}
+      {/* Market Pulse */}
       {marketData && <MarketPulse data={marketData} />}
 
-      {/* 5. Crack Spreads */}
+      {/* Crack Spreads */}
       {crackData && (
         <section className="mt-6">
           <CrackSpreads data={crackData} />
         </section>
       )}
 
-      {/* 6. Forward Curve Structure */}
+      {/* Forward Curve Structure */}
       {forwardData && (
         <section className="mt-6">
           <ForwardCurve data={forwardData} />
         </section>
       )}
 
-      {/* 7. Trade Expression */}
+      {/* Trade Expression */}
       <section className="mt-8">
         <TradeExpression oilPrice={forwardData?.promptPrice ?? 105} />
       </section>
 
-      {/* 8. WTI-Brent Spread */}
+      {/* WTI-Brent Spread */}
       {wtiBrentData && (
         <section className="mt-6">
           <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-5">
@@ -225,13 +255,25 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
         </section>
       )}
 
-      {/* 9. Inflation Threshold */}
+      {/* ─── SECTION D: THE CONTEXT ─── */}
+      <div className="mt-10 mb-6 flex items-center gap-4">
+        <div className="h-px flex-1 bg-[var(--card-border)]" />
+        <div className="flex flex-col items-center">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+            Deep Context
+          </span>
+          <span className="mt-0.5 text-xs text-[var(--text-secondary)]">Macro transmission, recovery timeline, strategic reserves, and supply analysis</span>
+        </div>
+        <div className="h-px flex-1 bg-[var(--card-border)]" />
+      </div>
+
+      {/* Inflation Threshold */}
       <InflationThreshold
         data={data.inflationThreshold}
         currentOilPrice={forwardData?.promptPrice}
       />
 
-      {/* 10. Recovery Clock */}
+      {/* Recovery Clock */}
       <section className="mt-8">
         <div className="mb-4">
           <h2 className="text-xl font-bold text-[var(--text-primary)]">
@@ -244,18 +286,18 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
         <RecoveryClock data={data.recoveryClock} />
       </section>
 
-      {/* 11. SPR Status Board */}
+      {/* SPR Status Board */}
       <SPRStatusBoard data={data.sprStatus} />
 
-      {/* 12. Demand Destruction */}
+      {/* Demand Destruction */}
       <DemandDestruction data={data.demandDestruction} />
 
-      {/* 13. Strait Status */}
+      {/* Strait Status */}
       <div className="mt-8">
         <StraitStatus data={data.straitStatus} />
       </div>
 
-      {/* 14. Vessel Traffic Map */}
+      {/* Vessel Traffic Map */}
       <section className="mt-8">
         <div className="mb-4">
           <h2 className="text-xl font-bold text-[var(--text-primary)]">
@@ -271,7 +313,7 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
         />
       </section>
 
-      {/* 15. Global Supply Disruption */}
+      {/* Global Supply Disruption */}
       <section className="mt-8">
         <div className="mb-4">
           <h2 className="text-xl font-bold text-[var(--text-primary)]">
@@ -287,12 +329,12 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
         />
       </section>
 
-      {/* 16. Crisis Timeline */}
+      {/* Crisis Timeline */}
       <section className="mt-8">
         <CrisisTimeline data={data.crisisTimeline} />
       </section>
 
-      {/* 17. AI Daily Briefing */}
+      {/* AI Daily Briefing */}
       {aiSummary && <AISummary data={aiSummary} />}
     </div>
   );
