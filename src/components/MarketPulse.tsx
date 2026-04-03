@@ -8,11 +8,11 @@ interface MarketPulseProps {
 
 function formatPrice(symbol: string, price: number): string {
   // VIX: no $ sign, 2 decimals
-  if (symbol === "^VIX") {
+  if (symbol === "VX=F") {
     return price.toFixed(2);
   }
   // S&P 500: $ with commas, 2 decimals
-  if (symbol === "^GSPC") {
+  if (symbol === "ES=F") {
     return "$" + price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
   // BTC and NASDAQ: $ with commas, no decimals
@@ -21,10 +21,10 @@ function formatPrice(symbol: string, price: number): string {
 
 function formatChange(symbol: string, change: number): string {
   const sign = change >= 0 ? "+" : "";
-  if (symbol === "^VIX") {
+  if (symbol === "VX=F") {
     return sign + change.toFixed(2);
   }
-  if (symbol === "^GSPC") {
+  if (symbol === "ES=F") {
     return sign + "$" + Math.abs(change).toFixed(2);
   }
   return sign + "$" + Math.abs(Math.round(change)).toLocaleString("en-US");

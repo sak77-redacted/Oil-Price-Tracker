@@ -365,29 +365,29 @@ interface IndexConfig {
 
 const MARKET_INDICES: IndexConfig[] = [
   {
-    symbol: "BTC-USD",
-    name: "Bitcoin",
+    symbol: "BTC=F",
+    name: "Bitcoin Futures",
     description:
       "Risk appetite barometer \u2014 crypto sells off in crisis, or rallies as inflation hedge",
     fallbackPrice: 84000,
   },
   {
-    symbol: "^GSPC",
-    name: "S&P 500",
+    symbol: "ES=F",
+    name: "S&P 500 Futures",
     description:
       "Broad US equity market \u2014 war premium drags on equities",
     fallbackPrice: 5200,
   },
   {
-    symbol: "^VIX",
-    name: "VIX",
+    symbol: "VX=F",
+    name: "VIX Futures",
     description:
       "Fear index \u2014 spikes when oil shocks threaten recession",
     fallbackPrice: 22,
   },
   {
-    symbol: "^IXIC",
-    name: "NASDAQ",
+    symbol: "NQ=F",
+    name: "NASDAQ Futures",
     description:
       "Tech-heavy index \u2014 most sensitive to rate expectations from oil-driven inflation",
     fallbackPrice: 16000,
