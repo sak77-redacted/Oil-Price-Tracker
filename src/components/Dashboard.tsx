@@ -140,6 +140,9 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
               </span>
             </div>
             <div className="mt-0.5 text-xs text-[var(--text-secondary)]">{spreadLabel}</div>
+            <div className="mt-1.5 text-[11px] leading-snug text-[var(--text-secondary)]">
+              Brent ${oilSpreadData.brent.toFixed(0)} vs Dubai Physical ${oilSpreadData.dubai.toFixed(0)} — Asia pays the physical price, not the paper headline. Political jawboning compresses Brent but refiners get no discount.
+            </div>
           </div>
         </div>
       </section>
