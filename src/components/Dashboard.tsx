@@ -2,15 +2,13 @@
 
 import type { ExtendedSignalData, FuturesData, CrackSpreadData, ForwardCurveData, WTIBrentSpreadData } from "@/lib/types";
 import type { AISummaryData } from "@/lib/ai-summary";
+import { getInsuranceStatus, getShipStatus, getSpreadStatus, statusColor } from "@/lib/utils";
 import VerdictBanner from "./VerdictBanner";
 import CriticalDeadlines from "./CriticalDeadlines";
 import FuturesDesk from "./FuturesDesk";
 import CrackSpreads from "./CrackSpreads";
 import ForwardCurve from "./ForwardCurve";
 import TradeExpression from "./TradeExpression";
-import InsuranceSignal from "./InsuranceSignal";
-import ShipTransitSignal from "./ShipTransitSignal";
-import OilSpreadSignal from "./OilSpreadSignal";
 import StraitStatus from "./StraitStatus";
 import VesselMapWrapper from "./VesselMapWrapper";
 import GlobalSupplyDisruption from "./GlobalSupplyDisruption";
@@ -51,39 +49,124 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
     };
   })();
 
+  // Compute statuses for compact Early Warning Signals strip
+  const insuranceStatus = getInsuranceStatus(data.insurance.current);
+  const shipStatus = getShipStatus(data.shipTransit.dailyCount);
+  const spreadForDisplay = liveBrent != null ? oilSpreadData.spread : data.oilSpread.spread;
+  const spreadStatus = getSpreadStatus(spreadForDisplay);
+
+  const insuranceLabel =
+    insuranceStatus === "red" ? "Extreme Risk" : insuranceStatus === "yellow" ? "Elevated" : "Normalizing";
+  const shipLabel =
+    data.shipTransit.dailyCount === 0
+      ? "Effectively Closed"
+      : shipStatus === "red"
+        ? "Severely Disrupted"
+        : shipStatus === "yellow"
+          ? "Below Normal"
+          : "Normal Flow";
+  const spreadLabel =
+    spreadStatus === "red" ? "Severe Disconnect" : spreadStatus === "yellow" ? "Widening" : "Normal Range";
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      {/* 1. Verdict Banner — compact direction call */}
+      {/* 1. Verdict Banner */}
       <VerdictBanner data={data} liveBrentPrice={liveBrent} />
 
-      {/* 2. Critical Deadlines — "when does the cliff hit?" */}
+      {/* 2. Early Warning Signals — compact horizontal strip */}
+      <section className="mt-6">
+        <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-[var(--text-secondary)]">
+          Early Warning Signals
+        </h2>
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+          {/* Insurance Premium */}
+          <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3">
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              Insurance Premium
+            </div>
+            <div className="mt-1 flex items-center gap-2">
+              <span
+                className="inline-block h-2 w-2 shrink-0 rounded-full"
+                style={{ backgroundColor: statusColor(insuranceStatus) }}
+              />
+              <span className="text-xl font-bold tabular-nums" style={{ color: statusColor(insuranceStatus) }}>
+                {data.insurance.current.toFixed(1)}% hull value
+              </span>
+            </div>
+            <div className="mt-0.5 text-xs text-[var(--text-secondary)]">{insuranceLabel}</div>
+          </div>
+
+          {/* Strait Transits */}
+          <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3">
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              Strait Transits
+            </div>
+            <div className="mt-1 flex items-center gap-2">
+              <span
+                className="inline-block h-2 w-2 shrink-0 rounded-full"
+                style={{ backgroundColor: statusColor(shipStatus) }}
+              />
+              <span className="text-xl font-bold tabular-nums" style={{ color: statusColor(shipStatus) }}>
+                {data.shipTransit.dailyCount} ships/day
+              </span>
+            </div>
+            <div className="mt-0.5 text-xs text-[var(--text-secondary)]">{shipLabel}</div>
+          </div>
+
+          {/* Paper vs Physical */}
+          <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+                Paper vs Physical
+              </span>
+              {liveBrent != null && (
+                <span className="rounded bg-emerald-500/20 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-emerald-400 border border-emerald-500/30">
+                  Live
+                </span>
+              )}
+            </div>
+            <div className="mt-1 flex items-center gap-2">
+              <span
+                className="inline-block h-2 w-2 shrink-0 rounded-full"
+                style={{ backgroundColor: statusColor(spreadStatus) }}
+              />
+              <span className="text-xl font-bold tabular-nums" style={{ color: statusColor(spreadStatus) }}>
+                ${spreadForDisplay.toFixed(0)} spread
+              </span>
+            </div>
+            <div className="mt-0.5 text-xs text-[var(--text-secondary)]">{spreadLabel}</div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Critical Deadlines */}
       <div className="mt-6">
         <CriticalDeadlines data={data.timeline} />
       </div>
 
-      {/* 3. Energy Futures Desk — actionable price exposure */}
+      {/* 4. Energy Futures Desk */}
       {futuresData && <FuturesDesk data={futuresData} signalData={data} />}
 
-      {/* 3a. Crack Spreads — refining margins */}
+      {/* 5. Crack Spreads */}
       {crackData && (
         <section className="mt-6">
           <CrackSpreads data={crackData} />
         </section>
       )}
 
-      {/* 3b. Forward Curve Structure */}
+      {/* 6. Forward Curve Structure */}
       {forwardData && (
         <section className="mt-6">
           <ForwardCurve data={forwardData} />
         </section>
       )}
 
-      {/* 3c. Trade Expression — how to position */}
+      {/* 7. Trade Expression */}
       <section className="mt-8">
         <TradeExpression oilPrice={forwardData?.promptPrice ?? 105} />
       </section>
 
-      {/* 3d. WTI-Brent Spread — Hormuz-specific dislocation */}
+      {/* 8. WTI-Brent Spread */}
       {wtiBrentData && (
         <section className="mt-6">
           <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-5">
@@ -131,13 +214,13 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
         </section>
       )}
 
-      {/* 4. Inflation Threshold — macro transmission chain */}
+      {/* 9. Inflation Threshold */}
       <InflationThreshold
         data={data.inflationThreshold}
         currentOilPrice={forwardData?.promptPrice}
       />
 
-      {/* 4a. Recovery Clock — how long until normal? */}
+      {/* 10. Recovery Clock */}
       <section className="mt-8">
         <div className="mb-4">
           <h2 className="text-xl font-bold text-[var(--text-primary)]">
@@ -150,53 +233,18 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
         <RecoveryClock data={data.recoveryClock} />
       </section>
 
-      {/* 4b. SPR Status Board — who's released, who's holding */}
+      {/* 11. SPR Status Board */}
       <SPRStatusBoard data={data.sprStatus} />
 
-      {/* 4c. Demand Destruction — the counter-signal */}
+      {/* 12. Demand Destruction */}
       <DemandDestruction data={data.demandDestruction} />
 
-      {/* 5. Early Warning Signals — ranked by indicator quality */}
-      <section className="mt-8">
-        <div className="mb-4">
-          <h2 className="text-xl font-bold text-[var(--text-primary)]">
-            Early Warning Signals
-          </h2>
-          <p className="mt-1 text-sm text-[var(--text-secondary)]">
-            Leading indicators ranked by predictive value — insurance premiums move first
-          </p>
-        </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {/* Leading indicator — most weight */}
-          <div className="relative">
-            <span className="absolute -top-2 left-3 z-10 rounded bg-red-500/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-red-400 border border-red-500/30">
-              Leading Indicator
-            </span>
-            <InsuranceSignal data={data.insurance} />
-          </div>
-          {/* Confirmation signal */}
-          <div className="relative">
-            <span className="absolute -top-2 left-3 z-10 rounded bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-400 border border-amber-500/30">
-              Confirmation
-            </span>
-            <ShipTransitSignal data={data.shipTransit} />
-          </div>
-          {/* Market repricing signal */}
-          <div className="relative">
-            <span className="absolute -top-2 left-3 z-10 rounded bg-blue-500/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-blue-400 border border-blue-500/30">
-              Market Repricing
-            </span>
-            <OilSpreadSignal data={oilSpreadData} />
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Strait Status — compact context */}
+      {/* 13. Strait Status */}
       <div className="mt-8">
         <StraitStatus data={data.straitStatus} />
       </div>
 
-      {/* 6. Vessel Traffic Map */}
+      {/* 14. Vessel Traffic Map */}
       <section className="mt-8">
         <div className="mb-4">
           <h2 className="text-xl font-bold text-[var(--text-primary)]">
@@ -212,7 +260,7 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
         />
       </section>
 
-      {/* 7. Global Supply Disruption — consolidated macro + regional + routes */}
+      {/* 15. Global Supply Disruption */}
       <section className="mt-8">
         <div className="mb-4">
           <h2 className="text-xl font-bold text-[var(--text-primary)]">
@@ -228,12 +276,12 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
         />
       </section>
 
-      {/* 8. Crisis Timeline — historical context */}
+      {/* 16. Crisis Timeline */}
       <section className="mt-8">
         <CrisisTimeline data={data.crisisTimeline} />
       </section>
 
-      {/* 9. AI Daily Briefing — UAE impact analysis */}
+      {/* 17. AI Daily Briefing */}
       {aiSummary && <AISummary data={aiSummary} />}
     </div>
   );
