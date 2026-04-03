@@ -1,5 +1,5 @@
 import { getSignalData } from "@/lib/signals";
-import { fetchFuturesData, fetchCrackSpreads, fetchForwardCurve, fetchWTIBrentSpread } from "@/lib/futures-api";
+import { fetchFuturesData, fetchCrackSpreads, fetchForwardCurve, fetchWTIBrentSpread, fetchMarketIndices } from "@/lib/futures-api";
 import { getAISummary } from "@/lib/ai-summary";
 
 import Dashboard from "@/components/Dashboard";
@@ -9,12 +9,13 @@ import Footer from "@/components/Footer";
 export const revalidate = 900;
 
 export default async function Home() {
-  const [signalData, futuresData, crackData, forwardData, wtiBrentData, aiSummary] = await Promise.all([
+  const [signalData, futuresData, crackData, forwardData, wtiBrentData, marketData, aiSummary] = await Promise.all([
     getSignalData(),
     fetchFuturesData(),
     fetchCrackSpreads(),
     fetchForwardCurve(),
     fetchWTIBrentSpread(),
+    fetchMarketIndices(),
     getAISummary(),
   ]);
 
@@ -40,7 +41,7 @@ export default async function Home() {
           (@nakul_sarda)
         </p>
       </header>
-      <Dashboard data={signalData} futuresData={futuresData} crackData={crackData} forwardData={forwardData} wtiBrentData={wtiBrentData} aiSummary={aiSummary} />
+      <Dashboard data={signalData} futuresData={futuresData} crackData={crackData} forwardData={forwardData} wtiBrentData={wtiBrentData} marketData={marketData} aiSummary={aiSummary} />
       <Footer />
     </main>
   );

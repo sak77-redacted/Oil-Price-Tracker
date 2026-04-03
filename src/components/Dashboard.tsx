@@ -1,6 +1,6 @@
 "use client";
 
-import type { ExtendedSignalData, FuturesData, CrackSpreadData, ForwardCurveData, WTIBrentSpreadData } from "@/lib/types";
+import type { ExtendedSignalData, FuturesData, CrackSpreadData, ForwardCurveData, WTIBrentSpreadData, MarketIndicesData } from "@/lib/types";
 import type { AISummaryData } from "@/lib/ai-summary";
 import { getInsuranceStatus, getShipStatus, getSpreadStatus, statusColor } from "@/lib/utils";
 import VerdictBanner from "./VerdictBanner";
@@ -17,6 +17,7 @@ import RecoveryClock from "./RecoveryClock";
 import SPRStatusBoard from "./SPRStatusBoard";
 import DemandDestruction from "./DemandDestruction";
 import InflationThreshold from "./InflationThreshold";
+import MarketPulse from "./MarketPulse";
 import AISummary from "./AISummary";
 
 interface DashboardProps {
@@ -25,10 +26,11 @@ interface DashboardProps {
   crackData?: CrackSpreadData;
   forwardData?: ForwardCurveData;
   wtiBrentData?: WTIBrentSpreadData;
+  marketData?: MarketIndicesData;
   aiSummary?: AISummaryData | null;
 }
 
-export default function Dashboard({ data, futuresData, crackData, forwardData, wtiBrentData, aiSummary }: DashboardProps) {
+export default function Dashboard({ data, futuresData, crackData, forwardData, wtiBrentData, marketData, aiSummary }: DashboardProps) {
   // Wire live Brent price from Yahoo Finance into the Oil Spread signal
   const bzContract = futuresData?.contracts.find((c) => c.symbol === "BZ=F");
   const liveBrent = bzContract?.price;
@@ -149,6 +151,9 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
 
       {/* 4. Energy Futures Desk */}
       {futuresData && <FuturesDesk data={futuresData} signalData={data} />}
+
+      {/* 4b. Market Pulse */}
+      {marketData && <MarketPulse data={marketData} />}
 
       {/* 5. Crack Spreads */}
       {crackData && (

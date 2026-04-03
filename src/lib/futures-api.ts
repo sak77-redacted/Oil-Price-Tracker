@@ -1,4 +1,4 @@
-import type { FuturesContract, FuturesData, CrackSpreadData, ForwardCurveData, ForwardPoint, WTIBrentSpreadData } from "./types";
+import type { FuturesContract, FuturesData, CrackSpreadData, ForwardCurveData, ForwardPoint, WTIBrentSpreadData, MarketIndex, MarketIndicesData } from "./types";
 
 interface ContractConfig {
   symbol: string;
@@ -351,4 +351,113 @@ export async function fetchWTIBrentSpread(): Promise<WTIBrentSpreadData> {
       timestamp: new Date().toISOString(),
     };
   }
+}
+
+/**
+ * Market indices config for cross-asset context.
+ */
+interface IndexConfig {
+  symbol: string;
+  name: string;
+  description: string;
+  fallbackPrice: number;
+}
+
+const MARKET_INDICES: IndexConfig[] = [
+  {
+    symbol: "BTC-USD",
+    name: "Bitcoin",
+    description:
+      "Risk appetite barometer \u2014 crypto sells off in crisis, or rallies as inflation hedge",
+    fallbackPrice: 84000,
+  },
+  {
+    symbol: "^GSPC",
+    name: "S&P 500",
+    description:
+      "Broad US equity market \u2014 war premium drags on equities",
+    fallbackPrice: 5200,
+  },
+  {
+    symbol: "^VIX",
+    name: "VIX",
+    description:
+      "Fear index \u2014 spikes when oil shocks threaten recession",
+    fallbackPrice: 22,
+  },
+  {
+    symbol: "^IXIC",
+    name: "NASDAQ",
+    description:
+      "Tech-heavy index \u2014 most sensitive to rate expectations from oil-driven inflation",
+    fallbackPrice: 16000,
+  },
+];
+
+/**
+ * Fetch market indices (BTC, S&P 500, VIX, NASDAQ) for cross-asset context.
+ * Never throws -- always returns valid MarketIndicesData with fallbacks.
+ */
+export async function fetchMarketIndices(): Promise<MarketIndicesData> {
+  const results = await Promise.allSettled(
+    MARKET_INDICES.map(async (config): Promise<MarketIndex> => {
+      try {
+        const { price, previousClose } = await fetchSinglePrice(
+          config.symbol,
+          config.fallbackPrice,
+        );
+
+        let change = 0;
+        let changePercent = 0;
+
+        if (previousClose > 0) {
+          change = Math.round((price - previousClose) * 100) / 100;
+          changePercent =
+            Math.round(((price - previousClose) / previousClose) * 10000) / 100;
+        }
+
+        const live = price !== config.fallbackPrice;
+
+        return {
+          symbol: config.symbol,
+          name: config.name,
+          price,
+          change,
+          changePercent,
+          description: config.description,
+          live,
+        };
+      } catch {
+        return {
+          symbol: config.symbol,
+          name: config.name,
+          price: config.fallbackPrice,
+          change: 0,
+          changePercent: 0,
+          description: config.description,
+          live: false,
+        };
+      }
+    }),
+  );
+
+  const indices: MarketIndex[] = results.map((result, index) => {
+    if (result.status === "fulfilled") {
+      return result.value;
+    }
+    return {
+      symbol: MARKET_INDICES[index].symbol,
+      name: MARKET_INDICES[index].name,
+      price: MARKET_INDICES[index].fallbackPrice,
+      change: 0,
+      changePercent: 0,
+      description: MARKET_INDICES[index].description,
+      live: false,
+    };
+  });
+
+  return {
+    indices,
+    timestamp: new Date().toISOString(),
+  };
 }

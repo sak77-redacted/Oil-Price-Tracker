@@ -170,6 +170,21 @@ export interface ExtendedSignalData extends SignalData {
   inflationThreshold: InflationThresholdData;
 }
 
+export interface MarketIndex {
+  symbol: string;
+  name: string;
+  price: number;
+  change: number;
+  changePercent: number;
+  description: string;
+  live: boolean;
+}
+
+export interface MarketIndicesData {
+  indices: MarketIndex[];
+  timestamp: string;
+}
+
 export interface FuturesContract {
   symbol: string;        // e.g., "CL=F"
   name: string;          // e.g., "WTI Crude Oil"
