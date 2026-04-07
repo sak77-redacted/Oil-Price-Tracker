@@ -85,9 +85,9 @@
     "source": "Windward Maritime Intelligence, Lloyd's List, PIB India"
   },
   "oilSpread": {
-    "brent": 104,
-    "dubai": 120,
-    "spread": 16,
+    "brent": 111,
+    "dubai": 129,
+    "spread": 18,
     "history": [
       { "date": "2026-02-26", "brent": 76, "dubai": 77 },
       { "date": "2026-02-27", "brent": 78, "dubai": 80 },
@@ -105,10 +105,11 @@
       { "date": "2026-03-25", "brent": 107, "dubai": 122 },
       { "date": "2026-03-27", "brent": 106, "dubai": 121 },
       { "date": "2026-03-29", "brent": 105, "dubai": 121 },
-      { "date": "2026-04-01", "brent": 104, "dubai": 120 }
+      { "date": "2026-04-01", "brent": 104, "dubai": 120 },
+      { "date": "2026-04-07", "brent": 111, "dubai": 129 }
     ],
-    "lastUpdated": "2026-04-01T08:00:00Z",
-    "brentSource": "commodities-api.com",
+    "lastUpdated": "2026-04-07T08:00:00Z",
+    "brentSource": "Yahoo Finance (live) / oilprice.com",
     "dubaiSource": "S&P Global Platts"
   },
   "timeline": {
