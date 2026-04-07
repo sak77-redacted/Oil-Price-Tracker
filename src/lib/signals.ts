@@ -71,6 +71,14 @@ const insurancePatterns: RegExp[] = [
   /premium[^]*?(\d+\.?\d*)\s*%[^]*?hull/i,
 ];
 
+// Multiplier patterns — convert "Xx normal" to percentage
+const insuranceMultiplierPatterns: RegExp[] = [
+  /(\d+\.?\d*)\s*[xX×]\s*(?:normal|baseline|pre-crisis|peacetime)/i,
+  /(\d+\.?\d*)\s*times?\s*(?:normal|baseline|pre-crisis|peacetime|higher)/i,
+  /over\s*(\d+\.?\d*)\s*[xX×]/i,
+  /(\d+\.?\d*)\s*[xX×]\s*(?:the\s*)?(?:usual|standard)/i,
+];
+
 const transitPatterns: RegExp[] = [
   /(\d+)\s*(?:ships?\s*transiting|transiting)/i,
   /transits?\s*\(?24h\)?[^]*?(\d+)\s*ships?/i,
@@ -152,6 +160,18 @@ async function scrapeHormuzMonitor(): Promise<ScrapedSignals> {
     }
   }
 
+  // Multiplier fallback — e.g. "16x normal rates" → 16 * 0.25% = 4.0%
+  if (!results.insurance) {
+    const multiplierVal = firstMatch(html, insuranceMultiplierPatterns);
+    if (multiplierVal) {
+      const multiplier = parseFloat(multiplierVal);
+      if (multiplier > 1 && multiplier < 200) {
+        const premium = multiplier * 0.25; // baseline 0.25% hull value
+        results.insurance = { current: Math.round(premium * 10) / 10, lastUpdated: now };
+      }
+    }
+  }
+
   // Ship transit count
   const transitVal = firstMatch(html, transitPatterns);
   if (transitVal) {
@@ -161,12 +181,14 @@ async function scrapeHormuzMonitor(): Promise<ScrapedSignals> {
     }
   }
 
-  // If page indicates closure with no transits, report 0
-  if (!transitVal) {
-    const closedIndicators =
-      /(?:closed|blockade|suspended|no\s*(?:commercial\s*)?transits)/i;
-    if (closedIndicators.test(html)) {
+  // If no numeric transit found, check for qualitative descriptors
+  if (!results.shipTransit) {
+    if (/near\s*zero|virtually\s*zero|almost\s*none/i.test(html)) {
+      results.shipTransit = { dailyCount: 1, lastUpdated: now };
+    } else if (/(?:closed|blockade|suspended|no\s*(?:commercial\s*)?transits)/i.test(html)) {
       results.shipTransit = { dailyCount: 0, lastUpdated: now };
+    } else if (/limited\s*(?:transit|passage|shipping)/i.test(html)) {
+      results.shipTransit = { dailyCount: 5, lastUpdated: now };
     }
   }
 
@@ -207,6 +229,18 @@ async function scrapeGCaptain(): Promise<ScrapedSignals> {
       const premium = parseFloat(insVal);
       if (premium > 0 && premium < 50) {
         results.insurance = { current: premium, lastUpdated: now };
+      }
+    }
+
+    // Multiplier fallback — e.g. "16x normal rates" → 16 * 0.25% = 4.0%
+    if (!results.insurance) {
+      const multiplierVal = firstMatch(insurancePage, insuranceMultiplierPatterns);
+      if (multiplierVal) {
+        const multiplier = parseFloat(multiplierVal);
+        if (multiplier > 1 && multiplier < 200) {
+          const premium = multiplier * 0.25;
+          results.insurance = { current: Math.round(premium * 10) / 10, lastUpdated: now };
+        }
       }
     }
   }
@@ -268,6 +302,20 @@ async function scrapeGoogleNewsRSS(): Promise<ScrapedSignals> {
       const premium = parseFloat(insVal);
       if (premium > 0 && premium < 50) {
         results.insurance = { current: premium, lastUpdated: now };
+      }
+    }
+
+    // Multiplier fallback — e.g. "16x normal rates" → 16 * 0.25% = 4.0%
+    if (!results.insurance) {
+      const multiplierVal =
+        firstMatch(headlineText, insuranceMultiplierPatterns) ??
+        firstMatch(insuranceFeed, insuranceMultiplierPatterns);
+      if (multiplierVal) {
+        const multiplier = parseFloat(multiplierVal);
+        if (multiplier > 1 && multiplier < 200) {
+          const premium = multiplier * 0.25;
+          results.insurance = { current: Math.round(premium * 10) / 10, lastUpdated: now };
+        }
       }
     }
   }
@@ -366,12 +414,39 @@ const getScrapedOverrides = unstable_cache(
 export async function getSignalData(): Promise<ExtendedSignalData> {
   const override = await getScrapedOverrides();
 
+  // Never let the scraper override insurance or ship transit data.
+  // These signals require verified sources (Lloyd's, Windward Maritime Intelligence)
+  // and the regex-based scraper returns unreliable numbers from random news pages.
+  delete (override as Record<string, unknown>).insurance;
+  delete (override as Record<string, unknown>).shipTransit;
+
+  let data: ExtendedSignalData;
   if (Object.keys(override).length > 0) {
-    return deepMerge(
+    data = deepMerge(
       defaultSignals as unknown as Record<string, unknown>,
       override,
     ) as unknown as ExtendedSignalData;
+  } else {
+    data = { ...defaultSignals } as ExtendedSignalData;
   }
 
-  return defaultSignals as ExtendedSignalData;
+  // Environment variable overrides — highest priority.
+  // Set SIGNAL_INSURANCE=5.8 and SIGNAL_SHIPS=6 on Vercel for quick manual updates.
+  const envInsurance = process.env.SIGNAL_INSURANCE;
+  if (envInsurance) {
+    const val = parseFloat(envInsurance);
+    if (!isNaN(val) && val > 0 && val < 50) {
+      data.insurance = { ...data.insurance, current: val };
+    }
+  }
+
+  const envShips = process.env.SIGNAL_SHIPS;
+  if (envShips) {
+    const val = parseInt(envShips, 10);
+    if (!isNaN(val) && val >= 0 && val < 200) {
+      data.shipTransit = { ...data.shipTransit, dailyCount: val };
+    }
+  }
+
+  return data;
 }

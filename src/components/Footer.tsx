@@ -34,6 +34,9 @@ export default function Footer() {
         <p className="text-xs font-medium text-[var(--text-secondary)]">
           Built for signal, not noise.
         </p>
+        <p className="mt-3 text-[10px] text-[var(--text-secondary)]">
+          Not financial advice. For informational purposes only. Do your own research before making investment decisions.
+        </p>
         <p className="mt-2 text-[10px] text-[var(--text-secondary)]">
           &copy; {currentYear}
         </p>

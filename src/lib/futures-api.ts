@@ -221,79 +221,127 @@ export async function fetchCrackSpreads(): Promise<CrackSpreadData> {
 
 /**
  * Fetch forward curve for Brent crude.
- * Uses current prompt price + simulated forward structure based on market-implied
- * backwardation from Sparta research. Yahoo forward month tickers are unreliable
- * on free tier, so we model the curve from the prompt price.
+ * Tries to fetch real forward month prices from Yahoo Finance using individual
+ * month contract tickers (e.g. BZK26.NYM for May 2026). Falls back to simulated
+ * offsets from the prompt price for any month where Yahoo doesn't return data.
  * Never throws -- always returns valid ForwardCurveData.
  */
 export async function fetchForwardCurve(): Promise<ForwardCurveData> {
   const FALLBACK_BRENT = 112;
+  const MONTH_CODES = ["F", "G", "H", "J", "K", "M", "N", "Q", "U", "V", "X", "Z"];
+  const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const FALLBACK_DISCOUNTS = [0, -3.5, -8.2, -12.5, -15.8, -18.0, -19.5, -20.2, -20.8];
 
   try {
-    const prompt = await fetchSinglePrice("BZ=F", FALLBACK_BRENT);
+    // Use the same delivery month logic as WTI-Brent spread (getCurrentDeliveryMonth)
+    const now = new Date();
+    const day = now.getDate();
+    const currentMonth = now.getMonth();
 
-    // Simulate forward curve based on current market structure
-    // Sparta research: prompt at crisis premium, forwards pricing resolution
-    // April is elevated, May-Sep progressively lower (backwardation)
-    const months = [
-      "Apr 26",
-      "May 26",
-      "Jun 26",
-      "Jul 26",
-      "Aug 26",
-      "Sep 26",
-      "Oct 26",
-      "Nov 26",
-      "Dec 26",
-    ];
-    const discounts = [0, -3.5, -8.2, -12.5, -15.8, -18.0, -19.5, -20.2, -20.8];
+    // Starting month index (0-indexed) — same as getCurrentDeliveryMonth logic
+    let startMonthIdx = day < 20 ? currentMonth + 1 : currentMonth + 2;
+    let startYear = now.getFullYear();
+    if (startMonthIdx >= 12) {
+      startMonthIdx -= 12;
+      startYear++;
+    }
 
-    const curve: ForwardPoint[] = months.map((month, i) => ({
-      month,
-      price: Math.round((prompt.price + discounts[i]) * 100) / 100,
-      diffFromPrompt: discounts[i],
-    }));
+    // Build 9 consecutive month tickers starting from the delivery month
+    const months: { ticker: string; label: string }[] = [];
+    for (let i = 0; i < 9; i++) {
+      const m = (startMonthIdx + i) % 12;
+      const y = startYear + Math.floor((startMonthIdx + i) / 12);
+      const code = MONTH_CODES[m];
+      const yearSuffix = String(y).slice(-2);
+      months.push({
+        ticker: `BZ${code}${yearSuffix}.NYM`,
+        label: `${MONTH_NAMES[m]} ${yearSuffix}`,
+      });
+    }
 
-    const lastDiscount = discounts[discounts.length - 1];
+    // Fetch all months in parallel
+    const results = await Promise.allSettled(
+      months.map((m) => fetchSinglePrice(m.ticker, 0)),
+    );
+
+    // Build curve from results
+    const curve: ForwardPoint[] = [];
+    let promptPrice = 0;
+    let liveCount = 0;
+
+    results.forEach((result, i) => {
+      let price: number;
+
+      if (result.status === "fulfilled" && result.value.price > 0) {
+        const yahooPrice = result.value.price;
+        // Simple absolute sanity check — reject obviously garbage data
+        if (yahooPrice > 30 && yahooPrice < 300) {
+          price = yahooPrice;
+          liveCount++;
+        } else {
+          price = 0; // will use fallback below
+        }
+      } else {
+        price = 0;
+      }
+
+      // If no valid price, use fallback offset from prompt (or absolute fallback)
+      if (price === 0) {
+        if (promptPrice > 0) {
+          const discount = FALLBACK_DISCOUNTS[i] ?? FALLBACK_DISCOUNTS[FALLBACK_DISCOUNTS.length - 1];
+          price = Math.round((promptPrice + discount) * 100) / 100;
+        } else {
+          const discount = FALLBACK_DISCOUNTS[i] ?? FALLBACK_DISCOUNTS[FALLBACK_DISCOUNTS.length - 1];
+          price = Math.round((FALLBACK_BRENT + discount) * 100) / 100;
+        }
+      }
+
+      // First month is the prompt
+      if (i === 0) {
+        promptPrice = price;
+      }
+
+      curve.push({
+        month: months[i].label,
+        price,
+        diffFromPrompt: i === 0 ? 0 : Math.round((price - promptPrice) * 100) / 100,
+      });
+    });
+
+    if (promptPrice === 0) promptPrice = FALLBACK_BRENT;
+
+    const lastPoint = curve[curve.length - 1];
+    const lastDiff = lastPoint.diffFromPrompt;
     const structure: ForwardCurveData["structure"] =
-      lastDiscount < -5
-        ? "backwardation"
-        : lastDiscount > 5
-          ? "contango"
-          : "flat";
+      lastDiff < -5 ? "backwardation" : lastDiff > 5 ? "contango" : "flat";
 
     return {
       contract: "Brent Crude",
-      symbol: "BZ=F",
-      promptPrice: prompt.price,
+      symbol: months[0].ticker,
+      promptPrice,
       curve,
       structure,
+      liveMonths: liveCount,
       timestamp: new Date().toISOString(),
     };
   } catch {
     // Full fallback
-    const fallbackPrice = FALLBACK_BRENT;
-    const months = [
-      "Apr 26",
-      "May 26",
-      "Jun 26",
-      "Jul 26",
-      "Aug 26",
-      "Sep 26",
-      "Oct 26",
-      "Nov 26",
-      "Dec 26",
-    ];
-    const discounts = [0, -3.5, -8.2, -12.5, -15.8, -18.0, -19.5, -20.2, -20.8];
+    const now = new Date();
+    const monthNames: string[] = [];
+    for (let i = 0; i < 9; i++) {
+      const m = (now.getMonth() + 1 + i) % 12;
+      const y = now.getFullYear() + Math.floor((now.getMonth() + 1 + i) / 12);
+      monthNames.push(`${MONTH_NAMES[m]} ${String(y).slice(-2)}`);
+    }
 
     return {
       contract: "Brent Crude",
       symbol: "BZ=F",
-      promptPrice: fallbackPrice,
-      curve: months.map((month, i) => ({
+      promptPrice: FALLBACK_BRENT,
+      curve: monthNames.map((month, i) => ({
         month,
-        price: Math.round((fallbackPrice + discounts[i]) * 100) / 100,
-        diffFromPrompt: discounts[i],
+        price: Math.round((FALLBACK_BRENT + FALLBACK_DISCOUNTS[i]) * 100) / 100,
+        diffFromPrompt: FALLBACK_DISCOUNTS[i],
       })),
       structure: "backwardation",
       timestamp: new Date().toISOString(),
@@ -301,12 +349,46 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
   }
 }
 
+const FUTURES_MONTH_CODES = ['F', 'G', 'H', 'J', 'K', 'M', 'N', 'Q', 'U', 'V', 'X', 'Z'];
+const FUTURES_MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 /**
- * Fetch WTI-Brent spread.
+ * Determine the current WTI front-month delivery month.
+ * WTI (CL) front month rolls around the 20th of the prior month.
+ * E.g., on April 5, CL=F is the May contract. After ~April 20, it rolls to June.
+ */
+function getCurrentDeliveryMonth(): { code: string; year: string; label: string } {
+  const now = new Date();
+  const day = now.getDate();
+  const month = now.getMonth(); // 0-indexed
+
+  // Before ~20th: front month = next month. After ~20th: front month = month+2
+  let deliveryMonth = day < 20 ? month + 1 : month + 2;
+  let deliveryYear = now.getFullYear();
+
+  if (deliveryMonth >= 12) {
+    deliveryMonth -= 12;
+    deliveryYear++;
+  }
+
+  return {
+    code: FUTURES_MONTH_CODES[deliveryMonth],
+    year: String(deliveryYear).slice(-2),
+    label: `${FUTURES_MONTH_NAMES[deliveryMonth]} ${String(deliveryYear).slice(-2)}`,
+  };
+}
+
+/**
+ * Fetch WTI-Brent spread using same-maturity contracts.
  * Jun Goh (Sparta): spread collapsed from $15 to $1.50. Fair value is $4-5
  * based on TD25 freight economics (cost to ship WTI to Europe).
  * When spread < fair value, WTI is overvalued relative to Brent (or Brent
  * is not carrying the Hormuz premium it should).
+ *
+ * IMPORTANT: CL=F and BZ=F can reference DIFFERENT delivery months during
+ * roll periods (e.g. WTI May vs Brent June). In steep backwardation this
+ * creates a phantom negative spread. We now dynamically determine the WTI
+ * front month and fetch the matching Brent contract for the SAME month.
  * Never throws -- always returns valid WTIBrentSpreadData.
  */
 export async function fetchWTIBrentSpread(): Promise<WTIBrentSpreadData> {
@@ -315,10 +397,17 @@ export async function fetchWTIBrentSpread(): Promise<WTIBrentSpreadData> {
   const FAIR_VALUE = 4.5; // TD25 freight economics
 
   try {
+    const month = getCurrentDeliveryMonth();
+    const wtiSymbol = `CL${month.code}${month.year}.NYM`;
+    const brentSymbol = `BZ${month.code}${month.year}.NYM`;
+
     const [cl, bz] = await Promise.all([
-      fetchSinglePrice("CL=F", FALLBACK_CL),
-      fetchSinglePrice("BZ=F", FALLBACK_BZ),
+      fetchSinglePrice(wtiSymbol, FALLBACK_CL),
+      fetchSinglePrice(brentSymbol, FALLBACK_BZ),
     ]);
+
+    // If specific month tickers fail, both will return fallback — detect this
+    const live = cl.price !== FALLBACK_CL || bz.price !== FALLBACK_BZ;
 
     const spread = Math.round((bz.price - cl.price) * 100) / 100;
     const previousSpread =
@@ -330,7 +419,8 @@ export async function fetchWTIBrentSpread(): Promise<WTIBrentSpreadData> {
       spread,
       fairValue: FAIR_VALUE,
       previousSpread,
-      live: true,
+      live,
+      contractMonth: month.label,
       timestamp: new Date().toISOString(),
     };
   } catch {
@@ -379,8 +469,8 @@ const MARKET_INDICES: IndexConfig[] = [
     fallbackPrice: 5200,
   },
   {
-    symbol: "VX=F",
-    name: "VIX Futures",
+    symbol: "^VIX",
+    name: "VIX",
     description:
       "Fear index \u2014 spikes when oil shocks threaten recession",
     fallbackPrice: 22,
@@ -460,4 +550,94 @@ export async function fetchMarketIndices(): Promise<MarketIndicesData> {
     indices,
     timestamp: new Date().toISOString(),
   };
+}
+
+export interface HyperliquidPerpData {
+  name: string;
+  displayName: string;
+  markPx: number;
+  oraclePx: number;
+  funding: number;       // hourly funding rate as decimal
+  fundingAnnualized: number; // annualized for display
+  openInterest: number;  // in USD
+  volume24h: number;     // in USD
+  prevDayPx: number;
+  change24h: number;     // percentage
+  premium: number;       // mark vs oracle premium
+  timestamp: string;
+}
+
+export interface HyperliquidData {
+  perps: HyperliquidPerpData[];
+  timestamp: string;
+  live: boolean;
+}
+
+/**
+ * Fetch oil perpetual futures from Hyperliquid (xyz dex).
+ * Free API, no auth. Trades 24/7 — useful when CME is closed on weekends/holidays.
+ * Never throws — returns empty data on failure.
+ */
+export async function fetchHyperliquidPerps(): Promise<HyperliquidData> {
+  const OIL_ASSETS = [
+    { name: "xyz:CL", displayName: "WTI Crude Perp" },
+    { name: "xyz:BRENTOIL", displayName: "Brent Crude Perp" },
+  ];
+
+  try {
+    const response = await fetch("https://api.hyperliquid.xyz/info", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: "metaAndAssetCtxs", dex: "xyz" }),
+      signal: AbortSignal.timeout(5000),
+    });
+
+    if (!response.ok) {
+      return { perps: [], timestamp: new Date().toISOString(), live: false };
+    }
+
+    const data = await response.json();
+    const universe = data[0]?.universe ?? [];
+    const ctxs = data[1] ?? [];
+
+    const perps: HyperliquidPerpData[] = [];
+
+    for (const target of OIL_ASSETS) {
+      const idx = universe.findIndex((a: { name: string }) => a.name === target.name);
+      if (idx === -1 || !ctxs[idx]) continue;
+
+      const ctx = ctxs[idx];
+      const markPx = parseFloat(ctx.markPx);
+      const oraclePx = parseFloat(ctx.oraclePx);
+      const prevDayPx = parseFloat(ctx.prevDayPx);
+      const funding = parseFloat(ctx.funding);
+      const openInterest = parseFloat(ctx.openInterest);
+      const volume24h = parseFloat(ctx.dayNtlVlm);
+      const premium = parseFloat(ctx.premium);
+      const change24h = prevDayPx > 0 ? ((markPx - prevDayPx) / prevDayPx) * 100 : 0;
+
+      perps.push({
+        name: target.name,
+        displayName: target.displayName,
+        markPx: Math.round(markPx * 100) / 100,
+        oraclePx: Math.round(oraclePx * 100) / 100,
+        funding,
+        fundingAnnualized: funding * 24 * 365 * 100, // to percentage
+        openInterest: Math.round(openInterest),
+        volume24h: Math.round(volume24h),
+        prevDayPx: Math.round(prevDayPx * 100) / 100,
+        change24h: Math.round(change24h * 100) / 100,
+        premium,
+        timestamp: new Date().toISOString(),
+      });
+    }
+
+    return {
+      perps,
+      timestamp: new Date().toISOString(),
+      live: perps.length > 0,
+    };
+  } catch {
+    return { perps: [], timestamp: new Date().toISOString(), live: false };
+  }
 }

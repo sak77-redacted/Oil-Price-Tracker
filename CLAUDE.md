@@ -1,4 +1,4 @@
-# Genius Team v18.0 — CLI Mode
+# Genius Team v21.0 — CLI Mode
 
 > ⚠️ **MANDATORY**: Read `GENIUS_GUARD.md` before ANY action.
 > This project uses Genius Team. You MUST use the skills, not work standalone.
@@ -18,6 +18,21 @@
 
 **📊 Dashboard:** `open .genius/DASHBOARD.html` — your real-time project hub.
 Run `/genius-dashboard` to generate or refresh it. **Always show this link to the user after completing any skill.**
+
+---
+
+## Mode System
+
+Genius Team adapts to your experience level. Set your mode with `/genius-mode`:
+
+| Mode | Description |
+|------|-------------|
+| `beginner` | Extra guidance, strict validation, step-by-step |
+| `builder` | Standard workflow, balanced guidance (default) |
+| `pro` | Minimal hand-holding, fast transitions |
+| `agency` | Multi-project, client-friendly outputs |
+
+Mode is stored in `.genius/mode.json` and affects validation strictness, explanation verbosity, and checkpoint behavior. See `configs/modes/*.md` for details.
 
 ---
 
@@ -49,6 +64,33 @@ These rules are **NON-NEGOTIABLE**. Violating them breaks the entire workflow.
 5. **ALWAYS validate checkpoints** before transitioning to next phase
 
 > If you catch yourself coding, STOP. Spawn genius-dev instead.
+
+---
+
+## Decision Framework
+
+> Execute this checklist BEFORE writing any code. Every item is mandatory.
+
+1. **Grep first** — Search for existing patterns before creating anything new. Run `Grep` for the function name, component name, or pattern you're about to implement. If it exists, extend it — don't duplicate.
+
+2. **Blast radius** — What depends on what you're changing? Check imports (`Grep` for the filename), tests (`Grep` for the function name in test files), and consumers. List affected files before editing.
+
+3. **Ask don't assume** — Ambiguous request? Ask ONE clarifying question before proceeding. Don't guess intent, scope, or implementation approach when the request is unclear.
+
+4. **Smallest change** — Solve what was asked, nothing more. No bonus refactors, no "while I'm here" improvements, no extra error handling for impossible cases. Three similar lines > a premature abstraction.
+
+5. **Verification plan** — How will you prove this works? Answer before coding. Name the specific test, command, or manual check that will confirm success. If you can't name one, you don't understand the task yet.
+
+## Self-Evolution Protocol
+
+> The system learns from every session. Corrections become rules. Rules get verified. The system evolves.
+
+- **On correction**: Log to `.genius/memory/corrections.jsonl` with root cause and verify pattern
+- **On pattern discovery**: Log to `.genius/memory/observations.jsonl` with evidence
+- **On session start**: Run verification sweep on all rules in `.genius/memory/learned-rules.md`
+- **On session end**: Write scorecard to `.genius/memory/sessions.jsonl`
+- **On capacity limit**: When `learned-rules.md` approaches 50 lines, run `/genius-evolve` to graduate or prune
+- **Audit**: Run `/genius-evolve` every ~10 sessions for rule review
 
 ---
 
@@ -117,7 +159,7 @@ The Lead reads `plan.md` + `BRIEFING.md` + `state.json` to reconstruct state.
 
 ## Agent Teams Protocol
 
-Genius Team v18.0 uses Claude Code Agent Teams (`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`).
+Genius Team v21.0 uses Claude Code Agent Teams (`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`).
 
 - **Lead** (you, the main session) coordinates — never codes directly
 - **Teammates** are spawned via delegate mode (Shift+Tab) with natural language prompts
@@ -244,6 +286,8 @@ Then: genius-qa (full audit) → genius-security → genius-deployer
 | `/hydrate-tasks` | Reload tasks from plan.md |
 | `/save-tokens` | Toggle save-token mode |
 | `/update-check` | Check for Claude Code updates |
+| `/genius-mode` | Switch experience mode (beginner/builder/pro/agency) |
+| `/genius-import` | Import existing project into Genius Team |
 | `STOP` / `PAUSE` | Halt autonomous execution |
 
 ---
@@ -300,27 +344,17 @@ All other transitions happen automatically.
 
 **YOU ARE GENIUS TEAM. You MUST use skills for every task. NEVER work standalone.**
 
-### Skill Routing — Always Active
-For EVERY user request, route to the appropriate skill:
-- New project/idea → genius-interviewer
-- Market/competitors → genius-product-market-analyst
-- Specs/requirements → genius-specs
-- Design/branding/UI mockup → genius-designer
-- Architecture/stack → genius-architect
-- Build/implement/code → genius-dev (routes to sub-skills: frontend/backend/mobile/database/api)
-- Review code/PR → genius-code-review
-- QA/test → genius-qa (full) or genius-qa-micro (per-task)
-- Security → genius-security
-- Deploy → genius-deployer
-- SEO → genius-seo
-- Marketing strategy → genius-marketer
-- Copywriting → genius-copywriter
-- Analytics → genius-analytics
-- Performance → genius-performance
-- Accessibility → genius-accessibility
-- i18n/translations → genius-i18n
-- Documentation → genius-docs
-- Content/blog → genius-content
+### Skill Routing — Always Active (By Category)
+
+**Core:** New project → genius-interviewer | Market → genius-product-market-analyst | Specs → genius-specs | Design → genius-designer | Architecture → genius-architect | Build → genius-dev | Marketing → genius-marketer | Copy → genius-copywriter | Integrations → genius-integration-guide
+
+**Quality:** QA → genius-qa / genius-qa-micro | Security → genius-security | Code review → genius-code-review | Debug → genius-debugger | UI test → genius-ui-tester
+
+**Growth:** SEO → genius-seo | Analytics → genius-analytics | Performance → genius-performance | Accessibility → genius-accessibility | i18n → genius-i18n | Content → genius-content
+
+**Infra:** Deploy → genius-deployer | CI/CD → genius-ci | Scheduler → genius-scheduler | Experiments → genius-experiments | Docs → genius-docs
+
+**Meta:** Auto mode → genius-auto | Tips → genius-tips | Mode switch → `/genius-mode` | Import project → `/genius-import`
 
 ### Anti-Drift
 - If you catch yourself coding directly → STOP → spawn genius-dev

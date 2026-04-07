@@ -2,6 +2,68 @@
 
 import type { FuturesData, FuturesContract, SignalData } from "@/lib/types";
 import { computeVerdict } from "@/lib/verdict";
+import { getInsuranceStatus, getShipStatus, getSpreadStatus, getTimelineStatus, getDaysUntil } from "@/lib/utils";
+
+// Verdict weights — same as VerdictBanner (insurance has most skin in the game)
+const SIGNAL_WEIGHTS = {
+  insurance: 0.35,
+  ships: 0.25,
+  spread: 0.20,
+  timeline: 0.20,
+};
+
+interface CrisisScore {
+  score: number;       // 0-100 weighted crisis score
+  count: number;       // 0-4 count of red signals
+  multiplier: number;  // price impact multiplier
+  label: string;       // e.g. "4/4 signals · 100%"
+}
+
+function computeCrisisScore(signalData: SignalData): CrisisScore {
+  let score = 0;
+  let count = 0;
+
+  // Insurance: red = full weight, yellow = half weight
+  const insStatus = getInsuranceStatus(signalData.insurance.current);
+  if (insStatus === "red") { score += SIGNAL_WEIGHTS.insurance * 100; count++; }
+  else if (insStatus === "yellow") { score += SIGNAL_WEIGHTS.insurance * 50; }
+
+  // Ship transits: red = full weight, yellow = half weight
+  const shipStatus = getShipStatus(signalData.shipTransit.dailyCount);
+  if (shipStatus === "red") { score += SIGNAL_WEIGHTS.ships * 100; count++; }
+  else if (shipStatus === "yellow") { score += SIGNAL_WEIGHTS.ships * 50; }
+
+  // Spread: red = full weight, yellow = half weight
+  const spreadStatus = getSpreadStatus(signalData.oilSpread.spread);
+  if (spreadStatus === "red") { score += SIGNAL_WEIGHTS.spread * 100; count++; }
+  else if (spreadStatus === "yellow") { score += SIGNAL_WEIGHTS.spread * 50; }
+
+  // Timeline: nearest event
+  const nearestDays = signalData.timeline.events.reduce((min, evt) => {
+    const days = getDaysUntil(evt.date);
+    return days >= 0 && days < min ? days : min;
+  }, Infinity);
+  if (nearestDays !== Infinity) {
+    const tlStatus = getTimelineStatus(nearestDays);
+    if (tlStatus === "red") { score += SIGNAL_WEIGHTS.timeline * 100; count++; }
+    else if (tlStatus === "yellow") { score += SIGNAL_WEIGHTS.timeline * 50; }
+  }
+
+  score = Math.round(score);
+
+  // Continuous multiplier from weighted score:
+  //   0%  → 0.5x  (minimal confirmation)
+  //  50%  → 1.0x  (baseline)
+  // 100%  → 1.5x  (all signals screaming — aggressive)
+  const multiplier = 0.5 + (score / 100);
+
+  return {
+    score,
+    count,
+    multiplier,
+    label: `${count}/4 signals · ${score}% weighted`,
+  };
+}
 
 interface FuturesDeskProps {
   data: FuturesData;
@@ -47,9 +109,47 @@ function computePctRange(
   return `(±${absBound}%)`;
 }
 
-function getRationale(sym: string, gap: number): string {
+function getRationale(sym: string, gap: number, crisis: CrisisScore): string {
   if (gap >= 5) {
-    // Crisis rationale
+    if (crisis.score <= 30) {
+      // Supply gap exists but other signals suggest easing
+      switch (sym) {
+        case "CL=F":
+          return "Limited confirmation — supply gap exists but other signals suggest easing pressure on WTI";
+        case "BZ=F":
+          return "Limited confirmation — supply gap exists but other signals suggest easing pressure on Brent";
+        case "RB=F":
+          return "Limited confirmation — supply gap exists but gasoline feedstock pressure may be overstated";
+        case "HO=F":
+          return "Limited confirmation — supply gap exists but heating oil impact may be overstated";
+        case "NG=F":
+          return "Limited confirmation — supply gap exists but LNG substitution demand appears muted";
+        case "GC=F":
+          return "Limited confirmation — supply gap exists but safe-haven demand appears muted";
+        default:
+          return "";
+      }
+    }
+    if (crisis.score <= 60) {
+      // Mixed signals
+      switch (sym) {
+        case "CL=F":
+          return "Mixed signals — supply gap elevated but not all indicators confirm crisis for WTI";
+        case "BZ=F":
+          return "Mixed signals — supply gap elevated but not all indicators confirm crisis for Brent";
+        case "RB=F":
+          return "Mixed signals — supply gap elevated but gasoline pass-through uncertain";
+        case "HO=F":
+          return "Mixed signals — supply gap elevated but heating oil pass-through uncertain";
+        case "NG=F":
+          return "Mixed signals — supply gap elevated but LNG substitution effect unclear";
+        case "GC=F":
+          return "Mixed signals — supply gap elevated but safe-haven bid not fully confirmed";
+        default:
+          return "";
+      }
+    }
+    // score > 60%: strong crisis language
     switch (sym) {
       case "CL=F":
         return "Hormuz blockage cuts 20% of global supply — US benchmark reprices on fear + SPR depletion";
@@ -68,7 +168,25 @@ function getRationale(sym: string, gap: number): string {
     }
   }
   if (gap >= 3) {
-    // Elevated rationale
+    if (crisis.score <= 30) {
+      switch (sym) {
+        case "CL=F":
+          return "Low confirmation — moderate supply gap but most signals suggest limited WTI impact";
+        case "BZ=F":
+          return "Low confirmation — moderate supply gap but most signals suggest limited Brent impact";
+        case "RB=F":
+          return "Low confirmation — moderate supply gap but gasoline impact likely contained";
+        case "HO=F":
+          return "Low confirmation — moderate supply gap but heating oil impact likely contained";
+        case "NG=F":
+          return "Low confirmation — moderate supply gap with minimal gas substitution pressure";
+        case "GC=F":
+          return "Low confirmation — moderate supply gap with limited safe-haven demand";
+        default:
+          return "";
+      }
+    }
+    // score > 30%: elevated rationale
     switch (sym) {
       case "CL=F":
         return "Moderate disruption risk — WTI could see pressure if situation escalates";
@@ -86,7 +204,7 @@ function getRationale(sym: string, gap: number): string {
         return "";
     }
   }
-  // Easing rationale
+  // Easing rationale (unchanged by crisis count)
   switch (sym) {
     case "CL=F":
       return "Easing transit conditions — WTI likely to pull back as risk premium unwinds";
@@ -108,68 +226,70 @@ function getRationale(sym: string, gap: number): string {
 // Estimate signal-based price impact per contract
 function getSignalImpact(
   contract: FuturesContract,
-  signalData: SignalData
+  signalData: SignalData,
+  crisis: CrisisScore
 ): SignalImpact {
   const gap = signalData.timeline.currentGapMbd;
   const price = contract.price;
   const sym = contract.symbol;
-  const rationale = getRationale(sym, gap);
+  const rationale = getRationale(sym, gap, crisis);
+  const m = crisis.multiplier;
 
   // Direct crude oil contracts — highest impact from Hormuz
   if (sym === "CL=F" || sym === "BZ=F") {
     if (gap >= 5) {
-      const low = Math.round(price + 10);
-      const high = Math.round(price + 25);
+      const low = Math.round(price + 10 * m);
+      const high = Math.round(price + 25 * m);
       return { range: `$${low}-${high}`, direction: "up", color: "#ef4444", pctRange: computePctRange(price, low, high, "up"), rationale };
     }
     if (gap >= 3) {
-      const low = Math.round(price - 5);
-      const high = Math.round(price + 10);
+      const low = Math.round(price - 5 * m);
+      const high = Math.round(price + 10 * m);
       return { range: `$${low}-${high}`, direction: "flat", color: "#eab308", pctRange: computePctRange(price, low, high, "flat"), rationale };
     }
-    const low = Math.round(price - 15);
-    const high = Math.round(price - 5);
+    const low = Math.round(price - 15 * m);
+    const high = Math.round(price - 5 * m);
     return { range: `$${low}-${high}`, direction: "down", color: "#22c55e", pctRange: computePctRange(price, low, high, "down"), rationale };
   }
 
   // Gasoline & Diesel — correlated to crude, pass-through with ~70-80% sensitivity
   if (sym === "RB=F" || sym === "HO=F") {
     if (gap >= 5) {
-      const low = parseFloat((price + price * 0.08).toFixed(2));
-      const high = parseFloat((price + price * 0.20).toFixed(2));
+      const low = parseFloat((price + price * 0.08 * m).toFixed(2));
+      const high = parseFloat((price + price * 0.20 * m).toFixed(2));
       return { range: `$${low.toFixed(2)}-${high.toFixed(2)}`, direction: "up", color: "#ef4444", pctRange: computePctRange(price, low, high, "up"), rationale };
     }
     if (gap >= 3) {
-      const low = parseFloat((price - price * 0.03).toFixed(2));
-      const high = parseFloat((price + price * 0.08).toFixed(2));
+      const low = parseFloat((price - price * 0.03 * m).toFixed(2));
+      const high = parseFloat((price + price * 0.08 * m).toFixed(2));
       return { range: `$${low.toFixed(2)}-${high.toFixed(2)}`, direction: "flat", color: "#eab308", pctRange: computePctRange(price, low, high, "flat"), rationale };
     }
-    const low = parseFloat((price - price * 0.10).toFixed(2));
-    const high = parseFloat((price - price * 0.03).toFixed(2));
+    const low = parseFloat((price - price * 0.10 * m).toFixed(2));
+    const high = parseFloat((price - price * 0.03 * m).toFixed(2));
     return { range: `$${low.toFixed(2)}-${high.toFixed(2)}`, direction: "down", color: "#22c55e", pctRange: computePctRange(price, low, high, "down"), rationale };
   }
 
   // Natural Gas — less direct Hormuz impact, but LNG substitution effects
   if (sym === "NG=F") {
     if (gap >= 5) {
-      const low = parseFloat((price + price * 0.05).toFixed(2));
-      const high = parseFloat((price + price * 0.15).toFixed(2));
+      const low = parseFloat((price + price * 0.05 * m).toFixed(2));
+      const high = parseFloat((price + price * 0.15 * m).toFixed(2));
       return { range: `$${low.toFixed(2)}-${high.toFixed(2)}`, direction: "up", color: "#eab308", pctRange: computePctRange(price, low, high, "up"), rationale };
     }
-    const low = parseFloat((price - price * 0.05).toFixed(2));
-    const high = parseFloat((price + price * 0.05).toFixed(2));
+    const low = parseFloat((price - price * 0.05 * m).toFixed(2));
+    const high = parseFloat((price + price * 0.05 * m).toFixed(2));
     return { range: `$${low.toFixed(2)}-${high.toFixed(2)}`, direction: "flat", color: "#eab308", pctRange: computePctRange(price, low, high, "flat"), rationale };
   }
 
   // Gold — fear trade, rises with crisis
   if (sym === "GC=F") {
     if (gap >= 5) {
-      const low = Math.round(price + 50);
-      const high = Math.round(price + 200);
+      const low = Math.round(price + 50 * m);
+      const high = Math.round(price + 200 * m);
       return { range: `$${low.toLocaleString()}-${high.toLocaleString()}`, direction: "up", color: "#eab308", pctRange: computePctRange(price, low, high, "up"), rationale };
     }
-    const low = Math.round(price - 50);
-    const high = Math.round(price + 50);
+    const low = Math.round(price - 50 * m);
+    const high = Math.round(price + 50 * m);
     return { range: `$${low.toLocaleString()}-${high.toLocaleString()}`, direction: "flat", color: "#eab308", pctRange: computePctRange(price, low, high, "flat"), rationale };
   }
 
@@ -335,6 +455,8 @@ function ContractRow({
 }
 
 export default function FuturesDesk({ data, signalData }: FuturesDeskProps) {
+  const crisis = computeCrisisScore(signalData);
+
   return (
     <section className="mt-6">
       <div className="mb-4">
@@ -372,14 +494,14 @@ export default function FuturesDesk({ data, signalData }: FuturesDeskProps) {
               key={contract.symbol}
               contract={contract}
               isEven={index % 2 === 0}
-              impact={getSignalImpact(contract, signalData)}
+              impact={getSignalImpact(contract, signalData, crisis)}
             />
           ))}
         </div>
 
         <div className="border-t border-[var(--card-border)] px-4 py-2 flex items-center justify-between">
           <p className="text-xs text-[var(--text-secondary)]">
-            Prices via Yahoo Finance. Signal impact projections based on supply gap ({signalData.timeline.currentGapMbd} → {signalData.timeline.projectedGapMbd} mb/d).
+            Prices via Yahoo Finance. Signal impact based on supply gap ({signalData.timeline.currentGapMbd} → {signalData.timeline.projectedGapMbd} mb/d) · {crisis.label} · {crisis.multiplier.toFixed(2)}x multiplier.
           </p>
           <p className="text-xs text-[var(--text-secondary)]">
             Snapshot:{" "}

@@ -29,27 +29,23 @@ const WEIGHTS = {
 } as const;
 
 function scoreInsurance(rate: number): number {
-  if (rate >= 5) return -1;
-  if (rate >= 2) return 0;
-  return 1;
+  // Continuous scoring: 0.25% baseline → ~+0.83, 1% → 0, 2%+ → deep negative, 5.8% → ~-0.98
+  return -Math.tanh((rate - 1.0) / 0.8);
 }
 
 function scoreShipCount(count: number): number {
-  if (count < 20) return -1;
-  if (count < 40) return 0;
-  return 1;
+  // Continuous scoring: 6 ships → ~-0.76, 35 → 0, 100 → ~+0.96
+  return Math.tanh((count - 35) / 25);
 }
 
 function scoreSpread(gap: number): number {
-  if (gap > 8) return -1;
-  if (gap > 3) return 0;
-  return 1;
+  // Continuous scoring: $1 → ~+0.93, $5 → 0, $16 → ~-0.98
+  return -Math.tanh((gap - 5) / 3);
 }
 
 function scoreTimeline(daysUntil: number): number {
-  if (daysUntil <= 7) return -1;
-  if (daysUntil <= 21) return 0;
-  return 1;
+  // Continuous scoring: 3 days → ~-0.80, 14 → 0, 60 → ~+1.0
+  return Math.tanh((daysUntil - 14) / 10);
 }
 
 function getNearestFutureEventDays(data: SignalData): number {
@@ -71,14 +67,14 @@ function computeDirection(composite: number): VerdictDirection {
   return "uncertain";
 }
 
-function computeDirectionLabel(direction: VerdictDirection): string {
+function computeDirectionLabel(direction: VerdictDirection, crisisCount: number): string {
   switch (direction) {
     case "higher":
-      return "OIL LIKELY TRENDING HIGHER";
+      return crisisCount >= 4 ? "OIL PRICES LIKELY GOING HIGHER" : crisisCount >= 3 ? "OIL LIKELY TRENDING HIGHER" : "OIL LIKELY TRENDING HIGHER";
     case "lower":
-      return "OIL LIKELY TRENDING LOWER";
+      return "OIL PRICES EASING — CRISIS RECEDING";
     case "uncertain":
-      return "OIL DIRECTION UNCERTAIN";
+      return "OIL DIRECTION UNCLEAR — MIXED SIGNALS";
   }
 }
 
@@ -131,6 +127,13 @@ function computeSeverity(crisisCount: number): VerdictSeverity {
   return "low";
 }
 
+function compositeSeverity(composite: number): VerdictSeverity {
+  if (composite <= -0.7) return "severe";
+  if (composite <= -0.3) return "elevated";
+  if (composite <= 0.3) return "moderate";
+  return "low";
+}
+
 function countCrisisSignals(data: SignalData, daysUntilEvent: number): number {
   const statuses = [
     getInsuranceStatus(data.insurance.current),
@@ -161,8 +164,8 @@ export function computeVerdict(data: SignalData): Verdict {
 
   return {
     direction,
-    directionLabel: computeDirectionLabel(direction),
-    severity: computeSeverity(crisisCount),
+    directionLabel: computeDirectionLabel(direction, crisisCount),
+    severity: compositeSeverity(composite),
     duration: computeDuration(crisisCount, signalCount, daysUntilEvent),
     magnitude: computeMagnitude(data.timeline.currentGapMbd, data.oilSpread.brent, data.oilSpread.dubai),
     composite,

@@ -1,34 +1,35 @@
-# Genius Team v19.0
+# Genius Team v21.0
 
-[![Version](https://img.shields.io/badge/version-19.0.0-blue.svg)](https://github.com/w-3-art/genius-team/releases)
+[![Version](https://img.shields.io/badge/version-21.0.0-blue.svg)](https://github.com/w-3-art/genius-team/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-1.0%2B-purple.svg)](https://docs.anthropic.com/claude-code)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-2.1.85%2B-purple.svg)](https://docs.anthropic.com/claude-code)
 
-> Your AI product team. From idea to production.
+> Your AI product team. From idea to production. 51 specialized agents.
 
-## What is Genius Team?
+## What You Get
 
-Genius Team is an open-source framework that orchestrates 42 specialized AI agents — each spawnable on demand — to take your idea from interview to production, with human checkpoints at every phase.
+**Tell it what you want to build. It interviews you, writes specs, designs the brand, plans the architecture, builds the code, runs QA, and deploys.** You approve at 3 checkpoints. Everything else is autonomous.
 
 ```
-genius-interviewer → genius-specs → genius-architect → genius-dev → genius-qa → genius-deploy
-        ↓                 ↓                ↓               ↓            ↓            ↓
-    Brief ✅         Specs ✅         Arch ✅          Code ✅       QA ✅       Live 🚀
+"I want to build a SaaS for..."
+    → Interview → Specs → Design → Architecture → Build → QA → Deploy
+         ✅         ✅        ✅          ✅           ✅     ✅      🚀
 ```
 
-Every phase ends with a human checkpoint. You approve. Only then does the next agent spawn.
+**Real outcomes from real users:**
+- Full SaaS MVP from idea to Vercel deploy in one session
+- 84% bug detection rate on PR reviews (3 parallel reviewers)
+- Overnight autonomous code optimization via autoresearch loops
 
-## What's New in v19.0
+## What's New in v21.0
 
-- 🎯 **42 skills total** — genius-dev splits into 5 domain experts; 12 new standalone skills added
-- 🔍 **genius-code-review** — Multi-agent PR review: bugs + security + quality in parallel
-- 🛠️ **genius-skill-creator** — Framework creates new project-specific skills on demand (self-extending)
-- 🔬 **genius-experiments** — Autonomous overnight optimization loop (Karpathy autoresearch pattern)
-- 🌐 **genius-seo** — GEO-first: optimize for ChatGPT, Perplexity, Claude + traditional search
-- 🪙 **genius-crypto** — Web3 intelligence: DexScreener + OpenSea NFTs + Dune on-chain SQL
-- 📊 **Post-launch suite** — genius-analytics, genius-performance, genius-accessibility
-- 📝 **Project lifecycle** — genius-docs, genius-content, genius-template (SaaS/e-commerce/mobile/web3)
-- ✅ **Anthropic Skills Guide compliance** — All 42 skills follow official best practices
+- **Mode System** — `/genius-mode` switches between beginner, builder, pro, and agency modes. Each adjusts validation strictness, explanation verbosity, and checkpoint behavior.
+- **Workflow Registry** — `.genius/workflows.json` defines the complete dependency graph for all 54 skills. Prerequisites, outputs, categories.
+- **Project Import** — `/genius-import` brings existing codebases into Genius Team. Auto-detects artifacts, sets checkpoints. Validators warn instead of block for imported projects.
+- **Session Recovery** — `.genius/session-log.jsonl` + `scripts/session-recover.sh` rebuilds state after crashes.
+- **Pre-transition Guards** — 3 micro-checklist skills auto-verify prerequisites before planning, coding, and deployment.
+- **Non-blocking Validators** — 4 validators that respect mode (beginner=strict, pro=permissive) and origin (imported=warn only).
+- **Categorized Routing** — Skills organized by Core/Quality/Growth/Business/Infra/Meta in all routing tables.
 
 *Previous releases: see [CHANGELOG.md](./CHANGELOG.md)*
 
@@ -91,7 +92,7 @@ After install, open your project in Claude Code or Codex and run `/genius-start`
 bash <(curl -fsSL https://raw.githubusercontent.com/w-3-art/genius-team/main/scripts/upgrade.sh)
 ```
 
-The script auto-detects your current version and upgrades to v19. Your `.genius/memory/` data is preserved.
+The script auto-detects your current version and upgrades to v21. Your `.genius/memory/` data is preserved.
 
 ---
 
@@ -111,7 +112,7 @@ genius-security audits. genius-deployer ships. A Retrospective Engine runs after
 
 ---
 
-## 42 Specialized Skills
+## 51 Specialized Skills
 
 | Skill | Purpose |
 |-------|---------|
@@ -155,6 +156,14 @@ genius-security audits. genius-deployer ships. A Retrospective Engine runs after
 | genius-docs | README, API docs, Storybook, ADRs |
 | genius-content | Blog, newsletter, social media, GEO content |
 | genius-template | Project templates (SaaS/e-commerce/mobile/web3) |
+| genius-auto | Auto Mode tuning (safety profiles) |
+| genius-ui-tester | Visual UI testing via Computer Use |
+| genius-ci | CI/CD pipelines with claude --bare |
+| genius-scheduler | Recurring tasks and remote triggers |
+| genius-tips | Contextual skill discovery tips |
+| genius-guard-pre-planning | Pre-planning validation checklist |
+| genius-guard-pre-coding | Pre-coding validation checklist |
+| genius-guard-pre-deploy | Pre-deployment validation checklist |
 
 ---
 
@@ -231,7 +240,7 @@ your-project/
 
 | Tool | Minimum | Notes |
 |------|---------|-------|
-| Claude Code | ≥ 1.0.0 | Required for Claude engine |
+| Claude Code | ≥ 2.1.85 | Required for Claude engine |
 | Codex CLI | ≥ 0.107.0 | Required for `--engine=codex` or `--engine=dual` |
 | jq | any | Required for memory system JSON processing |
 | Git | any | Required for version control and worktrees |
@@ -249,4 +258,4 @@ MIT License — see [LICENSE](LICENSE)
 
 ---
 
-**Built with 🧠 Genius Team v19.0** — Agent Orchestration · File-Based Memory · Interactive Playgrounds
+**Built with Genius Team v21.0** — Agent Orchestration, File-Based Memory, Interactive Playgrounds

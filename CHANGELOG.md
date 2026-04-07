@@ -1,5 +1,118 @@
 # Changelog
 
+## [21.0.0] - 2026-03-29
+
+### Added — Self-Evolution Engine
+- **genius-evolution** — Captures corrections, verifies patterns, promotes learned rules. Auto-triggers on user corrections.
+- **genius-autoresearch** — Karpathy-inspired optimization loop. Modify → Test → Measure → Keep if better → Repeat.
+- **/genius-evolve** command — Manual evolution audit (run every ~10 sessions)
+- **/autoresearch** command — Launch optimization loop on any component
+- **`.genius/memory/learned-rules.md`** — Graduated rules with machine-checkable verify lines
+- **`.genius/memory/corrections.jsonl`** — Auto-captured user corrections
+- **`.genius/memory/observations.jsonl`** — Verified codebase patterns
+- **`.genius/memory/evolution-log.md`** — Audit trail of evolution decisions
+
+### Added — Mode System
+- **Experience modes** — `/genius-mode` switches between `beginner` (strict validation, verbose), `builder` (default), `pro` (permissive, terse), and `agency` (client-friendly, multi-project). Stored in `.genius/mode.json`.
+- **Mode configs** — `configs/modes/beginner.md`, `builder.md`, `pro.md`, `agency.md` define behavior adjustments per mode.
+
+### Added — Workflow Registry
+- **`.genius/workflows.json`** — Complete workflow dependency graph: prerequisites, outputs, next_workflow, category (core/quality/growth/business/infra/meta) for all 51 skills.
+
+### Added — State Migration
+- **`scripts/migrate-state.sh`** — Detects existing artifacts (DISCOVERY.xml, SPECIFICATIONS.xml, ARCHITECTURE.md, plan.md), sets phase/checkpoints, origin field. Never blocks.
+- **`/genius-import` command** — Import existing codebases into Genius Team workflow with `origin=imported` (validators warn instead of block).
+- **state.json enhanced** — New `mode` and `origin` fields (native/imported/upgraded).
+
+### Added — Non-blocking Validators
+- **`scripts/validate-brief.sh`** — Validates DISCOVERY.xml sections
+- **`scripts/validate-spec.sh`** — Validates SPECIFICATIONS.xml sections
+- **`scripts/validate-architecture.sh`** — Validates ARCHITECTURE.md sections
+- **`scripts/validate-plan.sh`** — Validates .claude/plan.md has tasks
+- Validators respect mode (beginner=strict, pro=permissive) and origin (imported=warn only).
+
+### Added — Session Logging + Recovery
+- **`.genius/session-log.jsonl`** — PostToolUse hook appends tool/skill/phase to JSONL log
+- **`scripts/session-recover.sh`** — Rebuilds state.json from session log after crashes
+- **`/continue` enhanced** — Integrates session recovery before resume
+
+### Added — Micro-checklists (Guard Skills)
+- **`genius-guard-pre-planning`** — Auto-invoked before genius-architect (verifies specs exist, checkpoint passed)
+- **`genius-guard-pre-coding`** — Auto-invoked before genius-dev (verifies architecture approved, plan exists)
+- **`genius-guard-pre-deploy`** — Auto-invoked before genius-deployer (verifies QA passed)
+
+### Added — 3 New Skills (total: 51)
+- **genius-guard-pre-planning** — Pre-planning validation checklist
+- **genius-guard-pre-coding** — Pre-coding validation checklist
+- **genius-guard-pre-deploy** — Pre-deployment validation checklist
+
+### Added — New Commands
+- **`/genius-mode`** — Switch experience mode (beginner/builder/pro/agency)
+- **`/genius-import`** — Import existing project into Genius Team workflow
+
+### Improved — Categorized Skill Routing
+- Router (`genius-team/SKILL.md`) now organizes skills by category: Core, Quality, Growth, Business, Infrastructure, Meta
+- `CLAUDE.md` routing section organized by category
+- All version refs updated to v21
+
+### Improved — Playground Freshness
+- **`scripts/check-playground-freshness.sh`** — Detects stale playgrounds (artifact newer than playground)
+
+### Improved — Post-Compaction
+- `postCompactionSections` now includes Mode System and Workflow Registry sections
+- PreCompact hook injects mode info into snapshot
+
+### Improved — Codex Compatibility
+- `AGENTS.md` updated to v21 with mode system references
+
+### Added — GitHub Visibility
+- `.github/ISSUE_TEMPLATE/bug.md` and `feature.md`
+- `SECURITY.md` — Security policy and reporting guidelines
+- `README.md` rewritten around outcomes
+
+### Changed
+- `VERSION` → 21.0.0
+- All 4 mode configs (cli/ide/omni/dual) updated to v21
+- `upgrade.sh` → `upgrade_to_v21()` function added
+- genius-tips updated with v21 tips (import, mode, session recovery, workflows)
+
+---
+
+## [20.0.0] - 2026-03-29
+
+### Added — 5 New Skills (total: 48)
+- **genius-auto** — Configures Claude Code Auto Mode with skill-aware safety profiles. Permissive for content skills, standard for dev, restrictive for deploy/security, monitor for QA.
+- **genius-ui-tester** — Visual UI testing using Computer Use. Screenshots, layout validation, responsive checks across 4 viewports, interactive element testing, visual bug reports.
+- **genius-scheduler** — Configures /loop recurring tasks and remote triggers. Templates: PR review cycles, deploy watch, daily summaries, test watcher, autoresearch loops.
+- **genius-ci** — CI/CD pipelines using `claude --bare` mode. GitHub Actions workflows for PR auto-review, quality gates with AI security scanning, auto-fix lint.
+- **genius-tips** — Contextual skill discovery tips during wait time. Shows 1-2 sentence tips about relevant skills while builds/deploys run. 30+ tips organized by context.
+
+### Improved — Auto Mode Integration
+- Auto Mode is now built INTO all 4 modes (not a separate mode). `CLAUDE_CODE_AUTO_MODE=skill-aware` in all configs.
+- genius-auto is a tuning skill that adjusts safety profiles, not a separate mode.
+- Three profiles: permissive (prototyping), standard (dev), restrictive (production).
+
+### Added — Claude Code 2.1.86 Integration
+- **Computer Use** — Screen control, clicking, browsing, screenshots (Pro/Max). Powering genius-ui-tester.
+- **Auto Mode** — Automatic approval of safe actions. genius-auto configures per-skill safety policies.
+- **--bare Mode** — Headless execution for CI. genius-ci generates GitHub Actions with `claude --bare`.
+- **Plugins GA** — Official marketplace. Genius-Claw available as plugin.
+- **Conditional Hooks** — `if` field in hook configs for permission-based rules.
+- **Background Agent + Worktree** — Parallel isolated task execution.
+- **Remote Triggers** — Cron-scheduled agents via `claude trigger create`.
+- **Agent SDK renamed** — `@anthropic-ai/claude-agent-sdk`
+
+### Improved — Configuration
+- All 4 mode configs updated: conditional hooks, auto mode env vars, v20 version refs
+- Compaction optimized for 1M context window
+- Claude Code minimum version: 2.1.76 → **2.1.86**
+
+### Improved — Documentation
+- TOOLS.md fully updated with 2.1.80–2.1.86 features
+- Website (genius.w3art.io) updated: v20 badge, What's New section, 47 skills
+
+---
+
 ## [19.0.0] - 2026-03-21
 
 ### Added — Claude Code Channels & Mobile Vibe Coding

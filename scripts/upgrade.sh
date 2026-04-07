@@ -1,7 +1,7 @@
 #!/bin/bash
 #═══════════════════════════════════════════════════════════════════════════════
 # Genius Team Universal Upgrade Script
-# Upgrades from any previous version to v19.0
+# Upgrades from any previous version to v20.0
 #═══════════════════════════════════════════════════════════════════════════════
 
 set -e
@@ -17,7 +17,7 @@ NC='\033[0m'
 
 # Config
 REPO_URL="https://raw.githubusercontent.com/w-3-art/genius-team/main"
-TARGET_VERSION="19.0.0"
+TARGET_VERSION="21.0.0"
 CLAUDE_SKILL_DIR=".claude/skills"
 
 # ── Self-Healing: re-exec from GitHub if this script is outdated ─────────────
@@ -46,7 +46,7 @@ FILES_SKIPPED=0
 print_banner() {
   echo ""
   echo -e "${CYAN}╔════════════════════════════════════════════════════════════╗${NC}"
-  echo -e "${CYAN}║${NC}  ${BOLD}🚀 Genius Team Upgrade → v19.0${NC}                           ${CYAN}║${NC}"
+  echo -e "${CYAN}║${NC}  ${BOLD}🚀 Genius Team Upgrade → v21.0${NC}                           ${CYAN}║${NC}"
   echo -e "${CYAN}╚════════════════════════════════════════════════════════════╝${NC}"
   echo ""
 }
@@ -67,7 +67,7 @@ show_usage() {
   echo "  --verbose   Show detailed file download output"
   echo "  --help      Show this help"
   echo ""
-  echo "Upgrades your Genius Team project to v19.0 from any previous version."
+  echo "Upgrades your Genius Team project to v20.0 from any previous version."
 }
 
 #═══════════════════════════════════════════════════════════════════════════════
@@ -340,6 +340,133 @@ upgrade_to_v19() {
   log_success "v19.0.0 upgrade complete — Claude Channels, Voice, 1M context, subagent fix"
 }
 
+upgrade_to_v20() {
+  upgrade_to_v19
+
+  # ── v20 extras ─────────────────────────────────────────────────────────────
+  log_info "v20: Auto Mode, Computer Use, Bare Mode CI, Scheduler..."
+
+  # ── Re-download core files (v20 refs) ──────────────────────────────────────
+  download_file "CLAUDE.md"       "CLAUDE.md"
+  download_file "TOOLS.md"        "TOOLS.md"
+  download_file "CHANGELOG.md"    "CHANGELOG.md"
+  download_file "README.md"       "README.md"
+  download_file "VERSION"         "VERSION"
+  download_file "GENIUS_GUARD.md" "GENIUS_GUARD.md"
+
+  # ── New skills (v20: +4) ───────────────────────────────────────────────────
+  log_info "New skills (v20: genius-auto, genius-ui-tester, genius-scheduler, genius-ci)..."
+  local new_skills_v20=("genius-auto" "genius-ui-tester" "genius-scheduler" "genius-ci")
+  for skill in "${new_skills_v20[@]}"; do
+    download_file "${CLAUDE_SKILL_DIR}/$skill/SKILL.md" "${CLAUDE_SKILL_DIR}/$skill/SKILL.md"
+  done
+
+  # ── Updated configs (auto mode + conditional hooks) ─────────────────────────
+  log_info "v20 config updates (auto mode, conditional hooks, 2.1.86)..."
+  for mode in cli ide omni dual; do
+    download_file "configs/$mode/settings.json" "configs/$mode/settings.json"
+    download_file "configs/$mode/CLAUDE.md"     "configs/$mode/CLAUDE.md"
+  done
+
+  # ── Update genius-upgrade command ──────────────────────────────────────────
+  download_file ".claude/commands/genius-upgrade.md" ".claude/commands/genius-upgrade.md"
+
+  # ── Update state.json version ──────────────────────────────────────────────
+  if [ "$DRY_RUN" = false ] && [ -f ".genius/state.json" ]; then
+    sed -i.tmp 's/"version"[[:space:]]*:[[:space:]]*"[^"]*"/"version": "20.0.0"/' .genius/state.json
+    rm -f .genius/state.json.tmp
+  fi
+
+  log_success "v20.0.0 upgrade complete — Auto Mode, Computer Use, CI pipelines, Scheduler (47 skills)"
+}
+
+upgrade_to_v21() {
+  upgrade_to_v20
+
+  # ── v21 extras ─────────────────────────────────────────────────────────────
+  log_info "v21: Mode System, Workflow Registry, Validators, Session Recovery..."
+
+  # ── Re-download core files (v21 refs) ──────────────────────────────────────
+  download_file "CLAUDE.md"       "CLAUDE.md"
+  download_file "CHANGELOG.md"    "CHANGELOG.md"
+  download_file "README.md"       "README.md"
+  download_file "VERSION"         "VERSION"
+  download_file "AGENTS.md"       "AGENTS.md"
+  download_file "SECURITY.md"     "SECURITY.md"
+
+  # ── New mode configs ───────────────────────────────────────────────────────
+  log_info "Mode configs (v21: beginner/builder/pro/agency)..."
+  for mode_file in beginner builder pro agency; do
+    download_file "configs/modes/$mode_file.md" "configs/modes/$mode_file.md"
+  done
+
+  # ── Workflow registry ──────────────────────────────────────────────────────
+  download_file ".genius/workflows.json" ".genius/workflows.json"
+
+  # ── New scripts (v21) ─────────────────────────────────────────────────────
+  log_info "New scripts (v21: validators, migration, session recovery)..."
+  local new_scripts_v21=(
+    "migrate-state.sh" "validate-brief.sh" "validate-spec.sh"
+    "validate-architecture.sh" "validate-plan.sh"
+    "session-recover.sh" "check-playground-freshness.sh"
+  )
+  for s in "${new_scripts_v21[@]}"; do
+    download_file "scripts/$s" "scripts/$s"
+  done
+  [ "$DRY_RUN" = false ] && chmod +x scripts/*.sh 2>/dev/null || true
+
+  # ── New guard skills (v21: +3) ────────────────────────────────────────────
+  log_info "New guard skills (v21: pre-planning, pre-coding, pre-deploy)..."
+  local guard_skills=("genius-guard-pre-planning" "genius-guard-pre-coding" "genius-guard-pre-deploy")
+  for skill in "${guard_skills[@]}"; do
+    download_file "${CLAUDE_SKILL_DIR}/$skill/SKILL.md" "${CLAUDE_SKILL_DIR}/$skill/SKILL.md"
+  done
+
+  # ── New commands (v21) ─────────────────────────────────────────────────────
+  log_info "New commands (v21: genius-mode, genius-import)..."
+  download_file ".claude/commands/genius-mode.md" ".claude/commands/genius-mode.md"
+  download_file ".claude/commands/genius-import.md" ".claude/commands/genius-import.md"
+
+  # ── Updated configs (v21 version + session logging) ────────────────────────
+  log_info "v21 config updates (session logging, post-compaction, version)..."
+  for mode in cli ide omni dual; do
+    download_file "configs/$mode/settings.json" "configs/$mode/settings.json"
+    download_file "configs/$mode/CLAUDE.md"     "configs/$mode/CLAUDE.md"
+  done
+
+  # ── Updated skills (router + tips) ────────────────────────────────────────
+  download_file "${CLAUDE_SKILL_DIR}/genius-team/SKILL.md" "${CLAUDE_SKILL_DIR}/genius-team/SKILL.md"
+  download_file "${CLAUDE_SKILL_DIR}/genius-tips/SKILL.md" "${CLAUDE_SKILL_DIR}/genius-tips/SKILL.md"
+
+  # ── GitHub templates ───────────────────────────────────────────────────────
+  download_file ".github/ISSUE_TEMPLATE/bug.md" ".github/ISSUE_TEMPLATE/bug.md"
+  download_file ".github/ISSUE_TEMPLATE/feature.md" ".github/ISSUE_TEMPLATE/feature.md"
+
+  # ── Initialize mode.json if not present ────────────────────────────────────
+  if [ "$DRY_RUN" = false ] && [ ! -f ".genius/mode.json" ]; then
+    cat > .genius/mode.json << 'MODEJSON'
+{
+  "mode": "builder",
+  "set_at": "2026-03-29T00:00:00Z",
+  "set_by": "default"
+}
+MODEJSON
+  fi
+
+  # ── Run state migration ────────────────────────────────────────────────────
+  if [ "$DRY_RUN" = false ] && [ -f "scripts/migrate-state.sh" ]; then
+    bash scripts/migrate-state.sh 2>/dev/null || true
+  fi
+
+  # ── Update state.json version ──────────────────────────────────────────────
+  if [ "$DRY_RUN" = false ] && [ -f ".genius/state.json" ]; then
+    sed -i.tmp 's/"version"[[:space:]]*:[[:space:]]*"[^"]*"/"version": "21.0.0"/' .genius/state.json
+    rm -f .genius/state.json.tmp
+  fi
+
+  log_success "v21.0.0 upgrade complete — Mode System, Workflow Registry, Validators, Session Recovery (51 skills)"
+}
+
 upgrade_to_v18() {
   upgrade_to_v17
 
@@ -530,24 +657,24 @@ print_summary() {
   local from=$1 backup=$2
   echo ""
   echo -e "${GREEN}╔════════════════════════════════════════════════════════════╗${NC}"
-  echo -e "${GREEN}║${NC}  ${BOLD}✅ Upgrade Complete! v$from → v19.0${NC}                      ${GREEN}║${NC}"
+  echo -e "${GREEN}║${NC}  ${BOLD}Upgrade Complete! v$from → v21.0${NC}                        ${GREEN}║${NC}"
   echo -e "${GREEN}╚════════════════════════════════════════════════════════════╝${NC}"
   echo ""
   echo -e "  ${BOLD}Files downloaded:${NC} $FILES_DOWNLOADED"
   echo -e "  ${BOLD}Files skipped:${NC}    $FILES_SKIPPED (already present, not overwritten)"
   echo -e "  ${BOLD}Backup:${NC}           $backup"
   echo ""
-  echo -e "${CYAN}New in v19.0:${NC}"
-  echo "  • 📱 Claude Code Channels — vibe code from Telegram/Discord"
-  echo "  • 🎙️ Voice mode — /voice push-to-talk, 20 languages"
-  echo "  • 🔄 /loop — native recurring tasks (replaces bash loops)"
-  echo "  • 🎚️ /effort — low/medium/high analysis depth control"
-  echo "  • 🧠 1M token context — Opus 4.6 full window, less compaction"
-  echo "  • 🔧 Subagent fix — genius-dev/qa-micro always work now (CC bug #20931)"
-  echo "  • ⬆️ Claude Code min version: 2.1.76"
+  echo -e "${CYAN}New in v21.0:${NC}"
+  echo "  • Mode System — beginner/builder/pro/agency (/genius-mode)"
+  echo "  • Workflow Registry — .genius/workflows.json (full dependency graph)"
+  echo "  • Project Import — /genius-import (auto-detect artifacts)"
+  echo "  • Session Recovery — session-log.jsonl + session-recover.sh"
+  echo "  • Pre-transition Guards — 3 micro-checklist skills"
+  echo "  • Non-blocking Validators — mode-aware + origin-aware"
+  echo "  • 51 skills total"
   echo ""
   echo -e "${YELLOW}Next steps:${NC}"
-  echo "  1. Run ${BOLD}/genius-start${NC} to re-initialize with v19 features"
+  echo "  1. Run ${BOLD}/genius-start${NC} to re-initialize with v20 features"
   echo "  2. Open the dashboard: ${BOLD}open .genius/DASHBOARD.html${NC}"
   echo "  3. See ${BOLD}CHANGELOG.md${NC} for full details"
   echo ""
@@ -557,7 +684,7 @@ print_dry_run_summary() {
   local from=$1
   echo ""
   echo -e "${YELLOW}╔════════════════════════════════════════════════════════════╗${NC}"
-  echo -e "${YELLOW}║${NC}  ${BOLD}🔍 Dry Run — v$from → v19.0${NC}                             ${YELLOW}║${NC}"
+  echo -e "${YELLOW}║${NC}  ${BOLD}Dry Run — v$from → v21.0${NC}                                ${YELLOW}║${NC}"
   echo -e "${YELLOW}╚════════════════════════════════════════════════════════════╝${NC}"
   echo ""
   echo -e "  ${BOLD}Files that would be downloaded:${NC} $FILES_DOWNLOADED"
@@ -611,8 +738,8 @@ main() {
   [ "$DRY_RUN" = false ] && log_success "Backup: $BACKUP_DIR"
 
   # ── Step 4: Download ───────────────────────────────────────────────────────
-  log_step 4 5 "Downloading v18.0 files..."
-  upgrade_to_v18
+  log_step 4 5 "Downloading v21.0 files..."
+  upgrade_to_v21
   log_success "$FILES_DOWNLOADED files downloaded"
 
   # ── Step 5: Verify ─────────────────────────────────────────────────────────

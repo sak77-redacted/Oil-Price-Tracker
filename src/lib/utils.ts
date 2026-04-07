@@ -1,8 +1,8 @@
 import type { SignalStatus } from "./types";
 
 export function getInsuranceStatus(rate: number): SignalStatus {
-  if (rate >= 5) return "red";
-  if (rate >= 2) return "yellow";
+  if (rate >= 2) return "red";
+  if (rate >= 1) return "yellow";
   return "green";
 }
 

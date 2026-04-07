@@ -70,7 +70,7 @@ export default function CriticalDeadlines({ data }: CriticalDeadlinesProps) {
       {/* Header with inline stats */}
       <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1">
         <h2 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
-          Critical Deadlines
+          <span className="text-[var(--accent)]">Signal 4</span> — Critical Deadlines
         </h2>
         <span className="text-xs text-[var(--text-secondary)]">
           Next event in{" "}

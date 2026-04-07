@@ -221,6 +221,7 @@ export interface WTIBrentSpreadData {
   fairValue: number;       // ~$4-5 based on TD25 freight economics
   previousSpread: number;  // for change calc
   live: boolean;
+  contractMonth?: string;  // e.g. "May 26" — same-maturity month used for both legs
   timestamp: string;
 }
 
@@ -230,5 +231,6 @@ export interface ForwardCurveData {
   promptPrice: number;
   curve: ForwardPoint[];
   structure: "backwardation" | "contango" | "flat";
+  liveMonths?: number;  // how many forward months have live Yahoo data (vs simulated)
   timestamp: string;
 }

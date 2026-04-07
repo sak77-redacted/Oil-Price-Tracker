@@ -130,14 +130,21 @@ export default function ForwardCurve({ data }: ForwardCurveProps) {
         </div>
       </div>
 
-      {/* Contrarian insight */}
-      <div className="border-t border-[var(--card-border)] px-5 py-3">
+      {/* Contrarian insight + data source note */}
+      <div className="border-t border-[var(--card-border)] px-5 py-3 space-y-2">
         <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
           <span className="font-semibold text-amber-400">Contrarian signal:</span>{" "}
           Forward curve prices resolution by Q3. Sparta research disagrees
           &mdash; European product supply cliff suggests crisis duration is
           being underpriced.
         </p>
+        {data.liveMonths != null && (
+          <p className="text-[10px] text-[var(--text-secondary)] opacity-70">
+            {data.liveMonths > 0
+              ? `${data.liveMonths}/8 forward months from live Yahoo Finance data, rest simulated from prompt price.`
+              : "Forward months simulated from prompt price (live contract data unavailable)."}
+          </p>
+        )}
       </div>
     </div>
   );
