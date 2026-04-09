@@ -98,6 +98,8 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
     liveHoCrack,
     data.refiningMargins.gasolineCrack.peak,
     data.refiningMargins.heatingOilCrack.peak,
+    data.refiningMargins.gasolineCrack.baseline,
+    data.refiningMargins.heatingOilCrack.baseline,
   );
   const gasOffPeak = data.refiningMargins.gasolineCrack.peak > 0
     ? ((data.refiningMargins.gasolineCrack.peak - liveGasCrack) / data.refiningMargins.gasolineCrack.peak) * 100
@@ -312,7 +314,7 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
               <MiniTrendChart
                 data={data.refiningMargins.gasolineCrack.history.map(h => ({ date: h.date, value: h.value }))}
                 color={chartColor(refiningStatus)}
-                thresholdValue={20}
+                thresholdValue={data.refiningMargins.gasolineCrack.baseline}
               />
               <div className="mt-1 flex justify-between text-[9px] text-[var(--text-secondary)]">
                 <span>30d ago</span>

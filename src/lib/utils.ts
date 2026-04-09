@@ -47,18 +47,23 @@ export function getRefiningStatus(
   heatingOilCrack: number,
   gasPeak: number,
   hoPeak: number,
+  gasBaseline: number = 15,
+  hoBaseline: number = 25,
 ): SignalStatus {
-  // Absolute sell triggers: margins collapsing
-  if (gasolineCrack < 20 || heatingOilCrack < 35) return "red";
+  // Reverted to pre-crisis baseline = sell signal
+  if (gasolineCrack <= gasBaseline * 1.2 || heatingOilCrack <= hoBaseline * 1.2) return "red";
 
-  const gasDecline = gasPeak > 0 ? (gasPeak - gasolineCrack) / gasPeak : 0;
-  const hoDecline = hoPeak > 0 ? (hoPeak - heatingOilCrack) / hoPeak : 0;
+  // How far margins have come back from peak toward baseline
+  const gasRange = gasPeak - gasBaseline;
+  const hoRange = hoPeak - hoBaseline;
+  const gasReversion = gasRange > 0 ? (gasPeak - gasolineCrack) / gasRange : 0;
+  const hoReversion = hoRange > 0 ? (hoPeak - heatingOilCrack) / hoRange : 0;
 
-  // Both declining >20% from peak = sell signal approaching
-  if (gasDecline > 0.2 && hoDecline > 0.2) return "red";
+  // More than 50% reversion toward baseline = sell signal
+  if (gasReversion > 0.5 && hoReversion > 0.5) return "red";
 
-  // Either declining >10% from peak = topping
-  if (gasDecline > 0.1 || hoDecline > 0.1) return "yellow";
+  // More than 25% reversion = topping
+  if (gasReversion > 0.25 || hoReversion > 0.25) return "yellow";
 
   return "green";
 }
