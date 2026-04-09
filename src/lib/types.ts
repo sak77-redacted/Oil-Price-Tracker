@@ -159,6 +159,63 @@ export interface InflationThresholdData {
   lastUpdated: string;
 }
 
+export interface TankerVessel {
+  class: string;
+  description: string;
+  currentRate: number;
+  baselineRate: number;
+  peakRate: number;
+  unit: string;
+  route: string;
+}
+
+export interface TankerRatesData {
+  vessels: TankerVessel[];
+  source: string;
+  lastUpdated: string;
+  context: string;
+}
+
+export interface IranianAttackMonth {
+  month: string;
+  bahrain: number;
+  saudi: number;
+  kuwait: number;
+  uae: number;
+  total: number;
+  partial?: boolean;
+  note?: string;
+}
+
+export interface IranianAttacksData {
+  months: IranianAttackMonth[];
+  context: string;
+  mosaicStrategyNote: string;
+  headlines: string[];
+  source: string;
+  lastUpdated: string;
+}
+
+export interface CrackMarginData {
+  current: number;
+  peak: number;
+  peakDate: string;
+  baseline: number;
+  history: HistoryPoint[];
+}
+
+export interface RefiningMarginsData {
+  gasolineCrack: CrackMarginData;
+  heatingOilCrack: CrackMarginData;
+  sellSignalActive: boolean;
+  toppingSignals: boolean;
+  context: string;
+  hfiThesis: string;
+  sellTriggers: string[];
+  source: string;
+  lastUpdated: string;
+}
+
 export interface ExtendedSignalData extends SignalData {
   straitStatus: StraitStatus;
   globalImpact: GlobalImpactData;
@@ -168,6 +225,9 @@ export interface ExtendedSignalData extends SignalData {
   sprStatus: SPRStatusData;
   demandDestruction: DemandDestructionData;
   inflationThreshold: InflationThresholdData;
+  tankerRates: TankerRatesData;
+  iranianAttacks: IranianAttacksData;
+  refiningMargins: RefiningMarginsData;
 }
 
 export interface MarketIndex {

@@ -37,8 +37,8 @@
     "source": "Lloyd's List / HormuzTracker"
   },
   "shipTransit": {
-    "dailyCount": 6,
-    "returnLegs": 2,
+    "dailyCount": 15,
+    "returnLegs": 5,
     "baseline": 100,
     "threshold": 35,
     "darkFleetNote": "Many vessels transit with AIS disabled. Low AIS count confirms elevated risk \u2014 when operators feel safe enough to keep transponders on, that\u2019s the normalcy signal.",
@@ -79,9 +79,13 @@
       { "date": "2026-03-31", "count": 11, "returnCount": 3 },
       { "date": "2026-04-01", "count": 9, "returnCount": 3 },
       { "date": "2026-04-02", "count": 6, "returnCount": 2 },
-      { "date": "2026-04-03", "count": 6, "returnCount": 2 }
+      { "date": "2026-04-03", "count": 6, "returnCount": 2 },
+      { "date": "2026-04-05", "count": 10, "returnCount": 3 },
+      { "date": "2026-04-06", "count": 12, "returnCount": 4 },
+      { "date": "2026-04-07", "count": 14, "returnCount": 4 },
+      { "date": "2026-04-08", "count": 15, "returnCount": 5 }
     ],
-    "lastUpdated": "2026-04-03T08:00:00Z",
+    "lastUpdated": "2026-04-08T08:00:00Z",
     "source": "Windward Maritime Intelligence, Lloyd's List, PIB India"
   },
   "oilSpread": {
@@ -203,6 +207,7 @@
     { "country": "India", "dependency": 45, "severity": "moderate", "description": "Permitted limited vessel transits through negotiation; still facing supply constraints and higher costs." }
   ],
   "crisisTimeline": [
+    { "date": "2026-04-09", "category": "military", "title": "Iranian drone/missile attacks on Gulf states surge to monthly high", "description": "Bloomberg Intelligence data shows Iranian attacks across Bahrain, Saudi Arabia, Kuwait, and UAE spiking sharply — April on track for highest monthly total. Iran's 'Mosaic Strategy' gives sector commanders autonomy to fire without central approval. Saudi east-west pipeline hit by drone strike. Qatar begins work to resume passage via Hormuz." },
     { "date": "2026-04-01", "category": "diplomatic", "title": "Status quo: controlled transit, ongoing negotiations", "description": "Strait under selective Iranian control with ~6% of normal traffic. Trump extended deadline to April 6. Estimated 2000 ships stranded. War risk insurance still 6-7x normal." },
     { "date": "2026-03-31", "category": "diplomatic", "title": "China-Pakistan present 5-point ceasefire initiative", "description": "China and Pakistan jointly present peace proposal including immediate ceasefire, halt to infrastructure attacks, safe passage through Strait, and framework for comprehensive peace." },
     { "date": "2026-03-26", "category": "diplomatic", "title": "Iran selectively allows approved nations to transit", "description": "Iran permits passage for vessels from China, Russia, India, Iraq, Pakistan. Malaysia and Thailand granted access following direct talks. UN humanitarian and fertilizer shipments permitted." },
@@ -362,5 +367,126 @@
     ],
     "notes": "Every day oil averages above $105, the markets suffer. We're now in the zone of actually causing a global recession if it doesn't go back. — MB Commodity Corner",
     "lastUpdated": "2026-04-01T08:00:00Z"
+  },
+  "tankerRates": {
+    "vessels": [
+      {
+        "class": "VLCC",
+        "description": "Very Large Crude Carrier (2M barrels)",
+        "currentRate": 105000,
+        "baselineRate": 50000,
+        "peakRate": 135000,
+        "unit": "$/day TCE",
+        "route": "AG-East (Persian Gulf → China)"
+      },
+      {
+        "class": "Suezmax",
+        "description": "Suezmax (1M barrels)",
+        "currentRate": 80000,
+        "baselineRate": 40000,
+        "peakRate": 85000,
+        "unit": "$/day TCE",
+        "route": "AG-East / West Africa"
+      },
+      {
+        "class": "Aframax",
+        "description": "Aframax (750K barrels)",
+        "currentRate": 75000,
+        "baselineRate": 30000,
+        "peakRate": 78000,
+        "unit": "$/day TCE",
+        "route": "Intra-Asia / Mediterranean"
+      }
+    ],
+    "source": "Fearnleys (fearnpulse.com)",
+    "lastUpdated": "2026-04-07T08:00:00Z",
+    "context": "Tanker rates have doubled to tripled since the Hormuz closure. VLCC spiked to $135K/day in early March before settling at $105K as rerouting via Cape of Good Hope became the norm. Elevated rates add $3-5/barrel to delivered crude costs for Asian importers."
+  },
+  "iranianAttacks": {
+    "months": [
+      { "month": "Mar 25", "bahrain": 39, "saudi": 92, "kuwait": 10, "uae": 1, "total": 142 },
+      { "month": "Apr 25", "bahrain": 19, "saudi": 112, "kuwait": 8, "uae": 3, "total": 142 },
+      { "month": "May 25", "bahrain": 5, "saudi": 97, "kuwait": 5, "uae": 4, "total": 111 },
+      { "month": "Jun 25", "bahrain": 4, "saudi": 52, "kuwait": 5, "uae": 3, "total": 64 },
+      { "month": "Jul 25", "bahrain": 5, "saudi": 68, "kuwait": 7, "uae": 5, "total": 85 },
+      { "month": "Aug 25", "bahrain": 8, "saudi": 88, "kuwait": 8, "uae": 7, "total": 111 },
+      { "month": "Sep 25", "bahrain": 10, "saudi": 85, "kuwait": 10, "uae": 10, "total": 115 },
+      { "month": "Oct 25", "bahrain": 8, "saudi": 85, "kuwait": 12, "uae": 10, "total": 115 },
+      { "month": "Nov 25", "bahrain": 5, "saudi": 50, "kuwait": 8, "uae": 8, "total": 71 },
+      { "month": "Dec 25", "bahrain": 5, "saudi": 48, "kuwait": 10, "uae": 8, "total": 71 },
+      { "month": "Jan 26", "bahrain": 6, "saudi": 58, "kuwait": 10, "uae": 10, "total": 84 },
+      { "month": "Feb 26", "bahrain": 4, "saudi": 48, "kuwait": 10, "uae": 9, "total": 71 },
+      { "month": "Mar 26", "bahrain": 5, "saudi": 47, "kuwait": 10, "uae": 9, "total": 71 },
+      { "month": "Apr 26", "bahrain": 12, "saudi": 78, "kuwait": 15, "uae": 14, "total": 119, "partial": true, "note": "Through Apr 9 — on track for monthly high" }
+    ],
+    "context": "Iranian attacks on Gulf states surging in April 2026, on track for highest monthly total. Markets and US military giving Iran 24 hours for sector commanders to stand down before potential escalation through the Strait en masse.",
+    "mosaicStrategyNote": "Iran's 'Mosaic Strategy' — sector commanders have autonomy to launch missiles and drones without central approval. The uptick is being dismissed as decentralized action, not coordinated escalation.",
+    "headlines": [
+      "Qatar begins work to resume passage via Hormuz",
+      "Oil ships passage via Hormuz halted after Lebanon strike fare",
+      "Saudi Arabia's crucial east-west pipeline hit by drone attack",
+      "Iran pipeline damage said to be limited after drone strike"
+    ],
+    "source": "Bloomberg Intelligence via Jim Bianco Research",
+    "lastUpdated": "2026-04-09T12:43:00Z"
+  },
+  "refiningMargins": {
+    "gasolineCrack": {
+      "current": 28.5,
+      "peak": 34.2,
+      "peakDate": "2026-03-18",
+      "baseline": 17.5,
+      "history": [
+        { "date": "2026-02-26", "value": 17.5 },
+        { "date": "2026-03-01", "value": 22.3 },
+        { "date": "2026-03-05", "value": 26.8 },
+        { "date": "2026-03-10", "value": 30.1 },
+        { "date": "2026-03-15", "value": 33.5 },
+        { "date": "2026-03-18", "value": 34.2 },
+        { "date": "2026-03-22", "value": 32.8 },
+        { "date": "2026-03-25", "value": 31.5 },
+        { "date": "2026-03-28", "value": 30.2 },
+        { "date": "2026-04-01", "value": 29.8 },
+        { "date": "2026-04-03", "value": 29.1 },
+        { "date": "2026-04-05", "value": 28.8 },
+        { "date": "2026-04-07", "value": 28.5 },
+        { "date": "2026-04-09", "value": 28.5 }
+      ]
+    },
+    "heatingOilCrack": {
+      "current": 51.6,
+      "peak": 58.3,
+      "peakDate": "2026-03-20",
+      "baseline": 27.0,
+      "history": [
+        { "date": "2026-02-26", "value": 27.0 },
+        { "date": "2026-03-01", "value": 34.5 },
+        { "date": "2026-03-05", "value": 41.2 },
+        { "date": "2026-03-10", "value": 48.3 },
+        { "date": "2026-03-15", "value": 54.8 },
+        { "date": "2026-03-18", "value": 57.1 },
+        { "date": "2026-03-20", "value": 58.3 },
+        { "date": "2026-03-22", "value": 56.5 },
+        { "date": "2026-03-25", "value": 55.2 },
+        { "date": "2026-03-28", "value": 53.8 },
+        { "date": "2026-04-01", "value": 52.5 },
+        { "date": "2026-04-03", "value": 52.0 },
+        { "date": "2026-04-05", "value": 51.8 },
+        { "date": "2026-04-07", "value": 51.6 },
+        { "date": "2026-04-09", "value": 51.6 }
+      ]
+    },
+    "sellSignalActive": false,
+    "toppingSignals": true,
+    "context": "Refining margins are THE leading indicator for crude oil topping. When refineries can no longer afford crude and are forced to cut throughput, that is the signal to sell crude longs. Currently showing early topping signs — gasoline crack down 17% from peak, heating oil crack down 11%.",
+    "hfiThesis": "If you want to know when it's time to get bearish oil, just watch refining margins. In COVID, floating storage, tanker rates, contango, and refining margins all peaked first. Then margins went negative. When they rebounded, crude rallied. This time around, a similar playbook will happen but in reverse — refining margins will be the key indicator for when the global economy cannot handle higher prices any longer.",
+    "sellTriggers": [
+      "Gasoline crack (RB-CL) breaks below $20/bbl",
+      "Heating oil crack (HO-CL) breaks below $35/bbl",
+      "Backwardation compresses to flat or contango",
+      "SE Asian refineries start cutting throughput rates"
+    ],
+    "source": "HFI Research (@HFI_Research), Hemisphere Research Capital (@hemis_research)",
+    "lastUpdated": "2026-04-09T08:00:00Z"
   }
 }

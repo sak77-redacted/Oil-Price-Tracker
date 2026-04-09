@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { ExtendedSignalData, FuturesData, CrackSpreadData, ForwardCurveData, WTIBrentSpreadData, MarketIndicesData } from "@/lib/types";
 import type { HyperliquidData } from "@/lib/futures-api";
 import type { AISummaryData } from "@/lib/ai-summary";
-import { getInsuranceStatus, getShipStatus, getSpreadStatus, statusColor } from "@/lib/utils";
+import { getInsuranceStatus, getShipStatus, getSpreadStatus, getRefiningStatus, statusColor } from "@/lib/utils";
 import type { SignalStatus } from "@/lib/types";
 
 // Recharts needs raw hex colors — CSS variables don't work in SVG
@@ -34,6 +34,8 @@ import MarketPulse from "./MarketPulse";
 import AISummary from "./AISummary";
 import HyperliquidPerps from "./HyperliquidPerps";
 import FuturesExpiry from "./FuturesExpiry";
+import TankerRates from "./TankerRates";
+import IranianAttacks from "./IranianAttacks";
 
 interface DashboardProps {
   data: ExtendedSignalData;
@@ -88,6 +90,21 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
   const spreadLabel =
     spreadStatus === "red" ? "Severe Disconnect" : spreadStatus === "yellow" ? "Widening" : "Normal Range";
 
+  // Signal 4: Refining Margins — uses live crack data when available
+  const liveGasCrack = crackData?.gasolineCrack ?? data.refiningMargins.gasolineCrack.current;
+  const liveHoCrack = crackData?.heatingOilCrack ?? data.refiningMargins.heatingOilCrack.current;
+  const refiningStatus = getRefiningStatus(
+    liveGasCrack,
+    liveHoCrack,
+    data.refiningMargins.gasolineCrack.peak,
+    data.refiningMargins.heatingOilCrack.peak,
+  );
+  const gasOffPeak = data.refiningMargins.gasolineCrack.peak > 0
+    ? ((data.refiningMargins.gasolineCrack.peak - liveGasCrack) / data.refiningMargins.gasolineCrack.peak) * 100
+    : 0;
+  const refiningLabel =
+    refiningStatus === "red" ? "Sell Signal" : refiningStatus === "yellow" ? "Margins Peaking" : "Margins Healthy";
+
   // Collapsible section state
   const [timelineOpen, setTimelineOpen] = useState(true);
   const [tradeOpen, setTradeOpen] = useState(true);
@@ -133,7 +150,7 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
         {/* (already rendered above) */}
 
         {/* Early Warning Signal strip */}
-        <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
+        <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
           {/* Insurance Premium */}
           <div className="flex flex-col rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3">
             <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
@@ -259,6 +276,50 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
               </div>
             </div>
           </div>
+
+          {/* Refining Margins — Exit Signal */}
+          <div className="flex flex-col rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+                <span className="text-[var(--accent)]">Signal 4</span> — Refining Margins
+              </span>
+              {crackData && (
+                <span className="rounded bg-emerald-500/20 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-emerald-400 border border-emerald-500/30">
+                  Live
+                </span>
+              )}
+            </div>
+            <div className="mt-1 flex items-center gap-2">
+              <span
+                className="inline-block h-2 w-2 shrink-0 rounded-full"
+                style={{ backgroundColor: statusColor(refiningStatus) }}
+              />
+              <span className="text-xl font-bold tabular-nums" style={{ color: statusColor(refiningStatus) }}>
+                ${liveGasCrack.toFixed(1)}/bbl
+              </span>
+              {gasOffPeak > 1 && (
+                <span className="text-xs font-semibold text-amber-400">
+                  {gasOffPeak.toFixed(0)}% off peak
+                </span>
+              )}
+            </div>
+            <div className="mt-0.5 text-xs text-[var(--text-secondary)]">{refiningLabel}</div>
+            <div className="mt-1.5 text-[11px] leading-snug text-[var(--text-secondary)] italic">
+              When refiners can&apos;t afford crude, that&apos;s the signal to sell oil longs
+            </div>
+            <div className="flex-1" />
+            <div className="mt-2">
+              <MiniTrendChart
+                data={data.refiningMargins.gasolineCrack.history.map(h => ({ date: h.date, value: h.value }))}
+                color={chartColor(refiningStatus)}
+                thresholdValue={20}
+              />
+              <div className="mt-1 flex justify-between text-[9px] text-[var(--text-secondary)]">
+                <span>30d ago</span>
+                <span>Today</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -315,6 +376,11 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
             <FuturesExpiry />
           </section>
 
+          {/* Tanker Rates */}
+          <section className="mt-6">
+            <TankerRates data={data.tankerRates} />
+          </section>
+
           {/* Hyperliquid Oil Perps — 24/7 pricing when CME is closed */}
           {hyperliquidData && (
             <section className="mt-6">
@@ -328,7 +394,7 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
           {/* Crack Spreads */}
           {crackData && (
             <section className="mt-6">
-              <CrackSpreads data={crackData} />
+              <CrackSpreads data={crackData} marginsData={data.refiningMargins} />
             </section>
           )}
 
@@ -476,6 +542,11 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
               globalData={data.globalImpact}
               regionalData={data.regionalImpact}
             />
+          </section>
+
+          {/* Iranian Attacks on Gulf States */}
+          <section className="mt-8">
+            <IranianAttacks data={data.iranianAttacks} />
           </section>
 
           {/* Crisis Timeline */}

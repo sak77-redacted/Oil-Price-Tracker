@@ -42,6 +42,27 @@ export function formatPercent(value: number): string {
   return `${value.toFixed(1)}%`;
 }
 
+export function getRefiningStatus(
+  gasolineCrack: number,
+  heatingOilCrack: number,
+  gasPeak: number,
+  hoPeak: number,
+): SignalStatus {
+  // Absolute sell triggers: margins collapsing
+  if (gasolineCrack < 20 || heatingOilCrack < 35) return "red";
+
+  const gasDecline = gasPeak > 0 ? (gasPeak - gasolineCrack) / gasPeak : 0;
+  const hoDecline = hoPeak > 0 ? (hoPeak - heatingOilCrack) / hoPeak : 0;
+
+  // Both declining >20% from peak = sell signal approaching
+  if (gasDecline > 0.2 && hoDecline > 0.2) return "red";
+
+  // Either declining >10% from peak = topping
+  if (gasDecline > 0.1 || hoDecline > 0.1) return "yellow";
+
+  return "green";
+}
+
 export function statusColor(status: SignalStatus): string {
   switch (status) {
     case "red":

@@ -1,9 +1,10 @@
 "use client";
 
-import type { CrackSpreadData } from "@/lib/types";
+import type { CrackSpreadData, RefiningMarginsData } from "@/lib/types";
 
 interface CrackSpreadsProps {
   data: CrackSpreadData;
+  marginsData?: RefiningMarginsData;
 }
 
 function formatChange(value: number): string {
@@ -11,7 +12,7 @@ function formatChange(value: number): string {
   return `${sign}$${Math.abs(value).toFixed(2)}`;
 }
 
-export default function CrackSpreads({ data }: CrackSpreadsProps) {
+export default function CrackSpreads({ data, marginsData }: CrackSpreadsProps) {
   const gasChangeColor =
     data.gasolineCrackChange >= 0 ? "#22c55e" : "#ef4444";
   const hoChangeColor =
@@ -91,6 +92,36 @@ export default function CrackSpreads({ data }: CrackSpreadsProps) {
           </div>
         </div>
       </div>
+
+      {/* HFI Research thesis */}
+      {marginsData && (
+        <div className="border-t border-[var(--card-border)] px-5 py-3">
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-amber-400 mb-1">
+              Exit Signal Framework — HFI Research
+            </div>
+            <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+              {marginsData.hfiThesis}
+            </p>
+            <div className="mt-3">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5">
+                Sell Triggers to Watch
+              </div>
+              <ul className="space-y-1">
+                {marginsData.sellTriggers.map((trigger, i) => (
+                  <li key={i} className="flex items-start gap-2 text-xs text-[var(--text-secondary)]">
+                    <span className="mt-0.5 shrink-0 text-amber-400">&#x25CB;</span>
+                    {trigger}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="mt-2 text-[10px] text-[var(--text-secondary)]">
+            Source: {marginsData.source}
+          </p>
+        </div>
+      )}
 
       {/* Insight callout */}
       <div className="border-t border-[var(--card-border)] px-5 py-3">
