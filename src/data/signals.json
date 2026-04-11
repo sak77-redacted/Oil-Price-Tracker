@@ -37,8 +37,8 @@
     "source": "Lloyd's List / HormuzTracker"
   },
   "shipTransit": {
-    "dailyCount": 15,
-    "returnLegs": 5,
+    "dailyCount": 5,
+    "returnLegs": 2,
     "baseline": 100,
     "threshold": 35,
     "darkFleetNote": "Many vessels transit with AIS disabled. Low AIS count confirms elevated risk \u2014 when operators feel safe enough to keep transponders on, that\u2019s the normalcy signal.",
@@ -78,20 +78,23 @@
       { "date": "2026-03-30", "count": 8, "returnCount": 2 },
       { "date": "2026-03-31", "count": 11, "returnCount": 3 },
       { "date": "2026-04-01", "count": 9, "returnCount": 3 },
-      { "date": "2026-04-02", "count": 6, "returnCount": 2 },
-      { "date": "2026-04-03", "count": 6, "returnCount": 2 },
-      { "date": "2026-04-05", "count": 10, "returnCount": 3 },
-      { "date": "2026-04-06", "count": 12, "returnCount": 4 },
-      { "date": "2026-04-07", "count": 14, "returnCount": 4 },
-      { "date": "2026-04-08", "count": 15, "returnCount": 5 }
+      { "date": "2026-04-02", "count": 10, "returnCount": 3 },
+      { "date": "2026-04-03", "count": 8, "returnCount": 3 },
+      { "date": "2026-04-04", "count": 7, "returnCount": 2 },
+      { "date": "2026-04-05", "count": 8, "returnCount": 3 },
+      { "date": "2026-04-06", "count": 9, "returnCount": 3 },
+      { "date": "2026-04-07", "count": 11, "returnCount": 4 },
+      { "date": "2026-04-08", "count": 4, "returnCount": 1 },
+      { "date": "2026-04-09", "count": 5, "returnCount": 2 },
+      { "date": "2026-04-10", "count": 5, "returnCount": 2 }
     ],
-    "lastUpdated": "2026-04-08T08:00:00Z",
+    "lastUpdated": "2026-04-11T08:00:00Z",
     "source": "Windward Maritime Intelligence, Lloyd's List, PIB India"
   },
   "oilSpread": {
-    "brent": 111,
-    "dubai": 129,
-    "spread": 18,
+    "brent": 107,
+    "dubai": 140,
+    "spread": 33,
     "history": [
       { "date": "2026-02-26", "brent": 76, "dubai": 77 },
       { "date": "2026-02-27", "brent": 78, "dubai": 80 },
@@ -110,9 +113,10 @@
       { "date": "2026-03-27", "brent": 106, "dubai": 121 },
       { "date": "2026-03-29", "brent": 105, "dubai": 121 },
       { "date": "2026-04-01", "brent": 104, "dubai": 120 },
-      { "date": "2026-04-07", "brent": 111, "dubai": 129 }
+      { "date": "2026-04-07", "brent": 111, "dubai": 129 },
+      { "date": "2026-04-11", "brent": 107, "dubai": 140 }
     ],
-    "lastUpdated": "2026-04-07T08:00:00Z",
+    "lastUpdated": "2026-04-11T08:00:00Z",
     "brentSource": "Yahoo Finance (live) / oilprice.com",
     "dubaiSource": "S&P Global Platts"
   },
