@@ -13,28 +13,28 @@ const CONTRACTS: ContractConfig[] = [
     name: "WTI Crude Oil",
     explanation:
       "The US oil benchmark. Front-month WTI futures \u2014 what American refiners pay.",
-    fallbackPrice: 108,
+    fallbackPrice: 87,
   },
   {
     symbol: "BZ=F",
     name: "Brent Crude",
     explanation:
       "The global oil benchmark. What most of the world prices crude against.",
-    fallbackPrice: 112,
+    fallbackPrice: 91,
   },
   {
     symbol: "RB=F",
     name: "RBOB Gasoline",
     explanation:
       "Gasoline futures. Tracks US pump prices \u2014 direct consumer impact signal.",
-    fallbackPrice: 3.25,
+    fallbackPrice: 3.05,
   },
   {
     symbol: "HO=F",
     name: "Heating Oil",
     explanation:
       "Heating oil / diesel proxy. Drives freight and logistics costs worldwide.",
-    fallbackPrice: 3.8,
+    fallbackPrice: 3.50,
   },
   {
     symbol: "NG=F",
@@ -178,9 +178,9 @@ async function fetchSinglePrice(
  * Never throws -- always returns valid CrackSpreadData.
  */
 export async function fetchCrackSpreads(): Promise<CrackSpreadData> {
-  const FALLBACK_CL = 108;
-  const FALLBACK_RB = 3.25;
-  const FALLBACK_HO = 3.8;
+  const FALLBACK_CL = 87;
+  const FALLBACK_RB = 3.05;
+  const FALLBACK_HO = 3.50;
 
   try {
     const [cl, rb, ho] = await Promise.all([
@@ -227,7 +227,7 @@ export async function fetchCrackSpreads(): Promise<CrackSpreadData> {
  * Never throws -- always returns valid ForwardCurveData.
  */
 export async function fetchForwardCurve(): Promise<ForwardCurveData> {
-  const FALLBACK_BRENT = 112;
+  const FALLBACK_BRENT = 91;
   const MONTH_CODES = ["F", "G", "H", "J", "K", "M", "N", "Q", "U", "V", "X", "Z"];
   const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const FALLBACK_DISCOUNTS = [0, -3.5, -8.2, -12.5, -15.8, -18.0, -19.5, -20.2, -20.8];
@@ -392,8 +392,8 @@ function getCurrentDeliveryMonth(): { code: string; year: string; label: string 
  * Never throws -- always returns valid WTIBrentSpreadData.
  */
 export async function fetchWTIBrentSpread(): Promise<WTIBrentSpreadData> {
-  const FALLBACK_CL = 108;
-  const FALLBACK_BZ = 112;
+  const FALLBACK_CL = 87;
+  const FALLBACK_BZ = 91;
   const FAIR_VALUE = 4.5; // TD25 freight economics
 
   try {

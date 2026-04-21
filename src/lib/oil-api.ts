@@ -8,7 +8,7 @@ export interface OilPriceResult {
   timestamp: string;
 }
 
-const DEFAULT_BRENT_PRICE = 112;
+const DEFAULT_BRENT_PRICE = 91;
 
 /**
  * Read Brent price from signals.json fallback.
