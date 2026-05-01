@@ -215,6 +215,28 @@
     "projectedGapMbd": 12,
     "lastUpdated": "2026-04-21T08:00:00Z"
   },
+  "bufferMath": {
+    "oecdCommercialDaysCover": 25,
+    "operationalFloor": 24,
+    "oecdSPRRemainingMb": 776,
+    "oecdSPRTotalCapacityMb": 855,
+    "cumulativeMissingMb": 870,
+    "dailyMissingMbd": 14.5,
+    "projectedShortfall6moMb": 1631,
+    "burnDownDays": 54,
+    "history": [
+      { "date": "2026-03-02", "daysCover": 32, "sprMb": 855 },
+      { "date": "2026-03-09", "daysCover": 31, "sprMb": 845 },
+      { "date": "2026-03-16", "daysCover": 30, "sprMb": 832 },
+      { "date": "2026-03-23", "daysCover": 29, "sprMb": 818 },
+      { "date": "2026-03-30", "daysCover": 28, "sprMb": 808 },
+      { "date": "2026-04-06", "daysCover": 27, "sprMb": 798 },
+      { "date": "2026-04-13", "daysCover": 26, "sprMb": 788 },
+      { "date": "2026-04-20", "daysCover": 25, "sprMb": 776 }
+    ],
+    "lastUpdated": "2026-04-21T08:00:00Z",
+    "source": "IEA OECD inventories, EIA Weekly Petroleum Status Report, Goldman Sachs analysis"
+  },
   "straitStatus": {
     "status": "closed",
     "since": "2026-04-18",

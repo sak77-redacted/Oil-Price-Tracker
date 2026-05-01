@@ -4,6 +4,7 @@ import {
   getShipStatus,
   getSpreadStatus,
   getTimelineStatus,
+  getBufferMathStatus,
   getDaysUntil,
 } from "./utils";
 
@@ -22,10 +23,11 @@ export interface Verdict {
 }
 
 const WEIGHTS = {
-  insurance: 0.35,
-  shipCount: 0.25,
+  insurance: 0.3,
+  shipCount: 0.2,
   spread: 0.2,
-  timeline: 0.2,
+  timeline: 0.15,
+  bufferMath: 0.15,
 } as const;
 
 function scoreInsurance(rate: number): number {
@@ -46,6 +48,21 @@ function scoreSpread(gap: number): number {
 function scoreTimeline(daysUntil: number): number {
   // Continuous scoring: 3 days → ~-0.80, 14 → 0, 60 → ~+1.0
   return Math.tanh((daysUntil - 14) / 10);
+}
+
+function scoreBufferMath(
+  daysCover: number,
+  projectedShortfall: number,
+  sprAvailable: number,
+): number {
+  // Days-of-cover: <24 deeply negative, 30 → 0, >40 strongly positive
+  const coverScore = Math.tanh((daysCover - 30) / 6);
+  // Reserve coverage: ratio of available SPR to projected 6mo shortfall
+  // ratio < 1 means reserves can't cover the gap → negative pressure
+  const ratio = projectedShortfall > 0 ? sprAvailable / projectedShortfall : 1;
+  const coverageScore = Math.tanh((ratio - 1) * 1.5);
+  // Combine: average, but weight cover slightly more (acute vs structural)
+  return coverScore * 0.6 + coverageScore * 0.4;
 }
 
 function getNearestFutureEventDays(data: SignalData): number {
@@ -140,6 +157,11 @@ function countCrisisSignals(data: SignalData, daysUntilEvent: number): number {
     getShipStatus(data.shipTransit.dailyCount),
     getSpreadStatus(data.oilSpread.spread),
     getTimelineStatus(daysUntilEvent),
+    getBufferMathStatus(
+      data.bufferMath.oecdCommercialDaysCover,
+      data.bufferMath.projectedShortfall6moMb,
+      data.bufferMath.oecdSPRRemainingMb,
+    ),
   ];
   return statuses.filter((s) => s === "red").length;
 }
@@ -151,14 +173,20 @@ export function computeVerdict(data: SignalData): Verdict {
   const shipScore = scoreShipCount(data.shipTransit.dailyCount);
   const spreadScore = scoreSpread(data.oilSpread.spread);
   const timelineScore = scoreTimeline(daysUntilEvent);
+  const bufferScore = scoreBufferMath(
+    data.bufferMath.oecdCommercialDaysCover,
+    data.bufferMath.projectedShortfall6moMb,
+    data.bufferMath.oecdSPRRemainingMb,
+  );
 
   const composite =
     WEIGHTS.insurance * insuranceScore +
     WEIGHTS.shipCount * shipScore +
     WEIGHTS.spread * spreadScore +
-    WEIGHTS.timeline * timelineScore;
+    WEIGHTS.timeline * timelineScore +
+    WEIGHTS.bufferMath * bufferScore;
 
-  const signalCount = 4;
+  const signalCount = 5;
   const crisisCount = countCrisisSignals(data, daysUntilEvent);
   const direction = computeDirection(composite);
 

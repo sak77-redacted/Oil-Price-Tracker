@@ -24,6 +24,16 @@ export function getTimelineStatus(daysUntilCliff: number): SignalStatus {
   return "green";
 }
 
+export function getBufferMathStatus(
+  daysCover: number,
+  projectedShortfall: number,
+  sprAvailable: number,
+): SignalStatus {
+  if (daysCover < 24 || projectedShortfall > sprAvailable) return "red";
+  if (daysCover < 30 || projectedShortfall > sprAvailable * 0.7) return "yellow";
+  return "green";
+}
+
 export function getDaysUntil(dateStr: string): number {
   const target = new Date(dateStr + "T00:00:00Z");
   const now = new Date();

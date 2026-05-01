@@ -52,11 +52,26 @@ export interface TimelineSignal {
   lastUpdated: string;
 }
 
+export interface BufferMathSignal {
+  oecdCommercialDaysCover: number;
+  operationalFloor: number;
+  oecdSPRRemainingMb: number;
+  oecdSPRTotalCapacityMb: number;
+  cumulativeMissingMb: number;
+  dailyMissingMbd: number;
+  projectedShortfall6moMb: number;
+  burnDownDays: number;
+  history: { date: string; daysCover: number; sprMb: number }[];
+  lastUpdated: string;
+  source: string;
+}
+
 export interface SignalData {
   insurance: InsuranceSignal;
   shipTransit: ShipTransitSignal;
   oilSpread: OilSpreadSignal;
   timeline: TimelineSignal;
+  bufferMath: BufferMathSignal;
 }
 
 export interface StraitStatus {

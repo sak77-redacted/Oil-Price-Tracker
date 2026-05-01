@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { ExtendedSignalData, FuturesData, CrackSpreadData, ForwardCurveData, WTIBrentSpreadData, MarketIndicesData } from "@/lib/types";
 import type { HyperliquidData } from "@/lib/futures-api";
 import type { AISummaryData } from "@/lib/ai-summary";
-import { getInsuranceStatus, getShipStatus, getSpreadStatus, getRefiningStatus, statusColor } from "@/lib/utils";
+import { getInsuranceStatus, getShipStatus, getSpreadStatus, getRefiningStatus, getBufferMathStatus, statusColor } from "@/lib/utils";
 import type { SignalStatus } from "@/lib/types";
 
 // Recharts needs raw hex colors — CSS variables don't work in SVG
@@ -107,6 +107,19 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
   const refiningLabel =
     refiningStatus === "red" ? "Sell Signal" : refiningStatus === "yellow" ? "Margins Peaking" : "Margins Healthy";
 
+  // Signal 5: Inventory Buffer & Supply Math
+  const bufferStatus = getBufferMathStatus(
+    data.bufferMath.oecdCommercialDaysCover,
+    data.bufferMath.projectedShortfall6moMb,
+    data.bufferMath.oecdSPRRemainingMb,
+  );
+  const bufferLabel =
+    bufferStatus === "red" ? "Buffer Failing" : bufferStatus === "yellow" ? "Buffer Stressed" : "Buffer Adequate";
+  const prevDaysCover = data.bufferMath.history.length >= 2
+    ? data.bufferMath.history[data.bufferMath.history.length - 2].daysCover
+    : null;
+  const daysCoverDelta = prevDaysCover != null ? data.bufferMath.oecdCommercialDaysCover - prevDaysCover : null;
+
   // Collapsible section state
   const [timelineOpen, setTimelineOpen] = useState(true);
   const [tradeOpen, setTradeOpen] = useState(true);
@@ -152,7 +165,7 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
         {/* (already rendered above) */}
 
         {/* Early Warning Signal strip */}
-        <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {/* Insurance Premium */}
           <div className="flex flex-col rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3">
             <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
@@ -322,6 +335,43 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
               </div>
             </div>
           </div>
+
+          {/* Inventory Buffer & Supply Math */}
+          <div className="flex flex-col rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3">
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              <span className="text-[var(--accent)]">Signal 6</span> — Inventory Buffer
+            </div>
+            <div className="mt-1 flex items-center gap-2">
+              <span
+                className="inline-block h-2 w-2 shrink-0 rounded-full"
+                style={{ backgroundColor: statusColor(bufferStatus) }}
+              />
+              <span className="text-xl font-bold tabular-nums" style={{ color: statusColor(bufferStatus) }}>
+                {data.bufferMath.oecdCommercialDaysCover}d cover
+              </span>
+              {daysCoverDelta != null && daysCoverDelta !== 0 && (
+                <span className={`text-xs font-semibold ${daysCoverDelta > 0 ? 'text-green-400' : 'text-red-400'}`}>
+                  {daysCoverDelta > 0 ? '+' : ''}{daysCoverDelta}d
+                </span>
+              )}
+            </div>
+            <div className="mt-0.5 text-xs text-[var(--text-secondary)]">{bufferLabel}</div>
+            <div className="mt-1.5 text-[11px] leading-snug text-[var(--text-secondary)] italic">
+              When days-of-cover crosses {data.bufferMath.operationalFloor}, refiners can&apos;t physically operate
+            </div>
+            <div className="flex-1" />
+            <div className="mt-2">
+              <MiniTrendChart
+                data={data.bufferMath.history.map(h => ({ date: h.date, value: h.daysCover }))}
+                color={chartColor(bufferStatus)}
+                thresholdValue={data.bufferMath.operationalFloor}
+              />
+              <div className="mt-1 flex justify-between text-[9px] text-[var(--text-secondary)]">
+                <span>Crisis start</span>
+                <span>Today</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -333,7 +383,7 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
           className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
         >
           <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
-            What Happens Next
+            Signal 5 — What Happens Next
           </span>
           <svg className={`w-3 h-3 text-[var(--accent)] transition-transform ${timelineOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />

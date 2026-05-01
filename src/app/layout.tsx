@@ -11,18 +11,18 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Hormuz Signal Tracker",
   description:
-    "4 signals. Zero noise. Track the Strait of Hormuz crisis.",
+    "6 signals. Zero noise. Track the Strait of Hormuz crisis.",
   openGraph: {
     title: "Hormuz Signal Tracker",
     description:
-      "4 signals. Zero noise. Track the Strait of Hormuz crisis.",
+      "6 signals. Zero noise. Track the Strait of Hormuz crisis.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Hormuz Signal Tracker",
     description:
-      "4 signals. Zero noise. Track the Strait of Hormuz crisis.",
+      "6 signals. Zero noise. Track the Strait of Hormuz crisis.",
   },
 };
 
