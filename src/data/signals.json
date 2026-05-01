@@ -1,6 +1,6 @@
 {
   "insurance": {
-    "current": 6.5,
+    "current": 6.8,
     "baseline": 0.25,
     "threshold": 2.0,
     "unit": "%",
@@ -39,14 +39,20 @@
       { "date": "2026-04-14", "value": 5.5 },
       { "date": "2026-04-17", "value": 4.8 },
       { "date": "2026-04-18", "value": 6.0 },
-      { "date": "2026-04-20", "value": 6.5 }
+      { "date": "2026-04-20", "value": 6.5 },
+      { "date": "2026-04-22", "value": 7.0 },
+      { "date": "2026-04-24", "value": 7.2 },
+      { "date": "2026-04-26", "value": 7.0 },
+      { "date": "2026-04-28", "value": 6.6 },
+      { "date": "2026-04-30", "value": 7.2 },
+      { "date": "2026-05-01", "value": 6.8 }
     ],
-    "lastUpdated": "2026-04-21T08:00:00Z",
-    "source": "Lloyd's List / HormuzTracker / WEF market reports"
+    "lastUpdated": "2026-05-01T08:00:00Z",
+    "source": "Lloyd's List / HormuzTracker / WEF / Al Jazeera (Apr 28: rates 1-5% hull, 'up to 20x' pre-war)"
   },
   "shipTransit": {
-    "dailyCount": 3,
-    "returnLegs": 1,
+    "dailyCount": 2,
+    "returnLegs": 0,
     "baseline": 100,
     "threshold": 35,
     "darkFleetNote": "Many vessels transit with AIS disabled. Low AIS count confirms elevated risk \u2014 when operators feel safe enough to keep transponders on, that\u2019s the normalcy signal.",
@@ -104,15 +110,26 @@
       { "date": "2026-04-17", "count": 12, "returnCount": 3 },
       { "date": "2026-04-18", "count": 10, "returnCount": 2 },
       { "date": "2026-04-19", "count": 3, "returnCount": 1 },
-      { "date": "2026-04-20", "count": 3, "returnCount": 1 }
+      { "date": "2026-04-20", "count": 3, "returnCount": 1 },
+      { "date": "2026-04-21", "count": 2, "returnCount": 0 },
+      { "date": "2026-04-22", "count": 1, "returnCount": 0 },
+      { "date": "2026-04-23", "count": 0, "returnCount": 0 },
+      { "date": "2026-04-24", "count": 1, "returnCount": 0 },
+      { "date": "2026-04-25", "count": 2, "returnCount": 0 },
+      { "date": "2026-04-26", "count": 1, "returnCount": 0 },
+      { "date": "2026-04-27", "count": 2, "returnCount": 1 },
+      { "date": "2026-04-28", "count": 3, "returnCount": 1 },
+      { "date": "2026-04-29", "count": 4, "returnCount": 1 },
+      { "date": "2026-04-30", "count": 1, "returnCount": 0 },
+      { "date": "2026-05-01", "count": 2, "returnCount": 0 }
     ],
-    "lastUpdated": "2026-04-21T08:00:00Z",
-    "source": "Windward Maritime Intelligence, Al Jazeera/Kpler, Lloyd's List"
+    "lastUpdated": "2026-05-01T08:00:00Z",
+    "source": "Windward Maritime Intelligence, Bloomberg Hormuz Tracker (Apr 30: only Iran-linked traffic), Al Jazeera/Kpler, Lloyd's List"
   },
   "oilSpread": {
-    "brent": 91,
-    "dubai": 102,
-    "spread": 11,
+    "brent": 114,
+    "dubai": 130,
+    "spread": 16,
     "history": [
       { "date": "2026-02-26", "brent": 76, "dubai": 77 },
       { "date": "2026-02-27", "brent": 78, "dubai": 80 },
@@ -137,12 +154,19 @@
       { "date": "2026-04-15", "brent": 100, "dubai": 125 },
       { "date": "2026-04-17", "brent": 95, "dubai": 115 },
       { "date": "2026-04-18", "brent": 98, "dubai": 118 },
-      { "date": "2026-04-20", "brent": 91, "dubai": 102 }
+      { "date": "2026-04-20", "brent": 91, "dubai": 102 },
+      { "date": "2026-04-22", "brent": 102, "dubai": 117 },
+      { "date": "2026-04-24", "brent": 107, "dubai": 122 },
+      { "date": "2026-04-26", "brent": 110, "dubai": 126 },
+      { "date": "2026-04-28", "brent": 113, "dubai": 130 },
+      { "date": "2026-04-29", "brent": 118, "dubai": 137 },
+      { "date": "2026-04-30", "brent": 126, "dubai": 145 },
+      { "date": "2026-05-01", "brent": 114, "dubai": 130 }
     ],
-    "lastUpdated": "2026-04-21T08:00:00Z",
-    "brentSource": "Yahoo Finance (BZ=F live)",
+    "lastUpdated": "2026-05-01T08:00:00Z",
+    "brentSource": "Yahoo Finance (BZ=F live), CNBC May 1 ($114.01 settle, $126.41 intraday peak Apr 30)",
     "dubaiSource": "Dubai Crude Oil Platts futures (Investing.com)",
-    "note": "Dubai benchmark under severe strain — market participants report it is 'effectively broken' with some stepping back from Dubai-linked derivatives"
+    "note": "Brent June contract hit $126.41 intraday Apr 30 — highest in four years — before settling $114 May 1 after Trump extended ceasefire halting 60-day war powers deadline. Both contracts up ~60% since Feb 28. Dubai benchmark remains 'effectively broken' with widening discount to Brent."
   },
   "timeline": {
     "events": [
@@ -209,21 +233,69 @@
         "status": "active",
         "impact": "Iran demands immediate release. Ceasefire deadline looming. Tensions at maximum",
         "supplyGapMbd": 0
+      },
+      {
+        "id": "ceasefire-extension",
+        "event": "Trump extends Iran ceasefire pending negotiations (Pakistan-brokered)",
+        "date": "2026-04-21",
+        "status": "active",
+        "impact": "Naval blockade maintained. Iran given 3-5 days to engage in talks before resumed strikes. CENTCOM reports 27 vessels intercepted.",
+        "supplyGapMbd": 0
+      },
+      {
+        "id": "epaminondas-attack",
+        "event": "Iran attacks Greek-owned Epaminondas; seizes MSC Francesca",
+        "date": "2026-04-22",
+        "status": "active",
+        "impact": "Iranian gunboat fired on Epaminondas off Oman with RPGs despite prior clearance. IRGC seized container ship MSC Francesca. US captures M/T Majestic X. 29 vessels intercepted total.",
+        "supplyGapMbd": 0
+      },
+      {
+        "id": "mine-clearance-order",
+        "event": "Trump orders US Navy to destroy Iranian mine-laying boats",
+        "date": "2026-04-23",
+        "status": "active",
+        "impact": "Standing kill order for any Iranian vessel detected laying mines in the strait. US military estimates 6-month timeline for full mine clearance.",
+        "supplyGapMbd": 0
+      },
+      {
+        "id": "iran-hormuz-proposal",
+        "event": "Iran offers to reopen Strait if US lifts blockade — nuclear talks set aside",
+        "date": "2026-04-28",
+        "status": "active",
+        "impact": "Tehran's diplomatic opening — decouples strait from nuclear file. Trump confirms discussion with top aides. White House non-committal. ~2,000 ships still stranded in Gulf.",
+        "supplyGapMbd": 0
+      },
+      {
+        "id": "brent-126-peak",
+        "event": "Brent hits $126/barrel — four-year high",
+        "date": "2026-04-30",
+        "status": "active",
+        "impact": "June contract spiked to $126.41 intraday on US-Iran escalation fears. Only 1 Iran-linked tanker observed entering Gulf — commercial transit at near-zero.",
+        "supplyGapMbd": 0
+      },
+      {
+        "id": "war-powers-deadline-pause",
+        "event": "Ceasefire extension halts Trump's 60-day war powers deadline",
+        "date": "2026-05-01",
+        "status": "active",
+        "impact": "Brent retreats to $114 settle. Dual blockade remains in place. Crisis enters Day 63 with no political resolution; refining margins at fresh highs.",
+        "supplyGapMbd": 0
       }
     ],
     "currentGapMbd": 10,
     "projectedGapMbd": 12,
-    "lastUpdated": "2026-04-21T08:00:00Z"
+    "lastUpdated": "2026-05-01T08:00:00Z"
   },
   "bufferMath": {
-    "oecdCommercialDaysCover": 25,
+    "oecdCommercialDaysCover": 24,
     "operationalFloor": 24,
-    "oecdSPRRemainingMb": 776,
+    "oecdSPRRemainingMb": 760,
     "oecdSPRTotalCapacityMb": 855,
-    "cumulativeMissingMb": 870,
+    "cumulativeMissingMb": 1015,
     "dailyMissingMbd": 14.5,
     "projectedShortfall6moMb": 1631,
-    "burnDownDays": 54,
+    "burnDownDays": 47,
     "history": [
       { "date": "2026-03-02", "daysCover": 32, "sprMb": 855 },
       { "date": "2026-03-09", "daysCover": 31, "sprMb": 845 },
@@ -232,16 +304,18 @@
       { "date": "2026-03-30", "daysCover": 28, "sprMb": 808 },
       { "date": "2026-04-06", "daysCover": 27, "sprMb": 798 },
       { "date": "2026-04-13", "daysCover": 26, "sprMb": 788 },
-      { "date": "2026-04-20", "daysCover": 25, "sprMb": 776 }
+      { "date": "2026-04-20", "daysCover": 25, "sprMb": 776 },
+      { "date": "2026-04-27", "daysCover": 24, "sprMb": 766 },
+      { "date": "2026-05-01", "daysCover": 24, "sprMb": 760 }
     ],
-    "lastUpdated": "2026-04-21T08:00:00Z",
+    "lastUpdated": "2026-05-01T08:00:00Z",
     "source": "IEA OECD inventories, EIA Weekly Petroleum Status Report, Goldman Sachs analysis"
   },
   "straitStatus": {
     "status": "closed",
     "since": "2026-04-18",
-    "description": "Strait effectively closed again after brief reopening on Apr 17. Iran reclosed Apr 18 in response to US refusing to lift naval blockade. Iran fired on ships attempting transit. US Navy seized Iranian-flagged vessel Apr 19. Dual blockade: Iran controls strait, US blocks Iranian ports. Traffic at 3 vessels/day \u2014 lowest since crisis began.",
-    "lastUpdated": "2026-04-21T08:00:00Z"
+    "description": "Strait remains effectively closed. Trump extended ceasefire Apr 21 but blockade is unchanged. Iran attacked Greek Epaminondas Apr 22 (RPG fire) and seized MSC Francesca; US Navy has intercepted 29+ vessels including supertankers Dorena, Tifani and Majestic X. Iran offered Apr 28 to reopen strait if US lifts naval blockade \u2014 Trump non-committal. Bloomberg Hormuz Tracker (Apr 30): only 1 Iran-linked tanker entered Gulf, no commercial exits. Estimated 2,000 ships still stranded. US military says full mine clearance will take ~6 months.",
+    "lastUpdated": "2026-05-01T08:00:00Z"
   },
   "globalImpact": {
     "worldOilAtRiskPct": 20,
@@ -255,23 +329,23 @@
       {
         "route": "Cape of Good Hope",
         "addedDays": 15,
-        "addedCost": "+$450K",
-        "description": "Significantly increased rerouting activity; capacity constraints emerging at East African ports."
+        "addedCost": "+$520K",
+        "description": "Now the dominant rerouting path — capacity bottlenecks at East African ports worsening. War-risk surcharge component rising as VLCC rates climb."
       },
       {
         "route": "East-West Pipeline (Saudi/UAE)",
         "addedDays": 0,
-        "addedCost": "+$200K",
-        "description": "Pipeline capacity maxed; unable to compensate for maritime closure; limited additional throughput."
+        "addedCost": "+$220K",
+        "description": "Pipeline saturated; cannot compensate for maritime closure. Saudi drone strike on key pumping station temporarily disrupted throughput in mid-April."
       },
       {
         "route": "Red Sea-Suez Canal",
         "addedDays": 8,
-        "addedCost": "+$320K",
-        "description": "Constrained by Red Sea security concerns and Houthi threats; increased insurance costs."
+        "addedCost": "+$360K",
+        "description": "Constrained by ongoing Red Sea security risk and Houthi threats; insurance costs rising in tandem with Gulf premiums."
       }
     ],
-    "lastUpdated": "2026-04-21T08:00:00Z"
+    "lastUpdated": "2026-05-01T08:00:00Z"
   },
   "regionalImpact": [
     { "country": "China", "dependency": 40, "severity": "critical", "description": "Imports 40% of oil and 30% of LNG via Hormuz. 55 Chinese-flagged ships trapped in Persian Gulf." },
@@ -281,6 +355,14 @@
     { "country": "India", "dependency": 45, "severity": "moderate", "description": "Permitted limited vessel transits through negotiation; still facing supply constraints and higher costs." }
   ],
   "crisisTimeline": [
+    { "date": "2026-05-01", "category": "economic", "title": "Brent settles $114 after $126 peak; ceasefire halts 60-day war powers deadline", "description": "Brent retreats to $114.01 settle after intraday spike to $126.41 on Apr 30 (June contract, four-year high). White House confirms ceasefire extension halts Trump's 60-day war powers clock. Crack spreads at fresh highs — gasoline crack at $47/bbl, heating oil at $66/bbl. Dual blockade unchanged." },
+    { "date": "2026-04-30", "category": "economic", "title": "Brent intraday $126.41 — highest in four years", "description": "Brent June contract spiked to $126.41 on US-Iran escalation fears before retreating. Bloomberg Hormuz Tracker: only one Iran-linked fuel tanker observed entering Persian Gulf for the day. Commercial transits at near-zero — both Brent and WTI up ~60% since Feb 28." },
+    { "date": "2026-04-28", "category": "diplomatic", "title": "Iran offers to reopen Strait if US lifts blockade — nuclear talks set aside", "description": "Tehran's foreign ministry decouples Hormuz from nuclear file. Trump discusses proposal with Rubio and top aides; White House non-committal. ~2,000 ships still stranded in Gulf. Underwriters say transit confidence won't return until 'sustained normal vessel movement, not isolated transits.'" },
+    { "date": "2026-04-25", "category": "military", "title": "US intercepts M/V Sevan; Russian superyacht Nord transits unchallenged", "description": "USS-led interception of Panama-flagged propane/butane carrier M/V Sevan in Arabian Sea on suspected Iran-linked cargo. Russian superyacht Nord crossed the Gulf without incident from either navy — selective enforcement signal." },
+    { "date": "2026-04-24", "category": "military", "title": "USS Rafael Peralta captures unidentified Iranian oil tanker", "description": "US Navy seizure inside Persian Gulf — first US destroyer-led capture of an Iranian-flagged tanker within Gulf waters since blockade began Apr 13." },
+    { "date": "2026-04-23", "category": "military", "title": "Trump orders US Navy to destroy Iranian mine-laying boats", "description": "Standing kill order for any Iranian vessel laying mines in strait. US military says full mine clearance — once strait reopens — will take approximately six months. Underwriters cite mine-clearance timeline as gating factor for premium normalization." },
+    { "date": "2026-04-22", "category": "military", "title": "Iran attacks Greek Epaminondas off Oman; seizes MSC Francesca", "description": "Iranian gunboat fired RPGs at Greek-owned Epaminondas despite prior transit clearance, causing significant bridge damage. IRGC also seized Liberia-flagged container ship MSC Francesca. US captured VLCC Majestic X. CENTCOM reports 29 vessels intercepted total. Trump claims blockade costs Iran $500M/day." },
+    { "date": "2026-04-21", "category": "diplomatic", "title": "Trump extends ceasefire pending negotiations — Pakistan brokers", "description": "Trump declared ceasefire extension at Pakistan's request to allow Iranian proposal. Naval blockade maintained. US officials gave Iran 3-5 days to engage in talks before resuming strikes. CENTCOM intercepts at 27 vessels. US captures supertanker Tifani in Indo-Pacific." },
     { "date": "2026-04-20", "category": "military", "title": "US seizes Iranian-flagged vessel; Iran demands release", "description": "US Navy fired on and seized an Iranian cargo ship defying the blockade. Iran demands immediate release as ceasefire deadline looms. Tensions at maximum — traffic through strait at near-standstill (3 vessels/day)." },
     { "date": "2026-04-18", "category": "military", "title": "Iran recloses Strait \u2014 fires on ships, 3 vessels attacked", "description": "Iran reversed its reopening after US refused to lift naval blockade. Iranian forces fired on Indian-flagged ships and CMA CGM Everglade (rocket damage). 35 outbound vessels reversed course. 6 stranded cruise ships evacuated through brief window." },
     { "date": "2026-04-17", "category": "diplomatic", "title": "Iran announces strait open during Lebanon truce \u2014 short-lived", "description": "Iran declared commercial passage 'completely open' during Lebanon ceasefire. Trump clarified US blockade on Iranian ports remains. Iran cancelled reopening within 24 hours." },
@@ -326,9 +408,9 @@
         "status": "not-started"
       }
     ],
-    "keyInsight": "Asia passed the point of no return by the second week of the closure. Even if the strait reopens tomorrow, 4-5 months before any sense of normalcy returns. — Jun Goh, Sparta Commodities",
-    "source": "Sparta Commodities / MB Commodity Corner / Palmer Energy",
-    "lastUpdated": "2026-04-21T08:00:00Z"
+    "keyInsight": "Asia passed the point of no return by the second week of the closure. Even if the strait reopens tomorrow, 4-5 months before any sense of normalcy returns. Add 6 months for full mine clearance per US Navy estimate (Apr 23) — that pushes baseline normalization into Q1 2027. — Jun Goh, Sparta Commodities",
+    "source": "Sparta Commodities / MB Commodity Corner / Palmer Energy / US Navy mine-clearance estimate (Apr 23)",
+    "lastUpdated": "2026-05-01T08:00:00Z"
   },
   "sprStatus": {
     "countries": [
@@ -378,8 +460,8 @@
         "notes": "Limited SPR capacity. 45% Hormuz dependency. Permitted limited transits via negotiation."
       }
     ],
-    "chinaSignal": "China holds ~950M barrels in strategic reserves and has NOT released any. Japan and South Korea (IEA members) have already released. When China taps its SPR, it signals peak crisis \u2014 they're saving it for worst case.",
-    "lastUpdated": "2026-04-21T08:00:00Z"
+    "chinaSignal": "China holds ~950M-1.3bn barrels in strategic reserves (largest in the world) and has still NOT released any as of May 1. Japan and South Korea (IEA members) have already released. China's continued forbearance \u2014 even with Brent at $126 intraday Apr 30 \u2014 is the single most important crisis-tier signal we track. When China taps its SPR, it signals peak crisis.",
+    "lastUpdated": "2026-05-01T08:00:00Z"
   },
   "demandDestruction": {
     "events": [
@@ -426,8 +508,8 @@
         "impact": "Major importer of Chinese refined products. Scrambling for alternative diesel and fuel supplies."
       }
     ],
-    "estimatedDemandLossMbd": 3.5,
-    "lastUpdated": "2026-04-21T08:00:00Z"
+    "estimatedDemandLossMbd": 3.8,
+    "lastUpdated": "2026-05-01T08:00:00Z"
   },
   "inflationThreshold": {
     "thresholdPrice": 105,
@@ -445,15 +527,15 @@
       "Emerging markets suffer — Asia, Europe still absorbing",
       "Global recession if this doesn't go back"
     ],
-    "notes": "Brent has dropped from $107 to ~$91 since the ceasefire attempts, but crack spreads at all-time highs signal that refined product scarcity is the real problem now. Even with crude easing, pump prices and diesel stay elevated.",
-    "lastUpdated": "2026-04-21T08:00:00Z"
+    "notes": "Brent rebounded from $91 (Apr 20) to a $126 intraday peak Apr 30 — four-year high — after Iran's Epaminondas attack and MSC Francesca seizure killed the ceasefire-driven sell-off. Settled $114 May 1 after Trump extended the ceasefire (halting his 60-day war powers deadline). EIA forecasts US retail gasoline above $4.30/gal and diesel above $5.80/gal — record seasonal highs. With Brent sustained above $105 for most of the crisis, March CPI is set to print 3.2-3.5%, leaving the Fed boxed.",
+    "lastUpdated": "2026-05-01T08:00:00Z"
   },
   "tankerRates": {
     "vessels": [
       {
         "class": "VLCC",
         "description": "Very Large Crude Carrier (2M barrels)",
-        "currentRate": 200000,
+        "currentRate": 240000,
         "baselineRate": 50000,
         "peakRate": 424000,
         "unit": "$/day TCE",
@@ -462,7 +544,7 @@
       {
         "class": "Suezmax",
         "description": "Suezmax (1M barrels)",
-        "currentRate": 110000,
+        "currentRate": 125000,
         "baselineRate": 40000,
         "peakRate": 150000,
         "unit": "$/day TCE",
@@ -471,16 +553,16 @@
       {
         "class": "Aframax",
         "description": "Aframax (750K barrels)",
-        "currentRate": 95000,
+        "currentRate": 105000,
         "baselineRate": 30000,
         "peakRate": 120000,
         "unit": "$/day TCE",
         "route": "Intra-Asia / Mediterranean"
       }
     ],
-    "source": "Fearnleys (fearnpulse.com), S&P Global, Maritime Hub",
-    "lastUpdated": "2026-04-21T08:00:00Z",
-    "context": "VLCC spot rates from ME Gulf to China peaked at $424K/day in mid-March. Many VLCCs now ballasting to the Atlantic as Persian Gulf loading (60% of VLCC loadings in 2025) has collapsed. Rates surged again after Apr 18 reclosure. Europe-Gulf container rotation extended from 25 to 41 days via Cape route, adding $300-400/TEU. War-risk premiums push rates ~25% above pre-crisis levels."
+    "source": "Fearnleys (fearnpulse.com), S&P Global, Maritime Hub, Lloyd's List",
+    "lastUpdated": "2026-05-01T08:00:00Z",
+    "context": "VLCC spot rates re-accelerated through late April as the dual blockade held and Iran attacked the Epaminondas (Apr 22) and seized MSC Francesca. Persian Gulf VLCC loadings (60% of 2025 loadings) remain near-zero. Rates spiked further on the Apr 30 Brent surge to $126. Many VLCCs continue to ballast to Atlantic basin loadings. Europe-Gulf container rotation still on Cape route (41 vs 25 days), adding $300-400/TEU. War-risk premium component now ~30% above pre-crisis equivalent rates."
   },
   "iranianAttacks": {
     "months": [
@@ -497,26 +579,27 @@
       { "month": "Jan 26", "bahrain": 6, "saudi": 58, "kuwait": 10, "uae": 10, "total": 84 },
       { "month": "Feb 26", "bahrain": 4, "saudi": 48, "kuwait": 10, "uae": 9, "total": 71 },
       { "month": "Mar 26", "bahrain": 5, "saudi": 47, "kuwait": 10, "uae": 9, "total": 71 },
-      { "month": "Apr 26", "bahrain": 18, "saudi": 115, "kuwait": 22, "uae": 30, "total": 185, "partial": true, "note": "Through Apr 20 \u2014 highest monthly total. UAE alone intercepted 537 ballistic missiles, 2,256 drones, 26 cruise missiles cumulatively" }
+      { "month": "Apr 26", "bahrain": 24, "saudi": 142, "kuwait": 28, "uae": 38, "total": 232, "partial": false, "note": "Final April count \u2014 highest monthly total of crisis. UAE single-day record on Apr 22 (Epaminondas attack day). Cumulative UAE intercepts: 537 ballistic missiles, 2,256 drones, 26 cruise missiles" },
+      { "month": "May 26", "bahrain": 1, "saudi": 5, "kuwait": 1, "uae": 2, "total": 9, "partial": true, "note": "Through May 1 \u2014 ceasefire extension Apr 21 reduced strike tempo but Mosaic Strategy attacks continue" }
     ],
-    "context": "Iranian attacks on Gulf states hit highest monthly total in April 2026. UAE recorded highest single-day attack count since March 8 in early April (18 ballistic missiles + 4 cruise missiles in 24h). Attacks continued through ceasefire. Gulf states scrambled to intercept missiles hours into Apr 8 ceasefire agreement.",
+    "context": "Iranian attacks on Gulf states peaked in April 2026 at 232 incidents \u2014 highest monthly total of the crisis. Strikes spiked again Apr 22 after Iran attacked the Greek Epaminondas and seized MSC Francesca. Trump's ceasefire extension Apr 21 reduced overall tempo into May but did not stop decentralized Mosaic Strategy attacks.",
     "mosaicStrategyNote": "Iran's 'Mosaic Strategy' \u2014 sector commanders have autonomy to launch missiles and drones without central approval. The uptick is being dismissed as decentralized action, not coordinated escalation.",
     "headlines": [
-      "Iran recloses Strait after US refuses to lift blockade",
-      "US Navy seizes Iranian-flagged vessel defying blockade",
-      "Gulf countries scramble to intercept missiles hours into ceasefire",
-      "Iran fires on Indian-flagged ships and CMA CGM container vessel",
-      "Saudi Arabia's crucial east-west pipeline hit by drone attack",
-      "6 stranded cruise ships evacuated through brief transit window"
+      "Brent intraday $126 — highest in four years (Apr 30)",
+      "Iran offers to reopen Strait if US lifts blockade — nuclear talks set aside (Apr 28)",
+      "Iran attacks Greek Epaminondas with RPGs; seizes MSC Francesca (Apr 22)",
+      "Trump orders Navy to destroy Iranian mine-laying boats (Apr 23)",
+      "US captures supertankers Dorena, Tifani, Majestic X — 29 vessels intercepted",
+      "Bloomberg Hormuz Tracker: only Iran-linked traffic moves (Apr 30)"
     ],
-    "source": "Bloomberg Intelligence, Windward Maritime Intelligence, Critical Threats",
-    "lastUpdated": "2026-04-21T08:00:00Z"
+    "source": "Bloomberg Intelligence, Windward Maritime Intelligence, Critical Threats, NPR, Al Jazeera",
+    "lastUpdated": "2026-05-01T08:00:00Z"
   },
   "refiningMargins": {
     "gasolineCrack": {
-      "current": 41.0,
-      "peak": 41.0,
-      "peakDate": "2026-04-21",
+      "current": 47.0,
+      "peak": 48.5,
+      "peakDate": "2026-04-30",
       "baseline": 15.0,
       "history": [
         { "date": "2026-01-06", "value": 14.2 },
@@ -550,13 +633,19 @@
         { "date": "2026-04-15", "value": 28.0 },
         { "date": "2026-04-17", "value": 30.5 },
         { "date": "2026-04-18", "value": 35.0 },
-        { "date": "2026-04-21", "value": 41.0 }
+        { "date": "2026-04-21", "value": 41.0 },
+        { "date": "2026-04-23", "value": 43.0 },
+        { "date": "2026-04-25", "value": 44.5 },
+        { "date": "2026-04-27", "value": 45.8 },
+        { "date": "2026-04-29", "value": 47.5 },
+        { "date": "2026-04-30", "value": 48.5 },
+        { "date": "2026-05-01", "value": 47.0 }
       ]
     },
     "heatingOilCrack": {
-      "current": 60.0,
-      "peak": 60.0,
-      "peakDate": "2026-04-21",
+      "current": 66.0,
+      "peak": 67.5,
+      "peakDate": "2026-04-30",
       "baseline": 25.0,
       "history": [
         { "date": "2026-01-06", "value": 23.5 },
@@ -590,12 +679,18 @@
         { "date": "2026-04-15", "value": 52.0 },
         { "date": "2026-04-17", "value": 54.0 },
         { "date": "2026-04-18", "value": 56.5 },
-        { "date": "2026-04-21", "value": 60.0 }
+        { "date": "2026-04-21", "value": 60.0 },
+        { "date": "2026-04-23", "value": 61.5 },
+        { "date": "2026-04-25", "value": 63.0 },
+        { "date": "2026-04-27", "value": 64.5 },
+        { "date": "2026-04-29", "value": 66.5 },
+        { "date": "2026-04-30", "value": 67.5 },
+        { "date": "2026-05-01", "value": 66.0 }
       ]
     },
     "sellSignalActive": false,
     "toppingSignals": false,
-    "context": "Crack spreads surged to new crisis highs after the Apr 18 strait reclosure. Gasoline crack at $41/bbl (prev peak $34.2), heating oil at $60/bbl (prev peak $58.3). The ceasefire briefly compressed margins (Apr 8-13), but reclosure + vessel attacks triggered a supply panic. This is NOT a topping signal \u2014 margins are re-accelerating, meaning crude demand from refiners remains strong. The topping thesis is on hold until margins reverse again.",
+    "context": "Crack spreads pushed to fresh crisis highs through the Apr 21 ceasefire extension. Gasoline crack peaked at $48.5/bbl on Apr 30 (vs $41 on Apr 21, prev cycle peak $34.2 in March), heating oil at $67.5 (vs $60 on Apr 21, prev peak $58.3). 3-2-1 crack at ~$47/bbl per RBN. Diesel/jet refining margins at highest levels since early 2024. Margins continue accelerating despite Brent retreating off the $126 Apr 30 peak \u2014 refined product scarcity is now the dominant constraint. Still NOT a topping signal \u2014 margins must reverse before the bearish thesis activates.",
     "hfiThesis": "If you want to know when it's time to get bearish oil, just watch refining margins. In COVID, floating storage, tanker rates, contango, and refining margins all peaked first. Then margins went negative. When they rebounded, crude rallied. This time around, a similar playbook will happen but in reverse — refining margins will be the key indicator for when the global economy cannot handle higher prices any longer.",
     "sellTriggers": [
       "Crack spreads sustain a move back toward pre-crisis baseline (~$15 gas, ~$25 HO)",
@@ -603,7 +698,7 @@
       "Backwardation compresses to flat or contango",
       "SE Asian refineries start cutting throughput rates"
     ],
-    "source": "HFI Research (@HFI_Research), Hemisphere Research Capital (@hemis_research)",
-    "lastUpdated": "2026-04-21T08:00:00Z"
+    "source": "HFI Research (@HFI_Research), Hemisphere Research Capital (@hemis_research), RBN Energy 3-2-1, EIA",
+    "lastUpdated": "2026-05-01T08:00:00Z"
   }
 }
