@@ -110,19 +110,80 @@ function buildFallback(config: ContractConfig): FuturesContract {
 }
 
 /**
- * Fetch all commodity futures contracts in parallel.
- * Never throws -- always returns valid FuturesData.
+ * Fetch daily-close history for a single symbol from Yahoo Finance chart API.
+ * Filters to dates >= sinceDate (inclusive). Returns [] on any failure so the
+ * caller can render gracefully without the sparkline.
+ */
+async function fetchFuturesHistory(
+  symbol: string,
+  sinceDate: string,
+): Promise<{ date: string; close: number }[]> {
+  try {
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=3mo`;
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (compatible; HormuzTracker/1.0)",
+      },
+      signal: AbortSignal.timeout(5000),
+      next: { revalidate: 3600 },
+    });
+
+    if (!response.ok) return [];
+
+    const data = await response.json();
+    const result = data?.chart?.result?.[0];
+    const timestamps: number[] | undefined = result?.timestamp;
+    const closes: (number | null)[] | undefined =
+      result?.indicators?.quote?.[0]?.close;
+
+    if (!Array.isArray(timestamps) || !Array.isArray(closes)) return [];
+
+    const sinceMs = new Date(sinceDate + "T00:00:00Z").getTime();
+    const points: { date: string; close: number }[] = [];
+
+    for (let i = 0; i < timestamps.length; i++) {
+      const ts = timestamps[i];
+      const close = closes[i];
+      if (typeof ts !== "number" || typeof close !== "number" || close <= 0) {
+        continue;
+      }
+      const ms = ts * 1000;
+      if (ms < sinceMs) continue;
+      points.push({
+        date: new Date(ms).toISOString().slice(0, 10),
+        close: Math.round(close * 100) / 100,
+      });
+    }
+
+    return points;
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Fetch all commodity futures contracts in parallel, including daily-close
+ * history since war start (2026-03-02). Never throws -- always returns valid
+ * FuturesData.
  */
 export async function fetchFuturesData(): Promise<FuturesData> {
+  const WAR_START = "2026-03-02";
+
   const results = await Promise.allSettled(
-    CONTRACTS.map((config) => fetchContract(config)),
+    CONTRACTS.map(async (config) => {
+      const [contract, history] = await Promise.all([
+        fetchContract(config),
+        fetchFuturesHistory(config.symbol, WAR_START),
+      ]);
+      return { ...contract, history };
+    }),
   );
 
   const contracts: FuturesContract[] = results.map((result, index) => {
     if (result.status === "fulfilled") {
       return result.value;
     }
-    return buildFallback(CONTRACTS[index]);
+    return { ...buildFallback(CONTRACTS[index]), history: [] };
   });
 
   return {

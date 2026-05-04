@@ -3,6 +3,21 @@
 import type { FuturesData, FuturesContract, SignalData } from "@/lib/types";
 import { computeVerdict } from "@/lib/verdict";
 import { getInsuranceStatus, getShipStatus, getSpreadStatus, getTimelineStatus, getDaysUntil } from "@/lib/utils";
+import MiniTrendChart from "./MiniTrendChart";
+
+// Color sparkline by direction since war start: red if price has risen
+// (rising crude in this crisis = bearish for consumers / bullish on the
+// dashboard's crisis thesis), green if it has fallen, neutral if flat/no data.
+function trendColor(history: { close: number }[] | undefined): string {
+  if (!history || history.length < 2) return "#71717a";
+  const first = history[0].close;
+  const last = history[history.length - 1].close;
+  if (first <= 0) return "#71717a";
+  const pct = ((last - first) / first) * 100;
+  if (pct > 1) return "#ef4444";   // up since war start
+  if (pct < -1) return "#22c55e";  // down since war start
+  return "#eab308";                 // roughly flat
+}
 
 // Verdict weights — same as VerdictBanner (insurance has most skin in the game)
 const SIGNAL_WEIGHTS = {
@@ -313,7 +328,7 @@ function ContractRow({
     <>
       {/* Desktop row */}
       <div
-        className="hidden sm:grid sm:grid-cols-[80px_1fr_100px_120px_260px] sm:items-center sm:gap-4 sm:px-4 sm:py-3"
+        className="hidden sm:grid sm:grid-cols-[80px_1fr_100px_120px_110px_260px] sm:items-center sm:gap-4 sm:px-4 sm:py-3"
         style={{
           backgroundColor: isEven ? "rgba(255,255,255,0.02)" : "transparent",
         }}
@@ -353,6 +368,35 @@ function ContractRow({
           >
             ({formatChange(contract.changePercent, 1)}%)
           </span>
+        </div>
+
+        {/* War-period sparkline */}
+        <div className="flex flex-col items-center justify-center">
+          {contract.history && contract.history.length >= 2 ? (
+            <>
+              <div className="w-full">
+                <MiniTrendChart
+                  data={contract.history.map((h) => ({ date: h.date, value: h.close }))}
+                  color={trendColor(contract.history)}
+                  height={32}
+                />
+              </div>
+              <span
+                className="mt-0.5 text-[10px] font-semibold tabular-nums"
+                style={{ color: trendColor(contract.history) }}
+              >
+                {(() => {
+                  const first = contract.history[0].close;
+                  const last = contract.history[contract.history.length - 1].close;
+                  const pct = first > 0 ? ((last - first) / first) * 100 : 0;
+                  const sign = pct >= 0 ? "+" : "";
+                  return `${sign}${pct.toFixed(1)}%`;
+                })()}
+              </span>
+            </>
+          ) : (
+            <span className="text-[10px] text-[var(--text-secondary)]">—</span>
+          )}
         </div>
 
         {/* Signal Impact */}
@@ -420,6 +464,32 @@ function ContractRow({
             </span>
           </div>
         </div>
+        {contract.history && contract.history.length >= 2 && (
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] uppercase tracking-wider text-[var(--text-secondary)] shrink-0">
+              Since War
+            </span>
+            <div className="flex-1 min-w-0">
+              <MiniTrendChart
+                data={contract.history.map((h) => ({ date: h.date, value: h.close }))}
+                color={trendColor(contract.history)}
+                height={28}
+              />
+            </div>
+            <span
+              className="text-[11px] font-semibold tabular-nums shrink-0"
+              style={{ color: trendColor(contract.history) }}
+            >
+              {(() => {
+                const first = contract.history[0].close;
+                const last = contract.history[contract.history.length - 1].close;
+                const pct = first > 0 ? ((last - first) / first) * 100 : 0;
+                const sign = pct >= 0 ? "+" : "";
+                return `${sign}${pct.toFixed(1)}%`;
+              })()}
+            </span>
+          </div>
+        )}
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center justify-between">
             <p className="text-xs text-[var(--text-secondary)] leading-snug flex-1">
@@ -470,7 +540,7 @@ export default function FuturesDesk({ data, signalData }: FuturesDeskProps) {
 
       <div className="overflow-hidden rounded-xl border border-[var(--card-border)] bg-[var(--card)]">
         {/* Desktop header */}
-        <div className="hidden border-b border-[var(--card-border)] px-4 py-2 sm:grid sm:grid-cols-[80px_1fr_100px_120px_260px] sm:gap-4">
+        <div className="hidden border-b border-[var(--card-border)] px-4 py-2 sm:grid sm:grid-cols-[80px_1fr_100px_120px_110px_260px] sm:gap-4">
           <span className="text-xs font-medium uppercase tracking-wider text-[var(--text-secondary)]">
             Ticker
           </span>
@@ -482,6 +552,9 @@ export default function FuturesDesk({ data, signalData }: FuturesDeskProps) {
           </span>
           <span className="text-right text-xs font-medium uppercase tracking-wider text-[var(--text-secondary)]">
             Change
+          </span>
+          <span className="text-center text-xs font-medium uppercase tracking-wider text-[var(--text-secondary)]">
+            Since War
           </span>
           <span className="text-right text-xs font-medium uppercase tracking-wider text-[var(--text-secondary)]">
             Signal Impact

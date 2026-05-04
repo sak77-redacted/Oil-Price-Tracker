@@ -268,6 +268,7 @@ export interface FuturesContract {
   changePercent: number;  // daily change in %
   explanation: string;   // short context for this contract
   live: boolean;
+  history?: { date: string; close: number }[]; // daily closes since war start (2026-03-02)
 }
 
 export interface FuturesData {
