@@ -72,6 +72,10 @@
     border-radius: 12px;
     padding: 20px;
   }
+  .card.danger {
+    border-color: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.06);
+  }
   .card h2 {
     margin: 0 0 4px;
     font-size: 12px;
@@ -99,12 +103,13 @@
     color: var(--muted);
     margin-left: 8px;
   }
+  .col-3 { grid-column: span 3; }
   .col-4 { grid-column: span 4; }
   .col-6 { grid-column: span 6; }
   .col-8 { grid-column: span 8; }
   .col-12 { grid-column: span 12; }
   @media (max-width: 800px) {
-    .col-4, .col-6, .col-8 { grid-column: span 12; }
+    .col-3, .col-4, .col-6, .col-8 { grid-column: span 12; }
   }
 
   /* Progress bar */
@@ -196,6 +201,32 @@
     font-weight: 700;
   }
 
+  /* SPR breakdown tile */
+  .spr-tile {
+    background: var(--bg-2);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+  }
+  .spr-tile .country {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .spr-tile .value {
+    font-size: 28px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .spr-tile .unit {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
   .footnote {
     color: var(--muted);
     font-size: 11px;
@@ -212,39 +243,97 @@
   .pill.red { background: rgba(239,68,68,0.15); color: var(--danger); border: 1px solid rgba(239,68,68,0.3); }
   .pill.warn { background: rgba(234,179,8,0.15); color: var(--warn); border: 1px solid rgba(234,179,8,0.3); }
   .pill.ok { background: rgba(34,197,94,0.15); color: var(--ok); border: 1px solid rgba(34,197,94,0.3); }
+  .quote {
+    border-left: 3px solid var(--accent);
+    padding-left: 14px;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 13px;
+    margin: 0 0 8px;
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <span class="badge">Signal 5 — Inventory Buffer</span>
-    <h1>The Supply Math: How Many Days Until the Buffer Breaks?</h1>
-    <p>OECD commercial inventories + strategic reserves vs. the cumulative missing barrels from the Hormuz disruption. When days-of-cover crosses 24, refiners physically can't operate — and SPR releases stop suppressing prices.</p>
+    <span class="badge">Signal 6 — Inventory Buffer · Martenson Math</span>
+    <h1>The Supply Math: Even If War Ends Tonight, Reserves Cover 88% of the Gap</h1>
+    <p>OECD commercial inventories + strategic reserves vs. the cumulative missing barrels from the Hormuz disruption. The headline finding: even under Goldman's optimistic recovery scenario, future shortfall consumes nearly all Western strategic reserves. There is no margin if the war doesn't end immediately.</p>
   </header>
 
   <!-- Headline metrics -->
   <div class="grid">
     <div class="card col-4">
       <h2>Days of cover</h2>
-      <div class="big" id="bigDaysCover">25<small>days</small></div>
+      <div class="big" id="bigDaysCover">24<small>days</small></div>
       <div style="margin-top:10px; font-size:13px; color:var(--muted);">
         Operational floor: <strong style="color:var(--danger);">24 days</strong><br/>
-        <span class="pill red">1 day above the line</span>
+        <span class="pill red">At the line</span>
       </div>
     </div>
 
     <div class="card col-4">
       <h2>OECD SPR Remaining</h2>
-      <div class="big" id="bigSPR" style="color: var(--warn);">776<small>/ 855 Mb</small></div>
-      <div class="progress"><div id="sprBar" style="width:90.8%;"></div></div>
-      <div style="margin-top:10px; font-size:12px; color:var(--muted);">US 334M + Japan 263M + Europe 179M (China 1.4B excluded — not part of Western buffer)</div>
+      <div class="big" id="bigSPR" style="color: var(--warn);">760<small>/ 855 Mb</small></div>
+      <div class="progress"><div id="sprBar" style="width:88.9%;"></div></div>
+      <div style="margin-top:10px; font-size:12px; color:var(--muted);">US 413M + Japan 263M + OECD Europe 179M (China 1.4B excluded — not part of Western buffer)</div>
     </div>
 
     <div class="card col-4">
       <h2>SPR burn-down at 14.5 mb/d</h2>
-      <div class="big" id="bigBurn">54<small>days</small></div>
+      <div class="big" id="bigBurn" style="color: var(--danger);">47<small>days</small></div>
       <div style="margin-top:10px; font-size:12px; color:var(--muted);">
-        776 Mb &divide; 14.5 mb/d &asymp; <strong style="color:var(--danger);">54 days</strong> until the Western strategic buffer is exhausted at the current depletion rate.
+        760 Mb &divide; 14.5 mb/d &asymp; <strong style="color:var(--danger);">47 days</strong> until the Western strategic buffer is exhausted at the current depletion rate.
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADLINE FINDING: Coverage ratio -->
+  <div class="card danger" style="margin-top:16px;">
+    <h2 style="color: var(--danger);">The headline finding — coverage ratio</h2>
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+      <div>
+        <div style="font-size:64px; font-weight:800; line-height:1; color:var(--danger); font-variant-numeric:tabular-nums;">88%</div>
+        <div style="margin-top:8px; font-size:13px; color:var(--muted);">760 Mb future shortfall &divide; 855 Mb OECD strategic reserves</div>
+      </div>
+      <div style="flex:1; min-width:280px;">
+        <p class="quote">"Even if the hostilities ended tonight, there's another <strong style="color:var(--text);">760 million barrels</strong> of oil that will be missing from the Gulf which would drag commercial inventories basically to zero. The combined US+Japan+OECD Europe reserves total <strong style="color:var(--text);">855 million barrels</strong>. That's 88% — barely enough." — Chris Martenson</p>
+      </div>
+    </div>
+    <div class="progress" style="height:14px; margin-top:14px;">
+      <div style="width:88.9%; background:var(--danger);"></div>
+    </div>
+    <div style="margin-top:8px; font-size:12px; color:var(--muted);">
+      Under Goldman's <strong style="color:var(--text);">best-case</strong> recovery (50%/60%/70% months 1-3, ramp to 88% by month 6), the West's strategic reserves can <em>just barely</em> cover the future gap — with zero margin if the war continues a single day longer.
+    </div>
+  </div>
+
+  <!-- SPR breakdown -->
+  <div class="grid" style="margin-top:16px;">
+    <div class="card col-12">
+      <h3>Western strategic reserves — by country</h3>
+      <p style="margin:-4px 0 16px; color:var(--muted); font-size:13px;">The 855 Mb that defines the entire Western buffer. China's ~1.4B barrels are excluded — they have not tapped their SPR and are not part of the cooperative drawdown.</p>
+      <div class="grid" style="gap:12px;">
+        <div class="col-3 spr-tile">
+          <div class="country">United States</div>
+          <div class="value">413<span style="font-size:14px; color:var(--muted); margin-left:4px;">Mb</span></div>
+          <div class="unit">~48% of OECD buffer</div>
+        </div>
+        <div class="col-3 spr-tile">
+          <div class="country">Japan</div>
+          <div class="value">263<span style="font-size:14px; color:var(--muted); margin-left:4px;">Mb</span></div>
+          <div class="unit">~31% of OECD buffer</div>
+        </div>
+        <div class="col-3 spr-tile">
+          <div class="country">OECD Europe</div>
+          <div class="value">179<span style="font-size:14px; color:var(--muted); margin-left:4px;">Mb</span></div>
+          <div class="unit">~21% of OECD buffer</div>
+        </div>
+        <div class="col-3 spr-tile" style="background: rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2);">
+          <div class="country" style="color:var(--danger);">Total Western</div>
+          <div class="value" style="color:var(--danger);">855<span style="font-size:14px; margin-left:4px;">Mb</span></div>
+          <div class="unit">vs. 760 Mb future gap</div>
+        </div>
       </div>
     </div>
   </div>
@@ -252,83 +341,119 @@
   <!-- Days of cover chart -->
   <div class="card" style="margin-top:16px;">
     <h3>OECD Commercial Days of Cover — Crisis Trajectory</h3>
-    <p style="margin:-4px 0 14px; color:var(--muted); font-size:13px;">Weekly snapshots since the Hormuz disruption began on 2026-03-02. The dashed red line is the 24-day operational floor — the JP Morgan / IEA "refiners can't function" threshold.</p>
+    <p style="margin:-4px 0 14px; color:var(--muted); font-size:13px;">Weekly snapshots since the Hormuz disruption began on 2026-03-02. The dashed red line is the 24-day operational floor — the IEA "refiners can't function" threshold. Days of cover hit it on May 1.</p>
     <svg class="chart" id="coverChart" viewBox="0 0 800 240" preserveAspectRatio="none"></svg>
+  </div>
+
+  <!-- 2008 parallel -->
+  <div class="card" style="margin-top:16px; border-color: rgba(234,179,8,0.4); background: rgba(234,179,8,0.04);">
+    <h2 style="color: var(--warn);">2008 historical parallel</h2>
+    <div style="display:flex; align-items:baseline; gap:24px; flex-wrap:wrap; margin-top:6px;">
+      <div>
+        <div style="font-size:36px; font-weight:800; color:var(--warn); font-variant-numeric:tabular-nums; line-height:1;">$147<span style="font-size:14px; color:var(--muted); margin-left:6px;">/bbl peak (2008)</span></div>
+        <div style="margin-top:6px; font-size:13px; color:var(--muted);">$220 in today's dollars</div>
+      </div>
+      <p class="quote" style="flex:1; min-width:280px;">"Days of inventories is about where it was in 2008 when oil spiked to ~$220 in today's dollar terms ($147 then). That price spike happened because inventories got tight due to supply being exceeded by demand by just a smidge for 4 out of 5 quarters."</p>
+    </div>
   </div>
 
   <!-- SPR depletion + missing barrels -->
   <div class="grid" style="margin-top:16px;">
     <div class="card col-6">
       <h3>SPR depletion path</h3>
-      <p style="margin:-4px 0 14px; color:var(--muted); font-size:13px;">Cumulative SPR drawdown since crisis start. US has drawn ~79 Mb to suppress prices; Japan and Europe followed via IEA coordination.</p>
+      <p style="margin:-4px 0 14px; color:var(--muted); font-size:13px;">Cumulative SPR drawdown since crisis start. US has drawn ~95 Mb to suppress prices; Japan and Europe followed via IEA coordination.</p>
       <svg class="chart" id="sprChart" viewBox="0 0 800 240" preserveAspectRatio="none"></svg>
     </div>
     <div class="card col-6">
       <h3>Cumulative missing barrels</h3>
-      <p style="margin:-4px 0 14px; color:var(--muted); font-size:13px;">At 14.5 mb/d (Goldman Sachs estimate of the Gulf production gap), ~870 Mb have already been removed from the global supply since 2026-03-02. Goldman's 6-month forecast: <strong style="color:var(--danger);">1,631 Mb</strong> — exceeds available OECD strategic reserves.</p>
+      <p style="margin:-4px 0 14px; color:var(--muted); font-size:13px;">At 14.5 mb/d (Goldman Sachs estimate of the Gulf production gap), ~1,015 Mb have already been removed from global supply since 2026-03-02. Goldman's 6-month worst-case: <strong style="color:var(--danger);">1,631 Mb</strong> — exceeds available OECD strategic reserves by 776 Mb.</p>
       <svg class="chart" id="missingChart" viewBox="0 0 800 240" preserveAspectRatio="none"></svg>
     </div>
   </div>
 
   <!-- The math walkthrough -->
   <div class="card" style="margin-top:16px;">
-    <h3>The math, step by step</h3>
+    <h3>The math, step by step (Martenson framework)</h3>
     <div class="math-step">
       <div class="num">1</div>
       <div class="body">
         <div class="label">Daily shortfall</div>
-        <div class="value">14.5 mb/d</div>
+        <div class="value">14.5 mb/d (~435 mb/month)</div>
         <div class="formula">Pre-crisis Gulf flow − current Gulf flow (Goldman Sachs)</div>
       </div>
     </div>
     <div class="math-step">
       <div class="num">2</div>
       <div class="body">
-        <div class="label">Days since crisis start</div>
-        <div class="value">~60 days</div>
-        <div class="formula">2026-03-02 → 2026-05-01</div>
+        <div class="label">Already accumulated since war start</div>
+        <div class="value">~1,015 Mb</div>
+        <div class="formula">14.5 mb/d × ~70 days (2026-03-02 → 2026-05-04)</div>
       </div>
     </div>
     <div class="math-step">
       <div class="num">3</div>
       <div class="body">
-        <div class="label">Cumulative missing barrels (to date)</div>
-        <div class="value">14.5 × 60 = 870 Mb</div>
-        <div class="formula">Already removed from global supply</div>
+        <div class="label">Best-case forward recovery, months 1-3</div>
+        <div class="value">≈ 522 Mb missing</div>
+        <div class="formula">50% / 60% / 70% recovery → 50%+40%+30% = 120% of monthly gap = 1.2 × 435 = 522 Mb</div>
       </div>
     </div>
     <div class="math-step">
       <div class="num">4</div>
       <div class="body">
-        <div class="label">Projected 6-month shortfall</div>
-        <div class="value">14.5 × 180 ≈ 2,610 Mb (worst case) · 1,631 Mb (Martenson best case)</div>
-        <div class="formula">Assumes recovery curve; even best case &gt; 855 Mb OECD SPR capacity</div>
+        <div class="label">Best-case forward recovery, months 4-6</div>
+        <div class="value">≈ 240 Mb missing</div>
+        <div class="formula">Ramp to 88% recovery by month 6 → ~55% of monthly gap = 0.55 × 435 ≈ 240 Mb</div>
       </div>
     </div>
     <div class="math-step">
       <div class="num">5</div>
       <div class="body">
-        <div class="label">OECD strategic reserves (combined)</div>
-        <div class="value">776 / 855 Mb remaining</div>
-        <div class="formula">US 334 + Japan 263 + Europe 179 — China's 1.4B not part of the Western buffer</div>
+        <div class="label">Total future shortfall (war ends tonight)</div>
+        <div class="value">760 Mb</div>
+        <div class="formula">522 + 240 = ~760 Mb missing over the next 6 months even if hostilities end immediately</div>
       </div>
     </div>
     <div class="math-step">
       <div class="num">6</div>
       <div class="body">
-        <div class="label">Burn-down at current rate</div>
-        <div class="value">776 ÷ 14.5 ≈ 54 days</div>
-        <div class="formula">Brutal: even drawing every Western SPR barrel only buys ~8 weeks at the current shortfall</div>
+        <div class="label">OECD strategic reserves (combined)</div>
+        <div class="value">855 Mb total — 760 Mb remaining</div>
+        <div class="formula">US 413 + Japan 263 + OECD Europe 179 = 855 Mb. China's 1.4B not part of Western buffer.</div>
       </div>
     </div>
     <div class="math-step">
       <div class="num">7</div>
       <div class="body">
-        <div class="label">Days of cover (commercial floor)</div>
-        <div class="value">25 vs 24-day operational floor</div>
-        <div class="formula">When inventories cross 24, refiners can't physically operate — price suppression via SPR releases ends abruptly</div>
+        <div class="label">Coverage ratio</div>
+        <div class="value" style="color:var(--danger);">760 ÷ 855 = 88%</div>
+        <div class="formula">Western strategic reserves can <em>just barely</em> cover the gap. Zero buffer.</div>
       </div>
     </div>
+    <div class="math-step">
+      <div class="num">8</div>
+      <div class="body">
+        <div class="label">Historical parallel: 2008</div>
+        <div class="value">$147/bbl peak ($220 today's $)</div>
+        <div class="formula">Days-of-cover at this level last time → oil spiked when supply lagged demand by a smidge for 4 of 5 quarters</div>
+      </div>
+    </div>
+    <div class="math-step">
+      <div class="num">9</div>
+      <div class="body">
+        <div class="label">Conclusion: Martenson's breakthrough window</div>
+        <div class="value" style="color:var(--warn);">2-4 weeks, tops</div>
+        <div class="formula">Price suppression mechanism breaks within 2-4 weeks. Subsidized US exports +2.5 mb/d (record 12.9 mb/d) drain the buffer that <em>is</em> the suppression.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subsidized exports note -->
+  <div class="card" style="margin-top:16px; border-color: rgba(59,130,246,0.3);">
+    <h2>Subsidized exports — the buffer is being exported</h2>
+    <p style="margin:0; font-size:13px; color:var(--muted); line-height:1.6;">
+      US oil exports surged <strong style="color:var(--text);">+2.5 mb/d since the war began</strong>, hitting a record <strong style="color:var(--text);">12.9 mb/d</strong>. Not from new production — from drawing down stockpiles. The buffer that absorbs the price suppression <em>is</em> what's being exported. Martenson's framing: "The US energy reserves and buffers are being exported at subsidized prices to maintain the illusion that things are not as bad as they actually are."
+    </p>
   </div>
 
   <!-- Interactive scenario builder -->
@@ -342,26 +467,26 @@
     </div>
     <div class="slider-row">
       <label>SPR remaining (Mb)</label>
-      <input type="range" id="sldSPR" min="0" max="855" step="10" value="776" />
-      <div class="v" id="vSPR">776 Mb</div>
+      <input type="range" id="sldSPR" min="0" max="855" step="10" value="760" />
+      <div class="v" id="vSPR">760 Mb</div>
     </div>
     <div class="slider-row">
       <label>Days of cover</label>
-      <input type="range" id="sldCover" min="15" max="45" step="1" value="25" />
-      <div class="v" id="vCover">25 days</div>
+      <input type="range" id="sldCover" min="15" max="45" step="1" value="24" />
+      <div class="v" id="vCover">24 days</div>
     </div>
 
     <div style="margin-top:16px; padding:14px; background:var(--bg-2); border-radius:8px;">
       <div style="font-size:13px; color:var(--muted); margin-bottom:6px;">Result</div>
       <div id="resultLine" style="font-size:18px; font-weight:700; line-height:1.4;">
-        SPR exhausts in <span style="color:var(--danger);">54 days</span> · refiners cross operational floor in <span style="color:var(--danger);">never (above floor)</span> · status: <span class="pill red">Buffer Failing</span>
+        SPR exhausts in <span style="color:var(--danger);">52 days</span> · refiners cross operational floor: <span style="color:var(--danger);">already at floor</span> · status: <span class="pill red">Buffer Failing</span>
       </div>
     </div>
   </div>
 
   <p class="footnote">
     Source: IEA OECD inventories · EIA Weekly Petroleum Status Report · Goldman Sachs analysis · Chris Martenson (Iran War supply-math analysis)<br/>
-    Last updated: 2026-04-21 — Hormuz Signal Tracker
+    Last updated: 2026-05-01 — Hormuz Signal Tracker
   </p>
 </div>
 
@@ -376,6 +501,8 @@ const HISTORY = [
   { date: "2026-04-06", daysCover: 27, sprMb: 798 },
   { date: "2026-04-13", daysCover: 26, sprMb: 788 },
   { date: "2026-04-20", daysCover: 25, sprMb: 776 },
+  { date: "2026-04-27", daysCover: 24, sprMb: 766 },
+  { date: "2026-05-01", daysCover: 24, sprMb: 760 },
 ];
 const FLOOR = 24;
 const DAILY_MISSING = 14.5;
@@ -392,7 +519,6 @@ function buildChart(svgId, points, opts) {
   const svg = document.getElementById(svgId);
   const w = 800, h = 240;
   const pad = { l: 50, r: 20, t: 20, b: 30 };
-  const xs = points.map((_, i) => i);
   const xMax = points.length - 1;
   const yMin = opts.yMin;
   const yMax = opts.yMax;
@@ -478,7 +604,7 @@ const missingPoints = HISTORY.map(p => ({
 buildChart("missingChart", missingPoints, {
   value: p => p.cumulative,
   yMin: 0,
-  yMax: 1000,
+  yMax: 1100,
   yUnit: "M",
   threshold: 855,
   thresholdLabel: "855 Mb — total OECD SPR capacity",
@@ -504,11 +630,10 @@ function updateScenario() {
   vCover.textContent = `${cv} days`;
 
   const burn = sf > 0 ? Math.round(spr / sf) : Infinity;
-  const daysToFloor = cv > FLOOR ? Math.round((cv - FLOOR) * 10) : 0; // rough estimate
   const projected6mo = sf * 180;
 
   let status, statusClass;
-  if (cv < FLOOR || projected6mo > spr) {
+  if (cv <= FLOOR || projected6mo > spr) {
     status = "Buffer Failing";
     statusClass = "red";
   } else if (cv < 30 || projected6mo > spr * 0.7) {
@@ -520,9 +645,9 @@ function updateScenario() {
   }
 
   const burnLabel = burn === Infinity ? "never (no shortfall)" : `${burn} days`;
-  const floorLabel = cv <= FLOOR ? "already crossed" : daysToFloor > 0 ? `~${daysToFloor} days at projected pace` : "near floor";
+  const floorLabel = cv <= FLOOR ? "already at floor" : `${cv - FLOOR} day${cv - FLOOR === 1 ? "" : "s"} above floor`;
 
-  resultLine.innerHTML = `SPR exhausts in <span style="color:var(--danger);">${burnLabel}</span> · refiners cross operational floor: <span style="color:var(--danger);">${floorLabel}</span> · status: <span class="pill ${statusClass}">${status}</span>`;
+  resultLine.innerHTML = `SPR exhausts in <span style="color:var(--danger);">${burnLabel}</span> · refiners: <span style="color:var(--danger);">${floorLabel}</span> · status: <span class="pill ${statusClass}">${status}</span>`;
 }
 
 [sldShortfall, sldSPR, sldCover].forEach(s => s.addEventListener("input", updateScenario));

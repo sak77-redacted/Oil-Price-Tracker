@@ -296,6 +296,18 @@
     "dailyMissingMbd": 14.5,
     "projectedShortfall6moMb": 1631,
     "burnDownDays": 47,
+    "futureBestCaseMissingMb": 760,
+    "sprBreakdown": { "us": 413, "japan": 263, "europe": 179 },
+    "coverageRatio": 0.888,
+    "breakthroughWindowWeeks": "2-4",
+    "historicalParallel": {
+      "year": 2008,
+      "pricePeak": 147,
+      "pricePeakInflationAdjusted": 220,
+      "insight": "Days-of-cover hit this level in 2008 when supply exceeded demand by just a smidge for 4 of 5 quarters — oil spiked to $147 ($220 in today's dollars)"
+    },
+    "subsidizedExportsMbd": 2.5,
+    "recordExportsMbd": 12.9,
     "history": [
       { "date": "2026-03-02", "daysCover": 32, "sprMb": 855 },
       { "date": "2026-03-09", "daysCover": 31, "sprMb": 845 },

@@ -61,6 +61,18 @@ export interface BufferMathSignal {
   dailyMissingMbd: number;
   projectedShortfall6moMb: number;
   burnDownDays: number;
+  futureBestCaseMissingMb: number;
+  sprBreakdown: { us: number; japan: number; europe: number };
+  coverageRatio: number;
+  breakthroughWindowWeeks: string;
+  historicalParallel: {
+    year: number;
+    pricePeak: number;
+    pricePeakInflationAdjusted: number;
+    insight: string;
+  };
+  subsidizedExportsMbd: number;
+  recordExportsMbd: number;
   history: { date: string; daysCover: number; sprMb: number }[];
   lastUpdated: string;
   source: string;
