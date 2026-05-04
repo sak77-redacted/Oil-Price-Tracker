@@ -261,6 +261,18 @@ export default function BufferMathSignal({ data }: BufferMathSignalProps) {
           color="var(--danger)"
           height={80}
         />
+
+        {/* Link to full Buffer Math playground */}
+        <div className="flex justify-end">
+          <a
+            href="/buffer-math.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-[var(--text-secondary)] transition-colors hover:text-[var(--accent)]"
+          >
+            See the math →
+          </a>
+        </div>
       </div>
     </SignalCard>
   );
