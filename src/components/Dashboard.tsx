@@ -338,8 +338,16 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
 
           {/* Inventory Buffer & Supply Math */}
           <div className="flex flex-col rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3">
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
-              <span className="text-[var(--accent)]">Signal 6</span> — Inventory Buffer
+            <div className="flex items-baseline justify-between gap-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              <span><span className="text-[var(--accent)]">Signal 6</span> — Inventory Buffer</span>
+              <a
+                href="/buffer-math.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] font-medium normal-case tracking-normal text-[var(--text-secondary)] underline-offset-2 hover:text-[var(--accent)] hover:underline"
+              >
+                See the math →
+              </a>
             </div>
             <div className="mt-1 flex items-center gap-2">
               <span
