@@ -19,6 +19,20 @@ function getStructureLabel(
   }
 }
 
+function formatExpiryShort(iso: string): string {
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const [, m, d] = iso.split("-");
+  return `${months[Number(m) - 1]} ${Number(d)}`;
+}
+
+function daysUntil(iso: string): number {
+  const [y, m, d] = iso.split("-").map(Number);
+  const expiry = Date.UTC(y, m - 1, d);
+  const now = new Date();
+  const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((expiry - today) / 86400000);
+}
+
 export default function ForwardCurve({ data }: ForwardCurveProps) {
   const { label, color } = getStructureLabel(data.structure);
 
@@ -100,7 +114,7 @@ export default function ForwardCurve({ data }: ForwardCurveProps) {
 
       {/* Bar chart */}
       <div className="px-5 pb-4">
-        <div className="flex items-end gap-1 sm:gap-2" style={{ height: 160 }}>
+        <div className="flex items-end gap-1 sm:gap-2" style={{ height: 200 }}>
           {data.curve.map((point, i) => (
             <div
               key={point.month}
@@ -128,6 +142,10 @@ export default function ForwardCurve({ data }: ForwardCurveProps) {
               {/* Contract reference */}
               <span className="mt-0.5 font-mono text-[8px] tracking-tight text-[var(--text-secondary)] opacity-70 sm:text-[9px]">
                 {point.ticker}
+              </span>
+              {/* Last trading day · days remaining */}
+              <span className="mt-0.5 text-[8px] tabular-nums text-[var(--text-secondary)] opacity-60 sm:text-[9px]">
+                {formatExpiryShort(point.expiry)} · {daysUntil(point.expiry)}d
               </span>
             </div>
           ))}

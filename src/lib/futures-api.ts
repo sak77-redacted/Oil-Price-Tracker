@@ -287,6 +287,46 @@ export async function fetchCrackSpreads(): Promise<CrackSpreadData> {
  * offsets from the prompt price for any month where Yahoo doesn't return data.
  * Never throws -- always returns valid ForwardCurveData.
  */
+// US market closures that move WTI's last trading day. Covers the contracts
+// the dashboard renders today (2026-2027). Add future years as needed.
+const US_MARKET_HOLIDAYS = new Set<string>([
+  "2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25",
+  "2026-06-19", "2026-07-03", "2026-09-07", "2026-11-26", "2026-12-25",
+  "2027-01-01", "2027-01-18", "2027-02-15", "2027-03-26", "2027-05-31",
+  "2027-06-18", "2027-07-05", "2027-09-06", "2027-11-25", "2027-12-24",
+]);
+
+function isNymexBusinessDay(d: Date): boolean {
+  const dow = d.getUTCDay();
+  if (dow === 0 || dow === 6) return false;
+  return !US_MARKET_HOLIDAYS.has(d.toISOString().slice(0, 10));
+}
+
+/**
+ * NYMEX WTI rule: trading ceases on the 3rd business day prior to the 25th
+ * calendar day of the month preceding the delivery month. If the 25th is not
+ * a business day, count back from the last business day before the 25th.
+ */
+function computeWtiLastTradingDay(deliveryYear: number, deliveryMonthIdx: number): string {
+  let priorYear = deliveryYear;
+  let priorMonth = deliveryMonthIdx - 1;
+  if (priorMonth < 0) {
+    priorMonth += 12;
+    priorYear--;
+  }
+
+  const d = new Date(Date.UTC(priorYear, priorMonth, 25));
+  while (!isNymexBusinessDay(d)) {
+    d.setUTCDate(d.getUTCDate() - 1);
+  }
+  let count = 0;
+  while (count < 3) {
+    d.setUTCDate(d.getUTCDate() - 1);
+    if (isNymexBusinessDay(d)) count++;
+  }
+  return d.toISOString().slice(0, 10);
+}
+
 export async function fetchForwardCurve(): Promise<ForwardCurveData> {
   const FALLBACK_WTI = 87;
   const MONTH_CODES = ["F", "G", "H", "J", "K", "M", "N", "Q", "U", "V", "X", "Z"];
@@ -310,7 +350,8 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
     // Build 9 consecutive WTI month contracts starting from the delivery month.
     // yahooSymbol = Yahoo Finance ticker (e.g. CLM26.NYM) for fetching.
     // contract   = exchange contract reference shown to users (e.g. CLM26).
-    const months: { yahooSymbol: string; contract: string; label: string }[] = [];
+    // expiry     = last trading day per the NYMEX rule.
+    const months: { yahooSymbol: string; contract: string; label: string; expiry: string }[] = [];
     for (let i = 0; i < 9; i++) {
       const m = (startMonthIdx + i) % 12;
       const y = startYear + Math.floor((startMonthIdx + i) / 12);
@@ -320,6 +361,7 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
         yahooSymbol: `CL${code}${yearSuffix}.NYM`,
         contract: `CL${code}${yearSuffix}`,
         label: `${MONTH_NAMES[m]} ${yearSuffix}`,
+        expiry: computeWtiLastTradingDay(y, m),
       });
     }
 
@@ -368,6 +410,7 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
       curve.push({
         month: months[i].label,
         ticker: months[i].contract,
+        expiry: months[i].expiry,
         price,
         diffFromPrompt: i === 0 ? 0 : Math.round((price - promptPrice) * 100) / 100,
       });
@@ -400,7 +443,7 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
       startYear++;
     }
 
-    const fallbackMonths: { label: string; contract: string }[] = [];
+    const fallbackMonths: { label: string; contract: string; expiry: string }[] = [];
     for (let i = 0; i < 9; i++) {
       const m = (startMonthIdx + i) % 12;
       const y = startYear + Math.floor((startMonthIdx + i) / 12);
@@ -408,6 +451,7 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
       fallbackMonths.push({
         label: `${MONTH_NAMES[m]} ${yearSuffix}`,
         contract: `CL${MONTH_CODES[m]}${yearSuffix}`,
+        expiry: computeWtiLastTradingDay(y, m),
       });
     }
 
@@ -418,6 +462,7 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
       curve: fallbackMonths.map((m, i) => ({
         month: m.label,
         ticker: m.contract,
+        expiry: m.expiry,
         price: Math.round((FALLBACK_WTI + FALLBACK_DISCOUNTS[i]) * 100) / 100,
         diffFromPrompt: FALLBACK_DISCOUNTS[i],
       })),
