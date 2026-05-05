@@ -298,6 +298,7 @@ export interface CrackSpreadData {
 
 export interface ForwardPoint {
   month: string;      // "May 26", "Jun 26", etc.
+  ticker: string;     // "CLM26", "CLN26" — exchange contract symbol
   price: number;
   diffFromPrompt: number; // negative = backwardation
 }

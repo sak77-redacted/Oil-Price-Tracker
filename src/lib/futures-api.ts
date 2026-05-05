@@ -288,7 +288,7 @@ export async function fetchCrackSpreads(): Promise<CrackSpreadData> {
  * Never throws -- always returns valid ForwardCurveData.
  */
 export async function fetchForwardCurve(): Promise<ForwardCurveData> {
-  const FALLBACK_BRENT = 91;
+  const FALLBACK_WTI = 87;
   const MONTH_CODES = ["F", "G", "H", "J", "K", "M", "N", "Q", "U", "V", "X", "Z"];
   const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const FALLBACK_DISCOUNTS = [0, -3.5, -8.2, -12.5, -15.8, -18.0, -19.5, -20.2, -20.8];
@@ -307,22 +307,25 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
       startYear++;
     }
 
-    // Build 9 consecutive month tickers starting from the delivery month
-    const months: { ticker: string; label: string }[] = [];
+    // Build 9 consecutive WTI month contracts starting from the delivery month.
+    // yahooSymbol = Yahoo Finance ticker (e.g. CLM26.NYM) for fetching.
+    // contract   = exchange contract reference shown to users (e.g. CLM26).
+    const months: { yahooSymbol: string; contract: string; label: string }[] = [];
     for (let i = 0; i < 9; i++) {
       const m = (startMonthIdx + i) % 12;
       const y = startYear + Math.floor((startMonthIdx + i) / 12);
       const code = MONTH_CODES[m];
       const yearSuffix = String(y).slice(-2);
       months.push({
-        ticker: `BZ${code}${yearSuffix}.NYM`,
+        yahooSymbol: `CL${code}${yearSuffix}.NYM`,
+        contract: `CL${code}${yearSuffix}`,
         label: `${MONTH_NAMES[m]} ${yearSuffix}`,
       });
     }
 
     // Fetch all months in parallel
     const results = await Promise.allSettled(
-      months.map((m) => fetchSinglePrice(m.ticker, 0)),
+      months.map((m) => fetchSinglePrice(m.yahooSymbol, 0)),
     );
 
     // Build curve from results
@@ -353,7 +356,7 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
           price = Math.round((promptPrice + discount) * 100) / 100;
         } else {
           const discount = FALLBACK_DISCOUNTS[i] ?? FALLBACK_DISCOUNTS[FALLBACK_DISCOUNTS.length - 1];
-          price = Math.round((FALLBACK_BRENT + discount) * 100) / 100;
+          price = Math.round((FALLBACK_WTI + discount) * 100) / 100;
         }
       }
 
@@ -364,12 +367,13 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
 
       curve.push({
         month: months[i].label,
+        ticker: months[i].contract,
         price,
         diffFromPrompt: i === 0 ? 0 : Math.round((price - promptPrice) * 100) / 100,
       });
     });
 
-    if (promptPrice === 0) promptPrice = FALLBACK_BRENT;
+    if (promptPrice === 0) promptPrice = FALLBACK_WTI;
 
     const lastPoint = curve[curve.length - 1];
     const lastDiff = lastPoint.diffFromPrompt;
@@ -377,8 +381,8 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
       lastDiff < -5 ? "backwardation" : lastDiff > 5 ? "contango" : "flat";
 
     return {
-      contract: "Brent Crude",
-      symbol: months[0].ticker,
+      contract: "WTI Crude",
+      symbol: months[0].yahooSymbol,
       promptPrice,
       curve,
       structure,
@@ -386,22 +390,35 @@ export async function fetchForwardCurve(): Promise<ForwardCurveData> {
       timestamp: new Date().toISOString(),
     };
   } catch {
-    // Full fallback
+    // Full fallback — rebuild month + ticker pairs
     const now = new Date();
-    const monthNames: string[] = [];
+    const day = now.getDate();
+    let startMonthIdx = day < 20 ? now.getMonth() + 1 : now.getMonth() + 2;
+    let startYear = now.getFullYear();
+    if (startMonthIdx >= 12) {
+      startMonthIdx -= 12;
+      startYear++;
+    }
+
+    const fallbackMonths: { label: string; contract: string }[] = [];
     for (let i = 0; i < 9; i++) {
-      const m = (now.getMonth() + 1 + i) % 12;
-      const y = now.getFullYear() + Math.floor((now.getMonth() + 1 + i) / 12);
-      monthNames.push(`${MONTH_NAMES[m]} ${String(y).slice(-2)}`);
+      const m = (startMonthIdx + i) % 12;
+      const y = startYear + Math.floor((startMonthIdx + i) / 12);
+      const yearSuffix = String(y).slice(-2);
+      fallbackMonths.push({
+        label: `${MONTH_NAMES[m]} ${yearSuffix}`,
+        contract: `CL${MONTH_CODES[m]}${yearSuffix}`,
+      });
     }
 
     return {
-      contract: "Brent Crude",
-      symbol: "BZ=F",
-      promptPrice: FALLBACK_BRENT,
-      curve: monthNames.map((month, i) => ({
-        month,
-        price: Math.round((FALLBACK_BRENT + FALLBACK_DISCOUNTS[i]) * 100) / 100,
+      contract: "WTI Crude",
+      symbol: "CL=F",
+      promptPrice: FALLBACK_WTI,
+      curve: fallbackMonths.map((m, i) => ({
+        month: m.label,
+        ticker: m.contract,
+        price: Math.round((FALLBACK_WTI + FALLBACK_DISCOUNTS[i]) * 100) / 100,
         diffFromPrompt: FALLBACK_DISCOUNTS[i],
       })),
       structure: "backwardation",

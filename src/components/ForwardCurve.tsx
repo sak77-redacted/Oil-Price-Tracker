@@ -125,6 +125,10 @@ export default function ForwardCurve({ data }: ForwardCurveProps) {
               <span className="mt-1.5 text-[9px] text-[var(--text-secondary)] sm:text-[10px]">
                 {point.month.split(" ")[0]}
               </span>
+              {/* Contract reference */}
+              <span className="mt-0.5 font-mono text-[8px] tracking-tight text-[var(--text-secondary)] opacity-70 sm:text-[9px]">
+                {point.ticker}
+              </span>
             </div>
           ))}
         </div>
