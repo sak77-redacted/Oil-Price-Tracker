@@ -129,10 +129,10 @@
       { "date": "2026-05-03", "count": 0, "returnCount": 0 },
       { "date": "2026-05-04", "count": 2, "returnCount": 1 },
       { "date": "2026-05-05", "count": 1, "returnCount": 0 },
-      { "date": "2026-05-06", "count": 2, "returnCount": 0 }
+      { "date": "2026-05-06", "count": 1, "returnCount": 0 }
     ],
-    "lastUpdated": "2026-05-06T08:00:00Z",
-    "source": "Windward Maritime Intelligence, Bloomberg Hormuz Tracker, Al Jazeera/Kpler, Lloyd's List. Kpler (Apr 29): cumulative transits down ~92% vs pre-conflict baseline; S&P Global counts only ~21 tankers transited Feb 28–late April vs 100+/day pre-conflict."
+    "lastUpdated": "2026-05-06T22:00:00Z",
+    "source": "Windward Maritime Intelligence, Bloomberg Hormuz Tracker, Al Jazeera/Kpler, Lloyd's List, JaguarAnalytics on X (May 6: 1 ship in 24h). Kpler (Apr 29): cumulative transits down ~92% vs pre-conflict baseline; S&P Global counts only ~21 tankers transited Feb 28–late April vs 100+/day pre-conflict. MacroEdge (May 6 evening): 13.5–14 Mbpd estimated remaining offline."
   },
   "oilSpread": {
     "brent": 110,
@@ -301,6 +301,14 @@
         "status": "active",
         "impact": "JPM April inventory draw 7.1 Mbpd, demand destruction 4.3 Mbpd; cumulative ~330 Mbbl drawn Mar+Apr. Brent ~$110, WTI ~$102, Dec Brent sub-$80 — backwardation pricing rapid normalization the supply math doesn't support. IEA SPR 120-day window exhausts ~Jul 9.",
         "supplyGapMbd": 8.5
+      },
+      {
+        "id": "operation-freedom-suspended",
+        "event": "Operation Freedom suspended; only 1 ship crossed Strait in 24h; API reports ~24 Mbbl weekly products draw",
+        "date": "2026-05-06",
+        "status": "active",
+        "impact": "Trump abruptly suspended the latest reopen-the-Strait initiative after the JaguarAnalytics daily tracker showed a single transit and API printed an extreme inventory draw. MacroEdge estimates 13.5–14 Mbpd offline (higher than HFI's 11.5) and pegs strait normalization no earlier than late summer / fall. EIA + SPR-level data due tomorrow.",
+        "supplyGapMbd": 8.5
       }
     ],
     "currentGapMbd": 8.5,
@@ -347,8 +355,8 @@
   "straitStatus": {
     "status": "closed",
     "since": "2026-04-18",
-    "description": "Day 68 of crisis. Strait remains effectively closed. Trump (May 5) said the US blockade could last \u201cmonths\u201d; ceasefire-extension calm holds at headline level but no political resolution in sight. Brent has pulled back from the $126.41 Apr 30 four-year high to ~$110 on profit-taking + June contract rollover; WTI ~$102. Dec '26 Brent trades sub-$80 \u2014 a $34 backwardation pricing rapid normalization that the underlying supply math contradicts. HFI/JPM peg net shortfall at 8.5 Mbpd (\u221211.5 gross shut-in + 3.0 IEA SPR + 0 demand response yet); April inventory draws averaged 7.1 Mbpd and forced demand destruction ~4.3 Mbpd. ~2,000 ships still stranded. US military estimates ~6 months to full mine clearance once the strait reopens.",
-    "lastUpdated": "2026-05-06T08:00:00Z"
+    "description": "Day 68 of crisis. Strait remains effectively closed. Trump (May 6 evening) abruptly suspended Operation Freedom \u2014 the latest attempt to reopen Strait traffic \u2014 after the daily JaguarAnalytics tracker showed only 1 ship crossing the Strait in 24 hours and the API reported a ~24 Mbbl total-products draw for the week. Earlier May 5 Trump said the blockade could last 'months'. Brent ~$110, WTI ~$102; Dec '26 Brent sub-$80 (~$34 backwardation pricing rapid normalization the supply math contradicts). HFI/JPM peg net shortfall at 8.5 Mbpd (\u221211.5 gross shut-in + 3.0 IEA SPR); MacroEdge's higher estimate puts 13.5\u201314 Mbpd offline. April inventory draws averaged 7.1 Mbpd; forced demand destruction ~4.3 Mbpd. MacroEdge expects strait normalization no earlier than late summer / fall. ~2,000 ships still stranded; US estimates ~6 months full mine clearance once reopened.",
+    "lastUpdated": "2026-05-06T22:00:00Z"
   },
   "globalImpact": {
     "worldOilAtRiskPct": 20,
@@ -388,6 +396,7 @@
     { "country": "India", "dependency": 45, "severity": "moderate", "description": "Permitted limited vessel transits through negotiation; still facing supply constraints and higher costs." }
   ],
   "crisisTimeline": [
+    { "date": "2026-05-06", "category": "military", "title": "Operation Freedom suspended after 1-ship-in-24h transit print + 24 Mbbl API draw", "description": "Trump abruptly suspended Operation Freedom — the latest attempt to reopen Strait traffic — after market close on May 6. Catalyst: JaguarAnalytics daily transit tracker showed just 1 ship crossing the Strait in the prior 24 hours, and API printed a ~24 Mbbl total-products inventory draw for the week. MacroEdge estimates 13.5–14 Mbpd remaining offline (vs HFI's 11.5) and expects strait normalization no earlier than late summer / fall, citing the IRGC's strategic interest in maintaining long-term Strait control as a revenue stream." },
     { "date": "2026-05-06", "category": "economic", "title": "HFI/JPM: 8.5 Mbpd net shortfall, backwardation pricing 'wrong'", "description": "HFI Research's Jon Costello argues both oil and equity markets are mispriced — the 8.5 Mbpd net shortfall (after 9.5 Mbpd bypass production and 3.0 Mbpd IEA SPR releases) is being absorbed by 7.1 Mbpd inventory draws and 4.3 Mbpd forced demand destruction (JPM, April). Cumulative ~330 Mbbl drawn over Mar+Apr. Dec '26 Brent sub-$80 vs front $110 implies rapid normalization the supply math doesn't support. IEA's 120-day SPR window exhausts ~Jul 9." },
     { "date": "2026-05-05", "category": "diplomatic", "title": "Trump: blockade could last 'months' until nuclear deal", "description": "President Trump tells reporters the US naval blockade of Iranian ports could continue for months absent Iranian nuclear concessions. Polymarket odds for blockade lifted by May 31 collapse to 25% (-35.5pp 7-day); odds of strait traffic returning to normal by May 31 just 16%." },
     { "date": "2026-05-01", "category": "economic", "title": "Brent settles $114 after $126 peak; ceasefire halts 60-day war powers deadline", "description": "Brent retreats to $114.01 settle after intraday spike to $126.41 on Apr 30 (June contract, four-year high). White House confirms ceasefire extension halts Trump's 60-day war powers clock. Crack spreads at fresh highs — gasoline crack at $47/bbl, heating oil at $66/bbl. Dual blockade unchanged." },

@@ -16,10 +16,15 @@ interface Importer {
   note: string;
   // Optional draw-rate override for net exporters whose SPR drawdown is
   // driven by policy / export support rather than Hormuz import shortage.
-  // When present, days remaining = current SPR balance ÷ draw rate.
+  // When present, days remaining = (SPR balance − operational floor) ÷ draw rate.
+  // The operational floor reflects that SPR salt caverns can't be physically
+  // drained to zero — pumping rates degrade as the level drops, and the DOE
+  // treats ~100–150 Mbbl as the practical floor below which sustained
+  // drawdown becomes infeasible.
   sprPreCrisisMbbl?: number;
   sprDrawMbpd?: number;
   sprDrawStartIso?: string;
+  sprFloorMbbl?: number;
 }
 
 const IMPORTERS: Importer[] = [
@@ -32,6 +37,9 @@ const IMPORTERS: Importer[] = [
   // 172 Mbbl release (≈1.4 Mbpd over 120 days from Mar 11) plus ongoing
   // policy support for exports and price management — not Hormuz import
   // shortage. Pre-crisis SPR per Oil 101 Ch. 26 (~413 Mbbl in 2025).
+  // Floor at 150 Mbbl reflects the DOE's practical minimum below which
+  // salt-cavern drawdown rates degrade — SPR cannot be physically pulled
+  // to zero.
   {
     name: "United States",
     hormuzShare: 0.05,
@@ -40,6 +48,7 @@ const IMPORTERS: Importer[] = [
     sprPreCrisisMbbl: 413,
     sprDrawMbpd: 1.4,
     sprDrawStartIso: "2026-03-11",
+    sprFloorMbbl: 150,
   },
 ];
 
@@ -92,10 +101,13 @@ export default function SPRCliffSignal() {
   const importerRows = IMPORTERS.map((i) => {
     if (i.sprPreCrisisMbbl != null && i.sprDrawMbpd != null && i.sprDrawStartIso != null) {
       const drawStartMs = new Date(i.sprDrawStartIso + "T00:00:00Z").getTime();
-      const totalDays = i.sprPreCrisisMbbl / i.sprDrawMbpd;
+      const floor = i.sprFloorMbbl ?? 0;
+      const drawableTotal = Math.max(0, i.sprPreCrisisMbbl - floor);
+      const totalDays = drawableTotal / i.sprDrawMbpd;
       const daysOfDraw = Math.max(0, (todayMs - drawStartMs) / 86_400_000);
-      const balanceToday = Math.max(0, i.sprPreCrisisMbbl - daysOfDraw * i.sprDrawMbpd);
-      const remaining = balanceToday / i.sprDrawMbpd;
+      const balanceToday = Math.max(floor, i.sprPreCrisisMbbl - daysOfDraw * i.sprDrawMbpd);
+      const drawableToday = Math.max(0, balanceToday - floor);
+      const remaining = drawableToday / i.sprDrawMbpd;
       const runDryDate = new Date(drawStartMs + totalDays * 86_400_000);
       return { ...i, model: "drawRate" as const, totalDays, remaining, balanceToday, wellBuffered: false, runDryDate };
     }
@@ -223,6 +235,9 @@ export default function SPRCliffSignal() {
                     {row.model === "drawRate" && (
                       <div className="text-[9px] font-normal text-[var(--text-secondary)] opacity-80">
                         SPR draw {row.sprDrawMbpd?.toFixed(1)} Mbpd
+                        {row.sprFloorMbbl != null && (
+                          <> · floor {row.sprFloorMbbl} Mbbl</>
+                        )}
                       </div>
                     )}
                   </div>
@@ -274,7 +289,7 @@ export default function SPRCliffSignal() {
         <span className="text-[var(--text-primary)]">Asia importers</span> use{" "}
         <em>Hormuz-share</em>: days remaining = (pre-crisis SPR cover ÷ Hormuz import share) − days since outage onset (Mar 15, 2026), capturing how long their SPR can paper over Hormuz-disrupted barrels. EU rolls out under this model and lands above the 1-year horizon → "well-buffered" (Qatar LNG is the real EU bottleneck, not crude SPR).{" "}
         <span className="text-[var(--text-primary)]">United States</span> uses{" "}
-        <em>SPR draw rate</em>: the US is a net petroleum exporter, so SPR drawdown isn't driven by Hormuz import shortage — it's the IEA-committed 172 Mbbl release (≈1.4 Mbpd over 120 days from Mar 11) plus ongoing policy support for exports. Days remaining = current SPR balance ÷ 1.4 Mbpd, projecting forward at unchanged pace. Pre-crisis US SPR ~413 Mbbl (Oil 101 Ch. 26 Fig. 26-6).{" "}
+        <em>SPR draw rate with operational floor</em>: the US is a net petroleum exporter, so SPR drawdown isn't driven by Hormuz import shortage — it's the IEA-committed 172 Mbbl release (≈1.4 Mbpd over 120 days from Mar 11) plus ongoing policy support for exports. Days remaining = (current balance − operational floor) ÷ 1.4 Mbpd. The floor (~150 Mbbl) reflects the DOE's practical minimum below which salt-cavern drawdown rates degrade — SPR cannot be physically pulled to zero. Pre-crisis US SPR ~413 Mbbl (Oil 101 Ch. 26 Fig. 26-6); run-dry date here is when SPR hits the floor, not when it empties.{" "}
         Sources: Oil 101 (M. Downey), HFI Research, IEA Emergency Response Reviews, JOGMEC, KNOC, ISPRL, EIA SPR Quick Facts.
       </div>
     </section>
