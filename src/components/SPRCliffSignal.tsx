@@ -14,6 +14,12 @@ interface Importer {
   hormuzShare: number;        // 0–1, Hormuz share of crude imports
   preCrisisCoverDays: number; // total SPR ÷ total daily net imports
   note: string;
+  // Optional draw-rate override for net exporters whose SPR drawdown is
+  // driven by policy / export support rather than Hormuz import shortage.
+  // When present, days remaining = current SPR balance ÷ draw rate.
+  sprPreCrisisMbbl?: number;
+  sprDrawMbpd?: number;
+  sprDrawStartIso?: string;
 }
 
 const IMPORTERS: Importer[] = [
@@ -22,7 +28,19 @@ const IMPORTERS: Importer[] = [
   { name: "Japan",        hormuzShare: 0.80,  preCrisisCoverDays: 140, note: "Island nation — no pipeline alternative" },
   { name: "China",        hormuzShare: 0.40,  preCrisisCoverDays: 85,  note: "ESPO pipeline + Brazil/W. Africa diversification" },
   { name: "Europe (EU)",  hormuzShare: 0.175, preCrisisCoverDays: 90,  note: "Qatar LNG ~100% Hormuz-dependent" },
-  { name: "United States", hormuzShare: 0.05, preCrisisCoverDays: 80,  note: "Net petroleum exporter — effectively immune" },
+  // US: net petroleum exporter. SPR drawdown is driven by the IEA-committed
+  // 172 Mbbl release (≈1.4 Mbpd over 120 days from Mar 11) plus ongoing
+  // policy support for exports and price management — not Hormuz import
+  // shortage. Pre-crisis SPR per Oil 101 Ch. 26 (~413 Mbbl in 2025).
+  {
+    name: "United States",
+    hormuzShare: 0.05,
+    preCrisisCoverDays: 80,
+    note: "Net petroleum exporter — SPR drawn for export support, not Hormuz cover",
+    sprPreCrisisMbbl: 413,
+    sprDrawMbpd: 1.4,
+    sprDrawStartIso: "2026-03-11",
+  },
 ];
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -64,22 +82,32 @@ export default function SPRCliffSignal() {
     ? Math.floor((now.getTime() - new Date(OUTAGE_START_ISO + "T00:00:00Z").getTime()) / 86_400_000)
     : 0;
 
-  // 1-year cap: anything beyond that is "well-buffered" rather than a real
-  // deadline. The math (cover ÷ Hormuz share) gives 1,600d for the US and
-  // 514d for the EU because their Hormuz exposure is small — those are
-  // technically-correct but operationally meaningless dates. Capping at 365
-  // makes the bars comparable and replaces the misleading run-dry date with
-  // a clearer label.
+  // 1-year cap: when an importer falls under the Hormuz-share model and the
+  // ratio yields a multi-year horizon, label it "well-buffered" rather than
+  // print a fake deadline. The cap doesn't apply to the draw-rate model —
+  // those numbers (US SPR ÷ draw rate) are real countdowns.
   const HORIZON_DAYS = 365;
+  const todayMs = now ? now.getTime() : 0;
 
   const importerRows = IMPORTERS.map((i) => {
+    if (i.sprPreCrisisMbbl != null && i.sprDrawMbpd != null && i.sprDrawStartIso != null) {
+      const drawStartMs = new Date(i.sprDrawStartIso + "T00:00:00Z").getTime();
+      const totalDays = i.sprPreCrisisMbbl / i.sprDrawMbpd;
+      const daysOfDraw = Math.max(0, (todayMs - drawStartMs) / 86_400_000);
+      const balanceToday = Math.max(0, i.sprPreCrisisMbbl - daysOfDraw * i.sprDrawMbpd);
+      const remaining = balanceToday / i.sprDrawMbpd;
+      const runDryDate = new Date(drawStartMs + totalDays * 86_400_000);
+      return { ...i, model: "drawRate" as const, totalDays, remaining, balanceToday, wellBuffered: false, runDryDate };
+    }
     const totalDays = i.preCrisisCoverDays / i.hormuzShare;
     const remaining = Math.max(0, totalDays - elapsedDays);
     const wellBuffered = remaining > HORIZON_DAYS;
     return {
       ...i,
+      model: "hormuz" as const,
       totalDays,
       remaining,
+      balanceToday: undefined,
       wellBuffered,
       runDryDate: addDaysFromOutage(totalDays),
     };
@@ -89,6 +117,7 @@ export default function SPRCliffSignal() {
     if (wellBuffered) return "#22c55e";
     if (remaining < 30) return "#ef4444";
     if (remaining < 90) return "#eab308";
+    if (remaining < 240) return "#84cc16";
     return "#22c55e";
   }
 
@@ -182,7 +211,7 @@ export default function SPRCliffSignal() {
             {importerRows.map((row) => {
               const pct = row.wellBuffered
                 ? 100
-                : Math.max(2, (row.remaining / HORIZON_DAYS) * 100);
+                : Math.max(2, Math.min(100, (row.remaining / HORIZON_DAYS) * 100));
               const color = rowColor(row.remaining, row.wellBuffered);
               return (
                 <div
@@ -191,6 +220,11 @@ export default function SPRCliffSignal() {
                 >
                   <div className="col-span-3 truncate font-medium text-[var(--text-primary)]">
                     {row.name}
+                    {row.model === "drawRate" && (
+                      <div className="text-[9px] font-normal text-[var(--text-secondary)] opacity-80">
+                        SPR draw {row.sprDrawMbpd?.toFixed(1)} Mbpd
+                      </div>
+                    )}
                   </div>
                   <div className="col-span-5 h-3 overflow-hidden rounded bg-black/50">
                     <div
@@ -210,7 +244,7 @@ export default function SPRCliffSignal() {
                     ) : (
                       <>
                         <span className="font-bold" style={{ color }}>
-                          {row.remaining.toFixed(0)}d
+                          {now ? row.remaining.toFixed(0) : "···"}d
                         </span>
                         <span className="text-[9px] text-[var(--text-secondary)]">
                           → {MONTHS[row.runDryDate.getUTCMonth()]}{" "}
@@ -236,7 +270,12 @@ export default function SPRCliffSignal() {
       </div>
 
       <div className="border-t border-[var(--card-border)] px-5 py-3 text-[10px] leading-relaxed text-[var(--text-secondary)]">
-        <span className="font-semibold">Methodology:</span> days remaining = (pre-crisis SPR cover ÷ Hormuz import share) − days since outage onset (Mar 15, 2026). The ratio captures how long an importer's SPR can paper over its Hormuz-disrupted barrels assuming non-Hormuz supply keeps flowing. Importers above a 1-year horizon are labelled "well-buffered" — for the US (5% Hormuz share, net petroleum exporter) and the EU (17.5% share, but Qatar LNG is the real bottleneck, not crude) the ratio is technically large but operationally meaningless. The signal is the bottom of the table, not the top. Pre-crisis cover and Hormuz share per Oil 101 Ch. 26 Table 26-3. Sources: Oil 101 (M. Downey), IEA Emergency Response Reviews, JOGMEC, KNOC, ISPRL, industry estimates.
+        <span className="font-semibold">Methodology — two models:</span>{" "}
+        <span className="text-[var(--text-primary)]">Asia importers</span> use{" "}
+        <em>Hormuz-share</em>: days remaining = (pre-crisis SPR cover ÷ Hormuz import share) − days since outage onset (Mar 15, 2026), capturing how long their SPR can paper over Hormuz-disrupted barrels. EU rolls out under this model and lands above the 1-year horizon → "well-buffered" (Qatar LNG is the real EU bottleneck, not crude SPR).{" "}
+        <span className="text-[var(--text-primary)]">United States</span> uses{" "}
+        <em>SPR draw rate</em>: the US is a net petroleum exporter, so SPR drawdown isn't driven by Hormuz import shortage — it's the IEA-committed 172 Mbbl release (≈1.4 Mbpd over 120 days from Mar 11) plus ongoing policy support for exports. Days remaining = current SPR balance ÷ 1.4 Mbpd, projecting forward at unchanged pace. Pre-crisis US SPR ~413 Mbbl (Oil 101 Ch. 26 Fig. 26-6).{" "}
+        Sources: Oil 101 (M. Downey), HFI Research, IEA Emergency Response Reviews, JOGMEC, KNOC, ISPRL, EIA SPR Quick Facts.
       </div>
     </section>
   );
