@@ -37,6 +37,7 @@ import FuturesExpiry from "./FuturesExpiry";
 import TankerRates from "./TankerRates";
 import IranianAttacks from "./IranianAttacks";
 import SPRCliffSignal from "./SPRCliffSignal";
+import SupplyBalanceSignal from "./SupplyBalanceSignal";
 
 interface DashboardProps {
   data: ExtendedSignalData;
@@ -386,6 +387,11 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
         {/* Signal 7 — Net-Importer SPR Cliff */}
         <div className="mt-6">
           <SPRCliffSignal />
+        </div>
+
+        {/* Signal 8 — Supply Balance */}
+        <div className="mt-6">
+          <SupplyBalanceSignal />
         </div>
       </section>
 
