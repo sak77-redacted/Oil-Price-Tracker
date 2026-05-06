@@ -64,20 +64,29 @@ export default function SPRCliffSignal() {
     ? Math.floor((now.getTime() - new Date(OUTAGE_START_ISO + "T00:00:00Z").getTime()) / 86_400_000)
     : 0;
 
+  // 1-year cap: anything beyond that is "well-buffered" rather than a real
+  // deadline. The math (cover ÷ Hormuz share) gives 1,600d for the US and
+  // 514d for the EU because their Hormuz exposure is small — those are
+  // technically-correct but operationally meaningless dates. Capping at 365
+  // makes the bars comparable and replaces the misleading run-dry date with
+  // a clearer label.
+  const HORIZON_DAYS = 365;
+
   const importerRows = IMPORTERS.map((i) => {
     const totalDays = i.preCrisisCoverDays / i.hormuzShare;
     const remaining = Math.max(0, totalDays - elapsedDays);
+    const wellBuffered = remaining > HORIZON_DAYS;
     return {
       ...i,
       totalDays,
       remaining,
+      wellBuffered,
       runDryDate: addDaysFromOutage(totalDays),
     };
   }).sort((a, b) => a.remaining - b.remaining);
 
-  const maxBar = Math.max(...importerRows.map((r) => r.totalDays));
-
-  function rowColor(remaining: number): string {
+  function rowColor(remaining: number, wellBuffered: boolean): string {
+    if (wellBuffered) return "#22c55e";
     if (remaining < 30) return "#ef4444";
     if (remaining < 90) return "#eab308";
     return "#22c55e";
@@ -171,8 +180,10 @@ export default function SPRCliffSignal() {
           </div>
           <div className="mt-3 space-y-2">
             {importerRows.map((row) => {
-              const pct = Math.max(2, (row.remaining / maxBar) * 100);
-              const color = rowColor(row.remaining);
+              const pct = row.wellBuffered
+                ? 100
+                : Math.max(2, (row.remaining / HORIZON_DAYS) * 100);
+              const color = rowColor(row.remaining, row.wellBuffered);
               return (
                 <div
                   key={row.name}
@@ -187,21 +198,29 @@ export default function SPRCliffSignal() {
                       style={{
                         width: `${pct}%`,
                         backgroundColor: color,
-                        opacity: 0.85,
+                        opacity: row.wellBuffered ? 0.5 : 0.85,
                       }}
                     />
                   </div>
                   <div className="col-span-4 flex items-baseline justify-end gap-1.5 tabular-nums">
-                    <span className="font-bold" style={{ color }}>
-                      {row.remaining < 1000 ? row.remaining.toFixed(0) : "∞"}d
-                    </span>
-                    <span className="text-[9px] text-[var(--text-secondary)]">
-                      → {MONTHS[row.runDryDate.getUTCMonth()]}{" "}
-                      {row.runDryDate.getUTCDate()}{" "}
-                      {row.runDryDate.getUTCFullYear() !== 2026
-                        ? `'${String(row.runDryDate.getUTCFullYear()).slice(-2)}`
-                        : ""}
-                    </span>
+                    {row.wellBuffered ? (
+                      <span className="text-[10px] font-medium uppercase tracking-wide text-emerald-400/80">
+                        well-buffered
+                      </span>
+                    ) : (
+                      <>
+                        <span className="font-bold" style={{ color }}>
+                          {row.remaining.toFixed(0)}d
+                        </span>
+                        <span className="text-[9px] text-[var(--text-secondary)]">
+                          → {MONTHS[row.runDryDate.getUTCMonth()]}{" "}
+                          {row.runDryDate.getUTCDate()}{" "}
+                          {row.runDryDate.getUTCFullYear() !== 2026
+                            ? `'${String(row.runDryDate.getUTCFullYear()).slice(-2)}`
+                            : ""}
+                        </span>
+                      </>
+                    )}
                   </div>
                 </div>
               );
@@ -217,7 +236,7 @@ export default function SPRCliffSignal() {
       </div>
 
       <div className="border-t border-[var(--card-border)] px-5 py-3 text-[10px] leading-relaxed text-[var(--text-secondary)]">
-        <span className="font-semibold">Methodology:</span> days remaining = (pre-crisis SPR cover ÷ Hormuz import share) − days since outage onset (Mar 15, 2026). Pre-crisis cover and Hormuz share per Oil 101 Ch. 26 Table 26-3. Sources: Oil 101 (M. Downey), IEA Emergency Response Reviews, JOGMEC, KNOC, ISPRL, industry estimates.
+        <span className="font-semibold">Methodology:</span> days remaining = (pre-crisis SPR cover ÷ Hormuz import share) − days since outage onset (Mar 15, 2026). The ratio captures how long an importer's SPR can paper over its Hormuz-disrupted barrels assuming non-Hormuz supply keeps flowing. Importers above a 1-year horizon are labelled "well-buffered" — for the US (5% Hormuz share, net petroleum exporter) and the EU (17.5% share, but Qatar LNG is the real bottleneck, not crude) the ratio is technically large but operationally meaningless. The signal is the bottom of the table, not the top. Pre-crisis cover and Hormuz share per Oil 101 Ch. 26 Table 26-3. Sources: Oil 101 (M. Downey), IEA Emergency Response Reviews, JOGMEC, KNOC, ISPRL, industry estimates.
       </div>
     </section>
   );
