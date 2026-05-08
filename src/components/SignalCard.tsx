@@ -1,6 +1,6 @@
 "use client";
 
-import type { SignalStatus } from "@/lib/types";
+import type { SignalStatus, PhysicalMarketNote } from "@/lib/types";
 import StatusBadge from "./StatusBadge";
 
 interface SignalCardProps {
@@ -11,6 +11,17 @@ interface SignalCardProps {
   lastUpdated: string;
   source: string;
   children: React.ReactNode;
+  physicalMarketNote?: PhysicalMarketNote;
+}
+
+function formatNoteDate(iso: string): string {
+  const d = new Date(iso + (iso.length === 10 ? "T00:00:00Z" : ""));
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 }
 
 function formatTimestamp(isoDate: string): string {
@@ -47,6 +58,7 @@ export default function SignalCard({
   lastUpdated,
   source,
   children,
+  physicalMarketNote,
 }: SignalCardProps) {
   return (
     <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6 transition-colors hover:border-[var(--accent)]">
@@ -68,6 +80,27 @@ export default function SignalCard({
 
         {/* Main content */}
         <div>{children}</div>
+
+        {/* Physical market note (e.g. JH/@CRUDEOIL231 quote) */}
+        {physicalMarketNote && (
+          <blockquote className="border-l-2 border-amber-500/40 pl-3 text-sm italic leading-relaxed text-[var(--text-primary)]">
+            <p>&ldquo;{physicalMarketNote.quote}&rdquo;</p>
+            <footer className="mt-2 not-italic text-[11px] text-[var(--text-secondary)]">
+              <span className="font-semibold text-amber-300/80">
+                {physicalMarketNote.attribution}
+              </span>
+              <span className="mx-1.5 text-[var(--card-border)]">·</span>
+              <span className="text-[var(--text-secondary)]">
+                {formatNoteDate(physicalMarketNote.date)}
+              </span>
+              {physicalMarketNote.context && (
+                <div className="mt-1 not-italic text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
+                  {physicalMarketNote.context}
+                </div>
+              )}
+            </footer>
+          </blockquote>
+        )}
 
         {/* Footer: source + last updated */}
         <div className="flex items-center justify-between border-t border-[var(--card-border)] pt-3">

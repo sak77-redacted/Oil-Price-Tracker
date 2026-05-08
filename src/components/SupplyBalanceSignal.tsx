@@ -1,6 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { PhysicalMarketNote } from "@/lib/types";
+
+interface SupplyBalanceSignalProps {
+  physicalMarketNote?: PhysicalMarketNote;
+}
+
+function formatNoteDate(iso: string): string {
+  const d = new Date(iso + (iso.length === 10 ? "T00:00:00Z" : ""));
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
 
 // HFI Research / JPMorgan oil balance estimates, as of late April 2026.
 // Shut-in is gross loss of Middle East exports (vs ~21 Mbpd pre-conflict).
@@ -34,7 +49,7 @@ function formatLongDate(d: Date): string {
   return `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
 }
 
-export default function SupplyBalanceSignal() {
+export default function SupplyBalanceSignal({ physicalMarketNote }: SupplyBalanceSignalProps = {}) {
   const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
@@ -194,6 +209,27 @@ export default function SupplyBalanceSignal() {
           </div>
         </div>
       </div>
+
+      {/* Physical market note (e.g. JH/@CRUDEOIL231) */}
+      {physicalMarketNote && (
+        <div className="border-t border-[var(--card-border)] px-5 py-4">
+          <blockquote className="border-l-2 border-amber-500/40 pl-3 text-sm italic leading-relaxed text-[var(--text-primary)]">
+            <p>&ldquo;{physicalMarketNote.quote}&rdquo;</p>
+            <footer className="mt-2 not-italic text-[11px] text-[var(--text-secondary)]">
+              <span className="font-semibold text-amber-300/80">
+                {physicalMarketNote.attribution}
+              </span>
+              <span className="mx-1.5 text-[var(--card-border)]">·</span>
+              <span>{formatNoteDate(physicalMarketNote.date)}</span>
+              {physicalMarketNote.context && (
+                <div className="mt-1 text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
+                  {physicalMarketNote.context}
+                </div>
+              )}
+            </footer>
+          </blockquote>
+        </div>
+      )}
 
       <div className="border-t border-[var(--card-border)] px-5 py-3 text-[10px] leading-relaxed text-[var(--text-secondary)]">
         <span className="font-semibold">Sources:</span> HFI Research (Jon Costello, May 6 2026); JPMorgan oil balance estimates (April 2026); IEA Mar 11 coordinated release announcement; Kpler / S&P Global tanker transit data. Numbers as quoted at publication and refresh weekly rather than live.

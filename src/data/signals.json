@@ -178,7 +178,13 @@
     "lastUpdated": "2026-05-06T08:00:00Z",
     "brentSource": "Yahoo Finance (BZ=F live), CNBC May 1 ($114.01 settle, $126.41 intraday peak Apr 30); HFI Research May 6 (Brent ~$110, WTI ~$102)",
     "dubaiSource": "Dubai Crude Oil Platts futures (Investing.com)",
-    "note": "Brent retreated from the $126.41 four-year high (Apr 30) toward $110 by May 6 on profit-taking and June contract rollover. WTI ~$102. December '26 Brent trades sub-$80 — backwardation of ~$34 prices a rapid normalization that the 8.5 Mbpd net shortfall and 7.1 Mbpd April inventory draw (HFI/JPM) do not support. Dubai still trades at a structural premium with widening discount to Brent for non-permitted buyers."
+    "note": "Brent retreated from the $126.41 four-year high (Apr 30) toward $110 by May 6 on profit-taking and June contract rollover. WTI ~$102. December '26 Brent trades sub-$80 — backwardation of ~$34 prices a rapid normalization that the 8.5 Mbpd net shortfall and 7.1 Mbpd April inventory draw (HFI/JPM) do not support. Dubai still trades at a structural premium with widening discount to Brent for non-permitted buyers.",
+    "physicalMarketNote": {
+      "date": "2026-05-07",
+      "quote": "SPR releases sending huge volumes of US crude into Europe are dragging down North Sea window diffs. Panic-bought cargoes from 1–2 months ago are arriving in May giving Asian buyers breathing room. China's SPR release adds to it. Buyers are sitting on the sidelines hoping the Strait opens.",
+      "attribution": "JH (@CRUDEOIL231)",
+      "context": "Why physical diffs are softening even as the gross shut-in widens."
+    }
   },
   "timeline": {
     "events": [
@@ -313,7 +319,13 @@
     ],
     "currentGapMbd": 8.5,
     "projectedGapMbd": 11.5,
-    "lastUpdated": "2026-05-06T08:00:00Z"
+    "lastUpdated": "2026-05-06T08:00:00Z",
+    "physicalMarketNote": {
+      "date": "2026-05-07",
+      "quote": "Iran has caught themselves a sucker. They will keep the situation stalled and domesticate Trump using carrot-and-stick — until he becomes a lame duck or makes pathetic concessions. The vain hope of negotiation is the leverage.",
+      "attribution": "JH (@CRUDEOIL231)",
+      "context": "Why the diplomatic timeline is the binding constraint, not the supply math."
+    }
   },
   "bufferMath": {
     "oecdCommercialDaysCover": 23,
@@ -350,7 +362,13 @@
       { "date": "2026-05-06", "daysCover": 23, "sprMb": 750 }
     ],
     "lastUpdated": "2026-05-06T08:00:00Z",
-    "source": "IEA OECD inventories, EIA Weekly Petroleum Status Report, Goldman Sachs analysis. JPMorgan (May 6): global observable inventories drew 7.1 Mbpd in April after 4.0 Mbpd in March — cumulative ~330 Mbbl over two months. The ~3 Mbpd IEA SPR cushion exhausts ~Jul 9, 2026 (120-day window from Mar 11)."
+    "source": "IEA OECD inventories, EIA Weekly Petroleum Status Report, Goldman Sachs analysis. JPMorgan (May 6): global observable inventories drew 7.1 Mbpd in April after 4.0 Mbpd in March — cumulative ~330 Mbbl over two months. The ~3 Mbpd IEA SPR cushion exhausts ~Jul 9, 2026 (120-day window from Mar 11).",
+    "physicalMarketNote": {
+      "date": "2026-05-07",
+      "quote": "Asia has gained breathing room as panic-bought cargoes from early in the conflict are arriving. They're betting on quick resolution. If the facts don't change, this won't last long — they will eventually have to move.",
+      "attribution": "JH (@CRUDEOIL231)",
+      "context": "Why the buffer is temporary — when March/April panic-buys are consumed, forced bidding returns."
+    }
   },
   "straitStatus": {
     "status": "closed",
@@ -748,5 +766,24 @@
     ],
     "source": "HFI Research (@HFI_Research), Hemisphere Research Capital (@hemis_research), RBN Energy 3-2-1, EIA",
     "lastUpdated": "2026-05-06T08:00:00Z"
+  },
+  "buyerStress": {
+    "wafProgrammeStatus": "stalled",
+    "wafProgrammeDescription": "WAF May programme bidding from Asian buyers is unusually quiet — Indian and Chinese refiners largely absent from cargoes that would normally clear in the first half of the month. JH reads this as 'sitting on the sidelines hoping the Strait opens', not genuine demand softness.",
+    "crackSpread321": 54,
+    "crackSpreadThreshold": 40,
+    "buyerBehavior": "wait-and-see",
+    "buyerBehaviorDescription": "Asian refiners running max throughput on March/April panic-bought cargoes. WTI 3-2-1 cracks ~$54/bbl keep margins lucrative even at $110 crude — buyers can wait, and they are.",
+    "crisisStartDate": "2026-02-28",
+    "demandDestructionVisible": false,
+    "lastUpdated": "2026-05-08T08:00:00Z",
+    "source": "JH/@CRUDEOIL231 thesis (May 6–7, 2026), refinery 3-2-1 crack via CME (RBOB+HO vs WTI), WAF programme commentary from physical traders.",
+    "methodology": "When this lull breaks, WAF May programme bidding will spike first. Watch this for the inflection.",
+    "physicalMarketNote": {
+      "date": "2026-05-07",
+      "quote": "WAF programme is suspiciously quiet for Asian buyers. They have breathing room from panic-bought cargoes arriving in May, US + China SPR releases flooding alternatives, and 3-2-1 cracks at $54 keeping refineries running max. But this is hope-driven — when the facts don't change, they will be forced back.",
+      "attribution": "JH (@CRUDEOIL231)",
+      "context": "The leading indicator: WAF May programme activity is the canary."
+    }
   }
 }

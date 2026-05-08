@@ -38,6 +38,7 @@ import TankerRates from "./TankerRates";
 import IranianAttacks from "./IranianAttacks";
 import SPRCliffSignal from "./SPRCliffSignal";
 import SupplyBalanceSignal from "./SupplyBalanceSignal";
+import BuyerStressSignal from "./BuyerStressSignal";
 
 interface DashboardProps {
   data: ExtendedSignalData;
@@ -166,8 +167,8 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
         {/* Verdict Banner */}
         {/* (already rendered above) */}
 
-        {/* Early Warning Signal strip */}
-        <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {/* Early Warning Signal strip — 3-col grid on desktop (5 mini cards + Signal 9 full card form a 3x3 by signal count) */}
+        <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
           {/* Insurance Premium */}
           <div className="flex flex-col rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3">
             <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
@@ -384,6 +385,16 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
           </div>
         </div>
 
+        {/* Signal 9 — Physical Buyer Stress (JH/@CRUDEOIL231 thesis) */}
+        {data.buyerStress && (
+          <div className="mt-6">
+            <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+              Signal 9 — Physical Buyer Stress
+            </div>
+            <BuyerStressSignal data={data.buyerStress} />
+          </div>
+        )}
+
         {/* Signal 7 — Net-Importer SPR Cliff */}
         <div className="mt-6">
           <SPRCliffSignal />
@@ -391,7 +402,7 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
 
         {/* Signal 8 — Supply Balance */}
         <div className="mt-6">
-          <SupplyBalanceSignal />
+          <SupplyBalanceSignal physicalMarketNote={data.bufferMath.physicalMarketNote} />
         </div>
       </section>
 

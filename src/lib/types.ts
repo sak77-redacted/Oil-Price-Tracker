@@ -5,6 +5,17 @@ export interface HistoryPoint {
   value: number;
 }
 
+/**
+ * Optional per-signal annotation for physical-market commentary.
+ * Used to surface JH/@CRUDEOIL231 (and similar) excerpts inside SignalCards.
+ */
+export interface PhysicalMarketNote {
+  date: string;        // ISO date
+  quote: string;       // 1–3 sentence excerpt
+  attribution: string; // e.g., "JH (@CRUDEOIL231)"
+  context?: string;    // optional 1-line framing
+}
+
 export interface InsuranceSignal {
   current: number;
   baseline: number;
@@ -13,6 +24,7 @@ export interface InsuranceSignal {
   history: HistoryPoint[];
   lastUpdated: string;
   source: string;
+  physicalMarketNote?: PhysicalMarketNote;
 }
 
 export interface ShipTransitSignal {
@@ -24,6 +36,7 @@ export interface ShipTransitSignal {
   history: { date: string; count: number; returnCount: number }[];
   lastUpdated: string;
   source: string;
+  physicalMarketNote?: PhysicalMarketNote;
 }
 
 export interface OilSpreadSignal {
@@ -34,6 +47,7 @@ export interface OilSpreadSignal {
   lastUpdated: string;
   brentSource: string;
   dubaiSource: string;
+  physicalMarketNote?: PhysicalMarketNote;
 }
 
 export interface TimelineEvent {
@@ -50,6 +64,7 @@ export interface TimelineSignal {
   currentGapMbd: number;
   projectedGapMbd: number;
   lastUpdated: string;
+  physicalMarketNote?: PhysicalMarketNote;
 }
 
 export interface BufferMathSignal {
@@ -76,6 +91,41 @@ export interface BufferMathSignal {
   history: { date: string; daysCover: number; sprMb: number }[];
   lastUpdated: string;
   source: string;
+  physicalMarketNote?: PhysicalMarketNote;
+}
+
+/**
+ * Signal 9 — Physical Buyer Stress.
+ *
+ * Captures the JH/@CRUDEOIL231 thesis that physical buyers (Asian refineries)
+ * are in a temporary wait-and-see lull driven by panic-bought cargoes arriving,
+ * SPR releases, and lucrative cracks. The leading indicator that the lull is
+ * breaking is West African (WAF) programme activity for Asian buyers.
+ */
+export type WAFProgrammeStatus = "stalled" | "normal" | "accelerating";
+export type BuyerBehavior = "wait-and-see" | "capitulation-begins" | "forced-bidding";
+
+export interface BuyerStressSignal {
+  /** WAF May programme status — leading indicator for the lull breaking. */
+  wafProgrammeStatus: WAFProgrammeStatus;
+  /** Qualitative description of WAF programme activity. */
+  wafProgrammeDescription: string;
+  /** WTI 3-2-1 crack spread, $/bbl. */
+  crackSpread321: number;
+  /** Threshold below which capitulation is expected ($/bbl). */
+  crackSpreadThreshold: number;
+  /** Refinery buyer behavior label. */
+  buyerBehavior: BuyerBehavior;
+  /** Qualitative description of current buyer behavior. */
+  buyerBehaviorDescription: string;
+  /** Crisis start date (ISO). Used to compute days elapsed. */
+  crisisStartDate: string;
+  /** Whether forced demand destruction is visible (used for green status). */
+  demandDestructionVisible: boolean;
+  lastUpdated: string;
+  source: string;
+  methodology: string;
+  physicalMarketNote?: PhysicalMarketNote;
 }
 
 export interface SignalData {
@@ -84,6 +134,7 @@ export interface SignalData {
   oilSpread: OilSpreadSignal;
   timeline: TimelineSignal;
   bufferMath: BufferMathSignal;
+  buyerStress?: BuyerStressSignal;
 }
 
 export interface StraitStatus {

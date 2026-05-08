@@ -11,6 +11,34 @@ import {
 export type VerdictDirection = "higher" | "lower" | "uncertain";
 export type VerdictSeverity = "severe" | "elevated" | "moderate" | "low";
 
+/**
+ * Per Kpler analysis (cited by JH/@CRUDEOIL231, May 7 2026), even an Iranian-
+ * controlled "reopening" of the Strait of Hormuz is structurally capped at
+ * roughly 40–50% of pre-crisis Gulf export capacity due to:
+ *   1. New transit permit process (delays, uncertainty)
+ *   2. Insurance/compliance issues from Iranian territorial-waters routing
+ *   3. IRGC transit fees (US-sanctioned entity)
+ *   4. Complex routing vs standard IMO traffic-separation scheme
+ *
+ * Therefore the bear scenario for crude prices has a structural floor — even
+ * if Tehran formally reopens flows, the pricing impact is bounded, not binary.
+ */
+export const REOPENING_CAPACITY_FLOOR = 0.5; // 50% of pre-crisis capacity
+
+export interface MagnitudeBand {
+  brentLow: number;
+  brentHigh: number;
+  dubaiLow: number;
+  dubaiHigh: number;
+  description: string;
+}
+
+export interface ReopeningScenario {
+  statusQuo: MagnitudeBand;
+  iranianControlled: MagnitudeBand;
+  source: string;
+}
+
 export interface Verdict {
   direction: VerdictDirection;
   directionLabel: string;
@@ -20,6 +48,7 @@ export interface Verdict {
   composite: number;
   crisisCount: number;
   signalCount: number;
+  reopeningScenario: ReopeningScenario;
 }
 
 const WEIGHTS = {
@@ -112,29 +141,76 @@ function computeDuration(
   return "1-3 weeks if diplomacy progresses";
 }
 
-function computeMagnitude(
+function computeMagnitudeBand(
   currentGapMbd: number,
   brent: number,
   dubai: number
-): string {
+): MagnitudeBand {
   if (currentGapMbd >= 8) {
-    const bLow = Math.round(brent + 20);
-    const bHigh = Math.round(brent + 40);
-    const dLow = Math.round(dubai + 20);
-    const dHigh = Math.round(dubai + 40);
-    return `Brent $${bLow}-${bHigh} · Dubai Physical $${dLow}-${dHigh} if April cliff hits`;
+    return {
+      brentLow: Math.round(brent + 20),
+      brentHigh: Math.round(brent + 40),
+      dubaiLow: Math.round(dubai + 20),
+      dubaiHigh: Math.round(dubai + 40),
+      description: "if April cliff hits",
+    };
   }
   if (currentGapMbd >= 5) {
-    const bLow = Math.round(brent + 10);
-    const bHigh = Math.round(brent + 25);
-    const dLow = Math.round(dubai + 10);
-    const dHigh = Math.round(dubai + 25);
-    return `Brent $${bLow}-${bHigh} · Dubai Physical $${dLow}-${dHigh} if disruption persists`;
+    return {
+      brentLow: Math.round(brent + 10),
+      brentHigh: Math.round(brent + 25),
+      dubaiLow: Math.round(dubai + 10),
+      dubaiHigh: Math.round(dubai + 25),
+      description: "if disruption persists",
+    };
   }
   if (currentGapMbd >= 3) {
-    return `Brent $${Math.round(brent - 5)}-${Math.round(brent + 10)} · Dubai $${Math.round(dubai - 5)}-${Math.round(dubai + 10)} range`;
+    return {
+      brentLow: Math.round(brent - 5),
+      brentHigh: Math.round(brent + 10),
+      dubaiLow: Math.round(dubai - 5),
+      dubaiHigh: Math.round(dubai + 10),
+      description: "range",
+    };
   }
-  return `Brent could pull back to ~$${Math.round(brent - 15)} · Dubai to ~$${Math.round(dubai - 15)}`;
+  return {
+    brentLow: Math.round(brent - 15),
+    brentHigh: Math.round(brent - 5),
+    dubaiLow: Math.round(dubai - 15),
+    dubaiHigh: Math.round(dubai - 5),
+    description: "pullback range",
+  };
+}
+
+function bandToString(band: MagnitudeBand): string {
+  if (band.description === "range" || band.description === "pullback range") {
+    return `Brent $${band.brentLow}-${band.brentHigh} · Dubai $${band.dubaiLow}-${band.dubaiHigh} ${band.description}`;
+  }
+  return `Brent $${band.brentLow}-${band.brentHigh} · Dubai Physical $${band.dubaiLow}-${band.dubaiHigh} ${band.description}`;
+}
+
+/**
+ * Compute the Iranian-controlled-reopening magnitude band by scaling the
+ * status-quo move *toward Brent/Dubai spot* by REOPENING_CAPACITY_FLOOR.
+ *
+ * In other words: the bull-for-crude move under reopening is half of the
+ * status-quo move, because reopened flows are capped at ~50% of capacity.
+ * This keeps the bear case bounded — reopening is not a binary "back to
+ * normal" event for crude prices.
+ */
+function computeReopeningBand(
+  statusQuo: MagnitudeBand,
+  brent: number,
+  dubai: number
+): MagnitudeBand {
+  const scale = REOPENING_CAPACITY_FLOOR;
+  return {
+    brentLow: Math.round(brent + (statusQuo.brentLow - brent) * scale),
+    brentHigh: Math.round(brent + (statusQuo.brentHigh - brent) * scale),
+    dubaiLow: Math.round(dubai + (statusQuo.dubaiLow - dubai) * scale),
+    dubaiHigh: Math.round(dubai + (statusQuo.dubaiHigh - dubai) * scale),
+    description: "Iranian-controlled reopening (≤50% capacity)",
+  };
 }
 
 function computeSeverity(crisisCount: number): VerdictSeverity {
@@ -190,14 +266,30 @@ export function computeVerdict(data: SignalData): Verdict {
   const crisisCount = countCrisisSignals(data, daysUntilEvent);
   const direction = computeDirection(composite);
 
+  const statusQuoBand = computeMagnitudeBand(
+    data.timeline.currentGapMbd,
+    data.oilSpread.brent,
+    data.oilSpread.dubai,
+  );
+  const reopeningBand = computeReopeningBand(
+    statusQuoBand,
+    data.oilSpread.brent,
+    data.oilSpread.dubai,
+  );
+
   return {
     direction,
     directionLabel: computeDirectionLabel(direction, crisisCount),
     severity: compositeSeverity(composite),
     duration: computeDuration(crisisCount, signalCount, daysUntilEvent),
-    magnitude: computeMagnitude(data.timeline.currentGapMbd, data.oilSpread.brent, data.oilSpread.dubai),
+    magnitude: bandToString(statusQuoBand),
     composite,
     crisisCount,
     signalCount,
+    reopeningScenario: {
+      statusQuo: statusQuoBand,
+      iranianControlled: reopeningBand,
+      source: "Kpler analysis via JH/@CRUDEOIL231 (May 7, 2026) — reopening capacity capped ~40–50% of pre-crisis Gulf exports",
+    },
   };
 }

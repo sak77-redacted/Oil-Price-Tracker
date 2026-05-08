@@ -33,6 +33,7 @@ export default function OilSpreadSignal({ data }: OilSpreadSignalProps) {
       statusLabel={statusLabel}
       lastUpdated={data.lastUpdated}
       source={`${data.brentSource} / ${data.dubaiSource}`}
+      physicalMarketNote={data.physicalMarketNote}
     >
       <div className="flex flex-col gap-4">
         {/* Dual price display */}

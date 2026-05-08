@@ -168,6 +168,59 @@ export default function VerdictBanner({ data, liveBrentPrice, wtiPrice }: Verdic
               </>
             )}
           </div>
+
+          {/* Reopening Scenario Sensitivity — Kpler/JH thesis */}
+          <div className="mt-2 rounded-lg border border-white/10 bg-black/30 p-3 sm:p-4">
+            <div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/80">
+                Reopening Scenario Sensitivity
+              </span>
+              <span className="text-[10px] text-white/50">
+                Even the bear case has a floor — reopening is not binary
+              </span>
+            </div>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {/* Status quo */}
+              <div className="rounded-md border border-red-500/25 bg-red-500/5 p-3">
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-red-300/90">
+                  Status quo · Strait closed
+                </div>
+                <div className="mt-1 text-sm font-bold tabular-nums text-white">
+                  Brent ${verdict.reopeningScenario.statusQuo.brentLow}–{verdict.reopeningScenario.statusQuo.brentHigh}
+                </div>
+                <div className="mt-0.5 text-[11px] tabular-nums text-white/70">
+                  Dubai Physical ${verdict.reopeningScenario.statusQuo.dubaiLow}–{verdict.reopeningScenario.statusQuo.dubaiHigh}
+                </div>
+                <div className="mt-1.5 text-[10px] text-white/50">
+                  Current trajectory
+                </div>
+              </div>
+
+              {/* Iranian-controlled reopening */}
+              <div className="rounded-md border border-amber-500/25 bg-amber-500/5 p-3">
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-amber-300/90">
+                  Iranian-controlled reopening · 40–50% capacity
+                </div>
+                <div className="mt-1 text-sm font-bold tabular-nums text-white">
+                  Brent ${verdict.reopeningScenario.iranianControlled.brentLow}–{verdict.reopeningScenario.iranianControlled.brentHigh}
+                </div>
+                <div className="mt-0.5 text-[11px] tabular-nums text-white/70">
+                  Dubai Physical ${verdict.reopeningScenario.iranianControlled.dubaiLow}–{verdict.reopeningScenario.iranianControlled.dubaiHigh}
+                </div>
+                <div className="mt-1.5 text-[10px] text-white/50">
+                  Bull case has a floor — not a binary
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-2 text-[10px] leading-relaxed text-white/60">
+              <span className="font-semibold text-white/75">Why capped:</span>{" "}
+              new transit-permit process, insurance/compliance frictions in Iranian territorial waters, IRGC transit fees (US-sanctioned), and complex routing vs. standard IMO traffic separation.
+            </div>
+            <div className="mt-1 text-[10px] italic text-white/45">
+              Source: {verdict.reopeningScenario.source}
+            </div>
+          </div>
         </div>
     </div>
   );

@@ -262,6 +262,44 @@
 
 ---
 
+## Task 12: JH Physical Market Integration
+**Status:** [x]
+**Skill:** genius-dev-frontend
+**Duration:** ~45 min
+**Dependencies:** Task 11
+**Date:** 2026-05-08
+
+**Goal:** Fold the JH/@CRUDEOIL231 physical-oil-market thesis into the dashboard so the verdict reflects (1) the temporary buyer-stress lull, (2) Kpler's reopening-capacity floor, and (3) inline JH commentary on the relevant signals.
+
+**Steps:**
+1. Add `PhysicalMarketNote` type and an optional `physicalMarketNote` field to InsuranceSignal, ShipTransitSignal, OilSpreadSignal, TimelineSignal, BufferMathSignal, and BuyerStressSignal in `src/lib/types.ts`.
+2. Add new `BuyerStressSignal` type: WAF programme status, WTI 3-2-1 crack, buyer-behavior label, days-since-crisis, etc. Wire status logic per the JH thesis.
+3. Populate `src/data/signals.json` with:
+   - JH notes on `oilSpread`, `timeline`, and `bufferMath` (Signal 3 / 4 / 8) dated 2026-05-07.
+   - A new `buyerStress` block (Signal 9) dated 2026-05-08: WAF stalled, 3-2-1 crack $54, wait-and-see.
+4. Build `src/components/BuyerStressSignal.tsx` — full SignalCard with crack hero number, three sub-stat chips, status-driven insight, and methodology footnote.
+5. Render `physicalMarketNote` in `src/components/SignalCard.tsx` as an italic blockquote with `border-l-2 border-amber-500/40 pl-3` accent and date+attribution footer.
+6. Pass `bufferMath.physicalMarketNote` into `SupplyBalanceSignal` (which doesn't use SignalCard) and render the same blockquote pattern in its footer.
+7. Add `ReopeningScenario` to `src/lib/verdict.ts`: scale the status-quo magnitude move toward spot by `REOPENING_CAPACITY_FLOOR = 0.5` (Kpler thesis: Iranian-controlled reopening structurally capped at 40–50% of pre-crisis Gulf export capacity).
+8. Render the Reopening Scenario Sensitivity sub-panel in `src/components/VerdictBanner.tsx` — two side-by-side cards (Status quo vs Iranian-controlled reopening) with Brent + Dubai Physical bands, source attribution.
+9. Restructure the Early Warning Signals strip in `src/components/Dashboard.tsx` from `xl:grid-cols-5` to `lg:grid-cols-3`, and insert Signal 9 (BuyerStressSignal) as a full-detail card between the strip and Signal 7 (SPRCliffSignal).
+
+**Files:**
+- `src/lib/types.ts`
+- `src/lib/verdict.ts`
+- `src/data/signals.json`
+- `src/components/BuyerStressSignal.tsx` (new)
+- `src/components/SignalCard.tsx`
+- `src/components/SupplyBalanceSignal.tsx`
+- `src/components/OilSpreadSignal.tsx`
+- `src/components/TimelineSignal.tsx`
+- `src/components/VerdictBanner.tsx`
+- `src/components/Dashboard.tsx`
+
+**Verify:** `npm run build` passes; dashboard at localhost:3000 shows new Signal 9 card, JH quote blocks on Signals 3/4/8, Reopening Scenario sub-panel inside the verdict banner.
+
+---
+
 ## Execution Graph
 
 ```

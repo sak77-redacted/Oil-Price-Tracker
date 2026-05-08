@@ -107,6 +107,7 @@ export default function TimelineSignal({ data }: TimelineSignalProps) {
       statusLabel={statusLabel}
       lastUpdated={data.lastUpdated}
       source="BCA Research, IEA, industry reports"
+      physicalMarketNote={data.physicalMarketNote}
     >
       <div className="flex flex-col gap-5">
         {/* Supply gap hero stat */}
