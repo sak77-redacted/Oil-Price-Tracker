@@ -147,6 +147,11 @@ export default function VerdictBanner({ data, liveBrentPrice, wtiPrice }: Verdic
               <span className="text-sm text-[var(--text-secondary)]">
                 WTI Crude <span className="text-lg font-bold tabular-nums text-white">${wtiImpact.current.toFixed(2)}</span>
               </span>
+              {liveBrentPrice != null && (
+                <span className="text-sm text-[var(--text-secondary)]">
+                  Brent <span className="text-lg font-bold tabular-nums text-white">${liveBrentPrice.toFixed(2)}</span>
+                </span>
+              )}
               <span className={`text-sm font-bold ${config.labelColor}`}>
                 {config.icon} Projected: ${wtiImpact.low}&ndash;${wtiImpact.high}
               </span>
