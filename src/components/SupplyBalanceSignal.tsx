@@ -5,6 +5,7 @@ import type { PhysicalMarketNote } from "@/lib/types";
 
 interface SupplyBalanceSignalProps {
   physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
 }
 
 function formatNoteDate(iso: string): string {
@@ -49,8 +50,26 @@ function formatLongDate(d: Date): string {
   return `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
 }
 
-export default function SupplyBalanceSignal({ physicalMarketNote }: SupplyBalanceSignalProps = {}) {
+export default function SupplyBalanceSignal({ physicalMarketNote, physicalMarketNotes }: SupplyBalanceSignalProps = {}) {
   const [now, setNow] = useState<Date | null>(null);
+
+  // Build merged note list (newest first), deduped.
+  const notes: PhysicalMarketNote[] = (() => {
+    const arr: PhysicalMarketNote[] = [];
+    const seen = new Set<string>();
+    const push = (n?: PhysicalMarketNote) => {
+      if (!n) return;
+      const k = `${n.date}|${n.attribution}|${n.quote.slice(0, 40)}`;
+      if (seen.has(k)) return;
+      seen.add(k);
+      arr.push(n);
+    };
+    (physicalMarketNotes ?? []).forEach(push);
+    push(physicalMarketNote);
+    return arr.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
+  })();
 
   useEffect(() => {
     setNow(new Date());
@@ -210,24 +229,29 @@ export default function SupplyBalanceSignal({ physicalMarketNote }: SupplyBalanc
         </div>
       </div>
 
-      {/* Physical market note (e.g. JH/@CRUDEOIL231) */}
-      {physicalMarketNote && (
-        <div className="border-t border-[var(--card-border)] px-5 py-4">
-          <blockquote className="border-l-2 border-amber-500/40 pl-3 text-sm italic leading-relaxed text-[var(--text-primary)]">
-            <p>&ldquo;{physicalMarketNote.quote}&rdquo;</p>
-            <footer className="mt-2 not-italic text-[11px] text-[var(--text-secondary)]">
-              <span className="font-semibold text-amber-300/80">
-                {physicalMarketNote.attribution}
-              </span>
-              <span className="mx-1.5 text-[var(--card-border)]">·</span>
-              <span>{formatNoteDate(physicalMarketNote.date)}</span>
-              {physicalMarketNote.context && (
-                <div className="mt-1 text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
-                  {physicalMarketNote.context}
-                </div>
-              )}
-            </footer>
-          </blockquote>
+      {/* Physical market notes (newest first) */}
+      {notes.length > 0 && (
+        <div className="flex flex-col gap-3 border-t border-[var(--card-border)] px-5 py-4">
+          {notes.map((note, idx) => (
+            <blockquote
+              key={`${note.date}-${idx}`}
+              className="border-l-2 border-amber-500/40 pl-3 text-sm italic leading-relaxed text-[var(--text-primary)]"
+            >
+              <p>&ldquo;{note.quote}&rdquo;</p>
+              <footer className="mt-2 not-italic text-[11px] text-[var(--text-secondary)]">
+                <span className="font-semibold text-amber-300/80">
+                  {note.attribution}
+                </span>
+                <span className="mx-1.5 text-[var(--card-border)]">·</span>
+                <span>{formatNoteDate(note.date)}</span>
+                {note.context && (
+                  <div className="mt-1 text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
+                    {note.context}
+                  </div>
+                )}
+              </footer>
+            </blockquote>
+          ))}
         </div>
       )}
 

@@ -25,6 +25,7 @@ export interface InsuranceSignal {
   lastUpdated: string;
   source: string;
   physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
 }
 
 export interface ShipTransitSignal {
@@ -37,6 +38,7 @@ export interface ShipTransitSignal {
   lastUpdated: string;
   source: string;
   physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
 }
 
 export interface OilSpreadSignal {
@@ -47,7 +49,9 @@ export interface OilSpreadSignal {
   lastUpdated: string;
   brentSource: string;
   dubaiSource: string;
+  note?: string;
   physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
 }
 
 export interface TimelineEvent {
@@ -59,12 +63,30 @@ export interface TimelineEvent {
   supplyGapMbd: number;
 }
 
+/**
+ * Planned refinery turnaround event — operational supply pressure
+ * layered on top of the geopolitical timeline. Sourced from
+ * Trade with Conviction (June Goh + Neil Crosby, May 8, 2026).
+ */
+export interface RefineryTurnaround {
+  id: string;
+  refiner: string;            // e.g. "SK Osan (Korea)"
+  capacityNote: string;       // e.g. "260 kbpd CDU + 66 kbpd RFCC + 30 kbpd CCR"
+  startDate: string;          // ISO YYYY-MM-DD
+  durationDays: number;
+  notes: string;
+}
+
 export interface TimelineSignal {
   events: TimelineEvent[];
   currentGapMbd: number;
   projectedGapMbd: number;
   lastUpdated: string;
+  refineryTurnarounds?: RefineryTurnaround[];
+  refineryTurnaroundsNote?: string;
+  refineryTurnaroundsSource?: string;
   physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
 }
 
 export interface BufferMathSignal {
@@ -92,6 +114,37 @@ export interface BufferMathSignal {
   lastUpdated: string;
   source: string;
   physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
+}
+
+/**
+ * Signal 10 — US Product Stocks Runway.
+ *
+ * Tracks how close PAD1 (East Coast) diesel stocks are to a critical
+ * breakpoint at current draw rates. Per Neil Crosby on Trade with
+ * Conviction (May 8, 2026): "PAD1 stocks 2–3 draws away from very low,"
+ * with US commercial crude+product draws averaging 1.4 mb/d in April,
+ * compounded by Japan locking 12 mb US crude for August delivery.
+ */
+export interface USProductStocksSignal {
+  /** Estimated weeks until PAD1 hits the "very low" breakpoint. */
+  weeksToCritical: number;
+  /** Display date that approximates the breakpoint (e.g. "end of May 2026"). */
+  criticalDateLabel: string;
+  /** Avg US commercial crude+product draws (mb/d). */
+  commercialDrawsMbd: number;
+  /** PAD1 status text, e.g. "2–3 draws from critical". */
+  pad1Status: string;
+  /** Japan August fixture volume (Mb US crude). */
+  japanAugFixturesMb: number;
+  /** Pre-crisis Japan monthly fixture range, e.g. "1–5 mb/month". */
+  japanPreCrisisRange: string;
+  /** Methodology footnote text. */
+  methodology: string;
+  lastUpdated: string;
+  source: string;
+  physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
 }
 
 /**
@@ -126,6 +179,7 @@ export interface BuyerStressSignal {
   source: string;
   methodology: string;
   physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
 }
 
 export interface SignalData {
@@ -135,6 +189,7 @@ export interface SignalData {
   timeline: TimelineSignal;
   bufferMath: BufferMathSignal;
   buyerStress?: BuyerStressSignal;
+  usProductStocks?: USProductStocksSignal;
 }
 
 export interface StraitStatus {

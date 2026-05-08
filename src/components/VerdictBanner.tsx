@@ -222,9 +222,30 @@ export default function VerdictBanner({ data, liveBrentPrice, wtiPrice }: Verdic
               <span className="font-semibold text-white/75">Why capped:</span>{" "}
               new transit-permit process, insurance/compliance frictions in Iranian territorial waters, IRGC transit fees (US-sanctioned), and complex routing vs. standard IMO traffic separation.
             </div>
+            <div className="mt-2 rounded border border-white/10 bg-black/20 px-3 py-2 text-[10px] italic leading-relaxed text-white/65">
+              <span className="font-semibold not-italic text-white/80">
+                Why even 40–50% capacity is optimistic:
+              </span>{" "}
+              Asian refineries are designed for low-TAN low-metals Middle East crude. Canadian (TAN 1.86) and Latin American heavy alternatives can&apos;t be processed without blending against scarce low-TAN feedstock — every 550 kb TMX cargo needs ~6 mb of low-TAN blend. Available barrels ≠ runnable barrels.{" "}
+              <span className="not-italic text-white/50">
+                Source: June Goh, Trade with Conviction (May 8, 2026).
+              </span>
+            </div>
             <div className="mt-1 text-[10px] italic text-white/45">
               Source: {verdict.reopeningScenario.source}
             </div>
+            <blockquote className="mt-2 border-l-2 border-amber-500/40 pl-3 text-[11px] italic leading-relaxed text-white/75">
+              <p>
+                &ldquo;Even should a deal be reached tonight, the physical reality check is still ahead. We&apos;ve been saying we&apos;re missing 15 million barrels per day — it&apos;s just taking longer to filter through to the entire physical market.&rdquo;
+              </p>
+              <footer className="mt-1 not-italic text-[10px] text-white/55">
+                <span className="font-semibold text-amber-300/80">
+                  Neil Crosby
+                </span>
+                <span className="mx-1.5 text-white/25">·</span>
+                <span>May 8, 2026</span>
+              </footer>
+            </blockquote>
           </div>
         </div>
     </div>

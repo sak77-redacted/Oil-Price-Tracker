@@ -175,16 +175,24 @@
       { "date": "2026-05-05", "brent": 111, "dubai": 126 },
       { "date": "2026-05-06", "brent": 110, "dubai": 125 }
     ],
-    "lastUpdated": "2026-05-06T08:00:00Z",
+    "lastUpdated": "2026-05-08T08:00:00Z",
     "brentSource": "Yahoo Finance (BZ=F live), CNBC May 1 ($114.01 settle, $126.41 intraday peak Apr 30); HFI Research May 6 (Brent ~$110, WTI ~$102)",
     "dubaiSource": "Dubai Crude Oil Platts futures (Investing.com)",
     "note": "Brent retreated from the $126.41 four-year high (Apr 30) toward $110 by May 6 on profit-taking and June contract rollover. WTI ~$102. December '26 Brent trades sub-$80 — backwardation of ~$34 prices a rapid normalization that the 8.5 Mbpd net shortfall and 7.1 Mbpd April inventory draw (HFI/JPM) do not support. Dubai still trades at a structural premium with widening discount to Brent for non-permitted buyers.",
-    "physicalMarketNote": {
-      "date": "2026-05-07",
-      "quote": "SPR releases sending huge volumes of US crude into Europe are dragging down North Sea window diffs. Panic-bought cargoes from 1–2 months ago are arriving in May giving Asian buyers breathing room. China's SPR release adds to it. Buyers are sitting on the sidelines hoping the Strait opens.",
-      "attribution": "JH (@CRUDEOIL231)",
-      "context": "Why physical diffs are softening even as the gross shut-in widens."
-    }
+    "physicalMarketNotes": [
+      {
+        "date": "2026-05-08",
+        "quote": "Front ICE gasoil spread plus 35–36 — was plus 100 ten days ago. M2/M3 spread plus 50. It all looks very cheap. Saudi OSPs −$4 Asia, −$2 Europe, no change for US — market expected up to −$8 Asia, so Saudi barrels look expensive.",
+        "attribution": "Neil Crosby + June Goh, Trade with Conviction",
+        "context": "Why the structure is selling off even as the underlying gap widens."
+      },
+      {
+        "date": "2026-05-07",
+        "quote": "SPR releases sending huge volumes of US crude into Europe are dragging down North Sea window diffs. Panic-bought cargoes from 1–2 months ago are arriving in May giving Asian buyers breathing room. China's SPR release adds to it. Buyers are sitting on the sidelines hoping the Strait opens.",
+        "attribution": "JH (@CRUDEOIL231)",
+        "context": "Why physical diffs are softening even as the gross shut-in widens."
+      }
+    ]
   },
   "timeline": {
     "events": [
@@ -222,10 +230,10 @@
       },
       {
         "id": "spr-depletion",
-        "event": "US SPR 400M barrel release runs dry",
+        "event": "US SPR 400M barrel release authorization runs dry",
         "date": "2026-04-15",
         "status": "passed",
-        "impact": "Emergency buffer exhausted \u2014 no more cushion",
+        "impact": "First 400 Mb release authorization exhausted; new tranche commenced March 2026. EIA weekly (May 1): SPR = 392.7 Mb after ~17.5 Mb drawn from the new tranche.",
         "supplyGapMbd": 2.0
       },
       {
@@ -319,7 +327,35 @@
     ],
     "currentGapMbd": 8.5,
     "projectedGapMbd": 11.5,
-    "lastUpdated": "2026-05-06T08:00:00Z",
+    "lastUpdated": "2026-05-08T08:00:00Z",
+    "refineryTurnarounds": [
+      {
+        "id": "sk-osan-2026",
+        "refiner": "SK Osan (Korea)",
+        "capacityNote": "260 kbpd CDU + 66 kbpd RFCC + 30 kbpd CCR",
+        "startDate": "2026-05-20",
+        "durationDays": 40,
+        "notes": "Largest single SK shutdown — full CDU + RFCC + CCR train down."
+      },
+      {
+        "id": "reliance-sika-2026",
+        "refiner": "Reliance Sika (India)",
+        "capacityNote": "660 kbpd CDU + delayed coker",
+        "startDate": "2026-05-15",
+        "durationDays": 28,
+        "notes": "Follows Niara restart mid-May. Serves domestic market — diesel exports continue."
+      },
+      {
+        "id": "valero-us-2026",
+        "refiner": "Valero (US)",
+        "capacityNote": "Already shut",
+        "startDate": "2026-04-15",
+        "durationDays": 0,
+        "notes": "Indefinite shutdown — reduces US refining capacity vs. last year."
+      }
+    ],
+    "refineryTurnaroundsNote": "Turnarounds can't be postponed despite crack spreads — crew, equipment, and process safety scheduling locks them in. Adds operational supply pressure even before any crisis escalation.",
+    "refineryTurnaroundsSource": "June Goh on Trade with Conviction, May 8, 2026",
     "physicalMarketNote": {
       "date": "2026-05-07",
       "quote": "Iran has caught themselves a sucker. They will keep the situation stalled and domesticate Trump using carrot-and-stick — until he becomes a lame duck or makes pathetic concessions. The vain hope of negotiation is the leverage.",
@@ -337,7 +373,7 @@
     "projectedShortfall6moMb": 1631,
     "burnDownDays": 47,
     "futureBestCaseMissingMb": 760,
-    "sprBreakdown": { "us": 413, "japan": 263, "europe": 179 },
+    "sprBreakdown": { "us": 392.7, "japan": 263, "europe": 179 },
     "coverageRatio": 0.888,
     "breakthroughWindowWeeks": "2-4",
     "historicalParallel": {
@@ -361,13 +397,38 @@
       { "date": "2026-05-01", "daysCover": 24, "sprMb": 760 },
       { "date": "2026-05-06", "daysCover": 23, "sprMb": 750 }
     ],
-    "lastUpdated": "2026-05-06T08:00:00Z",
+    "lastUpdated": "2026-05-08T08:00:00Z",
     "source": "IEA OECD inventories, EIA Weekly Petroleum Status Report, Goldman Sachs analysis. JPMorgan (May 6): global observable inventories drew 7.1 Mbpd in April after 4.0 Mbpd in March — cumulative ~330 Mbbl over two months. The ~3 Mbpd IEA SPR cushion exhausts ~Jul 9, 2026 (120-day window from Mar 11).",
+    "physicalMarketNotes": [
+      {
+        "date": "2026-05-08",
+        "quote": "Japan locked record 12 million barrels of US crude for August delivery — pre-crisis was 1–5 mb/month. We're locking in extreme US exports while US commercial crude draws 1.4 mb/d. The Aframax to Northwest Europe needs to close — that's the Brent signal.",
+        "attribution": "Neil Crosby, Trade with Conviction",
+        "context": "Why the US export pace itself is now a buffer-side risk."
+      },
+      {
+        "date": "2026-05-07",
+        "quote": "Asia has gained breathing room as panic-bought cargoes from early in the conflict are arriving. They're betting on quick resolution. If the facts don't change, this won't last long — they will eventually have to move.",
+        "attribution": "JH (@CRUDEOIL231)",
+        "context": "Why the buffer is temporary — when March/April panic-buys are consumed, forced bidding returns."
+      }
+    ]
+  },
+  "usProductStocks": {
+    "weeksToCritical": 3,
+    "criticalDateLabel": "end of May 2026",
+    "commercialDrawsMbd": 1.4,
+    "pad1Status": "2–3 draws from critical",
+    "japanAugFixturesMb": 12,
+    "japanPreCrisisRange": "1–5 mb/month",
+    "methodology": "PAD1 stocks at 2–3 draws away from very low; Houston→Rotterdam and NYH→Rotterdam diesel arbs both wide open. US needs to defend product pricing or lose more barrels to Europe. Reference Signal 7 for the parallel SPR draw — the US is bleeding crude (SPR + commercial) and products simultaneously while Japan locks record August fixtures.",
+    "lastUpdated": "2026-05-08T08:00:00Z",
+    "source": "EIA weekly stocks; Trade with Conviction (Neil Crosby), May 8, 2026",
     "physicalMarketNote": {
-      "date": "2026-05-07",
-      "quote": "Asia has gained breathing room as panic-bought cargoes from early in the conflict are arriving. They're betting on quick resolution. If the facts don't change, this won't last long — they will eventually have to move.",
-      "attribution": "JH (@CRUDEOIL231)",
-      "context": "Why the buffer is temporary — when March/April panic-buys are consumed, forced bidding returns."
+      "date": "2026-05-08",
+      "quote": "PAD1 stocks are 2–3 draws away from very low. Houston to Rotterdam and New York to Rotterdam diesel arbs are both wide open. The US has to defend product pricing or lose more barrels to Europe.",
+      "attribution": "Neil Crosby, Trade with Conviction",
+      "context": "The clearest near-term breakpoint in the entire buffer stack."
     }
   },
   "straitStatus": {
@@ -411,7 +472,7 @@
     { "country": "Japan", "dependency": 65, "severity": "high", "description": "Heavily dependent on Middle East oil via Hormuz; supply disruption threatens industrial production." },
     { "country": "South Korea", "dependency": 70, "severity": "high", "description": "Import-dependent nation; oil import costs surging, affecting refiner margins and energy sector." },
     { "country": "Europe", "dependency": 35, "severity": "high", "description": "12-14% of LNG sourced from Qatar via Hormuz; alternative sourcing expensive and limited." },
-    { "country": "India", "dependency": 45, "severity": "moderate", "description": "Permitted limited vessel transits through negotiation; still facing supply constraints and higher costs." }
+    { "country": "India", "dependency": 45, "severity": "moderate", "description": "~45–50% of crude transited Hormuz pre-crisis (PPAC/Vortexa Q1 2026). ISPRL Phase-1 ~9.5 days at full / ~6 days at March 64% fill; +OMC commercial = ~74 days total national cover. Permitted limited vessel transits through negotiation." }
   ],
   "crisisTimeline": [
     { "date": "2026-05-06", "category": "military", "title": "Operation Freedom suspended after 1-ship-in-24h transit print + 24 Mbbl API draw", "description": "Trump abruptly suspended Operation Freedom — the latest attempt to reopen Strait traffic — after market close on May 6. Catalyst: JaguarAnalytics daily transit tracker showed just 1 ship crossing the Strait in the prior 24 hours, and API printed a ~24 Mbbl total-products inventory draw for the week. MacroEdge estimates 13.5–14 Mbpd remaining offline (vs HFI's 11.5) and expects strait normalization no earlier than late summer / fall, citing the IRGC's strategic interest in maintaining long-term Strait control as a revenue stream." },
@@ -482,8 +543,8 @@
         "released": true,
         "reserveDays": 0,
         "releasedMb": 400,
-        "totalMb": 700,
-        "notes": "SPR release exhausted as of ~Apr 15. 400M barrels depleted. No more emergency buffer. Remaining 300M barrels in reserve are not authorized for release."
+        "totalMb": 392.7,
+        "notes": "EIA weekly (May 1, 2026): SPR = 392.7 Mb. The original 400 Mb authorization was framed as 'exhausted' on Apr 15; a new release tranche commenced in March 2026 and ~17.5 Mb has drawn since. Remaining inventory above the ~150 Mb operational floor leaves ~173 days at the 1.4 Mbpd IEA-committed draw rate."
       },
       {
         "country": "Japan",

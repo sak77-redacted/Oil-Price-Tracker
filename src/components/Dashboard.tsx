@@ -39,6 +39,7 @@ import IranianAttacks from "./IranianAttacks";
 import SPRCliffSignal from "./SPRCliffSignal";
 import SupplyBalanceSignal from "./SupplyBalanceSignal";
 import BuyerStressSignal from "./BuyerStressSignal";
+import USProductStocksSignal from "./USProductStocksSignal";
 
 interface DashboardProps {
   data: ExtendedSignalData;
@@ -395,6 +396,16 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
           </div>
         )}
 
+        {/* Signal 10 — US Product Stocks Runway (Trade with Conviction, May 8) */}
+        {data.usProductStocks && (
+          <div className="mt-6">
+            <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+              Signal 10 — US Product Stocks Runway
+            </div>
+            <USProductStocksSignal data={data.usProductStocks} />
+          </div>
+        )}
+
         {/* Signal 7 — Net-Importer SPR Cliff */}
         <div className="mt-6">
           <SPRCliffSignal />
@@ -402,7 +413,10 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
 
         {/* Signal 8 — Supply Balance */}
         <div className="mt-6">
-          <SupplyBalanceSignal physicalMarketNote={data.bufferMath.physicalMarketNote} />
+          <SupplyBalanceSignal
+            physicalMarketNote={data.bufferMath.physicalMarketNote}
+            physicalMarketNotes={data.bufferMath.physicalMarketNotes}
+          />
         </div>
       </section>
 

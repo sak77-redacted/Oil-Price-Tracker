@@ -12,6 +12,7 @@ interface SignalCardProps {
   source: string;
   children: React.ReactNode;
   physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
 }
 
 function formatNoteDate(iso: string): string {
@@ -59,7 +60,27 @@ export default function SignalCard({
   source,
   children,
   physicalMarketNote,
+  physicalMarketNotes,
 }: SignalCardProps) {
+  // Build a unified, deduped list of notes — array first, then any singular note
+  // not already in the array. Sort newest first.
+  const notes: PhysicalMarketNote[] = (() => {
+    const arr: PhysicalMarketNote[] = [];
+    const seen = new Set<string>();
+    const push = (n?: PhysicalMarketNote) => {
+      if (!n) return;
+      const k = `${n.date}|${n.attribution}|${n.quote.slice(0, 40)}`;
+      if (seen.has(k)) return;
+      seen.add(k);
+      arr.push(n);
+    };
+    (physicalMarketNotes ?? []).forEach(push);
+    push(physicalMarketNote);
+    return arr.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
+  })();
+
   return (
     <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6 transition-colors hover:border-[var(--accent)]">
       <div className="flex flex-col gap-4">
@@ -81,25 +102,32 @@ export default function SignalCard({
         {/* Main content */}
         <div>{children}</div>
 
-        {/* Physical market note (e.g. JH/@CRUDEOIL231 quote) */}
-        {physicalMarketNote && (
-          <blockquote className="border-l-2 border-amber-500/40 pl-3 text-sm italic leading-relaxed text-[var(--text-primary)]">
-            <p>&ldquo;{physicalMarketNote.quote}&rdquo;</p>
-            <footer className="mt-2 not-italic text-[11px] text-[var(--text-secondary)]">
-              <span className="font-semibold text-amber-300/80">
-                {physicalMarketNote.attribution}
-              </span>
-              <span className="mx-1.5 text-[var(--card-border)]">·</span>
-              <span className="text-[var(--text-secondary)]">
-                {formatNoteDate(physicalMarketNote.date)}
-              </span>
-              {physicalMarketNote.context && (
-                <div className="mt-1 not-italic text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
-                  {physicalMarketNote.context}
-                </div>
-              )}
-            </footer>
-          </blockquote>
+        {/* Physical market notes (newest first) */}
+        {notes.length > 0 && (
+          <div className="flex flex-col gap-3">
+            {notes.map((note, idx) => (
+              <blockquote
+                key={`${note.date}-${idx}`}
+                className="border-l-2 border-amber-500/40 pl-3 text-sm italic leading-relaxed text-[var(--text-primary)]"
+              >
+                <p>&ldquo;{note.quote}&rdquo;</p>
+                <footer className="mt-2 not-italic text-[11px] text-[var(--text-secondary)]">
+                  <span className="font-semibold text-amber-300/80">
+                    {note.attribution}
+                  </span>
+                  <span className="mx-1.5 text-[var(--card-border)]">·</span>
+                  <span className="text-[var(--text-secondary)]">
+                    {formatNoteDate(note.date)}
+                  </span>
+                  {note.context && (
+                    <div className="mt-1 not-italic text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
+                      {note.context}
+                    </div>
+                  )}
+                </footer>
+              </blockquote>
+            ))}
+          </div>
         )}
 
         {/* Footer: source + last updated */}

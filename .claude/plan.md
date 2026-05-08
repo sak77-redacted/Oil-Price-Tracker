@@ -300,6 +300,70 @@
 
 ---
 
+## Task 13: Fact-check fixes (importer cover frames + India narrative)
+**Status:** [x]
+**Skill:** genius-dev-frontend
+**Duration:** ~45 min
+**Dependencies:** Task 12
+**Date:** 2026-05-08
+
+**Goal:** Resolve the audit verdicts on Signal 7's Importer Days of Cover panel — methodology was mixing IEA stockholding, Hormuz-share burn-down, and bespoke calculations across countries, producing misleading rankings. Fix India numbers, reconcile US SPR contradictions, and label every importer's frame.
+
+**Steps:**
+1. Switch canonical importer metric to IEA "days of net imports" where it applies (SK, Japan, EU). Label per-country alternates explicitly under the bar.
+2. Replace numbers per audit: India dual ~9d SPR / ~74d total; SK ~200d; Japan ~200d; US ~173d (to 150 Mb floor @ 1.4 Mbpd from EIA May 1 SPR = 392.7 Mb); China ~120d; EU well-buffered (108 Mt vs 90 Mt obligation).
+3. Add `frame`, `staticDays`, `secondaryDays`, `secondaryLabel`, `forceWellBuffered`, `wellBufferedLabel` optional fields to the local `Importer` interface in `SPRCliffSignal.tsx` so dual display + IEA reference numbers can render without elapsed-days subtraction.
+4. Replace the "binding constraint" paragraph with the verbatim India narrative (45–50% Hormuz share, ISPRL Phase-1 5.33 MMT / ~36.9 Mbbl, 9.5 days full / 6 days at 64% fill, +OMC 64d → 74d total, IEA 90-day standard not binding, Phase 2 ~2030).
+5. Reconcile US SPR across signals.json: `bufferMath.sprBreakdown.us` 413 → 392.7; `sprStatus.countries.us.totalMb` 700 → 392.7 with EIA-anchored note; `timeline.events[spr-depletion].event` reframed as "release authorization runs dry" with new tranche context.
+6. Update India entry in `regionalImpact[]` with the dual reserve framing.
+7. Rewrite the methodology footer of Signal 7 to lead with IEA canonical metric and cite per-country sources (IEA, EIA weekly, Eurostat / EU Directive 2009/119, PPAC/Vortexa, ISPRL, The Print).
+8. `npm run build` passes.
+
+**Files:**
+- `src/components/SPRCliffSignal.tsx`
+- `src/data/signals.json`
+
+**Verify:** `npm run build` passes. On localhost:3000, Signal 7 panel shows India "9d / 74d total" with "SPR-only / +OMC commercial" frame label, SK & Japan ~200d "IEA · days of net imports", US ~173d "days to 150 Mb floor @ 1.4 Mbpd", China ~120d, EU "108 Mt vs 90 Mt IEA obligation" green-bar treatment. New India narrative paragraph appears beneath the bars. Source attribution lists IEA / EIA / Eurostat / PPAC / ISPRL.
+
+---
+
+## Task 14: Podcast intel integration (Signal 10 + turnarounds + quality note + quotes)
+**Status:** [x]
+**Skill:** genius-dev-frontend
+**Duration:** ~60 min
+**Dependencies:** Task 13
+**Date:** 2026-05-08
+
+**Goal:** Layer the May 8, 2026 Trade with Conviction podcast (Neil Crosby + June Goh + Jorge Molina) onto the dashboard — add a new Signal 10 (US Product Stocks Runway), a Refinery Turnaround Calendar sub-panel on Signal 4, a TAN/quality bottleneck explainer on the Reopening Scenario sub-panel, and dated quote blocks on Signals 3 / 8 / Verdict Banner.
+
+**Steps:**
+1. Add `USProductStocksSignal` and `RefineryTurnaround` types to `src/lib/types.ts`. Add `physicalMarketNotes?: PhysicalMarketNote[]` to all signal types (keep singular `physicalMarketNote?` for backward compat).
+2. Build `src/components/USProductStocksSignal.tsx` — full SignalCard with weeks-to-critical hero, three sub-stat chips (commercial draws, PAD1 status, Japan Aug fixtures), status-driven insight, methodology footnote.
+3. Add `usProductStocks` block to `src/data/signals.json` (3 weeks to PAD1 critical, 1.4 mb/d commercial draws, "2–3 draws from critical", 12 mb Japan Aug fixtures, etc.).
+4. Add `timeline.refineryTurnarounds[]` array to `signals.json` (SK Osan, Reliance Sika, Valero) with capacity, start date, duration, notes — plus a `refineryTurnaroundsNote` and `refineryTurnaroundsSource`.
+5. Render the Planned Refinery Turnarounds sub-panel inside `CriticalDeadlines.tsx` as a horizontal grid table under the chip row.
+6. Update `SignalCard.tsx` and `SupplyBalanceSignal.tsx` to render `physicalMarketNotes` array (newest first) with backward compat for singular `physicalMarketNote`.
+7. Append Crosby quote (gasoil spread + OSP) to `oilSpread.physicalMarketNotes`. Append Crosby quote (Japan 12 mb fixture) to `bufferMath.physicalMarketNotes`.
+8. In `VerdictBanner.tsx`, fold a TAN/quality bottleneck italic note + Neil Crosby quote into the Reopening Scenario sub-panel.
+9. Insert Signal 10 in `Dashboard.tsx` immediately after Signal 9.
+10. Append decision `d-012` to `.genius/memory/decisions.json` documenting the Trade with Conviction integration.
+11. `npm run build` passes.
+
+**Files:**
+- `src/lib/types.ts`
+- `src/data/signals.json`
+- `src/components/USProductStocksSignal.tsx` (new)
+- `src/components/SignalCard.tsx`
+- `src/components/SupplyBalanceSignal.tsx`
+- `src/components/CriticalDeadlines.tsx`
+- `src/components/VerdictBanner.tsx`
+- `src/components/Dashboard.tsx`
+- `.genius/memory/decisions.json`
+
+**Verify:** `npm run build` passes. Signal 10 card renders below Signal 9 with "~3 weeks" hero metric and three sub-stats. Signal 4 shows the Planned Refinery Turnarounds sub-panel. Verdict Banner Reopening Scenario block has the TAN/metals italic note and Crosby quote. Signal 3 and Signal 8 each show the new May 8 Crosby quote stacked above the existing JH quote.
+
+---
+
 ## Execution Graph
 
 ```
