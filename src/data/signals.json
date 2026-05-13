@@ -58,7 +58,7 @@
     "returnLegs": 0,
     "baseline": 100,
     "threshold": 35,
-    "darkFleetNote": "Many vessels transit with AIS disabled. Low AIS count confirms elevated risk \u2014 when operators feel safe enough to keep transponders on, that\u2019s the normalcy signal.",
+    "darkFleetNote": "Many vessels transit with AIS disabled. Low AIS count confirms elevated risk — when operators feel safe enough to keep transponders on, that’s the normalcy signal.",
     "history": [
       { "date": "2026-02-26", "count": 132, "returnCount": 44 },
       { "date": "2026-02-27", "count": 128, "returnCount": 42 },
@@ -135,8 +135,8 @@
     "source": "Windward Maritime Intelligence, Bloomberg Hormuz Tracker, Al Jazeera/Kpler, Lloyd's List, JaguarAnalytics on X (May 6: 1 ship in 24h). Kpler (Apr 29): cumulative transits down ~92% vs pre-conflict baseline; S&P Global counts only ~21 tankers transited Feb 28–late April vs 100+/day pre-conflict. MacroEdge (May 6 evening): 13.5–14 Mbpd estimated remaining offline."
   },
   "oilSpread": {
-    "brent": 110,
-    "dubai": 125,
+    "brent": 111,
+    "dubai": 126,
     "spread": 15,
     "history": [
       { "date": "2026-02-26", "brent": 76, "dubai": 77 },
@@ -173,16 +173,17 @@
       { "date": "2026-05-02", "brent": 113, "dubai": 128 },
       { "date": "2026-05-04", "brent": 112, "dubai": 127 },
       { "date": "2026-05-05", "brent": 111, "dubai": 126 },
-      { "date": "2026-05-06", "brent": 110, "dubai": 125 }
+      { "date": "2026-05-06", "brent": 110, "dubai": 125 },
+      { "date": "2026-05-13", "brent": 111, "dubai": 126 }
     ],
-    "lastUpdated": "2026-05-08T08:00:00Z",
-    "brentSource": "Yahoo Finance (BZ=F live), CNBC May 1 ($114.01 settle, $126.41 intraday peak Apr 30); HFI Research May 6 (Brent ~$110, WTI ~$102)",
+    "lastUpdated": "2026-05-13T09:00:00Z",
+    "brentSource": "Yahoo Finance (BZ=F live), CNBC May 1 ($114.01 settle, $126.41 intraday peak Apr 30); HFI Research May 6 (Brent ~$110, WTI ~$102); Fortune May 13 (Brent $110.87 @ 9am ET, WTI ~$102)",
     "dubaiSource": "Dubai Crude Oil Platts futures (Investing.com)",
     "note": "Brent retreated from the $126.41 four-year high (Apr 30) toward $110 by May 6 on profit-taking and June contract rollover. WTI ~$102. December '26 Brent trades sub-$80 — backwardation of ~$34 prices a rapid normalization that the 8.5 Mbpd net shortfall and 7.1 Mbpd April inventory draw (HFI/JPM) do not support. Dubai still trades at a structural premium with widening discount to Brent for non-permitted buyers.",
     "physicalMarketNotes": [
       {
         "date": "2026-05-08",
-        "quote": "Front ICE gasoil spread plus 35–36 — was plus 100 ten days ago. M2/M3 spread plus 50. It all looks very cheap. Saudi OSPs −$4 Asia, −$2 Europe, no change for US — market expected up to −$8 Asia, so Saudi barrels look expensive.",
+        "quote": "Front ICE gasoil spread plus 35–36 — was plus 100 ten days ago. M2/M3 spread plus 50. It all looks very cheap. Saudi OSPs −4 Asia, −2 Europe, no change for US — market expected up to −8 Asia, so Saudi barrels look expensive.",
         "attribution": "Neil Crosby + June Goh, Trade with Conviction",
         "context": "Why the structure is selling off even as the underlying gap widens."
       },
@@ -206,7 +207,7 @@
       },
       {
         "id": "trump-deadline",
-        "event": "Trump deadline for Iran \u2014 led to ceasefire Apr 8, then US blockade Apr 12",
+        "event": "Trump deadline for Iran — led to ceasefire Apr 8, then US blockade Apr 12",
         "date": "2026-04-06",
         "status": "passed",
         "impact": "Ceasefire collapsed; US naval blockade now in effect",
@@ -214,7 +215,7 @@
       },
       {
         "id": "ceasefire",
-        "event": "Ceasefire agreement \u2014 brief strait opening, then collapse",
+        "event": "Ceasefire agreement — brief strait opening, then collapse",
         "date": "2026-04-08",
         "status": "passed",
         "impact": "Ceasefire lasted ~10 days. Iran briefly reopened strait Apr 17, reclosed Apr 18 after US refused to lift blockade",
@@ -434,8 +435,8 @@
   "straitStatus": {
     "status": "closed",
     "since": "2026-04-18",
-    "description": "Day 68 of crisis. Strait remains effectively closed. Trump (May 6 evening) abruptly suspended Operation Freedom \u2014 the latest attempt to reopen Strait traffic \u2014 after the daily JaguarAnalytics tracker showed only 1 ship crossing the Strait in 24 hours and the API reported a ~24 Mbbl total-products draw for the week. Earlier May 5 Trump said the blockade could last 'months'. Brent ~$110, WTI ~$102; Dec '26 Brent sub-$80 (~$34 backwardation pricing rapid normalization the supply math contradicts). HFI/JPM peg net shortfall at 8.5 Mbpd (\u221211.5 gross shut-in + 3.0 IEA SPR); MacroEdge's higher estimate puts 13.5\u201314 Mbpd offline. April inventory draws averaged 7.1 Mbpd; forced demand destruction ~4.3 Mbpd. MacroEdge expects strait normalization no earlier than late summer / fall. ~2,000 ships still stranded; US estimates ~6 months full mine clearance once reopened.",
-    "lastUpdated": "2026-05-06T22:00:00Z"
+    "description": "Day 75 of crisis. Strait remains effectively closed. Trump (May 6 evening) abruptly suspended Operation Freedom — the latest attempt to reopen Strait traffic — after the daily JaguarAnalytics tracker showed only 1 ship crossing the Strait in 24 hours and the API reported a ~24 Mbbl total-products draw for the week. Earlier May 5 Trump said the blockade could last 'months'. Brent ~$111, WTI ~$102; Dec '26 Brent sub-$80 (~$33 backwardation pricing rapid normalization the supply math contradicts). HFI/JPM peg net shortfall at 8.5 Mbpd (−11.5 gross shut-in + 3.0 IEA SPR); MacroEdge's higher estimate puts 13.5–14 Mbpd offline. April inventory draws averaged 7.1 Mbpd; forced demand destruction ~4.3 Mbpd. MacroEdge expects strait normalization no earlier than late summer / fall. ~2,000 ships still stranded; US estimates ~6 months full mine clearance once reopened.",
+    "lastUpdated": "2026-05-13T09:00:00Z"
   },
   "globalImpact": {
     "worldOilAtRiskPct": 20,
@@ -487,11 +488,11 @@
     { "date": "2026-04-22", "category": "military", "title": "Iran attacks Greek Epaminondas off Oman; seizes MSC Francesca", "description": "Iranian gunboat fired RPGs at Greek-owned Epaminondas despite prior transit clearance, causing significant bridge damage. IRGC also seized Liberia-flagged container ship MSC Francesca. US captured VLCC Majestic X. CENTCOM reports 29 vessels intercepted total. Trump claims blockade costs Iran $500M/day." },
     { "date": "2026-04-21", "category": "diplomatic", "title": "Trump extends ceasefire pending negotiations — Pakistan brokers", "description": "Trump declared ceasefire extension at Pakistan's request to allow Iranian proposal. Naval blockade maintained. US officials gave Iran 3-5 days to engage in talks before resuming strikes. CENTCOM intercepts at 27 vessels. US captures supertanker Tifani in Indo-Pacific." },
     { "date": "2026-04-20", "category": "military", "title": "US seizes Iranian-flagged vessel; Iran demands release", "description": "US Navy fired on and seized an Iranian cargo ship defying the blockade. Iran demands immediate release as ceasefire deadline looms. Tensions at maximum — traffic through strait at near-standstill (3 vessels/day)." },
-    { "date": "2026-04-18", "category": "military", "title": "Iran recloses Strait \u2014 fires on ships, 3 vessels attacked", "description": "Iran reversed its reopening after US refused to lift naval blockade. Iranian forces fired on Indian-flagged ships and CMA CGM Everglade (rocket damage). 35 outbound vessels reversed course. 6 stranded cruise ships evacuated through brief window." },
-    { "date": "2026-04-17", "category": "diplomatic", "title": "Iran announces strait open during Lebanon truce \u2014 short-lived", "description": "Iran declared commercial passage 'completely open' during Lebanon ceasefire. Trump clarified US blockade on Iranian ports remains. Iran cancelled reopening within 24 hours." },
+    { "date": "2026-04-18", "category": "military", "title": "Iran recloses Strait — fires on ships, 3 vessels attacked", "description": "Iran reversed its reopening after US refused to lift naval blockade. Iranian forces fired on Indian-flagged ships and CMA CGM Everglade (rocket damage). 35 outbound vessels reversed course. 6 stranded cruise ships evacuated through brief window." },
+    { "date": "2026-04-17", "category": "diplomatic", "title": "Iran announces strait open during Lebanon truce — short-lived", "description": "Iran declared commercial passage 'completely open' during Lebanon ceasefire. Trump clarified US blockade on Iranian ports remains. Iran cancelled reopening within 24 hours." },
     { "date": "2026-04-12", "category": "military", "title": "US declares naval blockade of Iranian ports", "description": "After Islamabad talks failed, Trump declared naval blockade preventing ships from entering/exiting Iranian ports. Freedom of navigation maintained for non-Iranian port traffic. Transit dropped from 17/day to 6/day." },
     { "date": "2026-04-11", "category": "military", "title": "US Navy destroyers enter strait for mine clearance", "description": "First US Navy entry into the strait since hostilities began. Mine clearance operations commence. Transit surges briefly to 17 vessels as ships attempt to exploit ceasefire window." },
-    { "date": "2026-04-08", "category": "diplomatic", "title": "Ceasefire agreement reached \u2014 Iran charges $1M+ tolls", "description": "Temporary ceasefire agreed. Iran began controlling traffic and charging tolls exceeding $1M per ship. 45 ships transited in first 4 days. Gulf states intercepted missiles hours into ceasefire." },
+    { "date": "2026-04-08", "category": "diplomatic", "title": "Ceasefire agreement reached — Iran charges $1M+ tolls", "description": "Temporary ceasefire agreed. Iran began controlling traffic and charging tolls exceeding $1M per ship. 45 ships transited in first 4 days. Gulf states intercepted missiles hours into ceasefire." },
     { "date": "2026-04-09", "category": "military", "title": "Iranian attacks on Gulf states surge to monthly high", "description": "Bloomberg Intelligence data shows Iranian attacks spiking. UAE intercepted 537 ballistic missiles, 2,256 drones, 26 cruise missiles cumulatively. Iran's 'Mosaic Strategy' continues." },
     { "date": "2026-04-01", "category": "diplomatic", "title": "Status quo: controlled transit, ongoing negotiations", "description": "Strait under selective Iranian control with ~6% of normal traffic. Trump extended deadline to April 6. Estimated 2000 ships stranded. War risk insurance still 6-7x normal." },
     { "date": "2026-03-31", "category": "diplomatic", "title": "China-Pakistan present 5-point ceasefire initiative", "description": "China and Pakistan jointly present peace proposal including immediate ceasefire, halt to infrastructure attacks, safe passage through Strait, and framework for comprehensive peace." },
@@ -583,7 +584,7 @@
         "notes": "Limited SPR capacity. 45% Hormuz dependency. Permitted limited transits via negotiation."
       }
     ],
-    "chinaSignal": "China holds ~950M-1.3bn barrels in strategic reserves (largest in the world) and has still NOT released any as of May 1. Japan and South Korea (IEA members) have already released. China's continued forbearance \u2014 even with Brent at $126 intraday Apr 30 \u2014 is the single most important crisis-tier signal we track. When China taps its SPR, it signals peak crisis.",
+    "chinaSignal": "China holds ~950M-1.3bn barrels in strategic reserves (largest in the world) and has still NOT released any as of May 1. Japan and South Korea (IEA members) have already released. China's continued forbearance — even with Brent at $126 intraday Apr 30 — is the single most important crisis-tier signal we track. When China taps its SPR, it signals peak crisis.",
     "lastUpdated": "2026-05-06T08:00:00Z"
   },
   "demandDestruction": {
@@ -662,7 +663,7 @@
         "baselineRate": 50000,
         "peakRate": 424000,
         "unit": "$/day TCE",
-        "route": "AG-East (Persian Gulf \u2192 China)"
+        "route": "AG-East (Persian Gulf → China)"
       },
       {
         "class": "Suezmax",
@@ -702,11 +703,11 @@
       { "month": "Jan 26", "bahrain": 6, "saudi": 58, "kuwait": 10, "uae": 10, "total": 84 },
       { "month": "Feb 26", "bahrain": 4, "saudi": 48, "kuwait": 10, "uae": 9, "total": 71 },
       { "month": "Mar 26", "bahrain": 5, "saudi": 47, "kuwait": 10, "uae": 9, "total": 71 },
-      { "month": "Apr 26", "bahrain": 24, "saudi": 142, "kuwait": 28, "uae": 38, "total": 232, "partial": false, "note": "Final April count \u2014 highest monthly total of crisis. UAE single-day record on Apr 22 (Epaminondas attack day). Cumulative UAE intercepts: 537 ballistic missiles, 2,256 drones, 26 cruise missiles" },
-      { "month": "May 26", "bahrain": 2, "saudi": 18, "kuwait": 3, "uae": 5, "total": 28, "partial": true, "note": "Through May 6 \u2014 ceasefire-extension calm continues to reduce headline tempo but decentralized Mosaic Strategy strikes persist; UAE single intercept on May 4" }
+      { "month": "Apr 26", "bahrain": 24, "saudi": 142, "kuwait": 28, "uae": 38, "total": 232, "partial": false, "note": "Final April count — highest monthly total of crisis. UAE single-day record on Apr 22 (Epaminondas attack day). Cumulative UAE intercepts: 537 ballistic missiles, 2,256 drones, 26 cruise missiles" },
+      { "month": "May 26", "bahrain": 2, "saudi": 18, "kuwait": 3, "uae": 5, "total": 28, "partial": true, "note": "Through May 6 — ceasefire-extension calm continues to reduce headline tempo but decentralized Mosaic Strategy strikes persist; UAE single intercept on May 4" }
     ],
-    "context": "Iranian attacks on Gulf states peaked in April 2026 at 232 incidents \u2014 highest monthly total of the crisis. Strikes spiked again Apr 22 after Iran attacked the Greek Epaminondas and seized MSC Francesca. Trump's ceasefire extension Apr 21 reduced overall tempo into May but did not stop decentralized Mosaic Strategy attacks; current May run-rate (~5 attacks/day) still well above pre-crisis baseline.",
-    "mosaicStrategyNote": "Iran's 'Mosaic Strategy' \u2014 sector commanders have autonomy to launch missiles and drones without central approval. The uptick is being dismissed as decentralized action, not coordinated escalation.",
+    "context": "Iranian attacks on Gulf states peaked in April 2026 at 232 incidents — highest monthly total of the crisis. Strikes spiked again Apr 22 after Iran attacked the Greek Epaminondas and seized MSC Francesca. Trump's ceasefire extension Apr 21 reduced overall tempo into May but did not stop decentralized Mosaic Strategy attacks; current May run-rate (~5 attacks/day) still well above pre-crisis baseline.",
+    "mosaicStrategyNote": "Iran's 'Mosaic Strategy' — sector commanders have autonomy to launch missiles and drones without central approval. The uptick is being dismissed as decentralized action, not coordinated escalation.",
     "headlines": [
       "Brent intraday $126 — highest in four years (Apr 30)",
       "Iran offers to reopen Strait if US lifts blockade — nuclear talks set aside (Apr 28)",
@@ -817,7 +818,7 @@
     },
     "sellSignalActive": false,
     "toppingSignals": false,
-    "context": "Crack spreads remain near crisis highs into May 6. Gasoline crack at ~$47.5/bbl (peak $48.5 Apr 30, vs $34.2 March cycle peak), heating oil at ~$66.5 (peak $67.5, vs $58.3 March peak). Margins held even as Brent retreated from $126 to $110 \u2014 refined product scarcity, not crude, is the binding constraint. Still NOT a topping signal \u2014 margins must reverse before the bearish thesis activates. HFI thesis (May 6): until refining margins peak and roll over, the inventory-vs-prompt-price inverse correlation argues current oil is mispriced low.",
+    "context": "Crack spreads remain near crisis highs into May 6. Gasoline crack at ~$47.5/bbl (peak $48.5 Apr 30, vs $34.2 March cycle peak), heating oil at ~$66.5 (peak $67.5, vs $58.3 March peak). Margins held even as Brent retreated from $126 to $110 — refined product scarcity, not crude, is the binding constraint. Still NOT a topping signal — margins must reverse before the bearish thesis activates. HFI thesis (May 6): until refining margins peak and roll over, the inventory-vs-prompt-price inverse correlation argues current oil is mispriced low.",
     "hfiThesis": "If you want to know when it's time to get bearish oil, just watch refining margins. In COVID, floating storage, tanker rates, contango, and refining margins all peaked first. Then margins went negative. When they rebounded, crude rallied. This time around, a similar playbook will happen but in reverse — refining margins will be the key indicator for when the global economy cannot handle higher prices any longer.",
     "sellTriggers": [
       "Crack spreads sustain a move back toward pre-crisis baseline (~$15 gas, ~$25 HO)",
@@ -831,14 +832,14 @@
   "buyerStress": {
     "wafProgrammeStatus": "stalled",
     "wafProgrammeDescription": "WAF May programme bidding from Asian buyers is unusually quiet — Indian and Chinese refiners largely absent from cargoes that would normally clear in the first half of the month. JH reads this as 'sitting on the sidelines hoping the Strait opens', not genuine demand softness.",
-    "crackSpread321": 54,
+    "crackSpread321": 29,
     "crackSpreadThreshold": 40,
     "buyerBehavior": "wait-and-see",
-    "buyerBehaviorDescription": "Asian refiners running max throughput on March/April panic-bought cargoes. WTI 3-2-1 cracks ~$54/bbl keep margins lucrative even at $110 crude — buyers can wait, and they are.",
+    "buyerBehaviorDescription": "Asian refiners running max throughput on March/April panic-bought cargoes. WTI 3-2-1 crack compressed to ~$29/bbl (from $54 on May 8) as RBOB has not rallied commensurately with crude — crack now below the $40 threshold, thinning the wait-and-see margin cushion.",
     "crisisStartDate": "2026-02-28",
     "demandDestructionVisible": false,
-    "lastUpdated": "2026-05-08T08:00:00Z",
-    "source": "JH/@CRUDEOIL231 thesis (May 6–7, 2026), refinery 3-2-1 crack via CME (RBOB+HO vs WTI), WAF programme commentary from physical traders.",
+    "lastUpdated": "2026-05-13T09:00:00Z",
+    "source": "JH/@CRUDEOIL231 thesis (May 6–7, 2026), refinery 3-2-1 crack via CME NYMEX (RBOB $2.71/gal, HO $3.95/gal, WTI $102.21 → crack $29/bbl computed May 13), WAF programme commentary from physical traders.",
     "methodology": "When this lull breaks, WAF May programme bidding will spike first. Watch this for the inflection.",
     "physicalMarketNote": {
       "date": "2026-05-07",
