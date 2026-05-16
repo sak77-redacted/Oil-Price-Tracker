@@ -183,6 +183,12 @@
     "note": "Brent fell from $111 (May 13) to ~$106 on May 14 Trump-Xi summit: both leaders agreed Strait 'must remain open', China pledged to work behind the scenes with Iran. Dubai inverted to ~$5 discount vs Brent (first time since crisis onset) as Gulf physical premiums compressed — traders pricing some resolution premium. WTI ~$102. Saudi June OSP for Asia cut to +$15.50/bbl above Oman/Dubai (from record +$19.50 May). Dec '26 Brent still sub-$80 — backwardation of ~$26 even on the post-summit print. Diplomatic progress is being priced faster than physical resolution can follow.",
     "physicalMarketNotes": [
       {
+        "date": "2026-05-16",
+        "quote": "Markets are fixated on Dated Brent differentials, ~$5/bbl last night which is down sharply, but that is a microcosm of the oil market. Dated Brent is Sullum Voe. One North Sea terminal. Not the global oil market.",
+        "attribution": "Jeff Currie, Carlyle",
+        "context": "Caveat on Dated Brent — what we track is BZ=F futures, not Dated. The Brent-Dubai spread is a global physical differential."
+      },
+      {
         "date": "2026-05-08",
         "quote": "Front ICE gasoil spread plus 35–36 — was plus 100 ten days ago. M2/M3 spread plus 50. It all looks very cheap. Saudi OSPs −4 Asia, −2 Europe, no change for US — market expected up to −8 Asia, so Saudi barrels look expensive.",
         "attribution": "Neil Crosby + June Goh, Trade with Conviction",
@@ -404,6 +410,12 @@
     "source": "IEA OECD inventories, EIA Weekly Petroleum Status Report, Goldman Sachs analysis. JPMorgan (May 6): global observable inventories drew 7.1 Mbpd in April after 4.0 Mbpd in March — cumulative ~330 Mbbl over two months. The ~3 Mbpd IEA SPR cushion exhausts ~Jul 9, 2026 (120-day window from Mar 11).",
     "physicalMarketNotes": [
       {
+        "date": "2026-05-16",
+        "quote": "The price spike is the symptom, capex starvation is the illness. Refinery investment is at a 10-year low. Upstream oil and gas investment is down 35% from its 2015 peak. The top 20 miners are spending 40% less than at the 2012 cycle high. Metals and oil were already rallying before the Strait of Hormuz closed.",
+        "attribution": "Jeff Currie, Carlyle",
+        "context": "Why the buffer-math problem doesn't end with the strait reopening — structural under-investment outlasts the crisis."
+      },
+      {
         "date": "2026-05-08",
         "quote": "Japan locked record 12 million barrels of US crude for August delivery — pre-crisis was 1–5 mb/month. We're locking in extreme US exports while US commercial crude draws 1.4 mb/d. The Aframax to Northwest Europe needs to close — that's the Brent signal.",
         "attribution": "Neil Crosby, Trade with Conviction",
@@ -535,7 +547,7 @@
         "status": "not-started"
       }
     ],
-    "keyInsight": "Asia passed the point of no return by the second week of the closure. Even if the strait reopens tomorrow, 4-5 months before any sense of normalcy returns. Add 6 months for full mine clearance per US Navy estimate (Apr 23) — that pushes baseline normalization into Q1 2027. — Jun Goh, Sparta Commodities",
+    "keyInsight": "Asia passed the point of no return by the second week of the closure. Even if the strait reopens tomorrow, 4-5 months before any sense of normalcy returns. Add 6 months for full mine clearance per US Navy estimate (Apr 23) — that pushes baseline normalization into Q1 2027. — Jun Goh, Sparta Commodities — Jeff Currie (Carlyle, May 16) reframes this: the security premium is structural, not transitional. Even if Hormuz reopens, capex starvation, deglobalization, and the Mag 7's $820bn 2026 capex bid for molecules outlast the diplomatic timeline. HALO — Hard Assets, Local Operations — is the post-Hormuz regime.",
     "source": "Sparta Commodities / MB Commodity Corner / Palmer Energy / US Navy mine-clearance estimate (Apr 23)",
     "lastUpdated": "2026-05-06T08:00:00Z"
   },
@@ -851,6 +863,113 @@
       "quote": "WAF programme is suspiciously quiet for Asian buyers. They have breathing room from panic-bought cargoes arriving in May, US + China SPR releases flooding alternatives, and 3-2-1 cracks at $54 keeping refineries running max. But this is hope-driven — when the facts don't change, they will be forced back.",
       "attribution": "JH (@CRUDEOIL231)",
       "context": "The leading indicator: WAF May programme activity is the canary."
+    }
+  },
+  "curveShape": {
+    "spotBrent": 107,
+    "brent12m": 94,
+    "brent24m": 82,
+    "brent36m": 75,
+    "percentBackwardation": 29.9,
+    "absoluteBackwardation": 32,
+    "threshold": 25,
+    "atHigh": {
+      "date": "2026-04-30",
+      "percentBackwardation": 33.5,
+      "absoluteBackwardation": 42,
+      "spotBrent": 126,
+      "brent36m": 84,
+      "note": "Brent spot $126.41 four-year high; back end held ~$84"
+    },
+    "historicalParallels": [
+      {
+        "label": "Russia-Ukraine peak",
+        "date": "2022-03",
+        "spotBrent": 129,
+        "brent36m": 86,
+        "percentBackwardation": 33.3,
+        "insight": "Comparable % backwardation but absolute spot higher because back end then sat $10-12/bbl above today"
+      },
+      {
+        "label": "Pre-Hormuz baseline",
+        "date": "2026-02-26",
+        "spotBrent": 78,
+        "brent36m": 73,
+        "percentBackwardation": 6.4,
+        "insight": "Normal near-flat structure — no supply shock priced"
+      }
+    ],
+    "impliedNormalizationYears": 3,
+    "history": [
+      { "date": "2026-02-26", "spotBrent": 78, "brent36m": 73, "percentBackwardation": 6.4 },
+      { "date": "2026-03-01", "spotBrent": 88, "brent36m": 74, "percentBackwardation": 15.9 },
+      { "date": "2026-03-15", "spotBrent": 105, "brent36m": 78, "percentBackwardation": 25.7 },
+      { "date": "2026-04-01", "spotBrent": 104, "brent36m": 78, "percentBackwardation": 25.0 },
+      { "date": "2026-04-15", "spotBrent": 100, "brent36m": 79, "percentBackwardation": 21.0 },
+      { "date": "2026-04-22", "spotBrent": 102, "brent36m": 80, "percentBackwardation": 21.6 },
+      { "date": "2026-04-30", "spotBrent": 126, "brent36m": 84, "percentBackwardation": 33.3 },
+      { "date": "2026-05-01", "spotBrent": 114, "brent36m": 80, "percentBackwardation": 29.8 },
+      { "date": "2026-05-06", "spotBrent": 110, "brent36m": 76, "percentBackwardation": 30.9 },
+      { "date": "2026-05-16", "spotBrent": 107, "brent36m": 75, "percentBackwardation": 29.9 }
+    ],
+    "lastUpdated": "2026-05-16T08:00:00Z",
+    "source": "ICE Brent futures curve (BZ=F prompt + long-dated approximations from physical broker quotes); Jeff Currie commentary, Carlyle (May 16 2026)",
+    "methodology": "% backwardation = (spot − 36mo) / spot × 100. Extreme backwardation = supply shock priced into spot, not into long-run expectations — implying market expects rapid normalization. When the back end stays anchored ($75 vs Russia-Ukraine $86), spot can't break out even when the physical disruption deepens.",
+    "physicalMarketNote": {
+      "date": "2026-05-16",
+      "quote": "The largest oil supply shock in history is reasonably priced into the curve, and it likely has much more to run. Percent backwardation hit an all-time high in April and remains near record today. Spot has not exceeded the Russia-Ukraine peak for one reason: the back end of the curve sits $10–$12/bbl below where it was then.",
+      "attribution": "Jeff Currie, Carlyle",
+      "context": "Why spot looks 'cheap' even at $107 — the back end is anchoring the entire curve."
+    }
+  },
+  "equityDisbelief": {
+    "energyPctOfSP500": 4.0,
+    "energyPctOfSP500_preHormuz": 4.3,
+    "energyPctOfSP500_GFCLow": 3.0,
+    "techPctOfSP500": 43,
+    "sp500FCFYield": 2.6,
+    "energyFCFYield_at105": 13.0,
+    "energyFCFYield_atConsensus": 9.5,
+    "fcfYieldGapBps_at105": 1040,
+    "fcfYieldGapBps_atConsensus": 690,
+    "fcfYieldGapThresholdBps": 500,
+    "impliedLongRunBrent": 70,
+    "strip36m": 75,
+    "spotBrent": 107,
+    "energyVsPreHormuzPct": -8.0,
+    "munificent7": {
+      "constituents": ["XOM", "CVX", "COP", "SHEL", "TTE", "BP", "EQNR"],
+      "fcfYield_at105": 15.5,
+      "fcfYield_atConsensus": 12.0,
+      "pe": 7.0,
+      "label": "Munificent 7"
+    },
+    "magnificent7": {
+      "constituents": ["AAPL", "MSFT", "GOOGL", "AMZN", "META", "NVDA", "TSLA"],
+      "fcfYield": 1.5,
+      "pe": 28.0,
+      "capex2026Bn": 820,
+      "amazonPrimaryEnergyMbpd": 3.0,
+      "label": "Magnificent 7"
+    },
+    "rotationPotentialTn": 10,
+    "history": [
+      { "date": "2026-02-26", "energyPctOfSP500": 4.3, "fcfYieldGapBps": 480, "impliedLongRunBrent": 68 },
+      { "date": "2026-03-15", "energyPctOfSP500": 4.6, "fcfYieldGapBps": 720, "impliedLongRunBrent": 72 },
+      { "date": "2026-04-01", "energyPctOfSP500": 4.5, "fcfYieldGapBps": 780, "impliedLongRunBrent": 71 },
+      { "date": "2026-04-22", "energyPctOfSP500": 4.2, "fcfYieldGapBps": 860, "impliedLongRunBrent": 70 },
+      { "date": "2026-04-30", "energyPctOfSP500": 4.4, "fcfYieldGapBps": 950, "impliedLongRunBrent": 72 },
+      { "date": "2026-05-06", "energyPctOfSP500": 4.1, "fcfYieldGapBps": 1010, "impliedLongRunBrent": 71 },
+      { "date": "2026-05-16", "energyPctOfSP500": 4.0, "fcfYieldGapBps": 1040, "impliedLongRunBrent": 70 }
+    ],
+    "lastUpdated": "2026-05-16T08:00:00Z",
+    "source": "S&P Dow Jones Indices, S&P Capital IQ FCF estimates, Bloomberg Energy Sector Index, Jeff Currie commentary (Carlyle, May 16 2026)",
+    "methodology": "Energy ÷ S&P 500 ratio is a proxy for long-dated oil. FCF yield gap = market's mispricing of the energy complex vs the broad market. At a 1,000bp+ spread, either oil must fall (spot to long-run convergence) or capital must rotate from tech to energy. Currie's thesis: the rotation is forced — $10 trillion of potential flow if Tech weight reverts from 43% toward 25%.",
+    "physicalMarketNote": {
+      "date": "2026-05-16",
+      "quote": "ExxonMobil holds 14 years of reserves. Chevron, 15. Equity prices integrate the entire forward strip. The S&P Energy ÷ S&P 500 ratio implies long-run Brent of ~$70 — below the strip at $72-75. The equity market is pricing the opposite of physical reality. The ceiling on oil is not Washington. It is Exxon's cost of capital — woefully mispriced.",
+      "attribution": "Jeff Currie, Carlyle",
+      "context": "Why the energy equity complex is the cleanest second-derivative signal — and why the dislocation is the trade."
     }
   }
 }

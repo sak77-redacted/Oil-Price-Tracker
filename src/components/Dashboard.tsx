@@ -40,6 +40,8 @@ import SPRCliffSignal from "./SPRCliffSignal";
 import SupplyBalanceSignal from "./SupplyBalanceSignal";
 import BuyerStressSignal from "./BuyerStressSignal";
 import USProductStocksSignal from "./USProductStocksSignal";
+import CurveShapeSignal from "./CurveShapeSignal";
+import EquityDisbeliefSignal from "./EquityDisbeliefSignal";
 
 interface DashboardProps {
   data: ExtendedSignalData;
@@ -403,6 +405,31 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
               Signal 10 — US Product Stocks Runway
             </div>
             <USProductStocksSignal data={data.usProductStocks} />
+          </div>
+        )}
+
+        {/* Market Belief Signals — Currie / Carlyle, May 16 2026 */}
+        {(data.curveShape || data.equityDisbelief) && (
+          <div className="mt-10 mb-6 flex items-center gap-4">
+            <div className="h-px flex-1 bg-[var(--card-border)]" />
+            <div className="flex flex-col items-center">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+                Market Belief Signals
+              </span>
+              <span className="mt-0.5 max-w-md text-center text-xs text-[var(--text-secondary)]">
+                How the financial markets are pricing the physical disruption — the divergence is the trade. (Jeff Currie / Carlyle, May 16 2026)
+              </span>
+            </div>
+            <div className="h-px flex-1 bg-[var(--card-border)]" />
+          </div>
+        )}
+
+        {(data.curveShape || data.equityDisbelief) && (
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {data.curveShape && <CurveShapeSignal data={data.curveShape} />}
+            {data.equityDisbelief && (
+              <EquityDisbeliefSignal data={data.equityDisbelief} />
+            )}
           </div>
         )}
 

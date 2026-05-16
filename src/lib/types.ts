@@ -182,6 +182,113 @@ export interface BuyerStressSignal {
   physicalMarketNotes?: PhysicalMarketNote[];
 }
 
+/**
+ * Signal 11 — Curve Shape / % Backwardation.
+ *
+ * Captures how much of the supply shock is priced into the Brent futures
+ * curve. Per Jeff Currie (Carlyle, May 16, 2026): "the largest supply shock
+ * in history is reasonably priced into the curve, and it likely has much
+ * more to run." Extreme % backwardation = supply shock priced in spot, not
+ * in long-run expectations.
+ */
+export interface CurveShapeHistoryPoint {
+  date: string;
+  spotBrent: number;
+  brent36m: number;
+  percentBackwardation: number;
+}
+
+export interface CurveShapeAtHigh {
+  date: string;
+  percentBackwardation: number;
+  absoluteBackwardation: number;
+  spotBrent: number;
+  brent36m: number;
+  note: string;
+}
+
+export interface CurveShapeHistoricalParallel {
+  label: string;
+  date: string;
+  spotBrent: number;
+  brent36m: number;
+  percentBackwardation: number;
+  insight: string;
+}
+
+export interface CurveShapeSignal {
+  spotBrent: number;
+  brent12m: number;
+  brent24m: number;
+  brent36m: number;
+  percentBackwardation: number;
+  absoluteBackwardation: number;
+  threshold: number;
+  atHigh: CurveShapeAtHigh;
+  historicalParallels: CurveShapeHistoricalParallel[];
+  impliedNormalizationYears: number;
+  history: CurveShapeHistoryPoint[];
+  lastUpdated: string;
+  source: string;
+  methodology: string;
+  physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
+}
+
+/**
+ * Signal 12 — Energy Equity Disbelief Gauge.
+ *
+ * Equity-side dislocation. Per Jeff Currie (Carlyle, May 16, 2026): the
+ * S&P Energy ÷ S&P 500 ratio implies a long-run Brent below the strip; the
+ * energy complex is pricing the opposite of physical reality. The
+ * Munificent 7 (XOM, CVX, COP, SHEL, TTE, BP, EQNR) yield 15.5% FCF at $105
+ * while the Magnificent 7 yield 1.5%. Either oil must collapse or capital
+ * must rotate.
+ */
+export interface EquityDisbeliefBasket {
+  constituents: string[];
+  fcfYield?: number;
+  fcfYield_at105?: number;
+  fcfYield_atConsensus?: number;
+  pe: number;
+  capex2026Bn?: number;
+  amazonPrimaryEnergyMbpd?: number;
+  label: string;
+}
+
+export interface EquityDisbeliefHistoryPoint {
+  date: string;
+  energyPctOfSP500: number;
+  fcfYieldGapBps: number;
+  impliedLongRunBrent: number;
+}
+
+export interface EquityDisbeliefSignal {
+  energyPctOfSP500: number;
+  energyPctOfSP500_preHormuz: number;
+  energyPctOfSP500_GFCLow: number;
+  techPctOfSP500: number;
+  sp500FCFYield: number;
+  energyFCFYield_at105: number;
+  energyFCFYield_atConsensus: number;
+  fcfYieldGapBps_at105: number;
+  fcfYieldGapBps_atConsensus: number;
+  fcfYieldGapThresholdBps: number;
+  impliedLongRunBrent: number;
+  strip36m: number;
+  spotBrent: number;
+  energyVsPreHormuzPct: number;
+  munificent7: EquityDisbeliefBasket;
+  magnificent7: EquityDisbeliefBasket;
+  rotationPotentialTn: number;
+  history: EquityDisbeliefHistoryPoint[];
+  lastUpdated: string;
+  source: string;
+  methodology: string;
+  physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
+}
+
 export interface SignalData {
   insurance: InsuranceSignal;
   shipTransit: ShipTransitSignal;
@@ -190,6 +297,8 @@ export interface SignalData {
   bufferMath: BufferMathSignal;
   buyerStress?: BuyerStressSignal;
   usProductStocks?: USProductStocksSignal;
+  curveShape?: CurveShapeSignal;
+  equityDisbelief?: EquityDisbeliefSignal;
 }
 
 export interface StraitStatus {

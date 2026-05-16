@@ -382,3 +382,55 @@ Task 1 (scaffold)
 **Parallelism:** Tasks 2+3 in parallel, Tasks 5+6+7+8+9 in parallel
 **Total tasks:** 11
 **Estimated total:** ~4 hours with parallel execution
+
+---
+
+## Task 15: Signal 11 — Curve Shape / % Backwardation
+**Status:** [x]
+**Skill:** genius-dev-frontend
+**Duration:** ~45 min
+**Dependencies:** Task 14
+**Date:** 2026-05-16
+
+**Goal:** Add curve-shape signal capturing how much of the supply shock is priced in. Per Jeff Currie (Carlyle, May 16): % backwardation hit ATH in April, near record today — supply shock priced in spot, not in long-run. Back end at $75 vs Russia-Ukraine $86 is why spot can't break out.
+
+**Steps:**
+1. Add `CurveShapeSignal`, `CurveShapeHistoryPoint`, `CurveShapeAtHigh`, `CurveShapeHistoricalParallel` interfaces to `src/lib/types.ts`. Add optional `curveShape?: CurveShapeSignal` to `SignalData`.
+2. Add `curveShape` block to `src/data/signals.json` with spot ($107), 12m ($94), 24m ($82), 36m ($75), 29.9% backwardation, $32 absolute, ATH @ Apr 30 ($126 spot / $84 back / 33.5%), two historical parallels (RUS-UA peak, Pre-Hormuz baseline), 10-point history.
+3. Build `src/components/CurveShapeSignal.tsx` — full SignalCard with backwardation hero, three-column sub-stat (spot / 24mo / 36mo), historical-parallel strip (2 cards), SparkChart of % backwardation history with threshold line at 25, status-driven insight, methodology footer.
+4. Status logic: red >25%, yellow 15–25%, green <15%.
+5. Bind PhysicalMarketNote Currie quote (back-end anchoring thesis) via SignalCard.
+
+**Files:**
+- `src/lib/types.ts`
+- `src/data/signals.json`
+- `src/components/CurveShapeSignal.tsx` (new)
+
+**Verify:** `npm run build` passes. Card renders inside Market Belief Signals section with "29.9%" hero, three sub-stat chips, two historical-parallel mini-cards, sparkline with threshold line, and Currie quote.
+
+---
+
+## Task 16: Signal 12 — Energy Equity Disbelief Gauge
+**Status:** [x]
+**Skill:** genius-dev-frontend
+**Duration:** ~45 min
+**Dependencies:** Task 15
+**Date:** 2026-05-16
+
+**Goal:** Add energy equity dislocation signal. Per Currie: S&P Energy ÷ S&P 500 implies long-run Brent ~$70 below strip $75; Munificent 7 (XOM/CVX/COP/SHEL/TTE/BP/EQNR) yields 15.5% FCF at $105 vs Magnificent 7 at 1.5%; 1,000bp FCF gap means forced rotation or oil collapse.
+
+**Steps:**
+1. Add `EquityDisbeliefSignal`, `EquityDisbeliefBasket`, `EquityDisbeliefHistoryPoint` interfaces to `src/lib/types.ts`. Add optional `equityDisbelief?: EquityDisbeliefSignal` to `SignalData`.
+2. Add `equityDisbelief` block to `src/data/signals.json`: energy 4.0% of SPX, 1,040 bps gap, $70 implied long-run vs $75 strip, Munificent / Magnificent 7 baskets, $10tn rotation potential, 7-point history.
+3. Build `src/components/EquityDisbeliefSignal.tsx` — SignalCard with bps-gap hero, three sub-stats (Energy weight / Implied LR Brent / Muni-vs-Mag FCF), two basket comparison cards (constituents/FCF/PE/capex), SparkChart of bps gap with threshold at 500, status insight, methodology footer.
+4. Status logic: red >800 bps, yellow 500–800, green <500.
+5. Wire into Dashboard.tsx below Signal 10 inside a new "Market Belief Signals" divider, two-column grid alongside CurveShapeSignal (lg:grid-cols-2).
+6. Three annotation additions: prepend Currie Dated-Brent caveat to `oilSpread.physicalMarketNotes`; prepend Currie capex-starvation quote to `bufferMath.physicalMarketNotes`; append Currie HALO/security-premium framing to `recoveryClock.keyInsight`.
+
+**Files:**
+- `src/lib/types.ts`
+- `src/data/signals.json`
+- `src/components/EquityDisbeliefSignal.tsx` (new)
+- `src/components/Dashboard.tsx`
+
+**Verify:** `npm run build` passes. Market Belief Signals section appears below Signal 10 with Signal 11 + Signal 12 side-by-side on desktop. Annotations visible on Signal 3 (oilSpread), Signal 8 (bufferMath), and Recovery Clock insight.
