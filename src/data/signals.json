@@ -5,54 +5,198 @@
     "threshold": 2.0,
     "unit": "%",
     "history": [
-      { "date": "2026-02-26", "value": 0.25 },
-      { "date": "2026-02-27", "value": 0.25 },
-      { "date": "2026-02-28", "value": 0.3 },
-      { "date": "2026-03-01", "value": 0.5 },
-      { "date": "2026-03-02", "value": 1.5 },
-      { "date": "2026-03-03", "value": 2.5 },
-      { "date": "2026-03-04", "value": 3.5 },
-      { "date": "2026-03-06", "value": 3.8 },
-      { "date": "2026-03-08", "value": 4.0 },
-      { "date": "2026-03-10", "value": 4.2 },
-      { "date": "2026-03-12", "value": 4.1 },
-      { "date": "2026-03-14", "value": 4.5 },
-      { "date": "2026-03-16", "value": 4.8 },
-      { "date": "2026-03-18", "value": 4.6 },
-      { "date": "2026-03-20", "value": 5.0 },
-      { "date": "2026-03-22", "value": 5.2 },
-      { "date": "2026-03-24", "value": 5.0 },
-      { "date": "2026-03-25", "value": 5.3 },
-      { "date": "2026-03-26", "value": 5.5 },
-      { "date": "2026-03-27", "value": 5.4 },
-      { "date": "2026-03-28", "value": 5.6 },
-      { "date": "2026-03-29", "value": 5.5 },
-      { "date": "2026-03-30", "value": 5.7 },
-      { "date": "2026-03-31", "value": 5.9 },
-      { "date": "2026-04-01", "value": 6.1 },
-      { "date": "2026-04-02", "value": 5.8 },
-      { "date": "2026-04-03", "value": 5.8 },
-      { "date": "2026-04-05", "value": 5.7 },
-      { "date": "2026-04-08", "value": 4.5 },
-      { "date": "2026-04-10", "value": 4.2 },
-      { "date": "2026-04-12", "value": 5.0 },
-      { "date": "2026-04-14", "value": 5.5 },
-      { "date": "2026-04-17", "value": 4.8 },
-      { "date": "2026-04-18", "value": 6.0 },
-      { "date": "2026-04-20", "value": 6.5 },
-      { "date": "2026-04-22", "value": 7.0 },
-      { "date": "2026-04-24", "value": 7.2 },
-      { "date": "2026-04-26", "value": 7.0 },
-      { "date": "2026-04-28", "value": 6.6 },
-      { "date": "2026-04-30", "value": 7.2 },
-      { "date": "2026-05-01", "value": 6.8 },
-      { "date": "2026-05-02", "value": 6.7 },
-      { "date": "2026-05-04", "value": 6.6 },
-      { "date": "2026-05-06", "value": 6.5 },
-      { "date": "2026-05-08", "value": 6.4 },
-      { "date": "2026-05-11", "value": 6.2 },
-      { "date": "2026-05-13", "value": 5.5 },
-      { "date": "2026-05-15", "value": 5.8 }
+      {
+        "date": "2026-02-26",
+        "value": 0.25
+      },
+      {
+        "date": "2026-02-27",
+        "value": 0.25
+      },
+      {
+        "date": "2026-02-28",
+        "value": 0.3
+      },
+      {
+        "date": "2026-03-01",
+        "value": 0.5
+      },
+      {
+        "date": "2026-03-02",
+        "value": 1.5
+      },
+      {
+        "date": "2026-03-03",
+        "value": 2.5
+      },
+      {
+        "date": "2026-03-04",
+        "value": 3.5
+      },
+      {
+        "date": "2026-03-06",
+        "value": 3.8
+      },
+      {
+        "date": "2026-03-08",
+        "value": 4.0
+      },
+      {
+        "date": "2026-03-10",
+        "value": 4.2
+      },
+      {
+        "date": "2026-03-12",
+        "value": 4.1
+      },
+      {
+        "date": "2026-03-14",
+        "value": 4.5
+      },
+      {
+        "date": "2026-03-16",
+        "value": 4.8
+      },
+      {
+        "date": "2026-03-18",
+        "value": 4.6
+      },
+      {
+        "date": "2026-03-20",
+        "value": 5.0
+      },
+      {
+        "date": "2026-03-22",
+        "value": 5.2
+      },
+      {
+        "date": "2026-03-24",
+        "value": 5.0
+      },
+      {
+        "date": "2026-03-25",
+        "value": 5.3
+      },
+      {
+        "date": "2026-03-26",
+        "value": 5.5
+      },
+      {
+        "date": "2026-03-27",
+        "value": 5.4
+      },
+      {
+        "date": "2026-03-28",
+        "value": 5.6
+      },
+      {
+        "date": "2026-03-29",
+        "value": 5.5
+      },
+      {
+        "date": "2026-03-30",
+        "value": 5.7
+      },
+      {
+        "date": "2026-03-31",
+        "value": 5.9
+      },
+      {
+        "date": "2026-04-01",
+        "value": 6.1
+      },
+      {
+        "date": "2026-04-02",
+        "value": 5.8
+      },
+      {
+        "date": "2026-04-03",
+        "value": 5.8
+      },
+      {
+        "date": "2026-04-05",
+        "value": 5.7
+      },
+      {
+        "date": "2026-04-08",
+        "value": 4.5
+      },
+      {
+        "date": "2026-04-10",
+        "value": 4.2
+      },
+      {
+        "date": "2026-04-12",
+        "value": 5.0
+      },
+      {
+        "date": "2026-04-14",
+        "value": 5.5
+      },
+      {
+        "date": "2026-04-17",
+        "value": 4.8
+      },
+      {
+        "date": "2026-04-18",
+        "value": 6.0
+      },
+      {
+        "date": "2026-04-20",
+        "value": 6.5
+      },
+      {
+        "date": "2026-04-22",
+        "value": 7.0
+      },
+      {
+        "date": "2026-04-24",
+        "value": 7.2
+      },
+      {
+        "date": "2026-04-26",
+        "value": 7.0
+      },
+      {
+        "date": "2026-04-28",
+        "value": 6.6
+      },
+      {
+        "date": "2026-04-30",
+        "value": 7.2
+      },
+      {
+        "date": "2026-05-01",
+        "value": 6.8
+      },
+      {
+        "date": "2026-05-02",
+        "value": 6.7
+      },
+      {
+        "date": "2026-05-04",
+        "value": 6.6
+      },
+      {
+        "date": "2026-05-06",
+        "value": 6.5
+      },
+      {
+        "date": "2026-05-08",
+        "value": 6.4
+      },
+      {
+        "date": "2026-05-11",
+        "value": 6.2
+      },
+      {
+        "date": "2026-05-13",
+        "value": 5.5
+      },
+      {
+        "date": "2026-05-15",
+        "value": 5.8
+      }
     ],
     "lastUpdated": "2026-05-16T08:00:00Z",
     "source": "Lloyd's List / WEF / Insurance Business (May 13: rates 1–5% hull, top-quartile broker quotes edging toward 5% for vessels with American/British/Israeli connections). Premium softened modestly during May 6–11 one-page-memo optimism, snapped back after May 11 Trump rejection."
@@ -64,141 +208,630 @@
     "threshold": 35,
     "darkFleetNote": "Many vessels transit with AIS disabled. Low AIS count confirms elevated risk — when operators feel safe enough to keep transponders on, that’s the normalcy signal.",
     "history": [
-      { "date": "2026-02-26", "count": 132, "returnCount": 44 },
-      { "date": "2026-02-27", "count": 128, "returnCount": 42 },
-      { "date": "2026-02-28", "count": 98, "returnCount": 32 },
-      { "date": "2026-03-01", "count": 18, "returnCount": 6 },
-      { "date": "2026-03-02", "count": 7, "returnCount": 2 },
-      { "date": "2026-03-03", "count": 2, "returnCount": 0 },
-      { "date": "2026-03-04", "count": 2, "returnCount": 0 },
-      { "date": "2026-03-05", "count": 1, "returnCount": 0 },
-      { "date": "2026-03-06", "count": 0, "returnCount": 0 },
-      { "date": "2026-03-07", "count": 1, "returnCount": 0 },
-      { "date": "2026-03-08", "count": 2, "returnCount": 0 },
-      { "date": "2026-03-09", "count": 1, "returnCount": 0 },
-      { "date": "2026-03-10", "count": 2, "returnCount": 0 },
-      { "date": "2026-03-11", "count": 1, "returnCount": 0 },
-      { "date": "2026-03-12", "count": 0, "returnCount": 0 },
-      { "date": "2026-03-13", "count": 3, "returnCount": 1 },
-      { "date": "2026-03-14", "count": 1, "returnCount": 0 },
-      { "date": "2026-03-15", "count": 0, "returnCount": 0 },
-      { "date": "2026-03-16", "count": 1, "returnCount": 0 },
-      { "date": "2026-03-17", "count": 2, "returnCount": 0 },
-      { "date": "2026-03-18", "count": 1, "returnCount": 0 },
-      { "date": "2026-03-19", "count": 0, "returnCount": 0 },
-      { "date": "2026-03-20", "count": 1, "returnCount": 0 },
-      { "date": "2026-03-21", "count": 2, "returnCount": 0 },
-      { "date": "2026-03-22", "count": 3, "returnCount": 1 },
-      { "date": "2026-03-23", "count": 5, "returnCount": 1 },
-      { "date": "2026-03-24", "count": 6, "returnCount": 2 },
-      { "date": "2026-03-25", "count": 4, "returnCount": 1 },
-      { "date": "2026-03-26", "count": 4, "returnCount": 1 },
-      { "date": "2026-03-27", "count": 3, "returnCount": 1 },
-      { "date": "2026-03-28", "count": 11, "returnCount": 3 },
-      { "date": "2026-03-29", "count": 9, "returnCount": 3 },
-      { "date": "2026-03-30", "count": 8, "returnCount": 2 },
-      { "date": "2026-03-31", "count": 11, "returnCount": 3 },
-      { "date": "2026-04-01", "count": 9, "returnCount": 3 },
-      { "date": "2026-04-02", "count": 10, "returnCount": 3 },
-      { "date": "2026-04-03", "count": 8, "returnCount": 3 },
-      { "date": "2026-04-04", "count": 7, "returnCount": 2 },
-      { "date": "2026-04-05", "count": 8, "returnCount": 3 },
-      { "date": "2026-04-06", "count": 9, "returnCount": 3 },
-      { "date": "2026-04-07", "count": 11, "returnCount": 4 },
-      { "date": "2026-04-08", "count": 5, "returnCount": 1 },
-      { "date": "2026-04-09", "count": 5, "returnCount": 2 },
-      { "date": "2026-04-10", "count": 5, "returnCount": 2 },
-      { "date": "2026-04-11", "count": 17, "returnCount": 5 },
-      { "date": "2026-04-12", "count": 17, "returnCount": 5 },
-      { "date": "2026-04-13", "count": 14, "returnCount": 4 },
-      { "date": "2026-04-14", "count": 6, "returnCount": 2 },
-      { "date": "2026-04-15", "count": 8, "returnCount": 2 },
-      { "date": "2026-04-16", "count": 6, "returnCount": 1 },
-      { "date": "2026-04-17", "count": 12, "returnCount": 3 },
-      { "date": "2026-04-18", "count": 10, "returnCount": 2 },
-      { "date": "2026-04-19", "count": 3, "returnCount": 1 },
-      { "date": "2026-04-20", "count": 3, "returnCount": 1 },
-      { "date": "2026-04-21", "count": 2, "returnCount": 0 },
-      { "date": "2026-04-22", "count": 1, "returnCount": 0 },
-      { "date": "2026-04-23", "count": 0, "returnCount": 0 },
-      { "date": "2026-04-24", "count": 1, "returnCount": 0 },
-      { "date": "2026-04-25", "count": 2, "returnCount": 0 },
-      { "date": "2026-04-26", "count": 1, "returnCount": 0 },
-      { "date": "2026-04-27", "count": 2, "returnCount": 1 },
-      { "date": "2026-04-28", "count": 3, "returnCount": 1 },
-      { "date": "2026-04-29", "count": 4, "returnCount": 1 },
-      { "date": "2026-04-30", "count": 1, "returnCount": 0 },
-      { "date": "2026-05-01", "count": 2, "returnCount": 0 },
-      { "date": "2026-05-02", "count": 1, "returnCount": 0 },
-      { "date": "2026-05-03", "count": 0, "returnCount": 0 },
-      { "date": "2026-05-04", "count": 2, "returnCount": 1 },
-      { "date": "2026-05-05", "count": 1, "returnCount": 0 },
-      { "date": "2026-05-06", "count": 1, "returnCount": 0 },
-      { "date": "2026-05-07", "count": 2, "returnCount": 0 },
-      { "date": "2026-05-08", "count": 1, "returnCount": 0 },
-      { "date": "2026-05-09", "count": 3, "returnCount": 1 },
-      { "date": "2026-05-10", "count": 4, "returnCount": 1 },
-      { "date": "2026-05-11", "count": 2, "returnCount": 0 },
-      { "date": "2026-05-12", "count": 5, "returnCount": 2 },
-      { "date": "2026-05-13", "count": 11, "returnCount": 4 },
-      { "date": "2026-05-14", "count": 8, "returnCount": 3 },
-      { "date": "2026-05-15", "count": 6, "returnCount": 2 }
+      {
+        "date": "2026-02-26",
+        "count": 132,
+        "returnCount": 44
+      },
+      {
+        "date": "2026-02-27",
+        "count": 128,
+        "returnCount": 42
+      },
+      {
+        "date": "2026-02-28",
+        "count": 98,
+        "returnCount": 32
+      },
+      {
+        "date": "2026-03-01",
+        "count": 18,
+        "returnCount": 6
+      },
+      {
+        "date": "2026-03-02",
+        "count": 7,
+        "returnCount": 2
+      },
+      {
+        "date": "2026-03-03",
+        "count": 2,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-04",
+        "count": 2,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-05",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-06",
+        "count": 0,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-07",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-08",
+        "count": 2,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-09",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-10",
+        "count": 2,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-11",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-12",
+        "count": 0,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-13",
+        "count": 3,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-03-14",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-15",
+        "count": 0,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-16",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-17",
+        "count": 2,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-18",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-19",
+        "count": 0,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-20",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-21",
+        "count": 2,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-03-22",
+        "count": 3,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-03-23",
+        "count": 5,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-03-24",
+        "count": 6,
+        "returnCount": 2
+      },
+      {
+        "date": "2026-03-25",
+        "count": 4,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-03-26",
+        "count": 4,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-03-27",
+        "count": 3,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-03-28",
+        "count": 11,
+        "returnCount": 3
+      },
+      {
+        "date": "2026-03-29",
+        "count": 9,
+        "returnCount": 3
+      },
+      {
+        "date": "2026-03-30",
+        "count": 8,
+        "returnCount": 2
+      },
+      {
+        "date": "2026-03-31",
+        "count": 11,
+        "returnCount": 3
+      },
+      {
+        "date": "2026-04-01",
+        "count": 9,
+        "returnCount": 3
+      },
+      {
+        "date": "2026-04-02",
+        "count": 10,
+        "returnCount": 3
+      },
+      {
+        "date": "2026-04-03",
+        "count": 8,
+        "returnCount": 3
+      },
+      {
+        "date": "2026-04-04",
+        "count": 7,
+        "returnCount": 2
+      },
+      {
+        "date": "2026-04-05",
+        "count": 8,
+        "returnCount": 3
+      },
+      {
+        "date": "2026-04-06",
+        "count": 9,
+        "returnCount": 3
+      },
+      {
+        "date": "2026-04-07",
+        "count": 11,
+        "returnCount": 4
+      },
+      {
+        "date": "2026-04-08",
+        "count": 5,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-04-09",
+        "count": 5,
+        "returnCount": 2
+      },
+      {
+        "date": "2026-04-10",
+        "count": 5,
+        "returnCount": 2
+      },
+      {
+        "date": "2026-04-11",
+        "count": 17,
+        "returnCount": 5
+      },
+      {
+        "date": "2026-04-12",
+        "count": 17,
+        "returnCount": 5
+      },
+      {
+        "date": "2026-04-13",
+        "count": 14,
+        "returnCount": 4
+      },
+      {
+        "date": "2026-04-14",
+        "count": 6,
+        "returnCount": 2
+      },
+      {
+        "date": "2026-04-15",
+        "count": 8,
+        "returnCount": 2
+      },
+      {
+        "date": "2026-04-16",
+        "count": 6,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-04-17",
+        "count": 12,
+        "returnCount": 3
+      },
+      {
+        "date": "2026-04-18",
+        "count": 10,
+        "returnCount": 2
+      },
+      {
+        "date": "2026-04-19",
+        "count": 3,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-04-20",
+        "count": 3,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-04-21",
+        "count": 2,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-04-22",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-04-23",
+        "count": 0,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-04-24",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-04-25",
+        "count": 2,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-04-26",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-04-27",
+        "count": 2,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-04-28",
+        "count": 3,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-04-29",
+        "count": 4,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-04-30",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-05-01",
+        "count": 2,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-05-02",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-05-03",
+        "count": 0,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-05-04",
+        "count": 2,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-05-05",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-05-06",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-05-07",
+        "count": 2,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-05-08",
+        "count": 1,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-05-09",
+        "count": 3,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-05-10",
+        "count": 4,
+        "returnCount": 1
+      },
+      {
+        "date": "2026-05-11",
+        "count": 2,
+        "returnCount": 0
+      },
+      {
+        "date": "2026-05-12",
+        "count": 5,
+        "returnCount": 2
+      },
+      {
+        "date": "2026-05-13",
+        "count": 11,
+        "returnCount": 4
+      },
+      {
+        "date": "2026-05-14",
+        "count": 8,
+        "returnCount": 3
+      },
+      {
+        "date": "2026-05-15",
+        "count": 6,
+        "returnCount": 2
+      }
     ],
     "lastUpdated": "2026-05-16T08:00:00Z",
     "source": "Windward Maritime Intelligence, Bloomberg Hormuz Tracker, NBC News Hormuz tracker, hormuztracking.com. May 13 saw a brief spike to 11 transits (4 in / 7 out) during the one-page-memo optimism window (Axios, May 6); reverted after May 11 Trump rejection. May 15 print: 6 vessels vs ~60 baseline (~90% below). 1,550+ vessels and 22,500 mariners still stranded in/around the strait."
   },
   "oilSpread": {
-    "brent": 111.04,
-    "dubai": 128,
-    "spread": 16.96,
+    "brent": 112.1,
+    "dubai": 129,
+    "spread": 16.9,
     "history": [
-      { "date": "2026-02-26", "brent": 76, "dubai": 77 },
-      { "date": "2026-02-27", "brent": 78, "dubai": 80 },
-      { "date": "2026-02-28", "brent": 82, "dubai": 85 },
-      { "date": "2026-03-01", "brent": 88, "dubai": 93 },
-      { "date": "2026-03-03", "brent": 91, "dubai": 97 },
-      { "date": "2026-03-05", "brent": 95, "dubai": 102 },
-      { "date": "2026-03-07", "brent": 98, "dubai": 106 },
-      { "date": "2026-03-10", "brent": 101, "dubai": 111 },
-      { "date": "2026-03-12", "brent": 103, "dubai": 114 },
-      { "date": "2026-03-15", "brent": 105, "dubai": 118 },
-      { "date": "2026-03-18", "brent": 107, "dubai": 120 },
-      { "date": "2026-03-20", "brent": 109, "dubai": 122 },
-      { "date": "2026-03-22", "brent": 108, "dubai": 122 },
-      { "date": "2026-03-25", "brent": 107, "dubai": 122 },
-      { "date": "2026-03-27", "brent": 106, "dubai": 121 },
-      { "date": "2026-03-29", "brent": 105, "dubai": 121 },
-      { "date": "2026-04-01", "brent": 104, "dubai": 120 },
-      { "date": "2026-04-07", "brent": 111, "dubai": 129 },
-      { "date": "2026-04-11", "brent": 107, "dubai": 140 },
-      { "date": "2026-04-13", "brent": 105, "dubai": 135 },
-      { "date": "2026-04-15", "brent": 100, "dubai": 125 },
-      { "date": "2026-04-17", "brent": 95, "dubai": 115 },
-      { "date": "2026-04-18", "brent": 98, "dubai": 118 },
-      { "date": "2026-04-20", "brent": 91, "dubai": 102 },
-      { "date": "2026-04-22", "brent": 102, "dubai": 117 },
-      { "date": "2026-04-24", "brent": 107, "dubai": 122 },
-      { "date": "2026-04-26", "brent": 110, "dubai": 126 },
-      { "date": "2026-04-28", "brent": 113, "dubai": 130 },
-      { "date": "2026-04-29", "brent": 118, "dubai": 137 },
-      { "date": "2026-04-30", "brent": 126, "dubai": 145 },
-      { "date": "2026-05-01", "brent": 114, "dubai": 130 },
-      { "date": "2026-05-02", "brent": 113, "dubai": 128 },
-      { "date": "2026-05-04", "brent": 112, "dubai": 127 },
-      { "date": "2026-05-05", "brent": 111, "dubai": 126 },
-      { "date": "2026-05-06", "brent": 110, "dubai": 125 },
-      { "date": "2026-05-07", "brent": 109, "dubai": 124 },
-      { "date": "2026-05-08", "brent": 107, "dubai": 122 },
-      { "date": "2026-05-11", "brent": 103, "dubai": 117 },
-      { "date": "2026-05-12", "brent": 102, "dubai": 116 },
-      { "date": "2026-05-13", "brent": 111, "dubai": 126 },
-      { "date": "2026-05-14", "brent": 106, "dubai": 101 },
-      { "date": "2026-05-15", "brent": 111.04, "dubai": 128 }
+      {
+        "date": "2026-02-26",
+        "brent": 76,
+        "dubai": 77
+      },
+      {
+        "date": "2026-02-27",
+        "brent": 78,
+        "dubai": 80
+      },
+      {
+        "date": "2026-02-28",
+        "brent": 82,
+        "dubai": 85
+      },
+      {
+        "date": "2026-03-01",
+        "brent": 88,
+        "dubai": 93
+      },
+      {
+        "date": "2026-03-03",
+        "brent": 91,
+        "dubai": 97
+      },
+      {
+        "date": "2026-03-05",
+        "brent": 95,
+        "dubai": 102
+      },
+      {
+        "date": "2026-03-07",
+        "brent": 98,
+        "dubai": 106
+      },
+      {
+        "date": "2026-03-10",
+        "brent": 101,
+        "dubai": 111
+      },
+      {
+        "date": "2026-03-12",
+        "brent": 103,
+        "dubai": 114
+      },
+      {
+        "date": "2026-03-15",
+        "brent": 105,
+        "dubai": 118
+      },
+      {
+        "date": "2026-03-18",
+        "brent": 107,
+        "dubai": 120
+      },
+      {
+        "date": "2026-03-20",
+        "brent": 109,
+        "dubai": 122
+      },
+      {
+        "date": "2026-03-22",
+        "brent": 108,
+        "dubai": 122
+      },
+      {
+        "date": "2026-03-25",
+        "brent": 107,
+        "dubai": 122
+      },
+      {
+        "date": "2026-03-27",
+        "brent": 106,
+        "dubai": 121
+      },
+      {
+        "date": "2026-03-29",
+        "brent": 105,
+        "dubai": 121
+      },
+      {
+        "date": "2026-04-01",
+        "brent": 104,
+        "dubai": 120
+      },
+      {
+        "date": "2026-04-07",
+        "brent": 111,
+        "dubai": 129
+      },
+      {
+        "date": "2026-04-11",
+        "brent": 107,
+        "dubai": 140
+      },
+      {
+        "date": "2026-04-13",
+        "brent": 105,
+        "dubai": 135
+      },
+      {
+        "date": "2026-04-15",
+        "brent": 100,
+        "dubai": 125
+      },
+      {
+        "date": "2026-04-17",
+        "brent": 95,
+        "dubai": 115
+      },
+      {
+        "date": "2026-04-18",
+        "brent": 98,
+        "dubai": 118
+      },
+      {
+        "date": "2026-04-20",
+        "brent": 91,
+        "dubai": 102
+      },
+      {
+        "date": "2026-04-22",
+        "brent": 102,
+        "dubai": 117
+      },
+      {
+        "date": "2026-04-24",
+        "brent": 107,
+        "dubai": 122
+      },
+      {
+        "date": "2026-04-26",
+        "brent": 110,
+        "dubai": 126
+      },
+      {
+        "date": "2026-04-28",
+        "brent": 113,
+        "dubai": 130
+      },
+      {
+        "date": "2026-04-29",
+        "brent": 118,
+        "dubai": 137
+      },
+      {
+        "date": "2026-04-30",
+        "brent": 126,
+        "dubai": 145
+      },
+      {
+        "date": "2026-05-01",
+        "brent": 114,
+        "dubai": 130
+      },
+      {
+        "date": "2026-05-02",
+        "brent": 113,
+        "dubai": 128
+      },
+      {
+        "date": "2026-05-04",
+        "brent": 112,
+        "dubai": 127
+      },
+      {
+        "date": "2026-05-05",
+        "brent": 111,
+        "dubai": 126
+      },
+      {
+        "date": "2026-05-06",
+        "brent": 110,
+        "dubai": 125
+      },
+      {
+        "date": "2026-05-07",
+        "brent": 109,
+        "dubai": 124
+      },
+      {
+        "date": "2026-05-08",
+        "brent": 107,
+        "dubai": 122
+      },
+      {
+        "date": "2026-05-11",
+        "brent": 103,
+        "dubai": 117
+      },
+      {
+        "date": "2026-05-12",
+        "brent": 102,
+        "dubai": 116
+      },
+      {
+        "date": "2026-05-13",
+        "brent": 111,
+        "dubai": 126
+      },
+      {
+        "date": "2026-05-14",
+        "brent": 106,
+        "dubai": 101
+      },
+      {
+        "date": "2026-05-15",
+        "brent": 111.04,
+        "dubai": 128
+      },
+      {
+        "date": "2026-05-18",
+        "brent": 112.1,
+        "dubai": 129
+      }
     ],
-    "lastUpdated": "2026-05-16T08:00:00Z",
-    "brentSource": "Yahoo Finance (BZ=F live); Trading Economics / Fortune / CNBC May 14 (Brent ~$106 mid-session, WTI $101.68); Fortune May 15 ($111.04 @ 8:45am ET). Tsubouchi/SAF May 16: WTI $105.42 close.",
+    "lastUpdated": "2026-05-18T21:00:00Z",
+    "brentSource": "CNBC May 18 settle: Brent +2% to $112.10/bbl, WTI +3% to $108.66 (June contract). Fortune May 18 early session: $110.08 @ 9:10am ET. Tsubouchi/SAF May 16 (Friday May 15 close): WTI $105.42. Dubai physical May 18 estimated ~$129 (no fresh Platts print — carry ~17/bbl spread vs Brent; manual review needed).",
     "dubaiSource": "Dubai Crude Oil Platts futures (Investing.com). May 14 inversion print: $100.70.",
-    "note": "Volatile week. Brent rode an arc: $109 May 7 → trough $102 May 11 on Axios May 6 one-page-memo optimism → snapped back as Trump rejected Iran's counterproposal May 11 → $111 May 13 → fell sharply to $106 on the May 14 Trump-Xi Beijing summit (both leaders agreed Strait of Hormuz 'must remain open'; China pledged to work behind scenes with Iran; Saudi June OSP for Asia cut to +$15.50/bbl from record +$19.50). Dubai briefly inverted to ~$5 DISCOUNT vs Brent (first time since crisis onset) as Gulf physical premiums compressed → reverted to $111.04 / $128 by May 15 after US Navy was attacked in the Strait and US retaliated. WTI ~$100–105.42. Brent–WTI spread widened to ~$8–11 (Hormuz routes don't affect WTI as directly). Dec '26 Brent still sub-$80 — backwardation of ~$30+ pricing rapid normalization the supply math contradicts.",
+    "note": "May 18 SETTLE: Brent $112.10 (+2%), WTI $108.66 (+3%). MAJOR DIPLOMATIC DEVELOPMENT: Trump called off planned Tuesday (May 19) Iran strikes at request of Gulf Arab leaders (Qatar, Saudi Arabia, UAE) who told him 'serious negotiations are underway with Iran that will result in a deal acceptable to the US.' Trump still directed Pentagon to 'be prepared to go forward with a full, large scale assault of Iran, on a moment's notice.' Oil held all gains. IEA May 2026 report: global inventories drew 250 mb over March-April (~4 mb/d); Q2 projected 8.5 mb/d draw; 'Rapidly shrinking buffers amid continued disruptions may herald future price spikes ahead.' Dubai physical ~$129 estimated — manual review needed for fresh Platts data. ── Volatile week. Brent rode an arc: $109 May 7 → trough $102 May 11 on Axios May 6 one-page-memo optimism → snapped back as Trump rejected Iran's counterproposal May 11 → $111 May 13 → fell sharply to $106 on the May 14 Trump-Xi Beijing summit (both leaders agreed Strait of Hormuz 'must remain open'; China pledged to work behind scenes with Iran; Saudi June OSP for Asia cut to +$15.50/bbl from record +$19.50). Dubai briefly inverted to ~$5 DISCOUNT vs Brent (first time since crisis onset) as Gulf physical premiums compressed → reverted to $111.04 / $128 by May 15 after US Navy was attacked in the Strait and US retaliated. WTI ~$100–105.42. Brent–WTI spread widened to ~$8–11 (Hormuz routes don't affect WTI as directly). Dec '26 Brent still sub-$80 — backwardation of ~$30+ pricing rapid normalization the supply math contradicts.",
     "physicalMarketNotes": [
       {
         "date": "2026-05-16",
@@ -413,6 +1046,14 @@
         "status": "active",
         "impact": "First direct US Navy + Iranian Navy fire exchange of the crisis. US retaliated against Iranian military facilities. Three injured in UAE. Brent +8.1% week, closes $111. Day 77 of crisis.",
         "supplyGapMbd": 8.5
+      },
+      {
+        "id": "trump-calls-off-attack-may18",
+        "event": "Trump calls off planned Tuesday Iran strikes at Gulf Arab request — deal talks active",
+        "date": "2026-05-18",
+        "status": "active",
+        "impact": "Gulf Arab leaders (Qatar, Saudi Arabia, UAE) broker active negotiations. Pentagon remains on standby 'on a moment's notice.' Oil held: Brent +2% to $112.10, WTI +3% to $108.66.",
+        "supplyGapMbd": 8.5
       }
     ],
     "currentGapMbd": 8.5,
@@ -463,7 +1104,11 @@
     "projectedShortfall6moMb": 1631,
     "burnDownDays": 47,
     "futureBestCaseMissingMb": 760,
-    "sprBreakdown": { "us": 384.1, "japan": 263, "europe": 179 },
+    "sprBreakdown": {
+      "us": 384.1,
+      "japan": 263,
+      "europe": 179
+    },
     "coverageRatio": 0.888,
     "breakthroughWindowWeeks": "2-4",
     "historicalParallel": {
@@ -475,20 +1120,76 @@
     "subsidizedExportsMbd": 2.5,
     "recordExportsMbd": 12.9,
     "history": [
-      { "date": "2026-03-02", "daysCover": 32, "sprMb": 855 },
-      { "date": "2026-03-09", "daysCover": 31, "sprMb": 845 },
-      { "date": "2026-03-16", "daysCover": 30, "sprMb": 832 },
-      { "date": "2026-03-23", "daysCover": 29, "sprMb": 818 },
-      { "date": "2026-03-30", "daysCover": 28, "sprMb": 808 },
-      { "date": "2026-04-06", "daysCover": 27, "sprMb": 798 },
-      { "date": "2026-04-13", "daysCover": 26, "sprMb": 788 },
-      { "date": "2026-04-20", "daysCover": 25, "sprMb": 776 },
-      { "date": "2026-04-27", "daysCover": 24, "sprMb": 766 },
-      { "date": "2026-05-01", "daysCover": 24, "sprMb": 760 },
-      { "date": "2026-05-06", "daysCover": 23, "sprMb": 750 },
-      { "date": "2026-05-13", "daysCover": 22, "sprMb": 745 },
-      { "date": "2026-05-14", "daysCover": 22, "sprMb": 738 },
-      { "date": "2026-05-15", "daysCover": 21, "sprMb": 741 }
+      {
+        "date": "2026-03-02",
+        "daysCover": 32,
+        "sprMb": 855
+      },
+      {
+        "date": "2026-03-09",
+        "daysCover": 31,
+        "sprMb": 845
+      },
+      {
+        "date": "2026-03-16",
+        "daysCover": 30,
+        "sprMb": 832
+      },
+      {
+        "date": "2026-03-23",
+        "daysCover": 29,
+        "sprMb": 818
+      },
+      {
+        "date": "2026-03-30",
+        "daysCover": 28,
+        "sprMb": 808
+      },
+      {
+        "date": "2026-04-06",
+        "daysCover": 27,
+        "sprMb": 798
+      },
+      {
+        "date": "2026-04-13",
+        "daysCover": 26,
+        "sprMb": 788
+      },
+      {
+        "date": "2026-04-20",
+        "daysCover": 25,
+        "sprMb": 776
+      },
+      {
+        "date": "2026-04-27",
+        "daysCover": 24,
+        "sprMb": 766
+      },
+      {
+        "date": "2026-05-01",
+        "daysCover": 24,
+        "sprMb": 760
+      },
+      {
+        "date": "2026-05-06",
+        "daysCover": 23,
+        "sprMb": 750
+      },
+      {
+        "date": "2026-05-13",
+        "daysCover": 22,
+        "sprMb": 745
+      },
+      {
+        "date": "2026-05-14",
+        "daysCover": 22,
+        "sprMb": 738
+      },
+      {
+        "date": "2026-05-15",
+        "daysCover": 21,
+        "sprMb": 741
+      }
     ],
     "lastUpdated": "2026-05-16T08:00:00Z",
     "source": "IEA OECD inventories, EIA Weekly Petroleum Status Report (May 13: record 8.6 Mb single-week SPR draw, beating Sept 2022's 8.4 Mb prior record; SPR now 384.1 Mb — lowest since Oct 2024; commercial crude −4.3 Mb; refineries at 16.4 Mbpd / 91.7% utilization). Goldman/JPM/HFI: April inventory draws 7.1 Mbpd, demand destruction 4.3 Mbpd; cumulative ~390 Mbbl drawn Mar+Apr+early May. IEA SPR 120-day window exhausts ~Jul 9.",
@@ -533,8 +1234,8 @@
   "straitStatus": {
     "status": "closed",
     "since": "2026-04-18",
-    "description": "Day 78 of crisis. Strait remains effectively closed (~5% of pre-war traffic per Windward vessel transponder data). Diplomatic arc this week: May 6 Axios reports US-Iran 'one-page memo' close. May 11 Trump rejects Iran's counterproposal as 'totally unacceptable'; Iran vows 'never bow' (insisting on war reparations, full Hormuz sovereignty, sanctions end, frozen-asset release). May 14 Trump-Xi Beijing summit: both leaders jointly agreed Hormuz 'must remain open' and Iran 'can never have nuclear weapons'; Treasury Sec. Bessent (CNBC) said China will 'work behind the scenes' on Iran (China has the greatest interest in reopening given nearly all Iranian crude exports flow there); a vessel was seized near the Strait by 'unauthorized personnel' during the summit. May 15 US thwarted attacks on 3 Navy ships in the Strait and retaliated against Iranian facilities \u2014 first direct US-Iran Navy exchange of the crisis. UK announced deployment (drones + fighters + Royal Navy warship) for international defensive mission on May 13. Project Freedom remains suspended (last activity: May 5, 2 ships transited). EIA (May 13): record 8.6 Mb single-week SPR draw, beating Sept 2022's 8.4 Mb prior record. Brent recovered to $111.04 (+8.1% week) after a brief Dubai-Brent inversion on May 14 (Dubai $101 vs Brent $106 \u2014 first inversion since crisis onset). HFI/JPM net shortfall remains 8.5 Mbpd; MacroEdge 13.5-14 Mbpd. ~1,550 vessels and 22,500 mariners still stranded. US estimates ~6 months full mine clearance once strait reopens.",
-    "lastUpdated": "2026-05-16T08:00:00Z"
+    "description": "Day 80 of crisis. Strait remains effectively closed (~5% of pre-war traffic). May 18 MAJOR DIPLOMATIC DEVELOPMENT: Trump called off planned Tuesday (May 19) strikes on Iran at request of Gulf Arab leaders — Qatar, Saudi Arabia, UAE — who told him 'serious negotiations are underway with Iran that will result in a deal acceptable to the US.' Trump instructed Pentagon to 'be prepared to go forward with a full, large scale assault of Iran, on a moment's notice, in the event that an acceptable Deal is not reached.' Brent settled $112.10 (+2%), WTI $108.66 (+3%) — oil stayed in the green despite the calloff. IEA May 2026 Oil Market Report: global oil inventories drew 250 mb over March-April (~4 mb/d); Q2 projected draw 8.5 mb/d; IEA has committed 400 mb emergency release, ~164 mb already drawn; warns 'Rapidly shrinking buffers amid continued disruptions may herald future price spikes ahead.' Prior developments: May 15 US thwarted attacks on 3 Navy ships + retaliated against Iranian facilities (first direct US-Iran Navy exchange). May 14 Trump-Xi Beijing summit: both agreed Hormuz 'must remain open'; Saudi June OSP for Asia cut to +$15.50/bbl (from record +$19.50). May 11 Trump rejected Iran counterproposal. UK deployed drones/fighters/Royal Navy warship May 13. EIA May 13: record 8.6 Mb single-week SPR draw, SPR now 384.1 Mb. ~1,550 vessels and 22,500 mariners still stranded. US estimates ~6 months full mine clearance once strait reopens.",
+    "lastUpdated": "2026-05-18T21:00:00Z"
   },
   "globalImpact": {
     "worldOilAtRiskPct": 20,
@@ -567,46 +1268,242 @@
     "lastUpdated": "2026-05-16T08:00:00Z"
   },
   "regionalImpact": [
-    { "country": "China", "dependency": 40, "severity": "critical", "description": "Imports 40% of oil and 30% of LNG via Hormuz. 55 Chinese-flagged ships trapped in Persian Gulf." },
-    { "country": "Japan", "dependency": 65, "severity": "high", "description": "Heavily dependent on Middle East oil via Hormuz; supply disruption threatens industrial production." },
-    { "country": "South Korea", "dependency": 70, "severity": "high", "description": "Import-dependent nation; oil import costs surging, affecting refiner margins and energy sector." },
-    { "country": "Europe", "dependency": 35, "severity": "high", "description": "12-14% of LNG sourced from Qatar via Hormuz; alternative sourcing expensive and limited." },
-    { "country": "India", "dependency": 45, "severity": "moderate", "description": "~45–50% of crude transited Hormuz pre-crisis (PPAC/Vortexa Q1 2026). ISPRL Phase-1 ~9.5 days at full / ~6 days at March 64% fill; +OMC commercial = ~74 days total national cover. Permitted limited vessel transits through negotiation." }
+    {
+      "country": "China",
+      "dependency": 40,
+      "severity": "critical",
+      "description": "Imports 40% of oil and 30% of LNG via Hormuz. 55 Chinese-flagged ships trapped in Persian Gulf."
+    },
+    {
+      "country": "Japan",
+      "dependency": 65,
+      "severity": "high",
+      "description": "Heavily dependent on Middle East oil via Hormuz; supply disruption threatens industrial production."
+    },
+    {
+      "country": "South Korea",
+      "dependency": 70,
+      "severity": "high",
+      "description": "Import-dependent nation; oil import costs surging, affecting refiner margins and energy sector."
+    },
+    {
+      "country": "Europe",
+      "dependency": 35,
+      "severity": "high",
+      "description": "12-14% of LNG sourced from Qatar via Hormuz; alternative sourcing expensive and limited."
+    },
+    {
+      "country": "India",
+      "dependency": 45,
+      "severity": "moderate",
+      "description": "~45–50% of crude transited Hormuz pre-crisis (PPAC/Vortexa Q1 2026). ISPRL Phase-1 ~9.5 days at full / ~6 days at March 64% fill; +OMC commercial = ~74 days total national cover. Permitted limited vessel transits through negotiation."
+    }
   ],
   "crisisTimeline": [
-    { "date": "2026-05-15", "category": "military", "title": "US thwarts attacks on 3 Navy ships in Strait + retaliates against Iranian facilities", "description": "First direct US Navy / Iranian Navy fire exchange of the crisis. US said it thwarted Iranian attacks on three Navy ships transiting the Strait, then retaliated against Iranian military facilities. UAE simultaneously intercepted two ballistic missiles and three drones launched by Iran the same day — three wounded. Brent closes the week at $111.04, +8.1% week. Crisis enters Day 77." },
-    { "date": "2026-05-14", "category": "diplomatic", "title": "Trump-Xi Beijing summit: both agree Strait 'must remain open'; China to work behind scenes on Iran", "description": "Trump and Xi Jinping, meeting at the Great Hall of the People in Beijing, jointly published nine commitments including: Strait of Hormuz 'must remain open', Iran 'can never have nuclear weapons'. Xi expressed opposition to any toll or militarization of the Strait, and interest in purchasing more US oil to reduce China's Hormuz dependence. Treasury Secretary Bessent (CNBC): China will 'work behind the scenes to the extent anyone has any say over the Iranian leadership.' China cited as having the greatest interest in reopening — nearly all Iranian crude exports flow to China. Complication: a vessel was seized near the Strait by 'unauthorized personnel' and taken toward Iran during the summit. Saudi June OSP for Asia cut to +$15.50/bbl above Oman/Dubai (from record +$19.50 May). Brent fell from $111 to ~$106 on the news; WTI held above $101. Dubai inverted to $5 discount vs Brent — first since crisis onset." },
-    { "date": "2026-05-13", "category": "economic", "title": "EIA: record 8.6 Mb single-week SPR withdrawal — biggest ever", "description": "EIA Weekly Petroleum Status Report (week ending May 8): SPR drew a record 8.6 Mb, beating the prior all-time weekly high of 8.4 Mb set in September 2022. SPR now stands at 384.1 Mb — lowest since October 2024. Commercial crude stocks −4.3 Mb. Refineries ran 16.4 Mbpd at 91.7% capacity utilization (+369 kbpd WoW). The US is bleeding from every barrel source simultaneously to keep products flowing." },
-    { "date": "2026-05-13", "category": "diplomatic", "title": "UK deploys drones, fighter aircraft, Royal Navy warship for international Hormuz defensive mission", "description": "Britain announced its first major naval reinforcement of the strait-clearance effort. Signals widening multilateral commitment to securing freedom of navigation independently of US Operation Freedom (which remains suspended). Mine-clearance timeline still ~6 months once strait reopens." },
-    { "date": "2026-05-11", "category": "diplomatic", "title": "Trump rejects Iran counterproposal — 'totally unacceptable'; Iran vows 'never bow'", "description": "Iran's response to the May 6 one-page memo framework insisted on war reparations, full sovereignty over Hormuz, sanctions termination, and release of frozen Iranian assets. Trump rejected outright. Tehran officials said Iran would 'never bow.' Brent had retreated $7 (May 6–11) on memo optimism and snapped back, closing the week +8.1%." },
-    { "date": "2026-05-08", "category": "military", "title": "UAE intercepts second Iranian salvo in five days", "description": "UAE defense systems engaged a second wave of inbound Iranian ballistic missiles and drones. Mosaic Strategy continues despite ceasefire framework talks — Iran's decentralized sector commanders maintain attack tempo independent of diplomatic track." },
-    { "date": "2026-05-06", "category": "diplomatic", "title": "Axios: US–Iran closing in on one-page memo to end war", "description": "Framework reportedly the closest the parties have been since war began: Iran nuclear enrichment moratorium + US sanctions lift + frozen-asset release + mutual lift of Hormuz transit restrictions. Brent fell from $109 toward $102 over the following five days on optimism — snapped back after Trump's May 11 rejection." },
-    { "date": "2026-05-04", "category": "military", "title": "Iran's largest UAE strike of crisis — Fujairah refinery hit; Project Freedom launches", "description": "Iran fired 12 ballistic missiles, 3 cruise missiles, and 4 drones at UAE on May 4. Iranian drone strike hit a Fujairah oil processing plant, causing a fire and three Indian citizen injuries. Same day, Trump ordered Operation Project Freedom — US Navy mission to escort stranded merchant ships out of the Gulf. 2 vessels transited safely May 5 before Project Freedom was suspended May 6 pending US–Iran maritime agreement. UAE attacked again May 5 and May 8." },
-    { "date": "2026-05-06", "category": "military", "title": "Operation Freedom suspended after 1-ship-in-24h transit print + 24 Mbbl API draw", "description": "Trump abruptly suspended Operation Freedom — the latest attempt to reopen Strait traffic — after market close on May 6. Catalyst: JaguarAnalytics daily transit tracker showed just 1 ship crossing the Strait in the prior 24 hours, and API printed a ~24 Mbbl total-products inventory draw for the week. MacroEdge estimates 13.5–14 Mbpd remaining offline (vs HFI's 11.5) and expects strait normalization no earlier than late summer / fall, citing the IRGC's strategic interest in maintaining long-term Strait control as a revenue stream." },
-    { "date": "2026-05-06", "category": "economic", "title": "HFI/JPM: 8.5 Mbpd net shortfall, backwardation pricing 'wrong'", "description": "HFI Research's Jon Costello argues both oil and equity markets are mispriced — the 8.5 Mbpd net shortfall (after 9.5 Mbpd bypass production and 3.0 Mbpd IEA SPR releases) is being absorbed by 7.1 Mbpd inventory draws and 4.3 Mbpd forced demand destruction (JPM, April). Cumulative ~330 Mbbl drawn over Mar+Apr. Dec '26 Brent sub-$80 vs front $110 implies rapid normalization the supply math doesn't support. IEA's 120-day SPR window exhausts ~Jul 9." },
-    { "date": "2026-05-05", "category": "diplomatic", "title": "Trump: blockade could last 'months' until nuclear deal", "description": "President Trump tells reporters the US naval blockade of Iranian ports could continue for months absent Iranian nuclear concessions. Polymarket odds for blockade lifted by May 31 collapse to 25% (-35.5pp 7-day); odds of strait traffic returning to normal by May 31 just 16%." },
-    { "date": "2026-05-01", "category": "economic", "title": "Brent settles $114 after $126 peak; ceasefire halts 60-day war powers deadline", "description": "Brent retreats to $114.01 settle after intraday spike to $126.41 on Apr 30 (June contract, four-year high). White House confirms ceasefire extension halts Trump's 60-day war powers clock. Crack spreads at fresh highs — gasoline crack at $47/bbl, heating oil at $66/bbl. Dual blockade unchanged." },
-    { "date": "2026-04-30", "category": "economic", "title": "Brent intraday $126.41 — highest in four years", "description": "Brent June contract spiked to $126.41 on US-Iran escalation fears before retreating. Bloomberg Hormuz Tracker: only one Iran-linked fuel tanker observed entering Persian Gulf for the day. Commercial transits at near-zero — both Brent and WTI up ~60% since Feb 28." },
-    { "date": "2026-04-28", "category": "diplomatic", "title": "Iran offers to reopen Strait if US lifts blockade — nuclear talks set aside", "description": "Tehran's foreign ministry decouples Hormuz from nuclear file. Trump discusses proposal with Rubio and top aides; White House non-committal. ~2,000 ships still stranded in Gulf. Underwriters say transit confidence won't return until 'sustained normal vessel movement, not isolated transits.'" },
-    { "date": "2026-04-25", "category": "military", "title": "US intercepts M/V Sevan; Russian superyacht Nord transits unchallenged", "description": "USS-led interception of Panama-flagged propane/butane carrier M/V Sevan in Arabian Sea on suspected Iran-linked cargo. Russian superyacht Nord crossed the Gulf without incident from either navy — selective enforcement signal." },
-    { "date": "2026-04-24", "category": "military", "title": "USS Rafael Peralta captures unidentified Iranian oil tanker", "description": "US Navy seizure inside Persian Gulf — first US destroyer-led capture of an Iranian-flagged tanker within Gulf waters since blockade began Apr 13." },
-    { "date": "2026-04-23", "category": "military", "title": "Trump orders US Navy to destroy Iranian mine-laying boats", "description": "Standing kill order for any Iranian vessel laying mines in strait. US military says full mine clearance — once strait reopens — will take approximately six months. Underwriters cite mine-clearance timeline as gating factor for premium normalization." },
-    { "date": "2026-04-22", "category": "military", "title": "Iran attacks Greek Epaminondas off Oman; seizes MSC Francesca", "description": "Iranian gunboat fired RPGs at Greek-owned Epaminondas despite prior transit clearance, causing significant bridge damage. IRGC also seized Liberia-flagged container ship MSC Francesca. US captured VLCC Majestic X. CENTCOM reports 29 vessels intercepted total. Trump claims blockade costs Iran $500M/day." },
-    { "date": "2026-04-21", "category": "diplomatic", "title": "Trump extends ceasefire pending negotiations — Pakistan brokers", "description": "Trump declared ceasefire extension at Pakistan's request to allow Iranian proposal. Naval blockade maintained. US officials gave Iran 3-5 days to engage in talks before resuming strikes. CENTCOM intercepts at 27 vessels. US captures supertanker Tifani in Indo-Pacific." },
-    { "date": "2026-04-20", "category": "military", "title": "US seizes Iranian-flagged vessel; Iran demands release", "description": "US Navy fired on and seized an Iranian cargo ship defying the blockade. Iran demands immediate release as ceasefire deadline looms. Tensions at maximum — traffic through strait at near-standstill (3 vessels/day)." },
-    { "date": "2026-04-18", "category": "military", "title": "Iran recloses Strait — fires on ships, 3 vessels attacked", "description": "Iran reversed its reopening after US refused to lift naval blockade. Iranian forces fired on Indian-flagged ships and CMA CGM Everglade (rocket damage). 35 outbound vessels reversed course. 6 stranded cruise ships evacuated through brief window." },
-    { "date": "2026-04-17", "category": "diplomatic", "title": "Iran announces strait open during Lebanon truce — short-lived", "description": "Iran declared commercial passage 'completely open' during Lebanon ceasefire. Trump clarified US blockade on Iranian ports remains. Iran cancelled reopening within 24 hours." },
-    { "date": "2026-04-12", "category": "military", "title": "US declares naval blockade of Iranian ports", "description": "After Islamabad talks failed, Trump declared naval blockade preventing ships from entering/exiting Iranian ports. Freedom of navigation maintained for non-Iranian port traffic. Transit dropped from 17/day to 6/day." },
-    { "date": "2026-04-11", "category": "military", "title": "US Navy destroyers enter strait for mine clearance", "description": "First US Navy entry into the strait since hostilities began. Mine clearance operations commence. Transit surges briefly to 17 vessels as ships attempt to exploit ceasefire window." },
-    { "date": "2026-04-08", "category": "diplomatic", "title": "Ceasefire agreement reached — Iran charges $1M+ tolls", "description": "Temporary ceasefire agreed. Iran began controlling traffic and charging tolls exceeding $1M per ship. 45 ships transited in first 4 days. Gulf states intercepted missiles hours into ceasefire." },
-    { "date": "2026-04-09", "category": "military", "title": "Iranian attacks on Gulf states surge to monthly high", "description": "Bloomberg Intelligence data shows Iranian attacks spiking. UAE intercepted 537 ballistic missiles, 2,256 drones, 26 cruise missiles cumulatively. Iran's 'Mosaic Strategy' continues." },
-    { "date": "2026-04-01", "category": "diplomatic", "title": "Status quo: controlled transit, ongoing negotiations", "description": "Strait under selective Iranian control with ~6% of normal traffic. Trump extended deadline to April 6. Estimated 2000 ships stranded. War risk insurance still 6-7x normal." },
-    { "date": "2026-03-31", "category": "diplomatic", "title": "China-Pakistan present 5-point ceasefire initiative", "description": "China and Pakistan jointly present peace proposal including immediate ceasefire, halt to infrastructure attacks, safe passage through Strait, and framework for comprehensive peace." },
-    { "date": "2026-03-26", "category": "diplomatic", "title": "Iran selectively allows approved nations to transit", "description": "Iran permits passage for vessels from China, Russia, India, Iraq, Pakistan. Malaysia and Thailand granted access following direct talks. UN humanitarian and fertilizer shipments permitted." },
-    { "date": "2026-03-21", "category": "military", "title": "Trump issues 48-hour ultimatum to open Strait", "description": "Trump warns Iran that power plants will be obliterated unless Strait fully opens within 48 hours. Iran responds with threats to target US/Israeli energy infrastructure and lay sea mines." },
-    { "date": "2026-03-14", "category": "economic", "title": "US releases 400M barrels from Strategic Petroleum Reserve", "description": "Largest SPR release in history. Estimated 95 days of supply at current drawdown rate. Global coordinated release with IEA members." },
-    { "date": "2026-03-07", "category": "military", "title": "US Navy deploys carrier strike group to Gulf of Oman", "description": "USS Eisenhower carrier strike group positioned in Gulf of Oman. Additional destroyer deployments to escort allied vessels. Iran IRGC navy conducts counter-exercises." },
-    { "date": "2026-03-02", "category": "military", "title": "Iran restricts Strait of Hormuz transit", "description": "Iran begins controlled transit regime following escalation of US-Iran tensions over nuclear program. Initial blockade affects all non-allied vessels. Oil prices spike 15% overnight." }
+    {
+      "date": "2026-05-18",
+      "category": "diplomatic",
+      "title": "Trump calls off planned Tuesday Iran strikes — Gulf Arab leaders broker talks; Pentagon on standby",
+      "description": "Trump called off attacks on Iran scheduled for Tuesday May 19 at the request of Gulf Arab allies — Qatar, Saudi Arabia, and the UAE. Leaders told Trump that 'serious negotiations are underway with Iran that will result in a deal acceptable to the US.' Trump instructed the Pentagon to be 'prepared to go forward with a full, large scale assault of Iran, on a moment's notice, in the event that an acceptable Deal is not reached.' Earlier in the session Trump warned 'the clock is ticking' for Iran, driving early oil gains. Despite the calloff, oil prices held all gains: Brent +2% to $112.10 settle, WTI +3% to $108.66. IEA May 2026 Oil Market Report (published May 13) projected Q2 global inventory draws of 8.5 mb/d — steepest in May-June — and warned 'Rapidly shrinking buffers amid continued disruptions may herald future price spikes ahead.' ~164 mb of the 400 mb IEA emergency release already drawn. Crisis Day 80."
+    },
+    {
+      "date": "2026-05-15",
+      "category": "military",
+      "title": "US thwarts attacks on 3 Navy ships in Strait + retaliates against Iranian facilities",
+      "description": "First direct US Navy / Iranian Navy fire exchange of the crisis. US said it thwarted Iranian attacks on three Navy ships transiting the Strait, then retaliated against Iranian military facilities. UAE simultaneously intercepted two ballistic missiles and three drones launched by Iran the same day — three wounded. Brent closes the week at $111.04, +8.1% week. Crisis enters Day 77."
+    },
+    {
+      "date": "2026-05-14",
+      "category": "diplomatic",
+      "title": "Trump-Xi Beijing summit: both agree Strait 'must remain open'; China to work behind scenes on Iran",
+      "description": "Trump and Xi Jinping, meeting at the Great Hall of the People in Beijing, jointly published nine commitments including: Strait of Hormuz 'must remain open', Iran 'can never have nuclear weapons'. Xi expressed opposition to any toll or militarization of the Strait, and interest in purchasing more US oil to reduce China's Hormuz dependence. Treasury Secretary Bessent (CNBC): China will 'work behind the scenes to the extent anyone has any say over the Iranian leadership.' China cited as having the greatest interest in reopening — nearly all Iranian crude exports flow to China. Complication: a vessel was seized near the Strait by 'unauthorized personnel' and taken toward Iran during the summit. Saudi June OSP for Asia cut to +$15.50/bbl above Oman/Dubai (from record +$19.50 May). Brent fell from $111 to ~$106 on the news; WTI held above $101. Dubai inverted to $5 discount vs Brent — first since crisis onset."
+    },
+    {
+      "date": "2026-05-13",
+      "category": "economic",
+      "title": "EIA: record 8.6 Mb single-week SPR withdrawal — biggest ever",
+      "description": "EIA Weekly Petroleum Status Report (week ending May 8): SPR drew a record 8.6 Mb, beating the prior all-time weekly high of 8.4 Mb set in September 2022. SPR now stands at 384.1 Mb — lowest since October 2024. Commercial crude stocks −4.3 Mb. Refineries ran 16.4 Mbpd at 91.7% capacity utilization (+369 kbpd WoW). The US is bleeding from every barrel source simultaneously to keep products flowing."
+    },
+    {
+      "date": "2026-05-13",
+      "category": "diplomatic",
+      "title": "UK deploys drones, fighter aircraft, Royal Navy warship for international Hormuz defensive mission",
+      "description": "Britain announced its first major naval reinforcement of the strait-clearance effort. Signals widening multilateral commitment to securing freedom of navigation independently of US Operation Freedom (which remains suspended). Mine-clearance timeline still ~6 months once strait reopens."
+    },
+    {
+      "date": "2026-05-11",
+      "category": "diplomatic",
+      "title": "Trump rejects Iran counterproposal — 'totally unacceptable'; Iran vows 'never bow'",
+      "description": "Iran's response to the May 6 one-page memo framework insisted on war reparations, full sovereignty over Hormuz, sanctions termination, and release of frozen Iranian assets. Trump rejected outright. Tehran officials said Iran would 'never bow.' Brent had retreated $7 (May 6–11) on memo optimism and snapped back, closing the week +8.1%."
+    },
+    {
+      "date": "2026-05-08",
+      "category": "military",
+      "title": "UAE intercepts second Iranian salvo in five days",
+      "description": "UAE defense systems engaged a second wave of inbound Iranian ballistic missiles and drones. Mosaic Strategy continues despite ceasefire framework talks — Iran's decentralized sector commanders maintain attack tempo independent of diplomatic track."
+    },
+    {
+      "date": "2026-05-06",
+      "category": "diplomatic",
+      "title": "Axios: US–Iran closing in on one-page memo to end war",
+      "description": "Framework reportedly the closest the parties have been since war began: Iran nuclear enrichment moratorium + US sanctions lift + frozen-asset release + mutual lift of Hormuz transit restrictions. Brent fell from $109 toward $102 over the following five days on optimism — snapped back after Trump's May 11 rejection."
+    },
+    {
+      "date": "2026-05-04",
+      "category": "military",
+      "title": "Iran's largest UAE strike of crisis — Fujairah refinery hit; Project Freedom launches",
+      "description": "Iran fired 12 ballistic missiles, 3 cruise missiles, and 4 drones at UAE on May 4. Iranian drone strike hit a Fujairah oil processing plant, causing a fire and three Indian citizen injuries. Same day, Trump ordered Operation Project Freedom — US Navy mission to escort stranded merchant ships out of the Gulf. 2 vessels transited safely May 5 before Project Freedom was suspended May 6 pending US–Iran maritime agreement. UAE attacked again May 5 and May 8."
+    },
+    {
+      "date": "2026-05-06",
+      "category": "military",
+      "title": "Operation Freedom suspended after 1-ship-in-24h transit print + 24 Mbbl API draw",
+      "description": "Trump abruptly suspended Operation Freedom — the latest attempt to reopen Strait traffic — after market close on May 6. Catalyst: JaguarAnalytics daily transit tracker showed just 1 ship crossing the Strait in the prior 24 hours, and API printed a ~24 Mbbl total-products inventory draw for the week. MacroEdge estimates 13.5–14 Mbpd remaining offline (vs HFI's 11.5) and expects strait normalization no earlier than late summer / fall, citing the IRGC's strategic interest in maintaining long-term Strait control as a revenue stream."
+    },
+    {
+      "date": "2026-05-06",
+      "category": "economic",
+      "title": "HFI/JPM: 8.5 Mbpd net shortfall, backwardation pricing 'wrong'",
+      "description": "HFI Research's Jon Costello argues both oil and equity markets are mispriced — the 8.5 Mbpd net shortfall (after 9.5 Mbpd bypass production and 3.0 Mbpd IEA SPR releases) is being absorbed by 7.1 Mbpd inventory draws and 4.3 Mbpd forced demand destruction (JPM, April). Cumulative ~330 Mbbl drawn over Mar+Apr. Dec '26 Brent sub-$80 vs front $110 implies rapid normalization the supply math doesn't support. IEA's 120-day SPR window exhausts ~Jul 9."
+    },
+    {
+      "date": "2026-05-05",
+      "category": "diplomatic",
+      "title": "Trump: blockade could last 'months' until nuclear deal",
+      "description": "President Trump tells reporters the US naval blockade of Iranian ports could continue for months absent Iranian nuclear concessions. Polymarket odds for blockade lifted by May 31 collapse to 25% (-35.5pp 7-day); odds of strait traffic returning to normal by May 31 just 16%."
+    },
+    {
+      "date": "2026-05-01",
+      "category": "economic",
+      "title": "Brent settles $114 after $126 peak; ceasefire halts 60-day war powers deadline",
+      "description": "Brent retreats to $114.01 settle after intraday spike to $126.41 on Apr 30 (June contract, four-year high). White House confirms ceasefire extension halts Trump's 60-day war powers clock. Crack spreads at fresh highs — gasoline crack at $47/bbl, heating oil at $66/bbl. Dual blockade unchanged."
+    },
+    {
+      "date": "2026-04-30",
+      "category": "economic",
+      "title": "Brent intraday $126.41 — highest in four years",
+      "description": "Brent June contract spiked to $126.41 on US-Iran escalation fears before retreating. Bloomberg Hormuz Tracker: only one Iran-linked fuel tanker observed entering Persian Gulf for the day. Commercial transits at near-zero — both Brent and WTI up ~60% since Feb 28."
+    },
+    {
+      "date": "2026-04-28",
+      "category": "diplomatic",
+      "title": "Iran offers to reopen Strait if US lifts blockade — nuclear talks set aside",
+      "description": "Tehran's foreign ministry decouples Hormuz from nuclear file. Trump discusses proposal with Rubio and top aides; White House non-committal. ~2,000 ships still stranded in Gulf. Underwriters say transit confidence won't return until 'sustained normal vessel movement, not isolated transits.'"
+    },
+    {
+      "date": "2026-04-25",
+      "category": "military",
+      "title": "US intercepts M/V Sevan; Russian superyacht Nord transits unchallenged",
+      "description": "USS-led interception of Panama-flagged propane/butane carrier M/V Sevan in Arabian Sea on suspected Iran-linked cargo. Russian superyacht Nord crossed the Gulf without incident from either navy — selective enforcement signal."
+    },
+    {
+      "date": "2026-04-24",
+      "category": "military",
+      "title": "USS Rafael Peralta captures unidentified Iranian oil tanker",
+      "description": "US Navy seizure inside Persian Gulf — first US destroyer-led capture of an Iranian-flagged tanker within Gulf waters since blockade began Apr 13."
+    },
+    {
+      "date": "2026-04-23",
+      "category": "military",
+      "title": "Trump orders US Navy to destroy Iranian mine-laying boats",
+      "description": "Standing kill order for any Iranian vessel laying mines in strait. US military says full mine clearance — once strait reopens — will take approximately six months. Underwriters cite mine-clearance timeline as gating factor for premium normalization."
+    },
+    {
+      "date": "2026-04-22",
+      "category": "military",
+      "title": "Iran attacks Greek Epaminondas off Oman; seizes MSC Francesca",
+      "description": "Iranian gunboat fired RPGs at Greek-owned Epaminondas despite prior transit clearance, causing significant bridge damage. IRGC also seized Liberia-flagged container ship MSC Francesca. US captured VLCC Majestic X. CENTCOM reports 29 vessels intercepted total. Trump claims blockade costs Iran $500M/day."
+    },
+    {
+      "date": "2026-04-21",
+      "category": "diplomatic",
+      "title": "Trump extends ceasefire pending negotiations — Pakistan brokers",
+      "description": "Trump declared ceasefire extension at Pakistan's request to allow Iranian proposal. Naval blockade maintained. US officials gave Iran 3-5 days to engage in talks before resuming strikes. CENTCOM intercepts at 27 vessels. US captures supertanker Tifani in Indo-Pacific."
+    },
+    {
+      "date": "2026-04-20",
+      "category": "military",
+      "title": "US seizes Iranian-flagged vessel; Iran demands release",
+      "description": "US Navy fired on and seized an Iranian cargo ship defying the blockade. Iran demands immediate release as ceasefire deadline looms. Tensions at maximum — traffic through strait at near-standstill (3 vessels/day)."
+    },
+    {
+      "date": "2026-04-18",
+      "category": "military",
+      "title": "Iran recloses Strait — fires on ships, 3 vessels attacked",
+      "description": "Iran reversed its reopening after US refused to lift naval blockade. Iranian forces fired on Indian-flagged ships and CMA CGM Everglade (rocket damage). 35 outbound vessels reversed course. 6 stranded cruise ships evacuated through brief window."
+    },
+    {
+      "date": "2026-04-17",
+      "category": "diplomatic",
+      "title": "Iran announces strait open during Lebanon truce — short-lived",
+      "description": "Iran declared commercial passage 'completely open' during Lebanon ceasefire. Trump clarified US blockade on Iranian ports remains. Iran cancelled reopening within 24 hours."
+    },
+    {
+      "date": "2026-04-12",
+      "category": "military",
+      "title": "US declares naval blockade of Iranian ports",
+      "description": "After Islamabad talks failed, Trump declared naval blockade preventing ships from entering/exiting Iranian ports. Freedom of navigation maintained for non-Iranian port traffic. Transit dropped from 17/day to 6/day."
+    },
+    {
+      "date": "2026-04-11",
+      "category": "military",
+      "title": "US Navy destroyers enter strait for mine clearance",
+      "description": "First US Navy entry into the strait since hostilities began. Mine clearance operations commence. Transit surges briefly to 17 vessels as ships attempt to exploit ceasefire window."
+    },
+    {
+      "date": "2026-04-08",
+      "category": "diplomatic",
+      "title": "Ceasefire agreement reached — Iran charges $1M+ tolls",
+      "description": "Temporary ceasefire agreed. Iran began controlling traffic and charging tolls exceeding $1M per ship. 45 ships transited in first 4 days. Gulf states intercepted missiles hours into ceasefire."
+    },
+    {
+      "date": "2026-04-09",
+      "category": "military",
+      "title": "Iranian attacks on Gulf states surge to monthly high",
+      "description": "Bloomberg Intelligence data shows Iranian attacks spiking. UAE intercepted 537 ballistic missiles, 2,256 drones, 26 cruise missiles cumulatively. Iran's 'Mosaic Strategy' continues."
+    },
+    {
+      "date": "2026-04-01",
+      "category": "diplomatic",
+      "title": "Status quo: controlled transit, ongoing negotiations",
+      "description": "Strait under selective Iranian control with ~6% of normal traffic. Trump extended deadline to April 6. Estimated 2000 ships stranded. War risk insurance still 6-7x normal."
+    },
+    {
+      "date": "2026-03-31",
+      "category": "diplomatic",
+      "title": "China-Pakistan present 5-point ceasefire initiative",
+      "description": "China and Pakistan jointly present peace proposal including immediate ceasefire, halt to infrastructure attacks, safe passage through Strait, and framework for comprehensive peace."
+    },
+    {
+      "date": "2026-03-26",
+      "category": "diplomatic",
+      "title": "Iran selectively allows approved nations to transit",
+      "description": "Iran permits passage for vessels from China, Russia, India, Iraq, Pakistan. Malaysia and Thailand granted access following direct talks. UN humanitarian and fertilizer shipments permitted."
+    },
+    {
+      "date": "2026-03-21",
+      "category": "military",
+      "title": "Trump issues 48-hour ultimatum to open Strait",
+      "description": "Trump warns Iran that power plants will be obliterated unless Strait fully opens within 48 hours. Iran responds with threats to target US/Israeli energy infrastructure and lay sea mines."
+    },
+    {
+      "date": "2026-03-14",
+      "category": "economic",
+      "title": "US releases 400M barrels from Strategic Petroleum Reserve",
+      "description": "Largest SPR release in history. Estimated 95 days of supply at current drawdown rate. Global coordinated release with IEA members."
+    },
+    {
+      "date": "2026-03-07",
+      "category": "military",
+      "title": "US Navy deploys carrier strike group to Gulf of Oman",
+      "description": "USS Eisenhower carrier strike group positioned in Gulf of Oman. Additional destroyer deployments to escort allied vessels. Iran IRGC navy conducts counter-exercises."
+    },
+    {
+      "date": "2026-03-02",
+      "category": "military",
+      "title": "Iran restricts Strait of Hormuz transit",
+      "description": "Iran begins controlled transit regime following escalation of US-Iran tensions over nuclear program. Initial blockade affects all non-allied vessels. Oil prices spike 15% overnight."
+    }
   ],
   "recoveryClock": {
     "crisisStartDate": "2026-03-02",
@@ -690,7 +1587,7 @@
         "notes": "Limited SPR capacity. 45% Hormuz dependency. Permitted limited transits via negotiation."
       }
     ],
-    "chinaSignal": "China holds ~1.3\u20131.4 bn barrels in strategic reserves (largest in the world) and has still NOT released any as of May 15. Per EIA expectations, China is *expanding* stockpiles by ~1 mbpd in 2026 (record 580 mt 2025 imports = +4.6% YoY). Japan and South Korea (IEA members) have released; the US drew a record 8.6 Mb single week per EIA May 13. China's continued forbearance \u2014 even with Brent recovering to $111 and a record US SPR draw rate \u2014 remains the single most important crisis-tier signal we track. When China taps its SPR, it signals peak crisis.",
+    "chinaSignal": "China holds ~1.3–1.4 bn barrels in strategic reserves (largest in the world) and has still NOT released any as of May 15. Per EIA expectations, China is *expanding* stockpiles by ~1 mbpd in 2026 (record 580 mt 2025 imports = +4.6% YoY). Japan and South Korea (IEA members) have released; the US drew a record 8.6 Mb single week per EIA May 13. China's continued forbearance — even with Brent recovering to $111 and a record US SPR draw rate — remains the single most important crisis-tier signal we track. When China taps its SPR, it signals peak crisis.",
     "lastUpdated": "2026-05-16T08:00:00Z"
   },
   "demandDestruction": {
@@ -757,8 +1654,8 @@
       "Emerging markets suffer — Asia, Europe still absorbing",
       "Global recession if this doesn't go back"
     ],
-    "notes": "Brent recovered to $111.04 by May 15 (+8.1% week) after testing $102 mid-week on May 6 one-page-memo optimism. WTI ~$100–104. Brent has averaged well above the $105 inflation threshold for most of the crisis — March/April CPI prints 3.2–3.5%, leaving the Fed boxed. US retail gasoline crossed $5.00/gal in many states; diesel above $5.80/gal. HFI/JPM (May): forced demand destruction running ~4.3 Mbpd, concentrated in Asian/African importers physically out of fuel. EIA May 13 record 8.6 Mb single-week SPR draw signals US can no longer slow the bleed.",
-    "lastUpdated": "2026-05-16T08:00:00Z"
+    "notes": "Brent settled $112.10 on May 18 (+2% from May 15 close); WTI $108.66 (+3%). Trump called off planned Tuesday (May 19) Iran strikes at Gulf Arab request — oil held all gains. IEA May 2026: Q2 projected 8.5 mb/d global inventory draw; 'rapidly shrinking buffers may herald future price spikes.' Brent has averaged well above the $105 inflation threshold throughout the crisis — CPI printing 3.2–3.5%, leaving the Fed boxed. US retail gasoline above $5.00/gal in many states; diesel above $5.80/gal. EIA May 13 record 8.6 Mb single-week SPR draw signals the US can no longer slow the bleed. Forced demand destruction ~4.3 Mbpd in April (JPM); Q2 pace accelerating.",
+    "lastUpdated": "2026-05-18T21:00:00Z"
   },
   "tankerRates": {
     "vessels": [
@@ -796,21 +1693,130 @@
   },
   "iranianAttacks": {
     "months": [
-      { "month": "Mar 25", "bahrain": 39, "saudi": 92, "kuwait": 10, "uae": 1, "total": 142 },
-      { "month": "Apr 25", "bahrain": 19, "saudi": 112, "kuwait": 8, "uae": 3, "total": 142 },
-      { "month": "May 25", "bahrain": 5, "saudi": 97, "kuwait": 5, "uae": 4, "total": 111 },
-      { "month": "Jun 25", "bahrain": 4, "saudi": 52, "kuwait": 5, "uae": 3, "total": 64 },
-      { "month": "Jul 25", "bahrain": 5, "saudi": 68, "kuwait": 7, "uae": 5, "total": 85 },
-      { "month": "Aug 25", "bahrain": 8, "saudi": 88, "kuwait": 8, "uae": 7, "total": 111 },
-      { "month": "Sep 25", "bahrain": 10, "saudi": 85, "kuwait": 10, "uae": 10, "total": 115 },
-      { "month": "Oct 25", "bahrain": 8, "saudi": 85, "kuwait": 12, "uae": 10, "total": 115 },
-      { "month": "Nov 25", "bahrain": 5, "saudi": 50, "kuwait": 8, "uae": 8, "total": 71 },
-      { "month": "Dec 25", "bahrain": 5, "saudi": 48, "kuwait": 10, "uae": 8, "total": 71 },
-      { "month": "Jan 26", "bahrain": 6, "saudi": 58, "kuwait": 10, "uae": 10, "total": 84 },
-      { "month": "Feb 26", "bahrain": 4, "saudi": 48, "kuwait": 10, "uae": 9, "total": 71 },
-      { "month": "Mar 26", "bahrain": 5, "saudi": 47, "kuwait": 10, "uae": 9, "total": 71 },
-      { "month": "Apr 26", "bahrain": 24, "saudi": 142, "kuwait": 28, "uae": 38, "total": 232, "partial": false, "note": "Final April count — highest monthly total of crisis. UAE single-day record on Apr 22 (Epaminondas attack day). Cumulative UAE intercepts: 537 ballistic missiles, 2,256 drones, 26 cruise missiles" },
-      { "month": "May 26", "bahrain": 5, "saudi": 38, "kuwait": 6, "uae": 42, "total": 91, "partial": true, "note": "Through May 15. UAE bearing the brunt — May 4 largest single-day strike of crisis (12 ballistic + 3 cruise + 4 drones, Fujairah refinery fire); UAE attacked again May 5, May 8, and May 15 (2 ballistic + 3 drones); US Navy ships attacked May 15. Iran's Mosaic Strategy continues independent of diplomatic track." }
+      {
+        "month": "Mar 25",
+        "bahrain": 39,
+        "saudi": 92,
+        "kuwait": 10,
+        "uae": 1,
+        "total": 142
+      },
+      {
+        "month": "Apr 25",
+        "bahrain": 19,
+        "saudi": 112,
+        "kuwait": 8,
+        "uae": 3,
+        "total": 142
+      },
+      {
+        "month": "May 25",
+        "bahrain": 5,
+        "saudi": 97,
+        "kuwait": 5,
+        "uae": 4,
+        "total": 111
+      },
+      {
+        "month": "Jun 25",
+        "bahrain": 4,
+        "saudi": 52,
+        "kuwait": 5,
+        "uae": 3,
+        "total": 64
+      },
+      {
+        "month": "Jul 25",
+        "bahrain": 5,
+        "saudi": 68,
+        "kuwait": 7,
+        "uae": 5,
+        "total": 85
+      },
+      {
+        "month": "Aug 25",
+        "bahrain": 8,
+        "saudi": 88,
+        "kuwait": 8,
+        "uae": 7,
+        "total": 111
+      },
+      {
+        "month": "Sep 25",
+        "bahrain": 10,
+        "saudi": 85,
+        "kuwait": 10,
+        "uae": 10,
+        "total": 115
+      },
+      {
+        "month": "Oct 25",
+        "bahrain": 8,
+        "saudi": 85,
+        "kuwait": 12,
+        "uae": 10,
+        "total": 115
+      },
+      {
+        "month": "Nov 25",
+        "bahrain": 5,
+        "saudi": 50,
+        "kuwait": 8,
+        "uae": 8,
+        "total": 71
+      },
+      {
+        "month": "Dec 25",
+        "bahrain": 5,
+        "saudi": 48,
+        "kuwait": 10,
+        "uae": 8,
+        "total": 71
+      },
+      {
+        "month": "Jan 26",
+        "bahrain": 6,
+        "saudi": 58,
+        "kuwait": 10,
+        "uae": 10,
+        "total": 84
+      },
+      {
+        "month": "Feb 26",
+        "bahrain": 4,
+        "saudi": 48,
+        "kuwait": 10,
+        "uae": 9,
+        "total": 71
+      },
+      {
+        "month": "Mar 26",
+        "bahrain": 5,
+        "saudi": 47,
+        "kuwait": 10,
+        "uae": 9,
+        "total": 71
+      },
+      {
+        "month": "Apr 26",
+        "bahrain": 24,
+        "saudi": 142,
+        "kuwait": 28,
+        "uae": 38,
+        "total": 232,
+        "partial": false,
+        "note": "Final April count — highest monthly total of crisis. UAE single-day record on Apr 22 (Epaminondas attack day). Cumulative UAE intercepts: 537 ballistic missiles, 2,256 drones, 26 cruise missiles"
+      },
+      {
+        "month": "May 26",
+        "bahrain": 5,
+        "saudi": 38,
+        "kuwait": 6,
+        "uae": 42,
+        "total": 91,
+        "partial": true,
+        "note": "Through May 15. UAE bearing the brunt — May 4 largest single-day strike of crisis (12 ballistic + 3 cruise + 4 drones, Fujairah refinery fire); UAE attacked again May 5, May 8, and May 15 (2 ballistic + 3 drones); US Navy ships attacked May 15. Iran's Mosaic Strategy continues independent of diplomatic track."
+      }
     ],
     "context": "Iranian attacks on Gulf states peaked in April 2026 at 232 incidents — highest monthly total of the crisis. May tempo through May 15 (91 attacks, partial) is on track to print 180+ for the month — *higher* than April's pace in UAE-specific incidents, with May 4 being the single largest UAE strike day of the crisis. Trump's May 11 rejection of Iran's counterproposal removed the diplomatic ceiling that had briefly softened tempo in late April.",
     "mosaicStrategyNote": "Iran's 'Mosaic Strategy' — sector commanders have autonomy to launch missiles and drones without central approval. The uptick is being dismissed as decentralized action, not coordinated escalation.",
@@ -835,51 +1841,186 @@
       "peakDate": "2026-04-30",
       "baseline": 15.0,
       "history": [
-        { "date": "2026-01-06", "value": 14.2 },
-        { "date": "2026-01-13", "value": 14.8 },
-        { "date": "2026-01-20", "value": 15.1 },
-        { "date": "2026-01-27", "value": 14.5 },
-        { "date": "2026-02-03", "value": 15.3 },
-        { "date": "2026-02-10", "value": 15.8 },
-        { "date": "2026-02-17", "value": 16.2 },
-        { "date": "2026-02-24", "value": 15.9 },
-        { "date": "2026-02-26", "value": 15.5 },
-        { "date": "2026-03-01", "value": 17.8 },
-        { "date": "2026-03-03", "value": 22.3 },
-        { "date": "2026-03-05", "value": 26.8 },
-        { "date": "2026-03-07", "value": 28.5 },
-        { "date": "2026-03-10", "value": 30.1 },
-        { "date": "2026-03-12", "value": 32.0 },
-        { "date": "2026-03-15", "value": 33.5 },
-        { "date": "2026-03-18", "value": 34.2 },
-        { "date": "2026-03-20", "value": 33.8 },
-        { "date": "2026-03-22", "value": 32.8 },
-        { "date": "2026-03-25", "value": 31.5 },
-        { "date": "2026-03-28", "value": 30.2 },
-        { "date": "2026-04-01", "value": 29.8 },
-        { "date": "2026-04-03", "value": 29.1 },
-        { "date": "2026-04-05", "value": 28.8 },
-        { "date": "2026-04-07", "value": 28.5 },
-        { "date": "2026-04-09", "value": 28.5 },
-        { "date": "2026-04-11", "value": 27.5 },
-        { "date": "2026-04-13", "value": 26.0 },
-        { "date": "2026-04-15", "value": 28.0 },
-        { "date": "2026-04-17", "value": 30.5 },
-        { "date": "2026-04-18", "value": 35.0 },
-        { "date": "2026-04-21", "value": 41.0 },
-        { "date": "2026-04-23", "value": 43.0 },
-        { "date": "2026-04-25", "value": 44.5 },
-        { "date": "2026-04-27", "value": 45.8 },
-        { "date": "2026-04-29", "value": 47.5 },
-        { "date": "2026-04-30", "value": 48.5 },
-        { "date": "2026-05-01", "value": 47.0 },
-        { "date": "2026-05-04", "value": 47.2 },
-        { "date": "2026-05-06", "value": 47.5 },
-        { "date": "2026-05-08", "value": 51.5 },
-        { "date": "2026-05-11", "value": 51.0 },
-        { "date": "2026-05-13", "value": 50.0 },
-        { "date": "2026-05-14", "value": 48.0 },
-        { "date": "2026-05-15", "value": 48.5 }
+        {
+          "date": "2026-01-06",
+          "value": 14.2
+        },
+        {
+          "date": "2026-01-13",
+          "value": 14.8
+        },
+        {
+          "date": "2026-01-20",
+          "value": 15.1
+        },
+        {
+          "date": "2026-01-27",
+          "value": 14.5
+        },
+        {
+          "date": "2026-02-03",
+          "value": 15.3
+        },
+        {
+          "date": "2026-02-10",
+          "value": 15.8
+        },
+        {
+          "date": "2026-02-17",
+          "value": 16.2
+        },
+        {
+          "date": "2026-02-24",
+          "value": 15.9
+        },
+        {
+          "date": "2026-02-26",
+          "value": 15.5
+        },
+        {
+          "date": "2026-03-01",
+          "value": 17.8
+        },
+        {
+          "date": "2026-03-03",
+          "value": 22.3
+        },
+        {
+          "date": "2026-03-05",
+          "value": 26.8
+        },
+        {
+          "date": "2026-03-07",
+          "value": 28.5
+        },
+        {
+          "date": "2026-03-10",
+          "value": 30.1
+        },
+        {
+          "date": "2026-03-12",
+          "value": 32.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 33.5
+        },
+        {
+          "date": "2026-03-18",
+          "value": 34.2
+        },
+        {
+          "date": "2026-03-20",
+          "value": 33.8
+        },
+        {
+          "date": "2026-03-22",
+          "value": 32.8
+        },
+        {
+          "date": "2026-03-25",
+          "value": 31.5
+        },
+        {
+          "date": "2026-03-28",
+          "value": 30.2
+        },
+        {
+          "date": "2026-04-01",
+          "value": 29.8
+        },
+        {
+          "date": "2026-04-03",
+          "value": 29.1
+        },
+        {
+          "date": "2026-04-05",
+          "value": 28.8
+        },
+        {
+          "date": "2026-04-07",
+          "value": 28.5
+        },
+        {
+          "date": "2026-04-09",
+          "value": 28.5
+        },
+        {
+          "date": "2026-04-11",
+          "value": 27.5
+        },
+        {
+          "date": "2026-04-13",
+          "value": 26.0
+        },
+        {
+          "date": "2026-04-15",
+          "value": 28.0
+        },
+        {
+          "date": "2026-04-17",
+          "value": 30.5
+        },
+        {
+          "date": "2026-04-18",
+          "value": 35.0
+        },
+        {
+          "date": "2026-04-21",
+          "value": 41.0
+        },
+        {
+          "date": "2026-04-23",
+          "value": 43.0
+        },
+        {
+          "date": "2026-04-25",
+          "value": 44.5
+        },
+        {
+          "date": "2026-04-27",
+          "value": 45.8
+        },
+        {
+          "date": "2026-04-29",
+          "value": 47.5
+        },
+        {
+          "date": "2026-04-30",
+          "value": 48.5
+        },
+        {
+          "date": "2026-05-01",
+          "value": 47.0
+        },
+        {
+          "date": "2026-05-04",
+          "value": 47.2
+        },
+        {
+          "date": "2026-05-06",
+          "value": 47.5
+        },
+        {
+          "date": "2026-05-08",
+          "value": 51.5
+        },
+        {
+          "date": "2026-05-11",
+          "value": 51.0
+        },
+        {
+          "date": "2026-05-13",
+          "value": 50.0
+        },
+        {
+          "date": "2026-05-14",
+          "value": 48.0
+        },
+        {
+          "date": "2026-05-15",
+          "value": 48.5
+        }
       ]
     },
     "heatingOilCrack": {
@@ -888,51 +2029,186 @@
       "peakDate": "2026-04-30",
       "baseline": 25.0,
       "history": [
-        { "date": "2026-01-06", "value": 23.5 },
-        { "date": "2026-01-13", "value": 24.2 },
-        { "date": "2026-01-20", "value": 25.8 },
-        { "date": "2026-01-27", "value": 24.9 },
-        { "date": "2026-02-03", "value": 25.4 },
-        { "date": "2026-02-10", "value": 26.1 },
-        { "date": "2026-02-17", "value": 26.8 },
-        { "date": "2026-02-24", "value": 25.5 },
-        { "date": "2026-02-26", "value": 25.0 },
-        { "date": "2026-03-01", "value": 28.5 },
-        { "date": "2026-03-03", "value": 34.5 },
-        { "date": "2026-03-05", "value": 41.2 },
-        { "date": "2026-03-07", "value": 45.8 },
-        { "date": "2026-03-10", "value": 48.3 },
-        { "date": "2026-03-12", "value": 52.1 },
-        { "date": "2026-03-15", "value": 54.8 },
-        { "date": "2026-03-18", "value": 57.1 },
-        { "date": "2026-03-20", "value": 58.3 },
-        { "date": "2026-03-22", "value": 56.5 },
-        { "date": "2026-03-25", "value": 55.2 },
-        { "date": "2026-03-28", "value": 53.8 },
-        { "date": "2026-04-01", "value": 52.5 },
-        { "date": "2026-04-03", "value": 52.0 },
-        { "date": "2026-04-05", "value": 51.8 },
-        { "date": "2026-04-07", "value": 51.6 },
-        { "date": "2026-04-09", "value": 51.6 },
-        { "date": "2026-04-11", "value": 51.0 },
-        { "date": "2026-04-13", "value": 49.5 },
-        { "date": "2026-04-15", "value": 52.0 },
-        { "date": "2026-04-17", "value": 54.0 },
-        { "date": "2026-04-18", "value": 56.5 },
-        { "date": "2026-04-21", "value": 60.0 },
-        { "date": "2026-04-23", "value": 61.5 },
-        { "date": "2026-04-25", "value": 63.0 },
-        { "date": "2026-04-27", "value": 64.5 },
-        { "date": "2026-04-29", "value": 66.5 },
-        { "date": "2026-04-30", "value": 67.5 },
-        { "date": "2026-05-01", "value": 66.0 },
-        { "date": "2026-05-04", "value": 66.2 },
-        { "date": "2026-05-06", "value": 66.5 },
-        { "date": "2026-05-08", "value": 71.5 },
-        { "date": "2026-05-11", "value": 71.0 },
-        { "date": "2026-05-13", "value": 69.0 },
-        { "date": "2026-05-14", "value": 64.2 },
-        { "date": "2026-05-15", "value": 67.0 }
+        {
+          "date": "2026-01-06",
+          "value": 23.5
+        },
+        {
+          "date": "2026-01-13",
+          "value": 24.2
+        },
+        {
+          "date": "2026-01-20",
+          "value": 25.8
+        },
+        {
+          "date": "2026-01-27",
+          "value": 24.9
+        },
+        {
+          "date": "2026-02-03",
+          "value": 25.4
+        },
+        {
+          "date": "2026-02-10",
+          "value": 26.1
+        },
+        {
+          "date": "2026-02-17",
+          "value": 26.8
+        },
+        {
+          "date": "2026-02-24",
+          "value": 25.5
+        },
+        {
+          "date": "2026-02-26",
+          "value": 25.0
+        },
+        {
+          "date": "2026-03-01",
+          "value": 28.5
+        },
+        {
+          "date": "2026-03-03",
+          "value": 34.5
+        },
+        {
+          "date": "2026-03-05",
+          "value": 41.2
+        },
+        {
+          "date": "2026-03-07",
+          "value": 45.8
+        },
+        {
+          "date": "2026-03-10",
+          "value": 48.3
+        },
+        {
+          "date": "2026-03-12",
+          "value": 52.1
+        },
+        {
+          "date": "2026-03-15",
+          "value": 54.8
+        },
+        {
+          "date": "2026-03-18",
+          "value": 57.1
+        },
+        {
+          "date": "2026-03-20",
+          "value": 58.3
+        },
+        {
+          "date": "2026-03-22",
+          "value": 56.5
+        },
+        {
+          "date": "2026-03-25",
+          "value": 55.2
+        },
+        {
+          "date": "2026-03-28",
+          "value": 53.8
+        },
+        {
+          "date": "2026-04-01",
+          "value": 52.5
+        },
+        {
+          "date": "2026-04-03",
+          "value": 52.0
+        },
+        {
+          "date": "2026-04-05",
+          "value": 51.8
+        },
+        {
+          "date": "2026-04-07",
+          "value": 51.6
+        },
+        {
+          "date": "2026-04-09",
+          "value": 51.6
+        },
+        {
+          "date": "2026-04-11",
+          "value": 51.0
+        },
+        {
+          "date": "2026-04-13",
+          "value": 49.5
+        },
+        {
+          "date": "2026-04-15",
+          "value": 52.0
+        },
+        {
+          "date": "2026-04-17",
+          "value": 54.0
+        },
+        {
+          "date": "2026-04-18",
+          "value": 56.5
+        },
+        {
+          "date": "2026-04-21",
+          "value": 60.0
+        },
+        {
+          "date": "2026-04-23",
+          "value": 61.5
+        },
+        {
+          "date": "2026-04-25",
+          "value": 63.0
+        },
+        {
+          "date": "2026-04-27",
+          "value": 64.5
+        },
+        {
+          "date": "2026-04-29",
+          "value": 66.5
+        },
+        {
+          "date": "2026-04-30",
+          "value": 67.5
+        },
+        {
+          "date": "2026-05-01",
+          "value": 66.0
+        },
+        {
+          "date": "2026-05-04",
+          "value": 66.2
+        },
+        {
+          "date": "2026-05-06",
+          "value": 66.5
+        },
+        {
+          "date": "2026-05-08",
+          "value": 71.5
+        },
+        {
+          "date": "2026-05-11",
+          "value": 71.0
+        },
+        {
+          "date": "2026-05-13",
+          "value": 69.0
+        },
+        {
+          "date": "2026-05-14",
+          "value": 64.2
+        },
+        {
+          "date": "2026-05-15",
+          "value": 67.0
+        }
       ]
     },
     "sellSignalActive": false,
@@ -976,12 +2252,12 @@
     ]
   },
   "curveShape": {
-    "spotBrent": 107,
+    "spotBrent": 112.1,
     "brent12m": 94,
     "brent24m": 82,
     "brent36m": 75,
-    "percentBackwardation": 29.9,
-    "absoluteBackwardation": 32,
+    "percentBackwardation": 33.1,
+    "absoluteBackwardation": 37,
     "threshold": 25,
     "atHigh": {
       "date": "2026-04-30",
@@ -1011,19 +2287,75 @@
     ],
     "impliedNormalizationYears": 3,
     "history": [
-      { "date": "2026-02-26", "spotBrent": 78, "brent36m": 73, "percentBackwardation": 6.4 },
-      { "date": "2026-03-01", "spotBrent": 88, "brent36m": 74, "percentBackwardation": 15.9 },
-      { "date": "2026-03-15", "spotBrent": 105, "brent36m": 78, "percentBackwardation": 25.7 },
-      { "date": "2026-04-01", "spotBrent": 104, "brent36m": 78, "percentBackwardation": 25.0 },
-      { "date": "2026-04-15", "spotBrent": 100, "brent36m": 79, "percentBackwardation": 21.0 },
-      { "date": "2026-04-22", "spotBrent": 102, "brent36m": 80, "percentBackwardation": 21.6 },
-      { "date": "2026-04-30", "spotBrent": 126, "brent36m": 84, "percentBackwardation": 33.3 },
-      { "date": "2026-05-01", "spotBrent": 114, "brent36m": 80, "percentBackwardation": 29.8 },
-      { "date": "2026-05-06", "spotBrent": 110, "brent36m": 76, "percentBackwardation": 30.9 },
-      { "date": "2026-05-16", "spotBrent": 107, "brent36m": 75, "percentBackwardation": 29.9 }
+      {
+        "date": "2026-02-26",
+        "spotBrent": 78,
+        "brent36m": 73,
+        "percentBackwardation": 6.4
+      },
+      {
+        "date": "2026-03-01",
+        "spotBrent": 88,
+        "brent36m": 74,
+        "percentBackwardation": 15.9
+      },
+      {
+        "date": "2026-03-15",
+        "spotBrent": 105,
+        "brent36m": 78,
+        "percentBackwardation": 25.7
+      },
+      {
+        "date": "2026-04-01",
+        "spotBrent": 104,
+        "brent36m": 78,
+        "percentBackwardation": 25.0
+      },
+      {
+        "date": "2026-04-15",
+        "spotBrent": 100,
+        "brent36m": 79,
+        "percentBackwardation": 21.0
+      },
+      {
+        "date": "2026-04-22",
+        "spotBrent": 102,
+        "brent36m": 80,
+        "percentBackwardation": 21.6
+      },
+      {
+        "date": "2026-04-30",
+        "spotBrent": 126,
+        "brent36m": 84,
+        "percentBackwardation": 33.3
+      },
+      {
+        "date": "2026-05-01",
+        "spotBrent": 114,
+        "brent36m": 80,
+        "percentBackwardation": 29.8
+      },
+      {
+        "date": "2026-05-06",
+        "spotBrent": 110,
+        "brent36m": 76,
+        "percentBackwardation": 30.9
+      },
+      {
+        "date": "2026-05-16",
+        "spotBrent": 107,
+        "brent36m": 75,
+        "percentBackwardation": 29.9
+      },
+      {
+        "date": "2026-05-18",
+        "spotBrent": 112.1,
+        "brent36m": 75,
+        "percentBackwardation": 33.1
+      }
     ],
-    "lastUpdated": "2026-05-16T08:00:00Z",
-    "source": "ICE Brent futures curve (BZ=F prompt + long-dated approximations from physical broker quotes); Jeff Currie commentary, Carlyle (May 16 2026)",
+    "lastUpdated": "2026-05-18T21:00:00Z",
+    "source": "ICE Brent futures curve (BZ=F prompt per CNBC May 18 settle $112.10; long-dated approximations from physical broker quotes). Back end 36-mo held ~$75 — Currie capex-starvation thesis intact. Jeff Currie commentary, Carlyle (May 16 2026).",
     "methodology": "% backwardation = (spot − 36mo) / spot × 100. Extreme backwardation = supply shock priced into spot, not into long-run expectations — implying market expects rapid normalization. When the back end stays anchored ($75 vs Russia-Ukraine $86), spot can't break out even when the physical disruption deepens.",
     "physicalMarketNote": {
       "date": "2026-05-16",
@@ -1048,14 +2380,30 @@
     "spotBrent": 107,
     "energyVsPreHormuzPct": -8.0,
     "munificent7": {
-      "constituents": ["XOM", "CVX", "COP", "SHEL", "TTE", "BP", "EQNR"],
+      "constituents": [
+        "XOM",
+        "CVX",
+        "COP",
+        "SHEL",
+        "TTE",
+        "BP",
+        "EQNR"
+      ],
       "fcfYield_at105": 15.5,
       "fcfYield_atConsensus": 12.0,
       "pe": 7.0,
       "label": "Munificent 7"
     },
     "magnificent7": {
-      "constituents": ["AAPL", "MSFT", "GOOGL", "AMZN", "META", "NVDA", "TSLA"],
+      "constituents": [
+        "AAPL",
+        "MSFT",
+        "GOOGL",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA"
+      ],
       "fcfYield": 1.5,
       "pe": 28.0,
       "capex2026Bn": 820,
@@ -1064,13 +2412,48 @@
     },
     "rotationPotentialTn": 10,
     "history": [
-      { "date": "2026-02-26", "energyPctOfSP500": 4.3, "fcfYieldGapBps": 480, "impliedLongRunBrent": 68 },
-      { "date": "2026-03-15", "energyPctOfSP500": 4.6, "fcfYieldGapBps": 720, "impliedLongRunBrent": 72 },
-      { "date": "2026-04-01", "energyPctOfSP500": 4.5, "fcfYieldGapBps": 780, "impliedLongRunBrent": 71 },
-      { "date": "2026-04-22", "energyPctOfSP500": 4.2, "fcfYieldGapBps": 860, "impliedLongRunBrent": 70 },
-      { "date": "2026-04-30", "energyPctOfSP500": 4.4, "fcfYieldGapBps": 950, "impliedLongRunBrent": 72 },
-      { "date": "2026-05-06", "energyPctOfSP500": 4.1, "fcfYieldGapBps": 1010, "impliedLongRunBrent": 71 },
-      { "date": "2026-05-16", "energyPctOfSP500": 4.0, "fcfYieldGapBps": 1040, "impliedLongRunBrent": 70 }
+      {
+        "date": "2026-02-26",
+        "energyPctOfSP500": 4.3,
+        "fcfYieldGapBps": 480,
+        "impliedLongRunBrent": 68
+      },
+      {
+        "date": "2026-03-15",
+        "energyPctOfSP500": 4.6,
+        "fcfYieldGapBps": 720,
+        "impliedLongRunBrent": 72
+      },
+      {
+        "date": "2026-04-01",
+        "energyPctOfSP500": 4.5,
+        "fcfYieldGapBps": 780,
+        "impliedLongRunBrent": 71
+      },
+      {
+        "date": "2026-04-22",
+        "energyPctOfSP500": 4.2,
+        "fcfYieldGapBps": 860,
+        "impliedLongRunBrent": 70
+      },
+      {
+        "date": "2026-04-30",
+        "energyPctOfSP500": 4.4,
+        "fcfYieldGapBps": 950,
+        "impliedLongRunBrent": 72
+      },
+      {
+        "date": "2026-05-06",
+        "energyPctOfSP500": 4.1,
+        "fcfYieldGapBps": 1010,
+        "impliedLongRunBrent": 71
+      },
+      {
+        "date": "2026-05-16",
+        "energyPctOfSP500": 4.0,
+        "fcfYieldGapBps": 1040,
+        "impliedLongRunBrent": 70
+      }
     ],
     "lastUpdated": "2026-05-16T08:00:00Z",
     "source": "S&P Dow Jones Indices, S&P Capital IQ FCF estimates, Bloomberg Energy Sector Index, Jeff Currie commentary (Carlyle, May 16 2026)",
