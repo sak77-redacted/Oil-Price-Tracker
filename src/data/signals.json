@@ -839,6 +839,12 @@
     "note": "May 19 SETTLE: Brent $111.28 (-0.73%), WTI $107.77 (-0.82%). DAY 81 OF CRISIS. Investors weigh mixed signals on Trump-Iran: Gulf Arab leaders say deal 'within reach' but US officials call Iran proposal 'insufficient'. Trump gave Iran 2–3 days (Fri-Sun). Oil eased from May 18 highs ($112.10 Brent) but held most of recent gains. Dubai physical estimated ~$129 (manual review needed — no fresh Platts print). May 18 SETTLE: Brent $112.10 (+2%), WTI $108.66 (+3%). MAJOR DIPLOMATIC DEVELOPMENT: Trump called off planned Tuesday (May 19) Iran strikes at request of Gulf Arab leaders (Qatar, Saudi Arabia, UAE) who told him 'serious negotiations are underway with Iran that will result in a deal acceptable to the US.' Trump still directed Pentagon to 'be prepared to go forward with a full, large scale assault of Iran, on a moment's notice.' Oil held all gains. IEA May 2026 report: global inventories drew 250 mb over March-April (~4 mb/d); Q2 projected 8.5 mb/d draw; 'Rapidly shrinking buffers amid continued disruptions may herald future price spikes ahead.' Dubai physical ~$129 estimated — manual review needed for fresh Platts data. ── Volatile week. Brent rode an arc: $109 May 7 → trough $102 May 11 on Axios May 6 one-page-memo optimism → snapped back as Trump rejected Iran's counterproposal May 11 → $111 May 13 → fell sharply to $106 on the May 14 Trump-Xi Beijing summit (both leaders agreed Strait of Hormuz 'must remain open'; China pledged to work behind scenes with Iran; Saudi June OSP for Asia cut to +$15.50/bbl from record +$19.50). Dubai briefly inverted to ~$5 DISCOUNT vs Brent (first time since crisis onset) as Gulf physical premiums compressed → reverted to $111.04 / $128 by May 15 after US Navy was attacked in the Strait and US retaliated. WTI ~$100–105.42. Brent–WTI spread widened to ~$8–11 (Hormuz routes don't affect WTI as directly). Dec '26 Brent still sub-$80 — backwardation of ~$30+ pricing rapid normalization the supply math contradicts.",
     "physicalMarketNotes": [
       {
+        "date": "2026-05-19",
+        "quote": "Sellside is publishing $100 year-end Brent assuming a June 1 strait reopening. There's nothing like price changing the narrative — when the consensus has to mark to a strait that hasn't reopened, the contrarian signal will be obvious. We're not there yet.",
+        "attribution": "HFI Research",
+        "context": "Why front-month Brent stuck at $110 is consistent with both views — only the curve will resolve it."
+      },
+      {
         "date": "2026-05-16",
         "quote": "Markets are fixated on Dated Brent differentials, ~$5/bbl last night which is down sharply, but that is a microcosm of the oil market. Dated Brent is Sullum Voe. One North Sea terminal. Not the global oil market.",
         "attribution": "Jeff Currie, Carlyle",
@@ -1200,6 +1206,12 @@
     "source": "IEA OECD inventories, EIA Weekly Petroleum Status Report (May 13: record 8.6 Mb single-week SPR draw, beating Sept 2022's 8.4 Mb prior record; SPR now 384.1 Mb — lowest since Oct 2024; commercial crude −4.3 Mb; refineries at 16.4 Mbpd / 91.7% utilization). Goldman/JPM/HFI: April inventory draws 7.1 Mbpd, demand destruction 4.3 Mbpd; cumulative ~390 Mbbl drawn Mar+Apr+early May. IEA SPR 120-day window exhausts ~Jul 9.",
     "physicalMarketNotes": [
       {
+        "date": "2026-05-19",
+        "quote": "The implied global oil flow for May has averaged -7.5 mb/d: 12 mb/d production shut-in plus 2 mb/d demand loss minus 2.5 mb/d SPR releases. JPM's own model has 2026 inventories plunging through the 5-year low by June. They acknowledge the math; they just won't say what it means if the strait doesn't reopen.",
+        "attribution": "HFI Research",
+        "context": "The May draw decomposition that sellside models implicitly require for their June-reopen base case."
+      },
+      {
         "date": "2026-05-16",
         "quote": "The price spike is the symptom, capex starvation is the illness. Refinery investment is at a 10-year low. Upstream oil and gas investment is down 35% from its 2015 peak. The top 20 miners are spending 40% less than at the 2012 cycle high. Metals and oil were already rallying before the Strait of Hormuz closed.",
         "attribution": "Jeff Currie, Carlyle",
@@ -1540,7 +1552,7 @@
         "status": "not-started"
       }
     ],
-    "keyInsight": "Asia passed the point of no return by the second week of the closure. Even if the strait reopens tomorrow, 4-5 months before any sense of normalcy returns. Add 6 months for full mine clearance per US Navy estimate (Apr 23) — that pushes baseline normalization into Q1 2027. — Jun Goh, Sparta Commodities — Jeff Currie (Carlyle, May 16) reframes this: the security premium is structural, not transitional. Even if Hormuz reopens, capex starvation, deglobalization, and the Mag 7's $820bn 2026 capex bid for molecules outlast the diplomatic timeline. HALO — Hard Assets, Local Operations — is the post-Hormuz regime.",
+    "keyInsight": "Asia passed the point of no return by the second week of the closure. Even if the strait reopens tomorrow, 4-5 months before any sense of normalcy returns. Add 6 months for full mine clearance per US Navy estimate (Apr 23) — that pushes baseline normalization into Q1 2027. — Jun Goh, Sparta Commodities — Jeff Currie (Carlyle, May 16) reframes this: the security premium is structural, not transitional. Even if Hormuz reopens, capex starvation, deglobalization, and the Mag 7's $820bn 2026 capex bid for molecules outlast the diplomatic timeline. HALO — Hard Assets, Local Operations — is the post-Hormuz regime. — HFI Research (May 19, 2026) flags the point of no return: ballast tankers redirected to US drainage make Persian Gulf restart impossible before August, regardless of when the strait reopens. Every day of delay compounds the anchoring problem on both sides.",
     "source": "Sparta Commodities / MB Commodity Corner / Palmer Energy / US Navy mine-clearance estimate (Apr 23)",
     "lastUpdated": "2026-05-16T08:00:00Z"
   },
@@ -2475,5 +2487,104 @@
       "attribution": "Jeff Currie, Carlyle",
       "context": "Why the energy equity complex is the cleanest second-derivative signal — and why the dislocation is the trade."
     }
+  },
+  "inventoryDraws": {
+    "averageDrawMbd": 4.4,
+    "latestMonthDrawMbd": 7.5,
+    "latestMonthLabel": "May 2026",
+    "accelerationMbd": 5.0,
+    "threshold": 4.0,
+    "monthlyEntries": [
+      {
+        "month": "March",
+        "monthIso": "2026-03",
+        "globalVisibleStocks": -4.7,
+        "landedCrude": 0.1,
+        "oecdLandedCrude": 0.3,
+        "chinaLandedCrude": 0.3,
+        "nonOecdExChinaLandedCrude": -0.5,
+        "landedProducts": -1.3,
+        "oecdNgl": -0.3,
+        "oecdRefinedProducts": -0.9,
+        "nonOecdProducts": -0.1,
+        "oilOnWater": -3.5,
+        "floatingCrude": 1.5,
+        "floatingProducts": 0.7,
+        "crudeInTransit": -3.9,
+        "productsInTransit": -1.8
+      },
+      {
+        "month": "April",
+        "monthIso": "2026-04",
+        "globalVisibleStocks": -2.5,
+        "landedCrude": -2.4,
+        "oecdLandedCrude": -2.6,
+        "chinaLandedCrude": 0.3,
+        "nonOecdExChinaLandedCrude": 0.0,
+        "landedProducts": -1.5,
+        "oecdNgl": 0.2,
+        "oecdRefinedProducts": -1.8,
+        "nonOecdProducts": 0.1,
+        "oilOnWater": 1.4,
+        "floatingCrude": 0.5,
+        "floatingProducts": 0.0,
+        "crudeInTransit": 1.1,
+        "productsInTransit": -0.3
+      },
+      {
+        "month": "May",
+        "monthIso": "2026-05",
+        "globalVisibleStocks": -7.5,
+        "landedCrude": -2.2,
+        "oecdLandedCrude": -2.6,
+        "chinaLandedCrude": 0.4,
+        "nonOecdExChinaLandedCrude": -0.1,
+        "landedProducts": -0.8,
+        "oecdNgl": 0.4,
+        "oecdRefinedProducts": -0.8,
+        "nonOecdProducts": -0.4,
+        "oilOnWater": -4.5,
+        "floatingCrude": -1.6,
+        "floatingProducts": -0.4,
+        "crudeInTransit": 0.5,
+        "productsInTransit": -3.1,
+        "partial": true
+      }
+    ],
+    "impliedFlow": {
+      "components": [
+        {
+          "label": "Production shut-in",
+          "valueMbd": 12.0,
+          "direction": "drain",
+          "description": "Persian Gulf crude offline since Hormuz closure — restart impossible before August per HFI."
+        },
+        {
+          "label": "Demand loss",
+          "valueMbd": 2.0,
+          "direction": "drain",
+          "description": "Forced rationing + petrochemical force-majeures across Asia."
+        },
+        {
+          "label": "SPR releases",
+          "valueMbd": 2.5,
+          "direction": "fill",
+          "description": "US + IEA coordinated releases — record 8.6 Mb single-week US SPR draw (EIA May 13)."
+        }
+      ],
+      "netDrawMbd": 7.5,
+      "asOfLabel": "May 2026"
+    },
+    "methodology": "Goldman's visible-stocks dataset captures monthly changes (mb/d) across landed crude (OECD, China, non-OECD ex-China), landed products (OECD NGL, OECD refined products, non-OECD total products), and oil-on-water (floating crude, floating products, crude-in-transit, products-in-transit). May draws accelerated to -7.5 mb/d as ballast tankers redirected to the US to drain remaining excess crude — restart of shut-in production cannot return barrels to the Persian Gulf before August. Implied flow: 12 mb/d production shut-in + 2 mb/d demand loss − 2.5 mb/d SPR releases = 7.5 mb/d net draw.",
+    "source": "Goldman Sachs Global Investment Research, Exhibit 10 — Global Visible Draws Have Averaged 4.4 mb/d Since March 1st. Reported via HFI Research (May 19, 2026).",
+    "lastUpdated": "2026-05-19T15:30:00+11:00",
+    "physicalMarketNotes": [
+      {
+        "date": "2026-05-19",
+        "quote": "Logistical constraints make it impossible for production shut-in to restart until August. Most ballast tankers are headed for the US to drain the last remaining excess crude in storage, and the time it will take to return to the Persian Gulf all but guarantees more delays. We have entered the point of no return.",
+        "attribution": "HFI Research",
+        "context": "Why even a June 1 strait reopening doesn't fix May/June draws — and why every passing day lowers the probability of any resolution."
+      }
+    ]
   }
 }

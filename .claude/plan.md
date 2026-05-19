@@ -434,3 +434,33 @@ Task 1 (scaffold)
 - `src/components/Dashboard.tsx`
 
 **Verify:** `npm run build` passes. Market Belief Signals section appears below Signal 10 with Signal 11 + Signal 12 side-by-side on desktop. Annotations visible on Signal 3 (oilSpread), Signal 8 (bufferMath), and Recovery Clock insight.
+
+---
+
+## Task 17: Signal 13 — Visible Inventory Draws + Sellside-vs-HFI framing
+**Status:** [x]
+**Skill:** genius-dev-frontend
+**Duration:** ~60 min
+**Dependencies:** Task 16
+**Date:** 2026-05-19
+
+**Goal:** Integrate HFI Research's May 19, 2026 "Point of No Return" note. Sellside (JPM, Goldman, Morgan Stanley) has converged on a "Strait reopens June 1, Brent $100 year-end" base case; JPM Figure 1 shows 2026 inventories plunging through every prior year's range by June. HFI's counter: logistical constraints (ballast tankers redirected to US drainage) push Persian Gulf restart to August at earliest, and anchoring biases lower diplomatic-resolution probability daily. Goldman Exhibit 10 (the strongest new evidence): global visible draws have averaged -4.4 mb/d since Mar 1, accelerating to -7.5 mb/d in May.
+
+**Steps:**
+1. Add `VisibleStocksMonthEntry`, `ImpliedFlowComponent`, `InventoryDrawsSignal` interfaces to `src/lib/types.ts`. Add optional `inventoryDraws?: InventoryDrawsSignal` to `SignalData`.
+2. Populate `src/data/signals.json` with the full `inventoryDraws` block: Goldman Exhibit 10 dataset (March / April / May rows for global visible, landed crude OECD/China/Non-OECD, landed products OECD NGL/OECD refined/Non-OECD, oil-on-water floating crude/floating products/crude in transit/products in transit), implied-flow decomposition (12 mb/d shut-in + 2 mb/d demand loss − 2.5 mb/d SPR releases = 7.5 mb/d net), and HFI May 19 quote in physicalMarketNotes.
+3. Build `src/components/InventoryDrawsSignal.tsx` — SignalCard with -7.5 mb/d hero, three sub-stat chips (period avg, MoM acceleration, tank-bottom risk), implied-flow decomposition strip with reconciling-math chips (red drains, green fill, red net-draw highlight), full Goldman Exhibit 10 mini-table with color-coded cells (red <-1, yellow -1 to -0.3, green/neutral >-0.3) and partial-month tag for May, status-driven insight banner tying back to JPM tank-bottom thesis vs HFI logistical-constraint counter, and methodology footer.
+4. Wire `InventoryDrawsSignal` into `src/components/Dashboard.tsx` between Signal 10 (USProductStocksSignal) and the Market Belief Signals section (Signals 11 + 12).
+5. Add a "Sellside Consensus vs HFI" contrast block to `src/components/VerdictBanner.tsx` Reopening Scenario sub-panel — two side-by-side cards (muted gray sellside vs amber HFI) below the existing status-quo / Iranian-controlled cards.
+6. Prepend HFI May 19 quotes to `bufferMath.physicalMarketNotes` (May draw decomposition) and `oilSpread.physicalMarketNotes` (sellside-mark-to-market). Append HFI commentary to `recoveryClock.keyInsight` (logistical constraints on Persian Gulf restart).
+7. Append decision `d-013` to `.genius/memory/decisions.json`.
+
+**Files:**
+- `src/lib/types.ts`
+- `src/data/signals.json`
+- `src/components/InventoryDrawsSignal.tsx` (new)
+- `src/components/Dashboard.tsx`
+- `src/components/VerdictBanner.tsx`
+- `.genius/memory/decisions.json`
+
+**Verify:** `npm run build` passes. Dashboard at localhost:3000 shows Signal 13 card below Signal 10 with "-7.5 mb/d" hero metric, implied-flow chips (+12.0 shut-in, +2.0 demand loss, −2.5 SPR releases, = 7.5 mb/d net draw), and Goldman Exhibit 10 mini-table with May column flagged partial. Verdict Banner Reopening Scenario sub-panel now has Sellside-vs-HFI contrast block below the two scenario cards. HFI May 19 quote appears newest-first on Signal 3 (oilSpread), Signal 8 (bufferMath), and Recovery Clock keyInsight.

@@ -289,6 +289,73 @@ export interface EquityDisbeliefSignal {
   physicalMarketNotes?: PhysicalMarketNote[];
 }
 
+/**
+ * Signal 13 — Visible Inventory Draws (Goldman Exhibit 10 dataset).
+ *
+ * Goldman Sachs Global Investment Research, May 19, 2026 (reported via HFI):
+ * "Global Visible Draws Have Averaged 4.4 mb/d Since March 1st." The dataset
+ * captures monthly changes (mb/d) across landed crude (OECD, China, non-OECD
+ * ex-China), landed products (OECD NGL, OECD refined products, non-OECD
+ * total products), and oil-on-water (floating crude/products, crude/products
+ * in transit). May draws accelerated to -7.5 mb/d as ballast tankers
+ * redirected to the US to drain remaining excess crude — restart of shut-in
+ * production cannot return barrels to the Persian Gulf before August.
+ *
+ * Implied flow: 12 mb/d shut-in + 2 mb/d demand loss − 2.5 mb/d SPR
+ * releases = 7.5 mb/d net visible draw.
+ */
+export interface VisibleStocksMonthEntry {
+  month: string;          // e.g. "March", "April", "May"
+  monthIso: string;       // e.g. "2026-03", "2026-04", "2026-05"
+  globalVisibleStocks: number;       // mb/d MoM change
+  landedCrude: number;
+  oecdLandedCrude: number;
+  chinaLandedCrude: number;
+  nonOecdExChinaLandedCrude: number;
+  landedProducts: number;
+  oecdNgl: number;
+  oecdRefinedProducts: number;
+  nonOecdProducts: number;
+  oilOnWater: number;
+  floatingCrude: number;
+  floatingProducts: number;
+  crudeInTransit: number;
+  productsInTransit: number;
+  partial?: boolean;      // true if month is in-progress
+}
+
+export interface ImpliedFlowComponent {
+  label: string;          // "Production shut-in"
+  valueMbd: number;       // 12
+  direction: "drain" | "fill"; // visual sign
+  description: string;
+}
+
+export interface InventoryDrawsSignal {
+  /** Period-average daily draw rate, mb/d (e.g. 4.4). */
+  averageDrawMbd: number;
+  /** Most-recent-month draw rate, mb/d (e.g. 7.5). */
+  latestMonthDrawMbd: number;
+  latestMonthLabel: string;     // "May 2026"
+  /** Acceleration from prior month draw → latest, mb/d. */
+  accelerationMbd: number;
+  /** Threshold for red status (mb/d). */
+  threshold: number;
+  /** Goldman visible-stocks dataset (oldest first). */
+  monthlyEntries: VisibleStocksMonthEntry[];
+  /** Stacked-flow decomposition reconciling the latest-month draw. */
+  impliedFlow: {
+    components: ImpliedFlowComponent[];
+    netDrawMbd: number;       // 7.5
+    asOfLabel: string;        // "May 2026"
+  };
+  methodology: string;
+  source: string;
+  lastUpdated: string;
+  physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
+}
+
 export interface SignalData {
   insurance: InsuranceSignal;
   shipTransit: ShipTransitSignal;
@@ -299,6 +366,7 @@ export interface SignalData {
   usProductStocks?: USProductStocksSignal;
   curveShape?: CurveShapeSignal;
   equityDisbelief?: EquityDisbeliefSignal;
+  inventoryDraws?: InventoryDrawsSignal;
 }
 
 export interface StraitStatus {

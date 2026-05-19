@@ -42,6 +42,7 @@ import BuyerStressSignal from "./BuyerStressSignal";
 import USProductStocksSignal from "./USProductStocksSignal";
 import CurveShapeSignal from "./CurveShapeSignal";
 import EquityDisbeliefSignal from "./EquityDisbeliefSignal";
+import InventoryDrawsSignal from "./InventoryDrawsSignal";
 
 interface DashboardProps {
   data: ExtendedSignalData;
@@ -405,6 +406,16 @@ export default function Dashboard({ data, futuresData, crackData, forwardData, w
               Signal 10 — US Product Stocks Runway
             </div>
             <USProductStocksSignal data={data.usProductStocks} />
+          </div>
+        )}
+
+        {/* Signal 13 — Visible Inventory Draws (Goldman / HFI, May 19) */}
+        {data.inventoryDraws && (
+          <div className="mt-6">
+            <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+              Signal 13 — Visible Inventory Draws
+            </div>
+            <InventoryDrawsSignal data={data.inventoryDraws} />
           </div>
         )}
 

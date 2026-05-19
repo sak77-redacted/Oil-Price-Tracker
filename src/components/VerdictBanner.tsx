@@ -218,6 +218,42 @@ export default function VerdictBanner({ data, liveBrentPrice, wtiPrice }: Verdic
               </div>
             </div>
 
+            {/* Sellside Consensus vs HFI — May 19, 2026 */}
+            <div className="mt-3 rounded-md border border-white/10 bg-black/40 p-3">
+              <div className="mb-2 flex items-baseline justify-between">
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/80">
+                  Sellside Consensus vs HFI
+                </span>
+                <span className="text-[10px] italic text-white/50">
+                  Reopening scenario debate · May 19, 2026
+                </span>
+              </div>
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                <div className="rounded border border-white/10 bg-black/20 px-3 py-2">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-white/55">
+                    Sellside consensus
+                  </div>
+                  <div className="mt-0.5 text-[10px] text-white/45">
+                    JPM, Goldman, Morgan Stanley
+                  </div>
+                  <p className="mt-1.5 text-[11px] italic leading-relaxed text-white/55">
+                    &ldquo;Strait reopens June 1, Brent ~$100 through year-end. JPM Fig 1: 2026 inventories plunge from ~8,400 Mb in Feb to ~7,700 Mb by June — base case requires reopening to avoid tank-bottom.&rdquo;
+                  </p>
+                </div>
+                <div className="rounded border border-amber-500/30 bg-amber-500/5 px-3 py-2">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-amber-300/90">
+                    HFI position
+                  </div>
+                  <div className="mt-0.5 text-[10px] text-amber-200/60">
+                    HFI Research, May 19, 2026
+                  </div>
+                  <p className="mt-1.5 text-[11px] font-medium leading-relaxed text-amber-200/90">
+                    &ldquo;Point of no return crossed. Logistical constraints push restart to August at earliest — ballast tankers redirected to US drainage cannot return to the Persian Gulf in time. Anchoring biases lower probability of diplomatic resolution daily.&rdquo;
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div className="mt-2 text-[10px] leading-relaxed text-white/60">
               <span className="font-semibold text-white/75">Why capped:</span>{" "}
               new transit-permit process, insurance/compliance frictions in Iranian territorial waters, IRGC transit fees (US-sanctioned), and complex routing vs. standard IMO traffic separation.
