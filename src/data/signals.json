@@ -608,9 +608,9 @@
     "source": "Windward Maritime Intelligence, Bloomberg Hormuz Tracker, NBC News Hormuz tracker, hormuztracking.com. May 13 saw a brief spike to 11 transits (4 in / 7 out) during the one-page-memo optimism window (Axios, May 6); reverted after May 11 Trump rejection. May 15 print: 6 vessels vs ~60 baseline (~90% below). 1,550+ vessels and 22,500 mariners still stranded in/around the strait."
   },
   "oilSpread": {
-    "brent": 112.1,
+    "brent": 111.28,
     "dubai": 129,
-    "spread": 16.9,
+    "spread": 17.72,
     "history": [
       {
         "date": "2026-02-26",
@@ -826,12 +826,17 @@
         "date": "2026-05-18",
         "brent": 112.1,
         "dubai": 129
+      },
+      {
+        "date": "2026-05-19",
+        "brent": 111.28,
+        "dubai": 129.0
       }
     ],
-    "lastUpdated": "2026-05-18T21:00:00Z",
-    "brentSource": "CNBC May 18 settle: Brent +2% to $112.10/bbl, WTI +3% to $108.66 (June contract). Fortune May 18 early session: $110.08 @ 9:10am ET. Tsubouchi/SAF May 16 (Friday May 15 close): WTI $105.42. Dubai physical May 18 estimated ~$129 (no fresh Platts print — carry ~17/bbl spread vs Brent; manual review needed).",
+    "lastUpdated": "2026-05-19T21:00:00Z",
+    "brentSource": "CNBC May 19 settle: Brent -0.73% to $111.28/bbl, WTI -0.82% to $107.77/bbl. Oil ticked lower as Trump gave Iran 2–3 days (Fri–Sun window) to reach deal before resuming military strike planning. Mixed signals: Gulf Arab leaders (Qatar, SA, UAE) say 'serious negotiations underway'; senior US official told Axios proposal still 'insufficient for a deal.' Both contracts +50%+ vs Feb 28 war-start. Goldman: each Hormuz-closed month adds ~$10/bbl at year-end. Dubai physical ~$129 estimated — manual review needed (no fresh Platts print).",
     "dubaiSource": "Dubai Crude Oil Platts futures (Investing.com). May 14 inversion print: $100.70.",
-    "note": "May 18 SETTLE: Brent $112.10 (+2%), WTI $108.66 (+3%). MAJOR DIPLOMATIC DEVELOPMENT: Trump called off planned Tuesday (May 19) Iran strikes at request of Gulf Arab leaders (Qatar, Saudi Arabia, UAE) who told him 'serious negotiations are underway with Iran that will result in a deal acceptable to the US.' Trump still directed Pentagon to 'be prepared to go forward with a full, large scale assault of Iran, on a moment's notice.' Oil held all gains. IEA May 2026 report: global inventories drew 250 mb over March-April (~4 mb/d); Q2 projected 8.5 mb/d draw; 'Rapidly shrinking buffers amid continued disruptions may herald future price spikes ahead.' Dubai physical ~$129 estimated — manual review needed for fresh Platts data. ── Volatile week. Brent rode an arc: $109 May 7 → trough $102 May 11 on Axios May 6 one-page-memo optimism → snapped back as Trump rejected Iran's counterproposal May 11 → $111 May 13 → fell sharply to $106 on the May 14 Trump-Xi Beijing summit (both leaders agreed Strait of Hormuz 'must remain open'; China pledged to work behind scenes with Iran; Saudi June OSP for Asia cut to +$15.50/bbl from record +$19.50). Dubai briefly inverted to ~$5 DISCOUNT vs Brent (first time since crisis onset) as Gulf physical premiums compressed → reverted to $111.04 / $128 by May 15 after US Navy was attacked in the Strait and US retaliated. WTI ~$100–105.42. Brent–WTI spread widened to ~$8–11 (Hormuz routes don't affect WTI as directly). Dec '26 Brent still sub-$80 — backwardation of ~$30+ pricing rapid normalization the supply math contradicts.",
+    "note": "May 19 SETTLE: Brent $111.28 (-0.73%), WTI $107.77 (-0.82%). DAY 81 OF CRISIS. Investors weigh mixed signals on Trump-Iran: Gulf Arab leaders say deal 'within reach' but US officials call Iran proposal 'insufficient'. Trump gave Iran 2–3 days (Fri-Sun). Oil eased from May 18 highs ($112.10 Brent) but held most of recent gains. Dubai physical estimated ~$129 (manual review needed — no fresh Platts print). May 18 SETTLE: Brent $112.10 (+2%), WTI $108.66 (+3%). MAJOR DIPLOMATIC DEVELOPMENT: Trump called off planned Tuesday (May 19) Iran strikes at request of Gulf Arab leaders (Qatar, Saudi Arabia, UAE) who told him 'serious negotiations are underway with Iran that will result in a deal acceptable to the US.' Trump still directed Pentagon to 'be prepared to go forward with a full, large scale assault of Iran, on a moment's notice.' Oil held all gains. IEA May 2026 report: global inventories drew 250 mb over March-April (~4 mb/d); Q2 projected 8.5 mb/d draw; 'Rapidly shrinking buffers amid continued disruptions may herald future price spikes ahead.' Dubai physical ~$129 estimated — manual review needed for fresh Platts data. ── Volatile week. Brent rode an arc: $109 May 7 → trough $102 May 11 on Axios May 6 one-page-memo optimism → snapped back as Trump rejected Iran's counterproposal May 11 → $111 May 13 → fell sharply to $106 on the May 14 Trump-Xi Beijing summit (both leaders agreed Strait of Hormuz 'must remain open'; China pledged to work behind scenes with Iran; Saudi June OSP for Asia cut to +$15.50/bbl from record +$19.50). Dubai briefly inverted to ~$5 DISCOUNT vs Brent (first time since crisis onset) as Gulf physical premiums compressed → reverted to $111.04 / $128 by May 15 after US Navy was attacked in the Strait and US retaliated. WTI ~$100–105.42. Brent–WTI spread widened to ~$8–11 (Hormuz routes don't affect WTI as directly). Dec '26 Brent still sub-$80 — backwardation of ~$30+ pricing rapid normalization the supply math contradicts.",
     "physicalMarketNotes": [
       {
         "date": "2026-05-16",
@@ -1234,8 +1239,8 @@
   "straitStatus": {
     "status": "closed",
     "since": "2026-04-18",
-    "description": "Day 80 of crisis. Strait remains effectively closed (~5% of pre-war traffic). May 18 MAJOR DIPLOMATIC DEVELOPMENT: Trump called off planned Tuesday (May 19) strikes on Iran at request of Gulf Arab leaders — Qatar, Saudi Arabia, UAE — who told him 'serious negotiations are underway with Iran that will result in a deal acceptable to the US.' Trump instructed Pentagon to 'be prepared to go forward with a full, large scale assault of Iran, on a moment's notice, in the event that an acceptable Deal is not reached.' Brent settled $112.10 (+2%), WTI $108.66 (+3%) — oil stayed in the green despite the calloff. IEA May 2026 Oil Market Report: global oil inventories drew 250 mb over March-April (~4 mb/d); Q2 projected draw 8.5 mb/d; IEA has committed 400 mb emergency release, ~164 mb already drawn; warns 'Rapidly shrinking buffers amid continued disruptions may herald future price spikes ahead.' Prior developments: May 15 US thwarted attacks on 3 Navy ships + retaliated against Iranian facilities (first direct US-Iran Navy exchange). May 14 Trump-Xi Beijing summit: both agreed Hormuz 'must remain open'; Saudi June OSP for Asia cut to +$15.50/bbl (from record +$19.50). May 11 Trump rejected Iran counterproposal. UK deployed drones/fighters/Royal Navy warship May 13. EIA May 13: record 8.6 Mb single-week SPR draw, SPR now 384.1 Mb. ~1,550 vessels and 22,500 mariners still stranded. US estimates ~6 months full mine clearance once strait reopens.",
-    "lastUpdated": "2026-05-18T21:00:00Z"
+    "description": "Day 81 of crisis. Strait remains effectively closed (~5% of pre-war traffic). May 19: Oil eased slightly (Brent -$0.82 to $111.28, WTI -$0.89 to $107.77) as Trump gave Iran 2–3 days (Fri–Sun window) before resuming strike planning. Gulf Arab leaders say deal 'serious and underway'; US officials (Axios) call Iran proposal 'insufficient for a deal.' Goldman: each closed month = +$10/bbl end-year. Strait remains effectively closed (~5% of pre-war traffic). May 18 MAJOR DIPLOMATIC DEVELOPMENT: Trump called off planned Tuesday (May 19) strikes on Iran at request of Gulf Arab leaders — Qatar, Saudi Arabia, UAE — who told him 'serious negotiations are underway with Iran that will result in a deal acceptable to the US.' Trump instructed Pentagon to 'be prepared to go forward with a full, large scale assault of Iran, on a moment's notice, in the event that an acceptable Deal is not reached.' Brent settled $112.10 (+2%), WTI $108.66 (+3%) — oil stayed in the green despite the calloff. IEA May 2026 Oil Market Report: global oil inventories drew 250 mb over March-April (~4 mb/d); Q2 projected draw 8.5 mb/d; IEA has committed 400 mb emergency release, ~164 mb already drawn; warns 'Rapidly shrinking buffers amid continued disruptions may herald future price spikes ahead.' Prior developments: May 15 US thwarted attacks on 3 Navy ships + retaliated against Iranian facilities (first direct US-Iran Navy exchange). May 14 Trump-Xi Beijing summit: both agreed Hormuz 'must remain open'; Saudi June OSP for Asia cut to +$15.50/bbl (from record +$19.50). May 11 Trump rejected Iran counterproposal. UK deployed drones/fighters/Royal Navy warship May 13. EIA May 13: record 8.6 Mb single-week SPR draw, SPR now 384.1 Mb. ~1,550 vessels and 22,500 mariners still stranded. US estimates ~6 months full mine clearance once strait reopens.",
+    "lastUpdated": "2026-05-19T21:00:00Z"
   },
   "globalImpact": {
     "worldOilAtRiskPct": 20,
@@ -2227,14 +2232,14 @@
   "buyerStress": {
     "wafProgrammeStatus": "stalled",
     "wafProgrammeDescription": "WAF May programme bidding from Asian buyers remains unusually quiet — Indian and Chinese refiners largely absent from cargoes that would normally clear in the first half of the month. JH reads this as 'sitting on the sidelines hoping the Strait opens', not genuine demand softness.",
-    "crackSpread321": 54.66,
+    "crackSpread321": 53.42,
     "crackSpreadThreshold": 40,
     "buyerBehavior": "wait-and-see",
-    "buyerBehaviorDescription": "Asian refiners running max throughput on March/April panic-bought cargoes. WTI 3-2-1 crack at $54.66 (Tsubouchi/SAF, May 15) — down from $58.28 a week earlier but still lucrative at WTI $105.42; crack briefly compressed to ~$53 on May 14 Trump-Xi summit before re-widening. Buyers can wait, and they are. The crack is the binding incentive: huge economic pull for US refiners to draw more crude → positive bid on crude prices.",
+    "buyerBehaviorDescription": "[May 19 update] WTI 3-2-1 crack $53.42/bbl at WTI $107.77 (RBOB $3.6895/gal, HO $4.1345/gal). Crack compressed slightly vs last week's $54.66 as crude settled $2+ higher. Still well above $40 threshold — US refiners continue pulling crude. WAF programme buyer behaviour unchanged: Asian refiners in wait-and-see. Trump gave Iran 2–3 day window → if deal emerges, crack could compress further on crude price pullback. — Asian refiners running max throughput on March/April panic-bought cargoes. WTI 3-2-1 crack at $54.66 (Tsubouchi/SAF, May 15) — down from $58.28 a week earlier but still lucrative at WTI $105.42; crack briefly compressed to ~$53 on May 14 Trump-Xi summit before re-widening. Buyers can wait, and they are. The crack is the binding incentive: huge economic pull for US refiners to draw more crude → positive bid on crude prices.",
     "crisisStartDate": "2026-02-28",
     "demandDestructionVisible": false,
-    "lastUpdated": "2026-05-16T08:00:00Z",
-    "source": "JH/@CRUDEOIL231 thesis (May 6–7, 2026), Dan Tsubouchi / SAF Group (@Energy_Tidbits, May 16), refinery 3-2-1 crack via CME (RBOB+HO vs WTI), WAF programme commentary from physical traders.",
+    "lastUpdated": "2026-05-19T21:00:00Z",
+    "source": "WTI 3-2-1 crack via RBOB (NYMEX $3.6895/gal) + HO (NYMEX $4.1345/gal) vs WTI $107.77/bbl (May 19 settle). Prior: Tsubouchi/SAF @Energy_Tidbits May 16, JH thesis May 6–7.",
     "methodology": "When this lull breaks, WAF May programme bidding will spike first. Watch this for the inflection. Crack > $40 = refiners keep pulling crude (bullish-crude). Crack < $40 = product demand cracking (bearish-crude topping signal).",
     "physicalMarketNotes": [
       {
@@ -2252,12 +2257,12 @@
     ]
   },
   "curveShape": {
-    "spotBrent": 112.1,
+    "spotBrent": 111.28,
     "brent12m": 94,
     "brent24m": 82,
     "brent36m": 75,
-    "percentBackwardation": 33.1,
-    "absoluteBackwardation": 37,
+    "percentBackwardation": 32.6,
+    "absoluteBackwardation": 36.3,
     "threshold": 25,
     "atHigh": {
       "date": "2026-04-30",
@@ -2352,10 +2357,16 @@
         "spotBrent": 112.1,
         "brent36m": 75,
         "percentBackwardation": 33.1
+      },
+      {
+        "date": "2026-05-19",
+        "spotBrent": 111.28,
+        "brent36m": 75,
+        "percentBackwardation": 32.6
       }
     ],
-    "lastUpdated": "2026-05-18T21:00:00Z",
-    "source": "ICE Brent futures curve (BZ=F prompt per CNBC May 18 settle $112.10; long-dated approximations from physical broker quotes). Back end 36-mo held ~$75 — Currie capex-starvation thesis intact. Jeff Currie commentary, Carlyle (May 16 2026).",
+    "lastUpdated": "2026-05-19T21:00:00Z",
+    "source": "ICE Brent futures curve: spot $111.28 (May 19 settle); 36-mo ~$75 (unchanged). Back end anchored — Currie capex-starvation thesis intact. Jeff Currie commentary, Carlyle (May 16 2026).",
     "methodology": "% backwardation = (spot − 36mo) / spot × 100. Extreme backwardation = supply shock priced into spot, not into long-run expectations — implying market expects rapid normalization. When the back end stays anchored ($75 vs Russia-Ukraine $86), spot can't break out even when the physical disruption deepens.",
     "physicalMarketNote": {
       "date": "2026-05-16",
@@ -2377,7 +2388,7 @@
     "fcfYieldGapThresholdBps": 500,
     "impliedLongRunBrent": 70,
     "strip36m": 75,
-    "spotBrent": 107,
+    "spotBrent": 111.28,
     "energyVsPreHormuzPct": -8.0,
     "munificent7": {
       "constituents": [
@@ -2455,7 +2466,7 @@
         "impliedLongRunBrent": 70
       }
     ],
-    "lastUpdated": "2026-05-16T08:00:00Z",
+    "lastUpdated": "2026-05-19T21:00:00Z",
     "source": "S&P Dow Jones Indices, S&P Capital IQ FCF estimates, Bloomberg Energy Sector Index, Jeff Currie commentary (Carlyle, May 16 2026)",
     "methodology": "Energy ÷ S&P 500 ratio is a proxy for long-dated oil. FCF yield gap = market's mispricing of the energy complex vs the broad market. At a 1,000bp+ spread, either oil must fall (spot to long-run convergence) or capital must rotate from tech to energy. Currie's thesis: the rotation is forced — $10 trillion of potential flow if Tech weight reverts from 43% toward 25%.",
     "physicalMarketNote": {
