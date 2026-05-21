@@ -123,6 +123,93 @@ export default function VerdictBanner({ data, liveBrentPrice, wtiPrice }: Verdic
       className={`w-full rounded-xl border ${config.borderColor} p-5 sm:p-6`}
       style={{ background: config.bgGradient }}
     >
+        {/* Diplomatic Jawbone Tracking — calibrated to physical confirmation gates, not rhetoric */}
+        {data.diplomaticWatch && (
+          <div className={`mb-3 rounded-lg border ${
+            data.diplomaticWatch.status === "JAWBONE_ONLY"
+              ? "border-white/15 bg-white/[0.03]"
+              : data.diplomaticWatch.status === "SPECIFIC_TERMS_LEAKED"
+              ? "border-amber-500/40 bg-amber-500/5"
+              : data.diplomaticWatch.status === "PHYSICAL_CONFIRMATION"
+              ? "border-orange-500/50 bg-orange-500/10"
+              : data.diplomaticWatch.status === "CONFIRMED"
+              ? "border-green-500/50 bg-green-500/10"
+              : "border-white/10 bg-white/[0.02]"
+          } p-3 sm:p-4`}>
+            <div className="flex items-start gap-3">
+              <span className="text-xl text-white/60">
+                {data.diplomaticWatch.status === "JAWBONE_ONLY" ? "\u{1F4AC}" : "⚠"}
+              </span>
+              <div className="flex-1">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/80">
+                    Diplomatic Jawbone Tracking &middot; {data.diplomaticWatch.status.replace(/_/g, " ")}
+                  </span>
+                  <span className="text-[10px] text-white/50">
+                    {data.diplomaticWatch.latestDate}
+                  </span>
+                </div>
+
+                {/* Jawbone counter */}
+                <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px]">
+                  <span className="text-white/70">
+                    <span className="font-bold tabular-nums text-white">{data.diplomaticWatch.jawboneCount}</span> statements
+                  </span>
+                  <span className="text-white/40">&middot;</span>
+                  <span className="text-white/70">
+                    <span className="font-bold tabular-nums text-white">{data.diplomaticWatch.daysSinceFirstJawbone}</span> days since first
+                  </span>
+                  <span className="text-white/40">&middot;</span>
+                  <span className="text-white/70">
+                    <span className="font-bold tabular-nums text-white">0</span> physical confirmations
+                  </span>
+                </div>
+
+                <p className="mt-2 text-[11px] leading-relaxed text-white/75">
+                  <span className="font-semibold text-white/90">Latest:</span> &ldquo;{data.diplomaticWatch.latestHeadline}&rdquo; &mdash; {data.diplomaticWatch.latestSource}
+                </p>
+
+                <p className="mt-2 text-[11px] leading-relaxed italic text-white/65">
+                  {data.diplomaticWatch.interpretation}
+                </p>
+
+                {/* Physical Confirmation Gates mini-table */}
+                <div className="mt-3 rounded border border-white/10 bg-black/30 p-2.5">
+                  <div className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white/70">
+                    Physical Confirmation Gates
+                  </div>
+                  <div className="space-y-1">
+                    {data.diplomaticWatch.physicalConfirmationGates.map((gate) => (
+                      <div key={gate.label} className="flex items-baseline justify-between gap-2 border-b border-white/5 pb-1 text-[11px] last:border-b-0 last:pb-0">
+                        <span className="text-white/65">{gate.label}</span>
+                        <span className="flex items-center gap-2">
+                          <span className="tabular-nums text-white/75">{gate.currentValue}</span>
+                          <span className={`rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider ${
+                            gate.status === "met"
+                              ? "bg-green-500/20 text-green-300"
+                              : gate.status === "approaching"
+                              ? "bg-amber-500/20 text-amber-300"
+                              : "bg-white/10 text-white/55"
+                          }`}>
+                            {gate.status}
+                          </span>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-2 text-[10px] italic text-white/45">
+                    Status escalates only when gates flip from &lsquo;not met&rsquo; &rarr; &lsquo;approaching&rsquo; &rarr; &lsquo;met&rsquo;. Rhetoric alone does not escalate.
+                  </div>
+                </div>
+
+                <p className="mt-2 text-[10px] italic leading-relaxed text-white/55">
+                  <span className="font-semibold not-italic text-white/70">If jawbone continues:</span> {data.diplomaticWatch.impactIfJawboneContinues}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="flex flex-col gap-3">
           {/* Row 1: Direction label + severity + signal count */}
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">

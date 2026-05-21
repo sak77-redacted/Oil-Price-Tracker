@@ -543,6 +543,52 @@ export interface VolSkewSignal {
   physicalMarketNotes?: PhysicalMarketNote[];
 }
 
+/**
+ * Diplomatic Watch — surface explicit diplomatic state on the dashboard.
+ *
+ * Status ladder is calibrated to PHYSICAL CONFIRMATION GATES, not rhetoric.
+ * Task 23 mistakenly elevated Trump's May 21 "final stages" statement to
+ * ACTIVE_RUMORED with a red-alert banner and 60% exit-trigger weight.
+ * Correction (Task 24): Trump has been making 'deal imminent' statements
+ * throughout the entire 51-day war without follow-through. Per HFI
+ * anchoring-bias framework, repeated unconfirmed jawboning that doesn't
+ * produce physical change is itself a bullish signal — it extends crisis
+ * duration and erodes diplomatic-resolution probability daily.
+ *
+ * Ladder mapping used by computeTradeSetup as the 7th long-exit trigger:
+ *   NONE (0) ▸ JAWBONE_ONLY (10) ▸ SPECIFIC_TERMS_LEAKED (35)
+ *            ▸ PHYSICAL_CONFIRMATION (75) ▸ CONFIRMED (100)
+ *
+ * Status escalates ONLY when physical-confirmation gates flip — never on
+ * rhetoric alone.
+ */
+export type DiplomaticStatus =
+  | "NONE"
+  | "JAWBONE_ONLY"
+  | "SPECIFIC_TERMS_LEAKED"
+  | "PHYSICAL_CONFIRMATION"
+  | "CONFIRMED";
+
+export interface PhysicalConfirmationGate {
+  label: string;
+  currentValue: string;
+  status: "not met" | "approaching" | "met";
+}
+
+export interface DiplomaticWatch {
+  status: DiplomaticStatus;
+  latestHeadline: string;
+  latestDate: string;
+  latestSource: string;
+  jawboneCount: number;
+  daysSinceFirstJawbone: number;
+  firstJawboneDate: string;
+  physicalConfirmationGates: PhysicalConfirmationGate[];
+  interpretation: string;
+  impactIfConfirmed: string;
+  impactIfJawboneContinues: string;
+}
+
 export interface SignalData {
   insurance: InsuranceSignal;
   shipTransit: ShipTransitSignal;
@@ -562,6 +608,8 @@ export interface SignalData {
   tankerEconomics?: TankerRatesSignal;
   /** Signal 16 — Vol Skew / Options Market Expectations. */
   volSkew?: VolSkewSignal;
+  /** Trump "final stages with Iran" surface — explicit diplomatic state. */
+  diplomaticWatch?: DiplomaticWatch;
 }
 
 export interface StraitStatus {
@@ -635,6 +683,8 @@ export interface SPRStatusData {
   countries: SPRCountryStatus[];
   chinaSignal: string;
   lastUpdated: string;
+  physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
 }
 
 export interface DemandEvent {

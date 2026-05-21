@@ -696,3 +696,190 @@ Task 1 (scaffold)
 - `.genius/memory/decisions.json`
 
 **Verify:** `npm run build` passes. Dashboard at localhost:3000 shows new TradeSetup card directly below VerdictBanner with: direction + conviction header, entry zone tile, take-profit tile, instrument recommendations row, 6-row exit-trigger table with progress bars + % to invalidation per signal, and a large Thesis Health Score at the bottom (intact/degrading/broken banner). `d-017` appended to decisions.json.
+
+---
+
+## Task 23: EIA May 21 Refresh + Diplomatic Watch (Trump "final stages with Iran")
+**Status:** [ ]
+**Skill:** genius-dev-frontend
+**Duration:** ~45 min
+**Dependencies:** Task 22
+**Date:** 2026-05-21
+
+**Goal:** Fold in the Ole S Hansen (Saxo) / EIA Weekly Stocks Report (week ending ~May 16, 2026) — a major data release with five distinct cross-signal touches — AND surface Trump's "final stages with Iran" statement (May 21) as a Diplomatic Watch banner. The Trump statement is the single highest-leverage data point because it could invalidate the entire bullish thesis fastest — diplomatic resolution is currently implicit in the composite but not visible. Make it explicit.
+
+**Steps:**
+
+**Part A — EIA data refresh (signals.json):**
+1. Update `inventoryDraws` block (Signal 13):
+   - Add EIA May 21 data row: -17.8 mb total US crude (single-week record), -9.9 mb SPR, -7.9 mb commercial
+   - Add `physicalMarketNotes` entry attributed to EIA Weekly Stocks Report via Ole S Hansen/Saxo (May 21, 2026): "Record 17.8 mb total US crude draw. 9.9 mb SPR release + 7.9 mb commercial draw. Cushing 4th consecutive weekly decline. Total commercial oil + product stock at 5-year range floor."
+2. Update `sprStatus` block (Signal 7):
+   - Recalculate SPR remaining: prior value minus 9.9 mb
+   - Add EIA attribution
+3. Update `usProductStocks` block (Signal 10):
+   - Sharpen framing: distillate inventories near 20-year seasonal lows (per EIA report)
+   - Add EIA attribution
+4. Update `bufferMath` block (Signal 8):
+   - Add `physicalMarketNotes` EIA entry crediting the 7.9 mb commercial draw + Cushing 4 consecutive weeks
+5. Update `oilSpread` or `curveShape` block:
+   - Cushing 4 consecutive draws → strengthens backwardation thesis; add `physicalMarketNotes` entry
+
+**Part B — Diplomatic Watch surface:**
+6. Add new `diplomaticWatch` block to `src/data/signals.json`:
+   ```json
+   {
+     "status": "ACTIVE_RUMORED",
+     "headline": "Trump: 'final stages with Iran'",
+     "date": "2026-05-21",
+     "source": "POTUS public statement, May 21, 2026",
+     "interpretation": "Diplomatic resolution probability rising sharply but unconfirmed. Bullish thesis exit-trigger candidate if confirmed; could be jawboning per HFI anchoring-bias framework.",
+     "credibility": "rumored",
+     "impactIfConfirmed": "Brent could retest $95-100 within 5-10 days; would invalidate primary long thesis",
+     "impactIfFails": "Hormuz crisis re-escalates, +$10-15 Brent in 48h"
+   }
+   ```
+
+7. Add `DiplomaticWatch` interface to `src/lib/types.ts` (matching the JSON shape), plus optional `diplomaticWatch?: DiplomaticWatch` on `SignalData`.
+
+8. In `src/components/VerdictBanner.tsx`: add a top-row Diplomatic Watch badge (red-amber accent border, "⚠ DIPLOMATIC ESCALATION" label + headline + date) ABOVE the existing direction headline. Render only when `data.diplomaticWatch != null`. Pattern matches the existing Reopening Scenario block but lives at the top to flag the meta-risk.
+
+9. In `src/components/WatchThisWeek.tsx`: inject Diplomatic Watch as a synthetic Tier-1 row (red dot, dated today) if `data.diplomaticWatch.status` is non-null, so it appears in the 3-row catalyst list.
+
+10. In `src/lib/verdict.ts` `computeTradeSetup`: add a 7th exit trigger when `data.diplomaticWatch` is present:
+    - signalName: "Diplomatic resolution status"
+    - current: diplomaticWatch.status (qualitative)
+    - trigger: "CONFIRMED"
+    - direction: "above" (toward confirmation)
+    - pctToTrigger: map status → ladder (NONE=0, RUMORED=40, ACTIVE_RUMORED=60, CONFIRMED=100)
+    - status: intact (NONE) → warning (RUMORED, ACTIVE_RUMORED) → fired (CONFIRMED)
+    - rationale: "If diplomatic resolution confirmed, bullish thesis invalidated within 5-10 days"
+
+11. Append decision `d-018` to `.genius/memory/decisions.json` documenting:
+    - EIA May 21 refresh integration
+    - Diplomatic Watch surface as new dimension
+    - Trump statement explicitly elevated as exit-trigger candidate
+    - Why this matters: the dashboard's biggest blind spot was discrete diplomatic events; this fixes that
+
+**Files:**
+- `src/data/signals.json`
+- `src/lib/types.ts`
+- `src/lib/verdict.ts`
+- `src/components/VerdictBanner.tsx`
+- `src/components/WatchThisWeek.tsx`
+- `.genius/memory/decisions.json`
+
+**Verify:** `npm run build` passes. Dashboard shows: (1) Diplomatic Watch badge at top of VerdictBanner with Trump statement + date + interpretation, (2) Diplomatic Watch as a Tier-1 red catalyst in WatchThisWeek, (3) Diplomatic resolution as 7th exit trigger in TradeSetup, (4) EIA May 21 attribution blocks newest-first on Signals 7, 8, 10, 11, 13.
+
+---
+
+## Task 24: Diplomatic JAWBONE Reframe — fix Task 23 miscalibration
+**Status:** [ ]
+**Skill:** genius-dev-frontend
+**Duration:** ~40 min
+**Dependencies:** Task 23
+**Date:** 2026-05-21
+
+**Goal:** Task 23 elevated Trump's "final stages with Iran" statement to ACTIVE_RUMORED with a red-alert banner and a 60% exit-trigger weight. That was the wrong calibration — Trump has made similar "deal imminent" statements throughout the war without follow-through. Per HFI anchoring-bias framework, repeated unconfirmed jawboning that doesn't produce physical change is actually a BULLISH signal (extends crisis duration; markets anchor lower diplomatic-resolution probability daily). Rebuild the status ladder around physical-confirmation gates, not rhetoric.
+
+**Steps:**
+
+1. **Rewrite DiplomaticStatus ladder in `src/lib/types.ts`:**
+   ```ts
+   export type DiplomaticStatus =
+     | "NONE"                      // pre-conflict baseline, no diplomatic activity
+     | "JAWBONE_ONLY"              // rhetoric only — POTUS / officials claim "imminent", no concrete signals
+     | "SPECIFIC_TERMS_LEAKED"     // specific terms appear in credible reporting
+     | "PHYSICAL_CONFIRMATION"     // observable physical changes: ships repositioning, insurance falling, flow resumption
+     | "CONFIRMED";                // formal agreement announced, flows resuming
+   ```
+
+2. **Extend DiplomaticWatch interface:**
+   ```ts
+   export interface DiplomaticWatch {
+     status: DiplomaticStatus;
+     latestHeadline: string;
+     latestDate: string;
+     latestSource: string;
+     jawboneCount: number;             // total "imminent" statements logged since war start
+     daysSinceFirstJawbone: number;    // anchoring-bias countdown
+     firstJawboneDate: string;
+     physicalConfirmationGates: {
+       label: string;                  // e.g., "Insurance below 3%"
+       currentValue: string;           // e.g., "5.8%"
+       status: "not met" | "approaching" | "met";
+     }[];
+     interpretation: string;           // HFI-style framing front and center
+     impactIfConfirmed: string;        // kept for when status escalates
+     impactIfJawboneContinues: string; // anchoring-bias upside
+   }
+   ```
+
+3. **Rebuild `diplomaticWatch` block in `src/data/signals.json`** (replace Task 23's version):
+   ```json
+   {
+     "status": "JAWBONE_ONLY",
+     "latestHeadline": "Trump: 'final stages with Iran'",
+     "latestDate": "2026-05-21",
+     "latestSource": "POTUS public statement, May 21, 2026",
+     "jawboneCount": 8,
+     "daysSinceFirstJawbone": 51,
+     "firstJawboneDate": "2026-03-31",
+     "physicalConfirmationGates": [
+       { "label": "Insurance below 3%", "currentValue": "<from data.insurance.current>%", "status": "not met" },
+       { "label": "Ship transit above 50/day", "currentValue": "<from data.shipTransit.dailyCount>/day", "status": "not met" },
+       { "label": "VLCC TD3 below $60k/day", "currentValue": "$<from data.tankerEconomics.routes[VLCC].currentRate / 1000>k/day", "status": "not met" },
+       { "label": "Spread compression below $5", "currentValue": "$<from data.oilSpread.spread>", "status": "not met" },
+       { "label": "Backwardation below 15%", "currentValue": "<from data.curveShape.percentBackwardation>%", "status": "not met" }
+     ],
+     "interpretation": "Trump has made 8 'final stages' / 'deal imminent' / 'very close' statements since the war began (51 days ago). Per HFI anchoring-bias framework, repeated unconfirmed jawboning that doesn't produce physical change is itself a bullish signal — extends crisis duration and erodes diplomatic-resolution probability daily. Status will not escalate above JAWBONE_ONLY without concrete physical confirmation across the gates below.",
+     "impactIfConfirmed": "Brent could retest $95-100 within 5-10 days; would invalidate primary long thesis",
+     "impactIfJawboneContinues": "Each unconfirmed statement extends crisis duration — bullish thesis strengthens, not weakens. Watch for the FIRST physical-confirmation gate to flip — that's the real exit signal."
+   }
+   ```
+
+   NOTE: The "currentValue" strings above are placeholders — populate them in signals.json with the actual values from the corresponding signal blocks (e.g., look at insurance.current and copy that value in). Don't make them dynamically resolved at runtime — make them static snapshot strings written into the JSON.
+
+4. **Reframe VerdictBanner badge:**
+   - Change border from `border-amber-500/50` (alarming) to `border-white/15` (informational) when status === "JAWBONE_ONLY"
+   - Change icon from "⚠" to "📰" or "💬" (rhetoric, not emergency)
+   - Change label from "Diplomatic Watch · ACTIVE RUMORED" to "Diplomatic Jawbone Tracking · status: JAWBONE_ONLY (no physical confirmation)"
+   - Lead the interpretation paragraph with the HFI framing: "Trump has made N similar statements since [date]. Per HFI anchoring-bias framework, repetition without physical change is a bullish signal..."
+   - Replace the if-confirmed / if-fails tiles with:
+     - **Physical Confirmation Gates** mini-table (5 rows, each gate with current value + status pill)
+     - "Status escalates only when gates flip from 'not met' → 'approaching' → 'met'"
+   - At top, prominent "Jawbone counter": `8 statements · 51 days · 0 physical confirmations`
+   - Only show the alarming amber/red treatment if status escalates above JAWBONE_ONLY
+
+5. **Reframe WatchThisWeek catalyst row:**
+   - When status === "JAWBONE_ONLY", DEMOTE the synthetic Trump row from Tier 1 (red) to Tier 3 (gray)
+   - Change the row's `whyItMatters` line from "primary long-oil thesis invalidated within 5-10 days" to "Watch for physical confirmation gates to flip — rhetoric alone does not escalate diplomatic risk"
+   - Only escalate to Tier 1 when status >= SPECIFIC_TERMS_LEAKED
+
+6. **Recalibrate exit trigger in `computeTradeSetup` (`src/lib/verdict.ts`):**
+   - New ladder mapping:
+     ```ts
+     const statusLadder: Record<DiplomaticStatus, number> = {
+       NONE: 0,
+       JAWBONE_ONLY: 10,            // demoted hard — rhetoric should not drag Thesis Health
+       SPECIFIC_TERMS_LEAKED: 35,
+       PHYSICAL_CONFIRMATION: 75,
+       CONFIRMED: 100,
+     };
+     ```
+   - Status: fired only at CONFIRMED; warning at PHYSICAL_CONFIRMATION; "approaching" at SPECIFIC_TERMS_LEAKED; intact otherwise.
+   - Update rationale text: "If diplomatic resolution confirmed via physical signals (not rhetoric), bullish thesis invalidated within 5-10 days. Jawbone-only statements do not invalidate — they extend crisis duration."
+
+7. **Append decision `d-019` to `.genius/memory/decisions.json`:**
+   - title: "DIPLOMATIC JAWBONE REFRAME — fix Task 23 miscalibration"
+   - description: User flagged that Trump has been making 'deal imminent' statements throughout the war. Task 23 treated May 21 statement as fresh ACTIVE_RUMORED news. Rebuilt status ladder around physical-confirmation gates: JAWBONE_ONLY (rhetoric only) does not escalate without observable physical changes (insurance dropping, ships returning, freight collapsing, spread compressing, backwardation softening). Per HFI anchoring-bias framework: repeated unconfirmed jawboning is itself a bullish signal. Demoted exit-trigger weight from 60% → 10%. Demoted WatchThisWeek catalyst from Tier 1 → Tier 3.
+
+**Files:**
+- `src/lib/types.ts`
+- `src/lib/verdict.ts`
+- `src/data/signals.json`
+- `src/components/VerdictBanner.tsx`
+- `src/components/WatchThisWeek.tsx`
+- `.genius/memory/decisions.json`
+
+**Verify:** `npm run build` passes. Dashboard: (1) VerdictBanner shows calmer informational Diplomatic Jawbone Tracking panel with jawbone counter (8 statements · 51 days · 0 physical confirmations) + 5-row physical-confirmation-gates mini-table; no alarming amber border. (2) WatchThisWeek shows Trump row at Tier 3 gray. (3) TradeSetup exit-trigger table shows Diplomatic resolution at 10% (intact), no longer dragging Thesis Health Score.

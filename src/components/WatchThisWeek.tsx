@@ -198,7 +198,36 @@ export default function WatchThisWeek({ data, referenceDate }: WatchThisWeekProp
     return a.tier - b.tier;
   });
 
-  const top3 = all.slice(0, 3);
+  // Diplomatic Watch — calibrated to physical confirmation gates, not rhetoric.
+  // JAWBONE_ONLY status drops to Tier 3 and sorts by date with other catalysts
+  // (no forced top-prepend). Higher statuses (SPECIFIC_TERMS_LEAKED+) keep
+  // Tier 1 treatment and prepend behavior from Task 23.
+  let top3: CatalystRow[];
+  if (data.diplomaticWatch) {
+    const isJawboneOnly = data.diplomaticWatch.status === "JAWBONE_ONLY";
+    const dipRow: CatalystRow = {
+      date: data.diplomaticWatch.latestDate,
+      daysUntil: 0,
+      title: data.diplomaticWatch.latestHeadline,
+      why: isJawboneOnly
+        ? "Watch for physical confirmation gates to flip — rhetoric alone does not escalate diplomatic risk"
+        : "Diplomatic resolution probability — if confirmed, primary long-oil thesis invalidated within 5–10 days.",
+      tier: isJawboneOnly ? 3 : 1,
+      tag: data.diplomaticWatch.status.replace(/_/g, " "),
+    };
+    if (isJawboneOnly) {
+      // Sort with the rest by date / tier — no forced prepend.
+      const merged = [...all, dipRow].sort((a, b) => {
+        if (a.daysUntil !== b.daysUntil) return a.daysUntil - b.daysUntil;
+        return a.tier - b.tier;
+      });
+      top3 = merged.slice(0, 3);
+    } else {
+      top3 = [dipRow, ...all].slice(0, 3);
+    }
+  } else {
+    top3 = all.slice(0, 3);
+  }
   const shortfall = top3.length < 3;
 
   return (

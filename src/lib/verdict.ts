@@ -1,4 +1,4 @@
-import type { SignalData } from "./types";
+import type { SignalData, DiplomaticStatus } from "./types";
 import {
   getInsuranceStatus,
   getShipStatus,
@@ -353,8 +353,10 @@ export interface InstrumentRecommendation {
 
 export interface ExitTrigger {
   signalName: string;
-  current: number;
-  trigger: number;
+  /** Numeric for quantitative triggers; qualitative string for the diplomatic-status trigger. */
+  current: number | string;
+  /** Numeric trigger threshold; qualitative string for the diplomatic-status trigger. */
+  trigger: number | string;
   unit: string;
   pctToTrigger: number;
   status: "intact" | "warning" | "fired";
@@ -727,6 +729,38 @@ function computeExitTriggersLong(data: SignalData): ExitTrigger[] {
       rationale: "Above 50/day = physical traffic resuming — crisis fading",
     }),
   );
+
+  // 7. Diplomatic resolution (qualitative — uses status ladder, not numeric).
+  // Calibrated to PHYSICAL CONFIRMATION GATES, not rhetoric. JAWBONE_ONLY
+  // weight intentionally low (10) — repeated unconfirmed statements per HFI
+  // anchoring-bias framework extend crisis duration; they do not invalidate
+  // the bullish thesis.
+  if (data.diplomaticWatch) {
+    const statusLadder: Record<DiplomaticStatus, number> = {
+      NONE: 0,
+      JAWBONE_ONLY: 10,
+      SPECIFIC_TERMS_LEAKED: 35,
+      PHYSICAL_CONFIRMATION: 75,
+      CONFIRMED: 100,
+    };
+    const pctToTrigger = statusLadder[data.diplomaticWatch.status];
+    let status: ExitTrigger["status"];
+    if (pctToTrigger === 100) status = "fired";
+    else if (pctToTrigger >= 75) status = "warning";
+    else status = "intact";
+
+    triggers.push({
+      signalName: "Diplomatic resolution",
+      current: data.diplomaticWatch.status.replace(/_/g, " "),
+      trigger: "CONFIRMED",
+      unit: "",
+      pctToTrigger,
+      status,
+      direction: "above",
+      rationale:
+        "If diplomatic resolution confirmed via physical signals (not rhetoric), bullish thesis invalidated within 5–10 days. Jawbone-only statements do not invalidate — they extend crisis duration.",
+    });
+  }
 
   return triggers;
 }

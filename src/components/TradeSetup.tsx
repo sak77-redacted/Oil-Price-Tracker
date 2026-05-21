@@ -337,16 +337,24 @@ export default function TradeSetup({ data, liveBrentPrice }: TradeSetupProps) {
                     </td>
                     <td className="px-3 py-2.5 text-right">
                       <span className="font-bold tabular-nums text-white">
-                        {fmtNum(t.current, t.unit === "$/d" ? 0 : 1)}
+                        {typeof t.current === "number"
+                          ? fmtNum(t.current, t.unit === "$/d" ? 0 : 1)
+                          : t.current}
                       </span>
-                      <span className="ml-0.5 text-[10px] text-white/45">{t.unit}</span>
+                      {t.unit && (
+                        <span className="ml-0.5 text-[10px] text-white/45">{t.unit}</span>
+                      )}
                     </td>
                     <td className="px-3 py-2.5 text-right">
                       <span className="text-[10px] text-white/45 mr-1">{arrow}</span>
                       <span className="font-bold tabular-nums text-white/75">
-                        {fmtNum(t.trigger, t.unit === "$/d" ? 0 : 1)}
+                        {typeof t.trigger === "number"
+                          ? fmtNum(t.trigger, t.unit === "$/d" ? 0 : 1)
+                          : t.trigger}
                       </span>
-                      <span className="ml-0.5 text-[10px] text-white/45">{t.unit}</span>
+                      {t.unit && (
+                        <span className="ml-0.5 text-[10px] text-white/45">{t.unit}</span>
+                      )}
                     </td>
                     <td className="px-3 py-2.5">
                       <div className="flex items-center gap-2">
