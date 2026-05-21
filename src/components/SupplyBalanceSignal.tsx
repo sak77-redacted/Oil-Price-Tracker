@@ -1,11 +1,91 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { PhysicalMarketNote } from "@/lib/types";
+import type { InventoryDecomposition, PhysicalMarketNote } from "@/lib/types";
 
 interface SupplyBalanceSignalProps {
   physicalMarketNote?: PhysicalMarketNote;
   physicalMarketNotes?: PhysicalMarketNote[];
+  usInventoryDecomp?: InventoryDecomposition;
+  globalInventoryDecomp?: InventoryDecomposition;
+}
+
+/**
+ * Renders one column of the JH MOI decomposition: stacked horizontal bar
+ * (gray locked MOI portion + red drainable available portion) + stat lines.
+ */
+function InventoryDecompColumn({ decomp }: { decomp: InventoryDecomposition }) {
+  const moiPct = Math.max(0, Math.min(100, (decomp.moiFloorMb / decomp.totalMb) * 100));
+  const availPct = Math.max(0, 100 - moiPct);
+  const { linefillMb, tankBottomsMb, workingStockMb } = decomp.moiComponents;
+
+  return (
+    <div className="rounded-lg border border-[var(--card-border)] bg-black/30 p-4">
+      <div className="flex items-baseline justify-between">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-primary)]">
+          {decomp.region}
+        </span>
+        <span className="text-[10px] text-[var(--text-secondary)]">
+          {decomp.totalMb.toLocaleString("en-US")} mb total
+        </span>
+      </div>
+
+      {/* Stacked horizontal bar: MOI (locked, gray) + Available (drainable, red) */}
+      <div className="mt-3 flex h-3 w-full overflow-hidden rounded bg-zinc-900">
+        <div
+          className="h-full bg-zinc-700"
+          style={{ width: `${moiPct}%` }}
+          title={`MOI floor ${decomp.moiFloorMb} mb (${moiPct.toFixed(0)}%) — physically locked`}
+        />
+        <div
+          className="h-full bg-red-500/60"
+          style={{ width: `${availPct}%` }}
+          title={`Available buffer ${decomp.availableBufferMb} mb (${availPct.toFixed(0)}%) — drainable`}
+        />
+      </div>
+      <div className="mt-1 flex items-baseline justify-between text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
+        <span>MOI {moiPct.toFixed(0)}% locked</span>
+        <span className="text-red-300/80">Available {availPct.toFixed(0)}%</span>
+      </div>
+
+      {/* Stat lines */}
+      <div className="mt-3 space-y-1 font-mono text-[11px]">
+        <div className="flex justify-between text-[var(--text-secondary)]">
+          <span>Total</span>
+          <span className="tabular-nums text-[var(--text-primary)]">
+            {decomp.totalMb.toLocaleString("en-US")} mb
+          </span>
+        </div>
+        <div className="flex justify-between text-[var(--text-secondary)]">
+          <span>MOI floor</span>
+          <span className="tabular-nums text-zinc-300">
+            {decomp.moiFloorMb.toLocaleString("en-US")} mb
+          </span>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-[var(--text-secondary)]">Available buffer</span>
+          <span className="font-bold tabular-nums text-red-400">
+            {decomp.availableBufferMb.toLocaleString("en-US")} mb
+          </span>
+        </div>
+        <div className="flex justify-between text-[var(--text-secondary)]">
+          <span>Weekly burn</span>
+          <span className="tabular-nums text-amber-300">
+            −{decomp.weeklyBurnMb.toFixed(1)} mb &rarr;{" "}
+            <span className="text-[var(--text-primary)]">
+              {decomp.weeksToMOI.toFixed(1)} wks to MOI
+            </span>
+          </span>
+        </div>
+      </div>
+
+      {/* MOI components mini-row */}
+      <div className="mt-3 border-t border-[var(--card-border)] pt-2 text-[10px] leading-relaxed text-[var(--text-secondary)]">
+        <span className="font-semibold text-zinc-400">MOI =</span>{" "}
+        Linefill {linefillMb} mb · Tank bottoms {tankBottomsMb} mb · Working stock {workingStockMb} mb
+      </div>
+    </div>
+  );
 }
 
 function formatNoteDate(iso: string): string {
@@ -50,7 +130,12 @@ function formatLongDate(d: Date): string {
   return `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
 }
 
-export default function SupplyBalanceSignal({ physicalMarketNote, physicalMarketNotes }: SupplyBalanceSignalProps = {}) {
+export default function SupplyBalanceSignal({
+  physicalMarketNote,
+  physicalMarketNotes,
+  usInventoryDecomp,
+  globalInventoryDecomp,
+}: SupplyBalanceSignalProps = {}) {
   const [now, setNow] = useState<Date | null>(null);
 
   // Build merged note list (newest first), deduped.
@@ -228,6 +313,27 @@ export default function SupplyBalanceSignal({ physicalMarketNote, physicalMarket
           </div>
         </div>
       </div>
+
+      {/* ─── Inventory Decomposition (JH MOI Framework) ─── */}
+      {(usInventoryDecomp || globalInventoryDecomp) && (
+        <div className="border-t border-[var(--card-border)] px-5 py-5">
+          <div className="mb-3 flex flex-col gap-1">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+              Inventory Decomposition · JH MOI Framework
+            </span>
+            <span className="text-xs text-[var(--text-secondary)]">
+              Minimum Operating Inventory (linefill + tank bottoms + working stock) is physically locked. Only the available buffer can absorb shocks.
+            </span>
+          </div>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {usInventoryDecomp && <InventoryDecompColumn decomp={usInventoryDecomp} />}
+            {globalInventoryDecomp && <InventoryDecompColumn decomp={globalInventoryDecomp} />}
+          </div>
+          <p className="mt-3 text-[11px] italic leading-snug text-[var(--text-secondary)]">
+            Burn rate measured against AVAILABLE buffer, not total inventory. Per JH framework, only ~5–15% of headline inventory can actually absorb shocks.
+          </p>
+        </div>
+      )}
 
       {/* Physical market notes (newest first) */}
       {notes.length > 0 && (

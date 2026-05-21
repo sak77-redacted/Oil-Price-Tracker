@@ -7,6 +7,7 @@ import type { AISummaryData } from "@/lib/ai-summary";
 
 import VerdictBanner from "./VerdictBanner";
 import TradeSetup from "./TradeSetup";
+import PhaseIndicator from "./PhaseIndicator";
 import TodaysTape from "./TodaysTape";
 import WatchThisWeek from "./WatchThisWeek";
 
@@ -131,6 +132,9 @@ export default function Dashboard({
       {/* Trade Setup — derived trade ticket + exit triggers + thesis health */}
       <TradeSetup data={data} liveBrentPrice={liveBrent} />
 
+      {/* Inventory Phase Indicator — JH/@CRUDEOIL231 framework */}
+      {data.phaseIndicator && <PhaseIndicator data={data.phaseIndicator} />}
+
       <div className="mt-3 flex items-center justify-center gap-2 text-[10px] text-[var(--text-secondary)]">
         <span>
           Data as of{" "}
@@ -219,6 +223,8 @@ export default function Dashboard({
           <SupplyBalanceSignal
             physicalMarketNote={data.bufferMath.physicalMarketNote}
             physicalMarketNotes={data.bufferMath.physicalMarketNotes}
+            usInventoryDecomp={data.bufferMath.usInventoryDecomp}
+            globalInventoryDecomp={data.bufferMath.globalInventoryDecomp}
           />
           {data.inventoryDraws && <InventoryDrawsSignal data={data.inventoryDraws} />}
           {data.usProductStocks && <USProductStocksSignal data={data.usProductStocks} />}

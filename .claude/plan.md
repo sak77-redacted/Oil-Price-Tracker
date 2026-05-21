@@ -883,3 +883,136 @@ Task 1 (scaffold)
 - `.genius/memory/decisions.json`
 
 **Verify:** `npm run build` passes. Dashboard: (1) VerdictBanner shows calmer informational Diplomatic Jawbone Tracking panel with jawbone counter (8 statements · 51 days · 0 physical confirmations) + 5-row physical-confirmation-gates mini-table; no alarming amber border. (2) WatchThisWeek shows Trump row at Tier 3 gray. (3) TradeSetup exit-trigger table shows Diplomatic resolution at 10% (intact), no longer dragging Thesis Health Score.
+
+---
+
+## Task 25: JH MOI/Phase Framework — Available Buffer + Phase Indicator
+**Status:** [ ]
+**Skill:** genius-dev-frontend
+**Duration:** ~75 min
+**Dependencies:** Task 24
+**Date:** 2026-05-21
+
+**Goal:** JH/@CRUDEOIL231's March 18 framework (re-shared May 21): not all inventory is available inventory. Of ~2.3Bn bbl global onshore total, ~60–70% is Minimum Operating Inventory (MOI: linefill + tank bottoms + in-transit working stock) — physically locked, cannot be pulled. Another 20–25% is Minimum Working Stock. The ACTUAL available buffer — the delta that moves prices — is only ~5–15% of the headline number. This reframes every inventory signal: when EIA shows -7.9 mb/wk commercial draw, that's 5–6% of US AVAILABLE buffer per week, not 1.8% of total. The dashboard needs to (a) make MOI floor visible, (b) compute Available Buffer = Total − MOI, (c) show burn rate against available not total, (d) introduce a Phase Indicator (Phase 1 excess cash burn / Phase 2 SPR draws / Phase 3 desperate bidding).
+
+**Steps:**
+
+**Part A — Reframe Signal 8 (Buffer Math):**
+
+1. Add to `src/lib/types.ts`:
+   ```ts
+   export interface InventoryDecomposition {
+     totalMb: number;
+     moiFloorMb: number;          // linefill + tank bottoms + working stock minimum
+     availableBufferMb: number;   // totalMb - moiFloorMb
+     weeklyBurnMb: number;        // current weekly draw rate
+     weeksToMOI: number;          // availableBufferMb / weeklyBurnMb
+     moiComponents: {
+       linefillMb: number;
+       tankBottomsMb: number;
+       workingStockMb: number;
+     };
+   }
+   ```
+
+   Add optional `usInventoryDecomp?: InventoryDecomposition` and `globalInventoryDecomp?: InventoryDecomposition` to `BufferMathSignal` (or create a new top-level `inventoryDecomp` block — pick the cleaner option after reading the existing `BufferMathSignal` shape).
+
+2. Populate `src/data/signals.json` `bufferMath` block with US decomposition:
+   - totalMb: 440 (current EIA US commercial)
+   - moiComponents: { linefillMb: 115, tankBottomsMb: 85, workingStockMb: 100 } (per JH ~110-120/80-90 + working stock estimate)
+   - moiFloorMb: 300 (sum)
+   - availableBufferMb: 140 (440 - 300)
+   - weeklyBurnMb: 7.9 (per EIA May 21)
+   - weeksToMOI: 17.7
+
+   And global decomposition (per JH ~2.3Bn total):
+   - totalMb: 2300
+   - moiFloorMb: 1610 (70% of total per JH upper bound)
+   - availableBufferMb: 460 (assuming 20% working stock cushion: 2300 * 0.2 = 460)
+   - weeklyBurnMb: 52.5 (Goldman -7.5 mb/d × 7)
+   - weeksToMOI: 8.8
+
+3. Add JH attribution block to `bufferMath.physicalMarketNotes` (PREPEND newest-first):
+   ```
+   "Of ~2.3Bn bbl global onshore inventory, 60–70% is MOI (linefill + tank bottoms) — physically locked, can't be pulled. Another 20–25% is minimum working stock. Only the remaining ~5–15% is actually available to absorb shocks. When EIA shows -7.9 mb commercial draw, that's 5–6% of US available buffer per week — not 1.8% of total. The 'cash on hand' is burning ~3–4× faster than the headline."
+   — JH/@CRUDEOIL231, March 18 / re-shared May 21, 2026
+   ```
+
+4. Build/extend `src/components/SupplyBalanceSignal.tsx` (the buffer math component) to render an "Inventory Decomposition" sub-panel:
+   - Two side-by-side columns (US / Global)
+   - Each shows: Total → MOI Floor → Available Buffer → Weekly Burn → Weeks to MOI
+   - Visual: stacked horizontal bar showing MOI (gray locked) + Available (red drainable) proportions
+   - Phase chip beneath each: "Phase 1 — excess cash burn" (or whichever phase applies)
+
+**Part B — Add Phase Indicator:**
+
+5. Add to `src/lib/types.ts`:
+   ```ts
+   export type InventoryPhase = 0 | 1 | 2 | 3;
+
+   export interface PhaseIndicator {
+     phase: InventoryPhase;
+     phaseName: string;        // "Excess Cash Burn" | "SPR Draws" | "Desperate Bidding" | "Pre-Crisis" | "Phase 0"
+     phaseDescription: string;
+     daysInPhase: number;
+     transitionTrigger: string;    // what triggers transition to next phase
+     weeksToNextPhase: number;     // estimated
+     priceImplication: string;
+   }
+   ```
+
+   Add optional `phaseIndicator?: PhaseIndicator` to `SignalData`.
+
+6. Populate `signals.json` `phaseIndicator` block:
+   ```json
+   {
+     "phase": 1,
+     "phaseName": "Excess Cash Burn",
+     "phaseDescription": "Commercial available buffer above MOI cushion is being drawn down. EIA US commercial -7.9 mb/wk, global visible draws -52.5 mb/wk (Goldman). Burning ~3-4× faster than headline numbers suggest when measured against available, not total.",
+     "daysInPhase": 51,
+     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
+     "weeksToNextPhase": 18,
+     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding."
+   }
+   ```
+
+7. Build `src/components/PhaseIndicator.tsx` — Tier 1 component sitting between TradeSetup and TodaysTape (or below VerdictBanner before TradeSetup — pick whichever flows better):
+   - Header: "Inventory Phase Indicator"
+   - Visual: 4-segment horizontal progress bar showing Phase 0 → 1 → 2 → 3, current phase highlighted in amber/red
+   - Hero text: "PHASE 1 — Excess Cash Burn · Day 51"
+   - Phase description (italic, ~2 lines)
+   - Transition trigger + weeks-to-next-phase chips
+   - Price implication footer
+   - Methodology line crediting JH/@CRUDEOIL231 March 18 framework
+
+8. Wire `PhaseIndicator` into `src/components/Dashboard.tsx` Tier 1, between `TradeSetup` and `TodaysTape`.
+
+**Part C — TradeSetup integration:**
+
+9. Update `computeTradeSetup` in `src/lib/verdict.ts`:
+   - Add 8th exit trigger: "Phase regression"
+     - signalName: "Phase regression"
+     - current: `data.phaseIndicator.phase` (number)
+     - trigger: 0 (Phase 0 = pre-crisis baseline restored)
+     - direction: "below"
+     - pctToTrigger: invert — at Phase 1 = 25%; at Phase 0 = 100% (fired)
+     - rationale: "Inventory phase regression to Phase 0 = thesis dead. Phase 1 holding = thesis intact."
+   - Adjust sizing guide narrative to incorporate phase: at Phase 1, prefer defined-risk (options) due to "violent vol in both directions" per JH
+
+**Part D — Decision log:**
+
+10. Append `d-020` to `.genius/memory/decisions.json`:
+    - title: "JH MOI/PHASE FRAMEWORK — Available Buffer + Phase Indicator"
+    - description: JH/@CRUDEOIL231 March 18 framework re-shared May 21 reframes every inventory signal. Of ~2.3Bn bbl global onshore inventory, only ~5–15% is actually available. MOI (linefill + tank bottoms + working stock) is physically locked. Dashboard now shows: (1) US/Global decomposition with MOI floor + Available Buffer + Weeks-to-MOI on Signal 8; (2) Phase Indicator in Tier 1 (Phase 1 Excess Cash Burn / Phase 2 SPR Draws / Phase 3 Desperate Bidding); (3) Phase regression as 8th exit trigger in TradeSetup. Currently Phase 1 with ~18 weeks runway at current US burn rate; global runway tighter at ~9 weeks.
+    - tags: ["decision", "feature", "jh", "moi", "phase-indicator", "available-buffer", "framework"]
+
+**Files:**
+- `src/lib/types.ts`
+- `src/lib/verdict.ts`
+- `src/data/signals.json`
+- `src/components/SupplyBalanceSignal.tsx`
+- `src/components/PhaseIndicator.tsx` (new)
+- `src/components/Dashboard.tsx`
+- `.genius/memory/decisions.json`
+
+**Verify:** `npm run build` passes. Dashboard at localhost:3000 shows: (1) New PhaseIndicator component in Tier 1 with 4-segment phase bar highlighting Phase 1 + day counter + transition trigger + weeks-to-next-phase; (2) Signal 8 (Buffer Math) shows Inventory Decomposition sub-panel with US/Global side-by-side stacked bars (MOI locked + Available drainable) + weeks-to-MOI metric + JH quote block; (3) TradeSetup exit-trigger table has 8th row "Phase regression" with 25% pctToTrigger (intact); (4) d-020 in decisions.json.

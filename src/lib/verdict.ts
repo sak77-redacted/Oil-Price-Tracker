@@ -1,4 +1,4 @@
-import type { SignalData, DiplomaticStatus } from "./types";
+import type { SignalData, DiplomaticStatus, InventoryPhase } from "./types";
 import {
   getInsuranceStatus,
   getShipStatus,
@@ -631,6 +631,32 @@ function buildExitTrigger(args: {
   };
 }
 
+/**
+ * Phase regression exit trigger (per JH MOI/Phase framework).
+ *   Phase 0 = thesis dead (fired, regression to pre-crisis baseline)
+ *   Phase 1 = intact (current — Excess Cash Burn)
+ *   Phase 2 = warning (thesis accelerating, not invalidating)
+ *   Phase 3 = thesis confirmed (also intact — sidelined into bidding)
+ * The trigger fires only when phase regresses to 0.
+ */
+function buildPhaseRegressionTrigger(phase: InventoryPhase): ExitTrigger {
+  const pctToTrigger =
+    phase === 0 ? 100 : phase === 1 ? 25 : phase === 2 ? 10 : 5;
+  const status: ExitTrigger["status"] = pctToTrigger >= 100 ? "fired" : "intact";
+
+  return {
+    signalName: "Phase regression",
+    current: phase,
+    trigger: 0,
+    unit: "phase",
+    pctToTrigger,
+    status,
+    direction: "below",
+    rationale:
+      "Inventory phase regression to Phase 0 (pre-crisis baseline) = thesis dead. Phase 1+ holding = thesis intact and accelerating.",
+  };
+}
+
 function computeExitTriggersLong(data: SignalData): ExitTrigger[] {
   const triggers: ExitTrigger[] = [];
 
@@ -958,6 +984,12 @@ export function computeTradeSetup(data: SignalData, verdict: Verdict): TradeSetu
   if (direction === "long") exitTriggers = computeExitTriggersLong(data);
   else if (direction === "short") exitTriggers = computeExitTriggersShort(data);
   else exitTriggers = computeExitTriggersSidelined(data);
+
+  // 8th trigger — JH MOI/Phase framework. Universal across directions: phase
+  // regression to 0 invalidates the active thesis whichever side you're on.
+  if (data.phaseIndicator) {
+    exitTriggers.push(buildPhaseRegressionTrigger(data.phaseIndicator.phase));
+  }
 
   const thesisHealth = computeThesisHealth(exitTriggers);
 

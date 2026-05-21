@@ -89,6 +89,30 @@ export interface TimelineSignal {
   physicalMarketNotes?: PhysicalMarketNote[];
 }
 
+/**
+ * Per JH/@CRUDEOIL231 (March 18 2026 framework, re-shared May 21 2026):
+ * Not all inventory is available. Of ~2.3Bn bbl global onshore inventory,
+ * ~60–70% is Minimum Operating Inventory (MOI = linefill + tank bottoms +
+ * working stock minimum) — physically locked, cannot be pulled. Another
+ * ~20–25% is minimum working stock. Only the remaining ~5–15% is ACTUALLY
+ * available to absorb shocks. So a -7.9 mb EIA commercial draw is 5–6% of
+ * US available buffer per week, NOT 1.8% of total. The burn rate is
+ * 3–4× faster against what matters than against the headline.
+ */
+export interface InventoryDecomposition {
+  region: string;
+  totalMb: number;
+  moiFloorMb: number;
+  availableBufferMb: number;
+  weeklyBurnMb: number;
+  weeksToMOI: number;
+  moiComponents: {
+    linefillMb: number;
+    tankBottomsMb: number;
+    workingStockMb: number;
+  };
+}
+
 export interface BufferMathSignal {
   oecdCommercialDaysCover: number;
   operationalFloor: number;
@@ -115,6 +139,10 @@ export interface BufferMathSignal {
   source: string;
   physicalMarketNote?: PhysicalMarketNote;
   physicalMarketNotes?: PhysicalMarketNote[];
+  /** US commercial inventory decomposition per JH MOI framework. */
+  usInventoryDecomp?: InventoryDecomposition;
+  /** Global onshore inventory decomposition per JH MOI framework. */
+  globalInventoryDecomp?: InventoryDecomposition;
 }
 
 /**
@@ -589,6 +617,27 @@ export interface DiplomaticWatch {
   impactIfJawboneContinues: string;
 }
 
+/**
+ * JH/@CRUDEOIL231 phase framework (March 18 2026):
+ *   Phase 0 — Pre-crisis baseline (inventories rebuilding)
+ *   Phase 1 — Excess Cash Burn (commercial available > MOI cushion, drawing
+ *             down fast — WE ARE HERE)
+ *   Phase 2 — SPR Draws (commercial at MOI floor, SPR being pulled hard)
+ *   Phase 3 — Desperate Bidding (SPR at operational floor, sidelined
+ *             participants forced to bid, prices go vertical)
+ */
+export type InventoryPhase = 0 | 1 | 2 | 3;
+
+export interface PhaseIndicator {
+  phase: InventoryPhase;
+  phaseName: string;
+  phaseDescription: string;
+  daysInPhase: number;
+  transitionTrigger: string;
+  weeksToNextPhase: number;
+  priceImplication: string;
+}
+
 export interface SignalData {
   insurance: InsuranceSignal;
   shipTransit: ShipTransitSignal;
@@ -610,6 +659,8 @@ export interface SignalData {
   volSkew?: VolSkewSignal;
   /** Trump "final stages with Iran" surface — explicit diplomatic state. */
   diplomaticWatch?: DiplomaticWatch;
+  /** JH/@CRUDEOIL231 inventory-phase indicator (Tier 1 card). */
+  phaseIndicator?: PhaseIndicator;
 }
 
 export interface StraitStatus {
