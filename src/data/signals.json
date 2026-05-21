@@ -1243,6 +1243,12 @@
     "physicalMarketNotes": [
       {
         "date": "2026-05-21",
+        "quote": "BP, Shell, Exxon disclosed 20-30% more efficient working capital usage over the past 5 years — roughly 1Bn bbl of effective inventory loosened up through electronic sensors and hyper-local demand forecasting. That hidden cushion took the edge off this rally and stalled the price spike. But it's a one-time thing. Once spent, you can't print more by being more efficient. The cushion has been drawn down in real time during this crisis.",
+        "attribution": "Morgan Downey (Boxwood CEO, author of Oil 101)",
+        "context": "Macrovoices Ep. 533, May 21, 2026"
+      },
+      {
+        "date": "2026-05-21",
         "quote": "Of ~2.3Bn bbl global onshore inventory, 60–70% is MOI (linefill + tank bottoms) — physically locked, can't be pulled. Another 20–25% is minimum working stock. Only the remaining ~5–15% is actually available to absorb shocks. When EIA shows -7.9 mb commercial draw, that's 5–6% of US available buffer per week — not 1.8% of total. The 'cash on hand' is burning ~3–4× faster than the headline.",
         "attribution": "JH/@CRUDEOIL231 (March 18 framework, re-shared May 21, 2026)",
         "context": "MOI/Available Buffer framework"
@@ -1616,7 +1622,54 @@
     ],
     "keyInsight": "Asia passed the point of no return by the second week of the closure. Even if the strait reopens tomorrow, 4-5 months before any sense of normalcy returns. Add 6 months for full mine clearance per US Navy estimate (Apr 23) — that pushes baseline normalization into Q1 2027. — Jun Goh, Sparta Commodities — Jeff Currie (Carlyle, May 16) reframes this: the security premium is structural, not transitional. Even if Hormuz reopens, capex starvation, deglobalization, and the Mag 7's $820bn 2026 capex bid for molecules outlast the diplomatic timeline. HALO — Hard Assets, Local Operations — is the post-Hormuz regime. — HFI Research (May 19, 2026) flags the point of no return: ballast tankers redirected to US drainage make Persian Gulf restart impossible before August, regardless of when the strait reopens. Every day of delay compounds the anchoring problem on both sides.",
     "source": "Sparta Commodities / MB Commodity Corner / Palmer Energy / US Navy mine-clearance estimate (Apr 23)",
-    "lastUpdated": "2026-05-16T08:00:00Z"
+    "lastUpdated": "2026-05-22T08:00:00Z",
+    "physicalMarketNotes": [
+      {
+        "date": "2026-05-21",
+        "quote": "Even if peace is declared today, we're still looking at $150+ within 2 months because the restart flywheel takes that long. 100+ tankers per day need to resume, each MEG→China trip is a month. Shut-in wells at Saudi/UAE have unknown engineering damage from being water-flooded. And Qatar LNG facilities damaged by drones could take 3-4 YEARS to repair — turbine parts are also constrained by AI data center demand. This is not a COVID-style v-shape. It's a physical-process restart.",
+        "attribution": "Morgan Downey",
+        "context": "Macrovoices Ep. 533, May 21, 2026"
+      }
+    ],
+    "restartFlywheel": {
+      "title": "Restart Flywheel — Even peace today doesn't fix it fast",
+      "subtitle": "Per Morgan Downey, Macrovoices May 21, 2026",
+      "stages": [
+        {
+          "stage": 1,
+          "mechanism": "Tanker traffic resume",
+          "duration": "~30 days minimum",
+          "detail": "100+/day cascade, MEG→China trip = 1 month round trip"
+        },
+        {
+          "stage": 2,
+          "mechanism": "Shut-in well restart",
+          "duration": "30–60 days",
+          "detail": "Engineering unknown for water-flooded Saudi/UAE reservoirs"
+        },
+        {
+          "stage": 3,
+          "mechanism": "Refinery restart cycle",
+          "duration": "14–28 days",
+          "detail": "Process safety, crew mobilization, parts/spares lead time"
+        },
+        {
+          "stage": 4,
+          "mechanism": "Qatar LNG facility repair",
+          "duration": "3–4 YEARS",
+          "detail": "Drone damage, turbine parts also constrained by AI data center demand"
+        },
+        {
+          "stage": 5,
+          "mechanism": "Risk premium decay",
+          "duration": "1–2 YEARS to fully unwind",
+          "detail": "Markets continue to price recurrence risk well after physical normalization"
+        }
+      ],
+      "conclusion": "Even if Hormuz fully reopens today, oil stays $100+ for 1–2 years on risk premium + restart lag. The dashboard's 'crisis end' is NOT the trade end.",
+      "attribution": "Morgan Downey (Boxwood CEO, author of Oil 101)",
+      "context": "Macrovoices Ep. 533, May 21, 2026"
+    }
   },
   "sprStatus": {
     "countries": [
@@ -2586,6 +2639,12 @@
     "physicalMarketNotes": [
       {
         "date": "2026-05-21",
+        "quote": "Equity markets are sailing along through the biggest oil event since WWII. I think traders are anticipating that if this gets bad enough, the printing press saves them like 2020 — COVID-style stimulus. That's why equities aren't afraid of the oil shock. They're not pricing the shock; they're pricing the response to the shock.",
+        "attribution": "Morgan Downey",
+        "context": "Macrovoices Ep. 533, May 21, 2026"
+      },
+      {
+        "date": "2026-05-21",
         "quote": "Energy equity dislocation is amplified by the paper-market deleveraging. With OI cratered and CTAs sidelined, the marginal mark-to-market that would force rotation isn't there. Until paper conviction returns, the FCF gap persists — not because the equity market is wrong, but because the paper market that should arbitrage it is empty.",
         "attribution": "JH (@CRUDEOIL231)",
         "context": "Signal 14 lens: the rotation Currie expects requires a functioning paper market to transmit the signal. It doesn't have one."
@@ -3104,6 +3163,7 @@
     "daysInPhase": 51,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
     "weeksToNextPhase": 18,
-    "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding."
+    "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
+    "morganDowneyContext": "Per Morgan Downey (Macrovoices, May 21, 2026): 'Down to weeks, not months. Working-capital efficiency cushion (~1Bn bbl loosened over 5 years) has been spent into this crisis. >50% probability of $150-200 oil within 30 days at current pace.' Our 18-week linear estimate is the UPPER bound — burn rate accelerates as buffer thins."
   }
 }

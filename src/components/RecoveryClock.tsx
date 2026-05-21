@@ -1,6 +1,7 @@
 "use client";
 
 import type { RecoveryClockData } from "@/lib/types";
+import RestartFlywheel from "./RestartFlywheel";
 
 interface RecoveryClockProps {
   data: RecoveryClockData;
@@ -161,8 +162,44 @@ export default function RecoveryClock({ data }: RecoveryClockProps) {
         </p>
       </div>
 
+      {/* Physical-market notes (Morgan Downey + any others) */}
+      {(() => {
+        const notes = [
+          ...(data.physicalMarketNotes ?? []),
+          ...(data.physicalMarketNote ? [data.physicalMarketNote] : []),
+        ];
+        if (notes.length === 0) return null;
+        return (
+          <div className="mb-4 space-y-3">
+            {notes.map((n, i) => (
+              <blockquote
+                key={`${n.date}-${i}`}
+                className="border-l-2 border-amber-500/40 pl-3"
+              >
+                <p className="text-[12px] italic leading-relaxed text-white/80">
+                  &ldquo;{n.quote}&rdquo;
+                </p>
+                <footer className="mt-1 text-[10px] not-italic text-white/55">
+                  <span className="font-semibold text-amber-300/80">
+                    {n.attribution}
+                  </span>
+                  <span className="mx-1.5 text-white/25">·</span>
+                  <span>{n.date}</span>
+                  {n.context && (
+                    <span className="ml-1.5 text-white/45">— {n.context}</span>
+                  )}
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+        );
+      })()}
+
+      {/* Restart Flywheel — Morgan Downey */}
+      {data.restartFlywheel && <RestartFlywheel data={data.restartFlywheel} />}
+
       {/* Source + last updated */}
-      <p className="text-[11px] text-[var(--text-secondary)]">
+      <p className="mt-4 text-[11px] text-[var(--text-secondary)]">
         Source: {data.source} · Updated{" "}
         {new Date(data.lastUpdated).toLocaleDateString("en-US", {
           month: "short",

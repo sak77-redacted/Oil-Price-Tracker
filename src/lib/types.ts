@@ -636,6 +636,11 @@ export interface PhaseIndicator {
   transitionTrigger: string;
   weeksToNextPhase: number;
   priceImplication: string;
+  /**
+   * Optional contextual footnote (e.g. Morgan Downey 'weeks not months'
+   * framing that makes the linear weeks-to-next-phase an UPPER bound).
+   */
+  morganDowneyContext?: string;
 }
 
 export interface SignalData {
@@ -718,6 +723,33 @@ export interface RecoveryClockData {
   keyInsight: string;
   source: string;
   lastUpdated: string;
+  physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
+  /** Restart Flywheel — physical-process delays even after diplomatic resolution. */
+  restartFlywheel?: RestartFlywheel;
+}
+
+/**
+ * Restart Flywheel mechanics — even if diplomatic resolution arrives, the
+ * physical restart cycle dictates the trade's minimum duration. Per Morgan
+ * Downey (Macrovoices Ep. 533, May 21, 2026): tanker re-positioning, shut-in
+ * well restart, refinery cycles, Qatar LNG repair, and risk-premium decay
+ * each impose their own timelines.
+ */
+export interface RestartFlywheelStage {
+  stage: number;
+  mechanism: string;
+  duration: string;
+  detail: string;
+}
+
+export interface RestartFlywheel {
+  title: string;
+  subtitle: string;
+  stages: RestartFlywheelStage[];
+  conclusion: string;
+  attribution: string;
+  context: string;
 }
 
 export interface SPRCountryStatus {

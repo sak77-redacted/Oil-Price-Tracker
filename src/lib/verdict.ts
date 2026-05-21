@@ -450,6 +450,7 @@ function computeTakeProfits(
   direction: TradeDirection,
   spot: number,
   band: MagnitudeBand,
+  crisisCount: number,
 ): TakeProfitLevel[] {
   if (direction === "sidelined") return [];
   // For long: T1 = brentLow (closer to spot), T2 = brentHigh
@@ -457,20 +458,33 @@ function computeTakeProfits(
   // We always use the status-quo band — the bull-case target for longs,
   // the pullback band for shorts (already negative deltas in low/high).
   if (direction === "long") {
-    const t1 = band.brentLow;
-    const t2 = band.brentHigh;
+    // Morgan Downey (Macrovoices Ep. 533, May 21 2026) calibrated targets for
+    // the long-crisis regime: T1 $135 (Morgan's $150 spike target, trim),
+    // T2 $175 (Morgan's $200 ceiling minus margin). Only override when
+    // crisis is deep (>=3 red signals) AND the magnitude band doesn't already
+    // exceed Morgan's levels (spot or band could be higher than $135/$175).
+    const useMorganOverride =
+      crisisCount >= 3 && band.brentLow < 135 && band.brentHigh < 175;
+    const t1 = useMorganOverride ? 135 : band.brentLow;
+    const t2 = useMorganOverride ? 175 : band.brentHigh;
+    const t1Rationale = useMorganOverride
+      ? "Morgan Downey $150 spike target — trim into the first stress-test print"
+      : "Lower bound of magnitude band — partial profit, raise stop";
+    const t2Rationale = useMorganOverride
+      ? "Morgan Downey $200 ceiling minus margin — Macrovoices Ep. 533, May 21"
+      : "Upper bound of magnitude band — thesis fully priced";
     return [
       {
         level: t1,
         label: "T1 · Trim 50%",
         pctFromSpot: ((t1 - spot) / spot) * 100,
-        rationale: "Lower bound of magnitude band — partial profit, raise stop",
+        rationale: t1Rationale,
       },
       {
         level: t2,
         label: "T2 · Full exit",
         pctFromSpot: ((t2 - spot) / spot) * 100,
-        rationale: "Upper bound of magnitude band — thesis fully priced",
+        rationale: t2Rationale,
       },
     ];
   }
@@ -524,17 +538,26 @@ function computeInstruments(
     const oiPct = data.paperMarket?.brentOI?.percentChange ?? 0;
     const backwardation = data.curveShape?.percentBackwardation ?? 0;
 
+    // Morgan Downey post-crisis floor note appended to primary rationale.
+    // Even after Hormuz reopens, $100+ floor sustained 1–2 yrs on risk
+    // premium + restart-flywheel lag (Macrovoices Ep. 533, May 21 2026).
+    const downeyFloorNote =
+      " + Note: Per Morgan Downey (May 21), even after Hormuz reopens, oil stays $100+ for 1–2 years on risk premium + restart lag. Don't fully exit on first crisis-end headline.";
     if (frontIv > 40 && oiPct < -25) {
       out.push({
         name: "Long M7 Brent calls",
-        rationale: "Defined risk, paper-deleveraging-safe — front IV elevated + Brent OI cratered",
+        rationale:
+          "Defined risk, paper-deleveraging-safe — front IV elevated + Brent OI cratered" +
+          downeyFloorNote,
         priority: "primary",
       });
     } else {
       // Default primary if conditions don't perfectly align
       out.push({
         name: "Long Brent call spreads",
-        rationale: "Capped premium outlay — captures upside without IV crush risk",
+        rationale:
+          "Capped premium outlay — captures upside without IV crush risk" +
+          downeyFloorNote,
         priority: "primary",
       });
     }
@@ -977,7 +1000,12 @@ export function computeTradeSetup(data: SignalData, verdict: Verdict): TradeSetu
   const { tier, pct } = convictionFromComposite(verdict.composite);
   const spot = data.oilSpread.brent;
   const entryZone = computeEntryZone(direction, spot);
-  const takeProfits = computeTakeProfits(direction, spot, verdict.reopeningScenario.statusQuo);
+  const takeProfits = computeTakeProfits(
+    direction,
+    spot,
+    verdict.reopeningScenario.statusQuo,
+    verdict.crisisCount,
+  );
   const instruments = computeInstruments(direction, data);
 
   let exitTriggers: ExitTrigger[];

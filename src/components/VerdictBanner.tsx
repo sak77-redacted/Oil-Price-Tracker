@@ -210,6 +210,29 @@ export default function VerdictBanner({ data, liveBrentPrice, wtiPrice }: Verdic
           </div>
         )}
 
+        {/* Morgan Downey 30-Day Stress Test — only shown when direction = higher */}
+        {verdict.direction === "higher" && (
+          <div className="mb-3 rounded-lg border-2 border-red-500/50 bg-red-500/5 p-3 sm:p-4">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">
+                {"⏱"} 30-Day Stress Test
+              </span>
+              <span className="text-[10px] text-amber-200/65">
+                · Morgan Downey, May 21
+              </span>
+            </div>
+            <p className="mt-2 text-[12px] font-medium italic leading-relaxed text-amber-200/95">
+              &ldquo;&gt;50% probability of $150–200 oil within 30 days at current
+              pace. Even if peace declared today, $150+ within 2 months
+              (restart flywheel). Working-capital efficiency cushion (~1Bn bbl
+              over 5 years) has been spent into this crisis.&rdquo;
+            </p>
+            <p className="mt-1.5 text-[10px] text-amber-200/55">
+              Source: Macrovoices Ep. 533
+            </p>
+          </div>
+        )}
+
         <div className="flex flex-col gap-3">
           {/* Row 1: Direction label + severity + signal count */}
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">

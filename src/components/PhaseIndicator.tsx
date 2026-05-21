@@ -139,6 +139,13 @@ export default function PhaseIndicator({ data }: PhaseIndicatorProps) {
         {data.priceImplication}
       </p>
 
+      {/* ─── Morgan Downey 'weeks not months' context ─── */}
+      {data.morganDowneyContext && (
+        <p className="mt-2 text-[11px] italic leading-relaxed text-amber-200/70">
+          {data.morganDowneyContext}
+        </p>
+      )}
+
       <p className="mt-3 border-t border-white/5 pt-3 text-[10px] uppercase tracking-wider text-white/35">
         Framework: JH/@CRUDEOIL231, March 18 2026
       </p>
