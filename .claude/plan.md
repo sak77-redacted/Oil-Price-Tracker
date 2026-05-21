@@ -1016,3 +1016,247 @@ Task 1 (scaffold)
 - `.genius/memory/decisions.json`
 
 **Verify:** `npm run build` passes. Dashboard at localhost:3000 shows: (1) New PhaseIndicator component in Tier 1 with 4-segment phase bar highlighting Phase 1 + day counter + transition trigger + weeks-to-next-phase; (2) Signal 8 (Buffer Math) shows Inventory Decomposition sub-panel with US/Global side-by-side stacked bars (MOI locked + Available drainable) + weeks-to-MOI metric + JH quote block; (3) TradeSetup exit-trigger table has 8th row "Phase regression" with 25% pctToTrigger (intact); (4) d-020 in decisions.json.
+
+---
+
+## Task 26: Sugar Page (/sugar) + Top Nav — El Niño + Hormuz Compound Trade
+**Status:** [ ]
+**Skill:** genius-dev-frontend
+**Duration:** ~120 min
+**Dependencies:** Task 25
+**Date:** 2026-05-21
+
+**Goal:** Build a new page at `/sugar` that presents the Sugar #11 compound-catalyst trade thesis (El Niño 98% + Hormuz fertilizer/shipping transmission), with a toggleable Thesis View (public, shareable) and Personal View (positions, sizing, entry context). Add a shared top nav bar linking Oil and Sugar pages on both routes. Source content: `oil_trade_plan_may2026.md`, `session_context_may2026.md`, `sugar_thesis_1pager.html`, `commodity_ytd_2026.html` in `/tmp/oil-files/` (already extracted).
+
+**Steps:**
+
+1. **Shared Top Nav (`src/components/Nav.tsx`):**
+   - Sticky top bar, dark theme matching the existing dashboard aesthetics
+   - Left: site name "Compound Crisis Tracker" or similar (small logo treatment — Hormuz + commodity framing)
+   - Right: nav links "Oil" and "Sugar" with active-state styling (accent border bottom or text color)
+   - Use Next.js `Link` + `usePathname` for active detection (client component)
+   - Mobile: collapse to hamburger or simplified row
+
+2. **Mount Nav on both pages:**
+   - Add `<Nav />` to `src/app/page.tsx` (oil dashboard) at the top, before `<header>`
+   - Add `<Nav />` to new `src/app/sugar/page.tsx`
+
+3. **Sugar data source — `src/data/sugar.json`:**
+   Populate from the May 11 docs. Schema:
+   ```json
+   {
+     "metadata": {
+       "title": "Sugar #11 — El Niño + Hormuz Compound Thesis",
+       "subtitle": "Mar'27 SBH7 call options · multi-year low + dual catalyst",
+       "lastUpdated": "2026-05-21",
+       "tradeInitiated": "2026-05-11"
+     },
+     "thesis": {
+       "direction": "long",
+       "conviction": "high",
+       "convictionPct": 72,
+       "headline": "Compound catalyst: El Niño 98% + Hormuz fertilizer/shipping. Sugar at multi-year low (~15¢) with surplus narrative breaking.",
+       "summary": "Triple-exposed agricultural commodity — Brazilian/Indian/Thai weather risk + N-intensive cane crop + Hormuz urea/sulfur disruption. Forecasters revising 2026/27 from surplus to deficit in real-time."
+     },
+     "todaysTape": {
+       "spot": 15.0,
+       "fiveYrLow": 14.0,
+       "twentyYrATH": 36.0,
+       "twentyYrLow": 9.0,
+       "rangePosition": 22,
+       "marH7IV": 27,
+       "elNinoProbability": 98,
+       "ytdPct": -7
+     },
+     "elNino": {
+       "probability": 98,
+       "probabilityWindow": "May–July 2026 (CCSR/IRI plume)",
+       "persistencePct": 98,
+       "persistenceWindow": "through 2026",
+       "strongEventOdds": "2-in-3 (NOAA)",
+       "strongEventWindow": "Nov–Jan peak",
+       "nino34Anomaly": 0.9,
+       "soiIndex": -11.2,
+       "soiNote": "Atmospheric coupling engaging (April reading)"
+     },
+     "hormuzTransmission": {
+       "ureaPctViaHormuz": 50,
+       "sulfurPctViaHormuz": 50,
+       "saudiPhosphateRank": 4,
+       "ureaPriceMovePct": 50,
+       "ammoniaPriceMovePct": 20,
+       "potashStatus": "UNAFFECTED — Russian/Belarusian/Canadian story",
+       "caneNitrogenIntensity": "Moderate — Brazilian mill margins squeezed"
+     },
+     "forecastRevisions": [
+       { "source": "Czarnikow", "metric": "2025/26 surplus", "from": "5.8 MMT", "to": "2026/27 just 1.1 MMT", "direction": "tightening" },
+       { "source": "Green Pool", "metric": "2026/27", "from": "1.66 MMT surplus", "to": "4.3 MMT DEFICIT", "direction": "deficit flip" },
+       { "source": "StoneX", "metric": "2025/26 surplus", "from": "2.9 MMT", "to": "870k tons", "direction": "tightening" }
+     ],
+     "millMix": {
+       "brazilCenterSouthSugarMixPct": 50.78,
+       "brazilCenterSouthOutputMMT": 45,
+       "brazilOutputNote": "Record output 2025/26, but mix at sugar-ethanol parity",
+       "indiaOutputMMT": 15.9,
+       "indiaOutputYoYPct": 22,
+       "indiaEthanolDiversionFromMMT": 5,
+       "indiaEthanolDiversionToMMT": 3.4
+     },
+     "historicalContext": [
+       { "year": "2005", "event": "Base", "priceCents": 9, "contractDollars": 10080 },
+       { "year": "2006", "event": "Brazil drought", "priceCents": 20, "contractDollars": 22400 },
+       { "year": "2008-09", "event": "GFC", "priceCents": 10, "contractDollars": 11200 },
+       { "year": "Feb 2011", "event": "20-YR ATH: Brazil + India shortfall", "priceCents": 36, "contractDollars": 40320, "highlight": true },
+       { "year": "2014-15", "event": "Long bear", "priceCents": 11, "contractDollars": 12320 },
+       { "year": "2016-17", "event": "Deficit, India/Thai shortfall", "priceCents": 24, "contractDollars": 26880 },
+       { "year": "2020", "event": "COVID", "priceCents": 10, "contractDollars": 11200 },
+       { "year": "Nov 2023", "event": "El Niño + India ban", "priceCents": 28, "contractDollars": 31360, "highlight": true },
+       { "year": "2024-25", "event": "Brazil + India recovery", "priceCents": 15.5, "contractDollars": 17360 },
+       { "year": "Today", "event": "5-year low; surplus narrative breaking", "priceCents": 15, "contractDollars": 16800, "highlight": true, "current": true }
+     ],
+     "catalystTimeline": [
+       { "date": "Jun-Sep 2026", "event": "Indian monsoon", "tier": 1 },
+       { "date": "Jul-Aug 2026", "event": "Australian ABARES estimates", "tier": 2 },
+       { "date": "Aug-Oct 2026", "event": "Brazilian Centre-South cane data", "tier": 1 },
+       { "date": "Sep-Nov 2026", "event": "Brazilian coffee flowering (cross-read)", "tier": 3 },
+       { "date": "Oct 2026-Jan 2027", "event": "West African cocoa main crop", "tier": 2 },
+       { "date": "Nov 2026-Feb 2027", "event": "El Niño peak intensity", "tier": 1 }
+     ],
+     "trade": {
+       "primary": {
+         "contract": "Mar'27 SBH7 19¢ Call",
+         "strike": 19,
+         "qtyRange": "2-3 contracts",
+         "premiumPerCall": 1100,
+         "totalCostRange": "$1,100-$3,300",
+         "breakeven": 20,
+         "costPer1DollarPayoff": 0.12
+       },
+       "alternative": {
+         "contract": "Mar'27 SBH7 17¢ ATM Call",
+         "strike": 17,
+         "qty": 1,
+         "premiumPerCall": 2000,
+         "totalCost": 2000,
+         "breakeven": 19,
+         "costPer1DollarPayoff": 0.19
+       },
+       "payoffTable": [
+         { "expiry": 19, "label": "≤19¢ (OTM)", "intrinsic": 0, "pnl": -1100, "multiple": "-100% (max loss)" },
+         { "expiry": 22, "intrinsic": 3360, "pnl": 2260, "multiple": "~3x" },
+         { "expiry": 28, "label": "28¢ (BASE)", "intrinsic": 10080, "pnl": 8980, "multiple": "~9x", "highlight": true },
+         { "expiry": 36, "label": "36¢ (BULL)", "intrinsic": 19040, "pnl": 17940, "multiple": "~17x", "highlight": true },
+         { "expiry": 50, "label": "50¢ (TAIL)", "intrinsic": 34720, "pnl": 33620, "multiple": "~31x" }
+       ],
+       "managementRules": [
+         "Profit-take 1: Sell 50% at 200% return on premium",
+         "Profit-take 2: Sell 25% at 500% (base case 28¢ retest)",
+         "Runner: Hold 25% for bull/tail (36¢+)",
+         "Stop trigger: IV crashes below 18% on ceasefire news",
+         "Time stop: Reassess at 60 DTE if not ITM"
+       ]
+     },
+     "exitTriggers": [
+       { "name": "El Niño weakens / fails", "rationale": "33% NOAA tail case. Atmospheric coupling doesn't intensify. PRIMARY RISK.", "status": "monitoring" },
+       { "name": "Hormuz ceasefire IV crush", "rationale": "Options re-price down even before underlying moves. Pre-expiry risk.", "status": "monitoring" },
+       { "name": "Brazilian mill mix stays at sugar", "rationale": "Mills keep flooding market above ethanol parity.", "status": "monitoring" },
+       { "name": "India ethanol policy reversal", "rationale": "Govt raises diversion → removes export supply (bullish risk for sugar but kills bear setup).", "status": "monitoring" },
+       { "name": "Theta decay without move", "rationale": "~$3-5/day per OTM call. Manageable but compounds if no move by Q4.", "status": "monitoring" }
+     ],
+     "tailScenario": {
+       "title": "Energy Lockdown → Sugar Deficit",
+       "components": [
+         { "mechanism": "Brazilian mill mix shift to ethanol", "mmtLost": "5-7" },
+         { "mechanism": "Shipping inefficiency / port backups", "mmtLost": "2-3" },
+         { "mechanism": "Indian export halt (food security)", "mmtLost": "2-3" },
+         { "mechanism": "Diesel-rationed harvest delays", "mmtLost": "1-2" },
+         { "mechanism": "Fertilizer-impacted yields (lagged)", "mmtLost": "0.5-1" },
+         { "mechanism": "Offset: demand destruction (small)", "mmtLost": "-(3-5)" }
+       ],
+       "netDeficitMMT": "7-12",
+       "context": "2024/25 deficit was 3.5 MMT → drove sugar +100% to 28¢. Lockdown deficit could be 2-3x larger.",
+       "inelasticDemandNote": "Sugar is staple food. COVID: consumption fell 3-5%, recovered fast. 1973-74 energy crisis: consumption fell <10%, prices rose 6x."
+     },
+     "ytdPerformance": [
+       { "commodity": "Sugar", "ytd": -7, "sector": "Softs", "highlight": true },
+       { "commodity": "Coffee", "ytd": -22, "sector": "Softs" },
+       { "commodity": "Cocoa", "ytd": -30, "sector": "Softs" },
+       { "commodity": "Cotton", "ytd": -3, "sector": "Softs" },
+       { "commodity": "Corn", "ytd": 17, "sector": "Grains" },
+       { "commodity": "Soybeans", "ytd": 13, "sector": "Grains" },
+       { "commodity": "Wheat", "ytd": 9, "sector": "Grains" }
+     ],
+     "personalView": {
+       "qtyExecuted": null,
+       "executionTarget": "2-3 × Mar'27 SBH7 19¢ calls",
+       "alternativeExecution": "1 × Mar'27 SBH7 17¢ ATM",
+       "maxRiskDollars": 3300,
+       "executionTiming": "NY hours 8am-1pm ET (10pm-3am AEST)",
+       "executionNotes": [
+         "Verify actual Mar'27 ATM strike — sugar may have moved",
+         "Check bid-ask: if >5 ticks wide on 19¢, move to more liquid strike (18¢ or 20¢)",
+         "Check IV: fair = 22-28%, if 35%+ news has moved without us",
+         "Don't market-order — work limits"
+       ],
+       "sizingLogic": "Sugar at 20-30% of oil book notional (satellite, not core). Don't size up at entry — add into confirming trend (India monsoon data, Brazilian mix reports)."
+     }
+   }
+   ```
+
+4. **Sugar types — `src/lib/sugar-types.ts`** (separate from oil types.ts to keep concerns clean):
+   Define TypeScript interfaces matching the sugar.json schema above.
+
+5. **Sugar components (`src/components/sugar/`):**
+   - `SugarVerdict.tsx` — top banner: "LONG · HIGH CONVICTION · El Niño + Hormuz Compound". Direction badge, conviction tier, sub-headline, summary paragraph. Mirror oil VerdictBanner styling but greener / softer-palette (sugar isn't war).
+   - `SugarTodaysTape.tsx` — 6-tile horizontal: Spot, 20-yr range position, 5-yr low, El Niño probability, Mar'27 IV, YTD %.
+   - `ElNinoSetup.tsx` — El Niño data card: probability, persistence, strong-event odds, Niño 3.4 SST anomaly, SOI index, NOAA attribution.
+   - `HormuzTransmission.tsx` — fertilizer transmission card: urea +50%, sulfur +50%, Saudi phosphate rank, potash status, cane N-intensity.
+   - `ForecastRevisions.tsx` — table showing Czarnikow / Green Pool / StoneX from→to revisions (surplus → deficit flip).
+   - `BrazilianMillMix.tsx` — mix % gauge + sugar-ethanol parity context.
+   - `HistoricalContext.tsx` — 20-year price history mini-table with key events (highlighted: Feb 2011 ATH, Nov 2023 El Niño, Today).
+   - `CatalystTimeline.tsx` — 6-event timeline (Indian monsoon Jun-Sep, ABARES, Brazilian C-S, El Niño peak, etc.) with tier-color dots.
+   - `SugarTradeSetup.tsx` — position card (primary 19¢ + alternative 17¢ side-by-side), payoff table with highlighted base/bull rows, management rules list, exit triggers table, risk factors.
+   - `TailScenario.tsx` — energy-lockdown deficit decomposition table → 7-12 MMT net + context paragraph.
+   - `YTDComparison.tsx` — horizontal bar chart showing sugar (-7%) vs grains (+9 to +17%) — dispersion / mispricing visual.
+   - `PersonalViewToggle.tsx` — small toggle button (sticky or near top) controlling local state for thesis-only vs personal-view rendering. Use React useState + localStorage to persist preference.
+
+6. **Sugar page route (`src/app/sugar/page.tsx`):**
+   - Server component that loads `src/data/sugar.json`
+   - Wraps a client wrapper that owns the view-toggle state
+   - Three-tier layout matching the oil page philosophy:
+     - **Tier 1 (Action):** SugarVerdict + SugarTodaysTape + CatalystTimeline
+     - **Tier 2 (Thesis):** ElNinoSetup + HormuzTransmission + ForecastRevisions + BrazilianMillMix + SugarTradeSetup (2-col grid where it fits)
+     - **Tier 3 (Structural, collapsible):** HistoricalContext + TailScenario + YTDComparison
+   - Personal view: when toggled on, reveal a "Personal Trade Info" card with execution targets, sizing logic, IBKR notes, max risk. When off, those panels are hidden.
+
+7. **Page metadata:**
+   - title: "Sugar #11 — El Niño + Hormuz Compound Thesis"
+   - description: "Mar'27 SBH7 call options trade thesis: 98% El Niño probability + Hormuz fertilizer/shipping transmission. Triple-exposed agricultural commodity at multi-year low."
+   - OG tags for sharing
+
+8. **Append decision `d-021` to `.genius/memory/decisions.json`:**
+   - title: "SUGAR PAGE (/sugar) — El Niño + Hormuz Compound Trade"
+   - description: Built /sugar route with 3-tier layout mirroring oil page. Compound catalyst thesis (El Niño 98% + Hormuz fertilizer/shipping). Toggleable thesis/personal view. Mar'27 SBH7 19¢ calls × 2-3 primary, base case 9x, bull 17x, tail 31x. Catalyst windows: Indian monsoon (Jun-Sep), Brazilian C-S (Aug-Oct), El Niño peak (Nov-Feb). Shared Nav added to both routes. Sugar at multi-year low (~15¢) with forecasters revising 2026/27 from surplus to deficit in real-time.
+   - tags: ["decision", "feature", "sugar", "el-nino", "commodity-trade", "new-page", "nav"]
+
+**Files:**
+- `src/app/sugar/page.tsx` (new)
+- `src/components/Nav.tsx` (new)
+- `src/components/sugar/SugarVerdict.tsx` (new)
+- `src/components/sugar/SugarTodaysTape.tsx` (new)
+- `src/components/sugar/ElNinoSetup.tsx` (new)
+- `src/components/sugar/HormuzTransmission.tsx` (new)
+- `src/components/sugar/ForecastRevisions.tsx` (new)
+- `src/components/sugar/BrazilianMillMix.tsx` (new)
+- `src/components/sugar/HistoricalContext.tsx` (new)
+- `src/components/sugar/CatalystTimeline.tsx` (new)
+- `src/components/sugar/SugarTradeSetup.tsx` (new)
+- `src/components/sugar/TailScenario.tsx` (new)
+- `src/components/sugar/YTDComparison.tsx` (new)
+- `src/components/sugar/PersonalViewToggle.tsx` (new)
+- `src/data/sugar.json` (new)
+- `src/lib/sugar-types.ts` (new)
+- `src/app/page.tsx` (mount Nav)
+- `.genius/memory/decisions.json` (d-021)
+
+**Verify:** `npm run build` passes. Navigate to `/sugar`: see top nav with Oil/Sugar links (Sugar active), SugarVerdict banner with "LONG · HIGH CONVICTION", 6-tile TodaysTape, catalyst timeline, El Niño + Hormuz transmission cards, forecast revisions table showing surplus→deficit flips, sugar trade setup with payoff table (9x base / 17x bull / 31x tail), collapsible historical context + tail scenario. Personal view toggle reveals execution targets + sizing logic. Navigate back to `/`: oil dashboard intact, Nav present, Oil tab active.

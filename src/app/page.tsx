@@ -4,6 +4,7 @@ import { getAISummary } from "@/lib/ai-summary";
 
 import Dashboard from "@/components/Dashboard";
 import Footer from "@/components/Footer";
+import Nav from "@/components/Nav";
 
 // Revalidate every 15 minutes so futures prices stay fresh
 export const revalidate = 900;
@@ -22,6 +23,7 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-full flex-col">
+      <Nav />
       <div className="mx-auto max-w-7xl w-full px-4 pt-4 sm:px-6 lg:px-8">
         <p className="text-[10px] text-center text-[var(--text-secondary)]">
           Not financial advice. For informational purposes only. Do your own research before making investment decisions.
