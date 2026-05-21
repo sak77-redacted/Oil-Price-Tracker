@@ -1260,3 +1260,213 @@ Task 1 (scaffold)
 - `.genius/memory/decisions.json` (d-021)
 
 **Verify:** `npm run build` passes. Navigate to `/sugar`: see top nav with Oil/Sugar links (Sugar active), SugarVerdict banner with "LONG · HIGH CONVICTION", 6-tile TodaysTape, catalyst timeline, El Niño + Hormuz transmission cards, forecast revisions table showing surplus→deficit flips, sugar trade setup with payoff table (9x base / 17x bull / 31x tail), collapsible historical context + tail scenario. Personal view toggle reveals execution targets + sizing logic. Navigate back to `/`: oil dashboard intact, Nav present, Oil tab active.
+
+---
+
+## Task 27: Commodities Page (/commodities) — Live YTD + Compound Crisis Macro View
+**Status:** [ ]
+**Skill:** genius-dev-frontend / genius-dev-api
+**Duration:** ~120 min
+**Dependencies:** Task 26
+**Date:** 2026-05-21
+
+**Goal:** Third route `/commodities` presenting the full commodity-complex macro view from `commodity_ytd_2026.html` — but with **live prices and live-computed YTD%** for all 17 commodities, not static data. This is the macro lens that ties together Oil (Hormuz tracker) and Sugar (compound trade) and shows where the dispersion is across sectors.
+
+**Steps:**
+
+1. **Live commodity fetcher (`src/lib/commodities-api.ts`):**
+
+   Define 17 commodity contracts with Yahoo symbols and sectors:
+   ```ts
+   const COMMODITY_COMPLEX: CommodityConfig[] = [
+     // Energy
+     { symbol: "RB=F", name: "RBOB Gasoline", sector: "Energy", priceUnit: "$/gal", contractSize: 42000 },
+     { symbol: "HO=F", name: "Heating Oil", sector: "Energy", priceUnit: "$/gal", contractSize: 42000 },
+     { symbol: "CL=F", name: "WTI Crude", sector: "Energy", priceUnit: "$/bbl", contractSize: 1000 },
+     { symbol: "BZ=F", name: "Brent Crude", sector: "Energy", priceUnit: "$/bbl", contractSize: 1000 },
+     { symbol: "NG=F", name: "Natural Gas", sector: "Energy", priceUnit: "$/MMBtu", contractSize: 10000 },
+     // Precious Metals
+     { symbol: "SI=F", name: "Silver", sector: "Precious Metals", priceUnit: "$/oz", contractSize: 5000 },
+     { symbol: "GC=F", name: "Gold", sector: "Precious Metals", priceUnit: "$/oz", contractSize: 100 },
+     { symbol: "PL=F", name: "Platinum", sector: "Precious Metals", priceUnit: "$/oz", contractSize: 50 },
+     // Industrial Metals
+     { symbol: "HG=F", name: "Copper", sector: "Industrial Metals", priceUnit: "$/lb", contractSize: 25000 },
+     // Grains
+     { symbol: "ZC=F", name: "Corn", sector: "Grains", priceUnit: "¢/bu", contractSize: 5000 },
+     { symbol: "ZS=F", name: "Soybeans", sector: "Grains", priceUnit: "¢/bu", contractSize: 5000 },
+     { symbol: "ZW=F", name: "Wheat", sector: "Grains", priceUnit: "¢/bu", contractSize: 5000 },
+     // Softs
+     { symbol: "SB=F", name: "Sugar", sector: "Softs", priceUnit: "¢/lb", contractSize: 112000 },
+     { symbol: "CT=F", name: "Cotton", sector: "Softs", priceUnit: "¢/lb", contractSize: 50000 },
+     { symbol: "KC=F", name: "Coffee", sector: "Softs", priceUnit: "¢/lb", contractSize: 37500 },
+     { symbol: "CC=F", name: "Cocoa", sector: "Softs", priceUnit: "$/MT", contractSize: 10 },
+     // Livestock
+     { symbol: "LE=F", name: "Live Cattle", sector: "Livestock", priceUnit: "¢/lb", contractSize: 40000 },
+   ];
+   ```
+
+   Implement `fetchCommodityComplex(): Promise<CommodityComplexData>`:
+   - Use Yahoo `range=ytd` for each symbol
+   - For each: get current price + first valid close of year + 5d change
+   - Compute YTD% = (current / firstClose - 1) * 100
+   - Reuse existing fetch pattern from `futures-api.ts` (User-Agent header, AbortSignal timeout, fallback handling)
+   - Run all 17 fetches in `Promise.all`
+   - Group by sector for sector-level YTD averages
+   - Return `CommodityComplexData` with `commodities: CommodityRow[]` and `sectors: SectorSummary[]`
+
+   Add fallback prices/YTDs (matching the May 12 doc values) for graceful degradation if Yahoo fails.
+
+2. **Types (`src/lib/commodities-types.ts`):**
+   ```ts
+   export type CommoditySector = "Energy" | "Precious Metals" | "Industrial Metals" | "Grains" | "Softs" | "Livestock";
+
+   export interface CommodityRow {
+     symbol: string;
+     name: string;
+     sector: CommoditySector;
+     priceUnit: string;
+     currentPrice: number;
+     yearStartPrice: number;
+     ytdPct: number;
+     fiveDayChangePct: number;
+     lastUpdated: string;
+   }
+
+   export interface SectorSummary {
+     sector: CommoditySector;
+     avgYtdPct: number;
+     constituentCount: number;
+     driver: string;
+   }
+
+   export interface CommodityComplexData {
+     commodities: CommodityRow[];
+     sectors: SectorSummary[];
+     asOfDate: string;
+   }
+   ```
+
+3. **Static thesis content (`src/data/commodities-thesis.json`):**
+   Pulls in the static thesis sections from `commodity_ytd_2026.html`:
+   - sectorDrivers (sector → driver one-liner)
+   - keyObservations (4 paragraphs: energy standout, grains second-order, softs inverse, metals dispersion)
+   - compoundThesis (El Niño + Hormuz core thesis paragraph + 4 stat-row metrics)
+   - exposureMapping (8 crop rows: Cocoa/Coffee/Sugar/Wheat/Rice/Palm Oil/Corn/Soybeans with El Niño risk + Fertilizer risk + Priced-In status)
+   - tradeIdeas (4 cards: Sugar / Cocoa / Coffee / KC Wheat, each with conviction tier, contract, why, expression)
+   - timingWindows (6 dated windows: Indian monsoon, ABARES, Brazilian C-S, Brazilian coffee, West African cocoa, El Niño peak)
+   - riskSection ("What kills this trade" — 4 bullets)
+
+4. **Commodities page (`src/app/commodities/page.tsx`):**
+
+   Server component:
+   ```tsx
+   export const revalidate = 900;
+
+   export default async function Commodities() {
+     const [complexData, thesisData] = await Promise.all([
+       fetchCommodityComplex(),
+       loadCommoditiesThesis(),
+     ]);
+     return <CommoditiesPageContent complexData={complexData} thesisData={thesisData} />;
+   }
+   ```
+
+   Page metadata:
+   - title: "Commodity Complex — Macro View · Live YTD + Compound Crisis Thesis"
+   - description: "Live commodity futures prices and YTD performance across Energy, Metals, Grains, Softs, Livestock. Compound El Niño + Hormuz crisis thesis with ranked trade ideas."
+
+5. **Page components (`src/components/commodities/`):**
+
+   - **`CommoditiesVerdict.tsx`** — top banner. "COMMODITY COMPLEX · COMPOUND CRISIS REGIME". Headline summary tying Hormuz + El Niño narrative. Subtitle: "Live YTD across 17 contracts · Sector dispersion is the trade."
+
+   - **`LiveYTDChart.tsx`** — the highlight component. Horizontal bar chart of all 17 commodities ranked by YTD%. Each bar: commodity name (left), bar from zero line (color-coded by sector), YTD% value (right). Live data from `complexData.commodities`. Hover/tap reveals current price + 5d change + price unit + last updated. Replaces the static SVG from the source HTML.
+
+   - **`SectorSummaryGrid.tsx`** — 6 tiles (one per sector). Each tile: sector name + avg YTD% + driver one-liner. Color-coded by sector.
+
+   - **`LivePricesTable.tsx`** — sortable table of all 17 commodities. Columns: Commodity | Sector | Current Price | YTD % | 5d Change | Symbol. Default sort by YTD desc. Mobile: cards stacked.
+
+   - **`KeyObservations.tsx`** — 4 paragraph cards. Energy standout / Grains second-order / Softs inverse / Metals dispersion.
+
+   - **`CompoundThesisCard.tsx`** — full-width card with 4-stat row at top (98% El Niño prob / 97-98% persistence / +0.9°C SST / 2-in-3 strong odds), then "Core thesis" paragraph in callout style.
+
+   - **`ExposureMappingTable.tsx`** — the compound exposure table. 8 rows: Cocoa / Coffee / Sugar / KC Wheat / Rice / Palm Oil / Corn / Soybeans. Columns: Crop | El Niño Risk | Fertilizer Risk | YTD 2026 (LIVE from complexData where available) | Priced In? Highlight priority-1 rows (Cocoa/Coffee/Sugar) with amber accent — these are the asymmetric trades.
+
+   - **`TradeIdeasGrid.tsx`** — 4 cards (Sugar / Cocoa / Coffee / KC Wheat). Each: conviction badge (High / Speculative / Moderate), contract symbol, "Why" paragraph, "Expression" paragraph. Sugar card links to `/sugar` for full thesis.
+
+   - **`TimingWindowsTimeline.tsx`** — 6-event horizontal/vertical timeline. Each: date range + event title + impact description. Tier-tagged.
+
+   - **`DispersionCallout.tsx`** — pull-quote style callout: "Grains have moved (+13-17%). Softs have moved AGAINST the El Niño thesis (-7 to -30%). Positioning is wrong AND catalyst is high-probability = textbook asymmetric setup."
+
+   - **`RiskFactorsList.tsx`** — "What kills this trade" 4-bullet list with red accent.
+
+   - **`OilBookConnectionCard.tsx`** — bottom-of-page card explaining how this thesis complements (not duplicates) the oil book. Suggested allocation: 20-30% of oil notional, sugar core / cocoa convex satellite / coffee opportunistic add.
+
+6. **Page layout (`CommoditiesPageContent.tsx`):**
+
+   ```
+   <Nav />
+   <main>
+     <header>
+       <h1>Commodity Complex</h1>
+       <p>Live YTD + Compound Crisis Thesis · El Niño + Hormuz dispersion</p>
+     </header>
+
+     <CommoditiesVerdict />
+
+     <SectionDivider label="LIVE YTD PERFORMANCE" />
+     <LiveYTDChart />
+     <SectorSummaryGrid />
+
+     <SectionDivider label="THESIS — COMPOUND CRISIS REGIME" />
+     <CompoundThesisCard />
+     <ExposureMappingTable />
+     <DispersionCallout />
+
+     <SectionDivider label="TRADE IDEAS — RANKED BY RISK-ADJUSTED OPPORTUNITY" />
+     <TradeIdeasGrid />
+
+     <SectionDivider label="TIMING WINDOWS" />
+     <TimingWindowsTimeline />
+
+     <SectionDivider label="STRUCTURAL CONTEXT" description="Observations, live prices table, risk section" />
+     <details>
+       <summary>Show structural context ▾</summary>
+       <KeyObservations />
+       <LivePricesTable />
+       <RiskFactorsList />
+       <OilBookConnectionCard />
+     </details>
+   </main>
+   <Footer />
+   ```
+
+7. **Update Nav (`src/components/Nav.tsx`):**
+   Add third link "Commodities" → `/commodities`. Ensure mobile layout still works with 3 tabs.
+
+8. **Append decision `d-022` to `.genius/memory/decisions.json`:**
+   - title: "COMMODITIES PAGE (/commodities) — Live YTD + Compound Crisis Macro View"
+   - description: Third route presenting the cross-commodity macro view. Live front-month prices and YTD% computed from Yahoo Finance for 17 contracts (Energy/Metals/Grains/Softs/Livestock). El Niño + Hormuz compound thesis with exposure mapping, ranked trade ideas (Sugar/Cocoa/Coffee/KC Wheat), timing windows, and dispersion callout. Replaces the static May 12 SVG with live data. Sugar card cross-links to /sugar for full trade thesis.
+   - tags: ["decision", "feature", "commodities", "live-prices", "ytd", "compound-thesis", "new-page"]
+
+**Files:**
+- `src/lib/commodities-api.ts` (new)
+- `src/lib/commodities-types.ts` (new)
+- `src/data/commodities-thesis.json` (new)
+- `src/app/commodities/page.tsx` (new)
+- `src/components/commodities/CommoditiesPageContent.tsx` (new)
+- `src/components/commodities/CommoditiesVerdict.tsx` (new)
+- `src/components/commodities/LiveYTDChart.tsx` (new)
+- `src/components/commodities/SectorSummaryGrid.tsx` (new)
+- `src/components/commodities/LivePricesTable.tsx` (new)
+- `src/components/commodities/KeyObservations.tsx` (new)
+- `src/components/commodities/CompoundThesisCard.tsx` (new)
+- `src/components/commodities/ExposureMappingTable.tsx` (new)
+- `src/components/commodities/TradeIdeasGrid.tsx` (new)
+- `src/components/commodities/TimingWindowsTimeline.tsx` (new)
+- `src/components/commodities/DispersionCallout.tsx` (new)
+- `src/components/commodities/RiskFactorsList.tsx` (new)
+- `src/components/commodities/OilBookConnectionCard.tsx` (new)
+- `src/components/Nav.tsx` (add third tab)
+- `.genius/memory/decisions.json` (d-022)
+
+**Verify:** `npm run build` passes. Navigate to `/commodities`: Nav shows 3 tabs (Oil/Sugar/Commodities active). Live YTD chart shows current YTD% from live Yahoo data — values differ from May 12 doc snapshot. Sector summary tiles. Compound thesis section with El Niño + Hormuz stats. Exposure mapping table. 4 ranked trade ideas (Sugar card cross-links to /sugar). Timing windows. Collapsed structural context. All commodities show current price + YTD% sourced live; fallback values used if Yahoo fails.

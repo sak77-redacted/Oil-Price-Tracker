@@ -6,11 +6,19 @@ import { usePathname } from "next/navigation";
 interface NavLink {
   href: string;
   label: string;
+  shortLabel?: string;
+  ariaLabel?: string;
 }
 
 const NAV_LINKS: NavLink[] = [
   { href: "/", label: "Oil" },
   { href: "/sugar", label: "Sugar" },
+  {
+    href: "/commodities",
+    label: "Commodities",
+    shortLabel: "Complex",
+    ariaLabel: "Commodities — full complex view",
+  },
 ];
 
 export default function Nav() {
@@ -36,20 +44,22 @@ export default function Nav() {
             Crisis Tracker
           </span>
         </Link>
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-0.5 sm:gap-2">
           {NAV_LINKS.map((link) => {
             const active = isActive(link.href);
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-3 py-1.5 text-sm font-semibold uppercase tracking-[0.16em] transition-colors ${
+                aria-label={link.ariaLabel ?? link.label}
+                className={`relative px-2 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] transition-colors sm:px-3 sm:text-sm sm:tracking-[0.16em] ${
                   active
                     ? "text-white"
                     : "text-white/55 hover:text-white"
                 }`}
               >
-                {link.label}
+                <span className="sm:hidden">{link.shortLabel ?? link.label}</span>
+                <span className="hidden sm:inline">{link.label}</span>
                 {active && (
                   <span
                     aria-hidden

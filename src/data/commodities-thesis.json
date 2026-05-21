@@ -1,0 +1,198 @@
+{
+  "verdictHeadline": "COMMODITY COMPLEX · COMPOUND CRISIS REGIME",
+  "verdictSubtitle": "Live YTD across 17 contracts · Sector dispersion is the trade",
+  "sectorDrivers": {
+    "Energy": "Hormuz disruption, supply premium, refined product squeeze",
+    "Precious Metals": "Geopolitical safe haven, real rate compression, CB buying",
+    "Grains": "Fertilizer input shock (urea +50%), 2026 acreage uncertainty",
+    "Industrial Metals": "Mixed: energy-cost pass-through vs. China demand wobble",
+    "Livestock": "Range-bound; feed costs partly offsetting tight supply",
+    "Softs": "Cocoa/coffee unwinding 2024-25 supply shock as harvests improve"
+  },
+  "keyObservations": [
+    {
+      "headline": "Energy is the standout",
+      "body": "Refined products (RBOB, heating oil) are outperforming crude as the Hormuz disruption hits product flow more than crude supply — confirming the structural thesis that this isn't just a barrel issue, it's a logistics issue."
+    },
+    {
+      "headline": "Grains are the second-order Hormuz trade",
+      "body": "The +13-17% in corn and soy isn't direct supply disruption — it's the fertilizer cost transmission. Watch July USDA reports as the next catalyst."
+    },
+    {
+      "headline": "Softs are the inverse trade",
+      "body": "Cocoa down 30% and coffee down 22% is the unwind of the 2024 weather/disease supply shocks. These markets are decoupled from the Hormuz story and trading on their own fundamentals (Brazilian arabica bumper crop, West African cocoa recovery)."
+    },
+    {
+      "headline": "Metals dispersion matters",
+      "body": "Silver outperforming gold (+22% vs +19%) is classic late-cycle, geopolitically-driven metals trade. Copper at only +8% suggests industrial demand is the lagging concern."
+    }
+  ],
+  "compoundThesis": {
+    "stats": [
+      { "label": "El Niño probability May-Jul 2026 (CCSR/IRI plume)", "value": "98%" },
+      { "label": "Probability of persistence through 2026", "value": "97-98%" },
+      { "label": "Niño 3.4 SST anomaly (May 13 reading)", "value": "+0.9°C" },
+      { "label": "Odds of strong/very strong El Niño for Nov-Jan peak", "value": "2-in-3" }
+    ],
+    "coreThesis": "The market is currently pricing two narratives that are mutually incompatible with a strong El Niño — West African cocoa recovery and Brazilian arabica bumper crop. Both depend on continued favorable weather. A confirmed El Niño breaks both narratives, and the price action year-to-date (cocoa -30%, coffee -22%) means these markets are positioned for the wrong direction. Combined with the Hormuz fertilizer cost shock affecting nitrogen-hungry crops globally, the softs offer compound exposure that isn't priced in."
+  },
+  "exposureMapping": [
+    {
+      "crop": "Cocoa",
+      "symbol": "CC=F",
+      "elNinoRisk": "Very High",
+      "fertilizerRisk": "Moderate",
+      "ytdLabel": "-30%",
+      "pricedIn": "No — opposite direction",
+      "priority": 1
+    },
+    {
+      "crop": "Coffee (Arabica)",
+      "symbol": "KC=F",
+      "elNinoRisk": "Very High",
+      "fertilizerRisk": "Moderate",
+      "ytdLabel": "-22%",
+      "pricedIn": "No — opposite direction",
+      "priority": 1
+    },
+    {
+      "crop": "Sugar #11",
+      "symbol": "SB=F",
+      "elNinoRisk": "Very High",
+      "fertilizerRisk": "High",
+      "ytdLabel": "-7%",
+      "pricedIn": "No",
+      "priority": 1
+    },
+    {
+      "crop": "Wheat (KC)",
+      "symbol": "ZW=F",
+      "elNinoRisk": "Very High",
+      "fertilizerRisk": "Very High",
+      "ytdLabel": "+9%",
+      "pricedIn": "Partially",
+      "priority": 2
+    },
+    {
+      "crop": "Rice",
+      "elNinoRisk": "Very High",
+      "fertilizerRisk": "Very High",
+      "ytdLabel": "Modest",
+      "pricedIn": "Partially",
+      "priority": 2
+    },
+    {
+      "crop": "Palm Oil",
+      "elNinoRisk": "High",
+      "fertilizerRisk": "Moderate",
+      "ytdLabel": "Up modestly",
+      "pricedIn": "Partially",
+      "priority": 2
+    },
+    {
+      "crop": "Corn",
+      "symbol": "ZC=F",
+      "elNinoRisk": "Mixed (US neutral)",
+      "fertilizerRisk": "Very High",
+      "ytdLabel": "+17%",
+      "pricedIn": "Yes — running",
+      "priority": 3
+    },
+    {
+      "crop": "Soybeans",
+      "symbol": "ZS=F",
+      "elNinoRisk": "Negative (ARG benefits)",
+      "fertilizerRisk": "Moderate",
+      "ytdLabel": "+13%",
+      "pricedIn": "Mostly priced",
+      "priority": 3
+    }
+  ],
+  "tradeIdeas": [
+    {
+      "name": "Long Sugar #11 — Best risk-adjusted compound exposure",
+      "conviction": "High Conviction",
+      "ticker": "SB",
+      "contract": "SBV6 (Oct'26) or SBH7 (Mar'27)",
+      "why": "Triple-exposed — Brazil cane (drought sensitivity), Indian monsoon (rainfall failure risk), Australian crush. Sugarcane is also heavily N-dependent so fertilizer shock compounds. Currently grinding near multi-year lows on supply glut narrative that requires continued favorable weather. Lower volatility than cocoa, more liquid options chain than coffee.",
+      "expression": "Outright long futures (small size) OR October sugar call spread (e.g., 16/20 strikes) for defined-risk asymmetric exposure.",
+      "tier": 1,
+      "crossLinkHref": "/sugar",
+      "crossLinkLabel": "View full thesis on /sugar"
+    },
+    {
+      "name": "Long Cocoa — Most asymmetric, highest convexity",
+      "conviction": "Speculative",
+      "ticker": "CC",
+      "contract": "CCH7 (Mar'27)",
+      "why": "Just round-tripped $2.5k → $12k → $4.2k. Market is pricing West African crop recovery — historically El Niño causes drought in Ghana/Ivory Coast during the critical Oct-Dec pod-fill window. The 2015-16 Super El Niño contributed to the 2017 supply crisis. Down 30% YTD on the recovery narrative that El Niño would invalidate.",
+      "expression": "Options only (DCC contracts) — outright futures are too volatile and margin-intensive for sizing discipline. Consider March 2027 call spreads, OTM strikes around $5,000/$7,000.",
+      "sizingNote": "Small relative to oil book — think 5-10% of oil notional. This is a satellite convex bet, not a portfolio allocation.",
+      "tier": 1
+    },
+    {
+      "name": "Long Coffee (Arabica) — Contrarian narrative break",
+      "conviction": "Moderate Conviction",
+      "ticker": "KC",
+      "contract": "KCZ6 (Dec'26) or KCH7 (Mar'27)",
+      "why": "Down 22% YTD on Brazilian arabica bumper crop narrative. Minas Gerais (the heart of Brazilian arabica) is historically dry during El Niño phases. Vietnam (robusta) faces similar drought patterns. The next crop year flowering happens Sept-Nov 2026 — right when El Niño peaks. Current bearish positioning depends on assumptions that the climate models say are 2-3% likely.",
+      "expression": "Long futures with stops, or December/March call options for defined risk.",
+      "tier": 2
+    },
+    {
+      "name": "Long KC Wheat — Compound winner already showing strength",
+      "conviction": "Moderate Conviction",
+      "ticker": "KE",
+      "contract": "KEU6 (Sep'26) or KEZ6 (Dec'26)",
+      "why": "Hard red winter is more drought-sensitive than Chicago SRW. Compound exposure: fertilizer cost shock + Australian wheat at planting risk + Indian winter wheat import dynamics. Partially priced at +9% YTD but room to extend if Australian crop is hit.",
+      "expression": "Outright long, sized smaller than the softs trades (less asymmetric since some pricing is in).",
+      "tier": 3
+    }
+  ],
+  "timingWindows": [
+    {
+      "dateRange": "Jun–Sep 2026",
+      "event": "India monsoon",
+      "description": "First major El Niño impact window. Drives sugar, rice, cotton, Indian wheat. Below-normal rainfall signals come through July-August.",
+      "tier": 1
+    },
+    {
+      "dateRange": "Jul–Aug 2026",
+      "event": "Australian ABARES estimates",
+      "description": "Wheat production downgrades if El Niño-driven dry pattern develops. First major Australian harvest signal.",
+      "tier": 2
+    },
+    {
+      "dateRange": "Aug–Oct 2026",
+      "event": "Brazilian Centre-South cane",
+      "description": "Drought signal compounds through Q3 if El Niño strengthens. Crush data and ATR signals matter.",
+      "tier": 1
+    },
+    {
+      "dateRange": "Sep–Nov 2026",
+      "event": "Brazilian coffee flowering",
+      "description": "Critical period for 2027 crop. Dry conditions during flowering trigger sharp arabica futures moves.",
+      "tier": 1
+    },
+    {
+      "dateRange": "Oct 2026–Jan 2027",
+      "event": "West African cocoa main crop",
+      "description": "Pod-fill phase. This is when El Niño impacts on cocoa get priced in most aggressively. The big catalyst window.",
+      "tier": 1
+    },
+    {
+      "dateRange": "Nov 2026–Feb 2027",
+      "event": "El Niño peak intensity",
+      "description": "NOAA expects this is when atmospheric coupling is strongest. Maximum impact on global weather patterns.",
+      "tier": 1
+    }
+  ],
+  "riskFactors": [
+    "Weak/failed El Niño event — the 1-in-3 scenario from NOAA where atmospheric coupling doesn't intensify through summer. Q4 crop impacts get muted.",
+    "Combined unwind — Hormuz resolves AND El Niño underperforms. Worst case for both legs; size accordingly.",
+    "Cocoa-specific: faster-than-expected Ghana/Ivory Coast harvest recovery announcement before El Niño impacts show in production data.",
+    "Coffee-specific: Brazilian Real strength would cap upside even with weather issues (export economics). Sugar-specific: Indian export policy shifts or Brazilian ethanol mix shifts toward sugar could add supply independent of weather."
+  ],
+  "oilBookConnection": "This thesis is complementary, not redundant, to the Hormuz oil position. Both express variants of the same macro view (global supply shock, geopolitical/weather catalyst convergence), but they're driven by largely independent transmission mechanisms and will move on different news flow. Suggested allocation: 20-30% of oil notional, spread across 2-3 of the trades above. Cleanest portfolio construction: sugar as core (lowest vol), cocoa as convex satellite (options only), coffee as opportunistic add if it breaks lower.",
+  "dispersionCallout": "Grains have already moved (+13-17% YTD) on the fertilizer thesis — the easy money there is gone. The softs have moved AGAINST the El Niño thesis (-7% to -30% YTD) because the market is still pricing 2024-25 supply shock unwind. That's a setup where positioning is wrong AND the catalyst is high-probability — the textbook definition of asymmetric."
+}
