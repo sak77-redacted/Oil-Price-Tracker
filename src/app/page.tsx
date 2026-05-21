@@ -38,11 +38,6 @@ export default async function Home() {
           The Strait of Hormuz carries 20% of the world&apos;s oil supply. It is now effectively closed.
           This tracker monitors the only signals that matter — priced by people with real money at risk — and translates them into actionable trade intelligence.
         </p>
-        <p className="mt-3 text-xs text-[var(--text-secondary)]">
-          Signal framework by{" "}
-          <a href="https://x.com/nakul_sarda" target="_blank" rel="noopener noreferrer" className="font-semibold text-[var(--accent)] hover:underline">Nakul Sarda</a>{" "}
-          (@nakul_sarda)
-        </p>
       </header>
       <Dashboard data={signalData} futuresData={futuresData} crackData={crackData} forwardData={forwardData} wtiBrentData={wtiBrentData} marketData={marketData} aiSummary={aiSummary} hyperliquidData={hyperliquidData} />
       <Footer />

@@ -19,18 +19,6 @@ export default function Footer() {
         <p className="text-xs leading-relaxed text-[var(--text-secondary)]">
           Manual data updated daily. Oil prices refresh every 15 minutes.
         </p>
-        <p className="text-xs leading-relaxed text-[var(--text-secondary)]">
-          Signal framework by{" "}
-          <a
-            href="https://x.com/nakul_sarda"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-[var(--accent)] hover:underline"
-          >
-            Nakul Sarda
-          </a>{" "}
-          (@nakul_sarda).
-        </p>
         <p className="text-xs font-medium text-[var(--text-secondary)]">
           Built for signal, not noise.
         </p>
