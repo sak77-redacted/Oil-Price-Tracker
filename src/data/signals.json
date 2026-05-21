@@ -2385,7 +2385,21 @@
       "quote": "The largest oil supply shock in history is reasonably priced into the curve, and it likely has much more to run. Percent backwardation hit an all-time high in April and remains near record today. Spot has not exceeded the Russia-Ukraine peak for one reason: the back end of the curve sits $10–$12/bbl below where it was then.",
       "attribution": "Jeff Currie, Carlyle",
       "context": "Why spot looks 'cheap' even at $107 — the back end is anchoring the entire curve."
-    }
+    },
+    "physicalMarketNotes": [
+      {
+        "date": "2026-05-21",
+        "quote": "Paper-market deleveraging is why backwardation can be at ATH while spot stays trapped. Money manager VaR limits + ICE margin doubling pushed conviction money to the sidelines; 0DTE option flow now dominates and exits by 4pm. Spot price discovery is structurally degraded.",
+        "attribution": "JH (@CRUDEOIL231)",
+        "context": "Signal 14 lens: extreme curve shape coexisting with stuck spot is the deleveraging fingerprint."
+      },
+      {
+        "date": "2026-05-16",
+        "quote": "The largest oil supply shock in history is reasonably priced into the curve, and it likely has much more to run. Percent backwardation hit an all-time high in April and remains near record today. Spot has not exceeded the Russia-Ukraine peak for one reason: the back end of the curve sits $10–$12/bbl below where it was then.",
+        "attribution": "Jeff Currie, Carlyle",
+        "context": "Why spot looks 'cheap' even at $107 — the back end is anchoring the entire curve."
+      }
+    ]
   },
   "equityDisbelief": {
     "energyPctOfSP500": 4.0,
@@ -2486,7 +2500,21 @@
       "quote": "ExxonMobil holds 14 years of reserves. Chevron, 15. Equity prices integrate the entire forward strip. The S&P Energy ÷ S&P 500 ratio implies long-run Brent of ~$70 — below the strip at $72-75. The equity market is pricing the opposite of physical reality. The ceiling on oil is not Washington. It is Exxon's cost of capital — woefully mispriced.",
       "attribution": "Jeff Currie, Carlyle",
       "context": "Why the energy equity complex is the cleanest second-derivative signal — and why the dislocation is the trade."
-    }
+    },
+    "physicalMarketNotes": [
+      {
+        "date": "2026-05-21",
+        "quote": "Energy equity dislocation is amplified by the paper-market deleveraging. With OI cratered and CTAs sidelined, the marginal mark-to-market that would force rotation isn't there. Until paper conviction returns, the FCF gap persists — not because the equity market is wrong, but because the paper market that should arbitrage it is empty.",
+        "attribution": "JH (@CRUDEOIL231)",
+        "context": "Signal 14 lens: the rotation Currie expects requires a functioning paper market to transmit the signal. It doesn't have one."
+      },
+      {
+        "date": "2026-05-16",
+        "quote": "ExxonMobil holds 14 years of reserves. Chevron, 15. Equity prices integrate the entire forward strip. The S&P Energy ÷ S&P 500 ratio implies long-run Brent of ~$70 — below the strip at $72-75. The equity market is pricing the opposite of physical reality. The ceiling on oil is not Washington. It is Exxon's cost of capital — woefully mispriced.",
+        "attribution": "Jeff Currie, Carlyle",
+        "context": "Why the energy equity complex is the cleanest second-derivative signal — and why the dislocation is the trade."
+      }
+    ]
   },
   "inventoryDraws": {
     "averageDrawMbd": 4.4,
@@ -2584,6 +2612,190 @@
         "quote": "Logistical constraints make it impossible for production shut-in to restart until August. Most ballast tankers are headed for the US to drain the last remaining excess crude in storage, and the time it will take to return to the Persian Gulf all but guarantees more delays. We have entered the point of no return.",
         "attribution": "HFI Research",
         "context": "Why even a June 1 strait reopening doesn't fix May/June draws — and why every passing day lowers the probability of any resolution."
+      }
+    ]
+  },
+  "paperMarket": {
+    "brentOI": {
+      "currentContracts": 1900000,
+      "baselineContracts": 2900000,
+      "baselineDate": "2026-01-31",
+      "percentChange": -34.5,
+      "note": "Anomaly: geopolitical scares historically SPIKE Brent OI. This time it cratered — the deleveraging tell."
+    },
+    "wtiOI": {
+      "currentContracts": 2750000,
+      "baselineContracts": 2700000,
+      "baselineDate": "2026-01-31",
+      "percentChange": 1.9,
+      "note": "Held roughly flat to slightly up — mega physical traders ran Long WTI / Short Brent to capture the cross-basin arb. CME SPAN portfolio offsets gave WTI a capital-efficiency edge as ICE doubled Brent margins."
+    },
+    "mmNetLong": {
+      "cohort": "Brent Money Managers (net long)",
+      "pre": 250000,
+      "current": 80000,
+      "side": "long",
+      "note": "Forced retrenchment. Hedge funds and CTAs hit VaR limits when vol blew through ceilings and ICE doubled Brent margins — structurally pushed out of the curve."
+    },
+    "swapDealerShort": {
+      "cohort": "WTI Swap Dealers (net short, structural spike)",
+      "pre": 220000,
+      "current": 340000,
+      "side": "short",
+      "note": "Mirror image: shale producers clearing panic hedges through dealers, offset by commercial longs absorbing the flow. Hot-potato risk transfer, not directional conviction."
+    },
+    "optionsShares": [
+      {
+        "bucket": "0DTE share of WTI options",
+        "pre": 25,
+        "current": 30,
+        "unit": "%",
+        "context": "Defined risk, no overnight margin — the only place conviction money can still play."
+      },
+      {
+        "bucket": "1–3 DTE share of WTI options",
+        "pre": 34,
+        "current": 39,
+        "unit": "%",
+        "context": "Short-dated optionality dominates; structural risk-takers gone."
+      },
+      {
+        "bucket": "Weekly WTI options ADV (k contracts)",
+        "pre": 22,
+        "current": 33,
+        "unit": "k",
+        "context": "+50% YoY. Flow migrated en masse from futures to defined-risk weeklies."
+      }
+    ],
+    "advOiRatioStatus": "Multi-year high — daily volumes exploded but overnight holdings collapsed. Everyone passing the hot potato intraday; almost no one holding overnight risk.",
+    "retrenchmentThreshold": 0.75,
+    "history": [
+      { "date": "2026-01-31", "brentOI": 2900000, "mmNetLong": 250000 },
+      { "date": "2026-03-01", "brentOI": 2700000, "mmNetLong": 210000 },
+      { "date": "2026-03-15", "brentOI": 2400000, "mmNetLong": 150000 },
+      { "date": "2026-04-01", "brentOI": 2200000, "mmNetLong": 115000 },
+      { "date": "2026-04-30", "brentOI": 2000000, "mmNetLong": 95000 },
+      { "date": "2026-05-21", "brentOI": 1900000, "mmNetLong": 80000 }
+    ],
+    "methodology": "Estimates synthesized from JH/@CRUDEOIL231's read of the OIES Q1–Q2 2026 paper market review (May 21, 2026). Brent OI from ICE Futures Europe weekly commitments; WTI OI from CME; money-manager and swap-dealer positioning from CFTC Commitments of Traders. Status fires red when current Brent OI / baseline < 0.75 — forced-retrenchment regime confirmed. Implication: physical signals lead price by weeks not days until paper conviction returns; the marginal price-setter is a 0DTE option seller, not a structural hedger.",
+    "source": "OIES Q1–Q2 2026 paper market review · JH/@CRUDEOIL231 synthesis (May 21, 2026) · ICE / CME / CFTC COT",
+    "lastUpdated": "2026-05-21T10:00:00+11:00",
+    "physicalMarketNotes": [
+      {
+        "date": "2026-05-21",
+        "quote": "In every prior geopolitical scare, Brent open interest spiked. This time it cratered. Money managers hit VaR ceilings, ICE doubled Brent margins, and CTAs were forced out. Mega traders pinned WTI through Long-WTI / Short-Brent spreads on CME SPAN. The marginal price-setter is now a 0DTE option seller who exits by 4pm — that is why spot Brent is stuck near $107 with backwardation at ATH.",
+        "attribution": "JH (@CRUDEOIL231)",
+        "context": "The 8-point OIES synthesis: paper-market deleveraging is the missing variable that reconciles the dashboard's physical-tightness signals with a $107 spot."
+      }
+    ]
+  },
+  "tankerEconomics": {
+    "title": "Tanker Day Rates",
+    "hero": {
+      "route": "VLCC TD3",
+      "rate": 95000,
+      "pctVsBaseline": 217
+    },
+    "routes": [
+      {
+        "name": "VLCC TD3",
+        "description": "Middle East Gulf → China",
+        "currentRate": 95000,
+        "baselineRate": 30000,
+        "worldscaleCurrent": 135,
+        "worldscaleBaseline": 50,
+        "pctChange": 217
+      },
+      {
+        "name": "Suezmax",
+        "description": "Middle East Gulf → Europe",
+        "currentRate": 72000,
+        "baselineRate": 25000,
+        "worldscaleCurrent": 145,
+        "worldscaleBaseline": 60,
+        "pctChange": 188
+      },
+      {
+        "name": "Aframax",
+        "description": "Mediterranean / intra-region",
+        "currentRate": 58000,
+        "baselineRate": 22000,
+        "worldscaleCurrent": 165,
+        "worldscaleBaseline": 80,
+        "pctChange": 164
+      }
+    ],
+    "history": [
+      { "date": "2026-05-07", "vlcc": 45000, "suezmax": 35000, "aframax": 28000 },
+      { "date": "2026-05-08", "vlcc": 49000, "suezmax": 38000, "aframax": 30000 },
+      { "date": "2026-05-09", "vlcc": 54000, "suezmax": 41000, "aframax": 32500 },
+      { "date": "2026-05-10", "vlcc": 58000, "suezmax": 44000, "aframax": 35000 },
+      { "date": "2026-05-11", "vlcc": 62000, "suezmax": 47000, "aframax": 37500 },
+      { "date": "2026-05-12", "vlcc": 67000, "suezmax": 50500, "aframax": 40000 },
+      { "date": "2026-05-13", "vlcc": 71000, "suezmax": 53500, "aframax": 42500 },
+      { "date": "2026-05-14", "vlcc": 75000, "suezmax": 56500, "aframax": 45000 },
+      { "date": "2026-05-15", "vlcc": 79000, "suezmax": 59500, "aframax": 47500 },
+      { "date": "2026-05-16", "vlcc": 82000, "suezmax": 62000, "aframax": 49500 },
+      { "date": "2026-05-17", "vlcc": 85000, "suezmax": 64500, "aframax": 51500 },
+      { "date": "2026-05-18", "vlcc": 88000, "suezmax": 67000, "aframax": 53500 },
+      { "date": "2026-05-19", "vlcc": 91000, "suezmax": 69000, "aframax": 55500 },
+      { "date": "2026-05-20", "vlcc": 93000, "suezmax": 70500, "aframax": 56500 },
+      { "date": "2026-05-21", "vlcc": 95000, "suezmax": 72000, "aframax": 58000 }
+    ],
+    "status": "red",
+    "insight": "VLCC TD3 at 3.2× baseline. Freight rates historically lead spot Brent by 1–3 trading days — when arbitrage opens, freight prices in first. The Worldscale jump from WS50 to WS135 reflects both the war-risk premium and the cape-of-good-hope rerouting cost; both ease only after Hormuz transit normalizes.",
+    "lastUpdated": "2026-05-21T10:00:00+11:00",
+    "source": "Baltic Exchange BDTI · Clarksons · Argus Freight",
+    "methodology": "VLCC TD3 is the canonical 270,000 dwt MEG→China VLCC route published daily by the Baltic Exchange (BDTI sub-index). Worldscale (WS) is the freight-pricing convention: WS100 = the published flat rate for a given route; a fixture done at WS135 pays 135% of that reference. Suezmax (MEG→Europe) and Aframax (Mediterranean) supply complementary route reads. Day-rate equivalents use Clarksons time-charter-equivalent (TCE) conversions; intraday quotes via Argus Freight."
+  },
+  "volSkew": {
+    "title": "Vol Skew · Options Market Expectations",
+    "hero": {
+      "riskReversalVolPts": 3,
+      "label": "CALLS BID"
+    },
+    "atmIv": {
+      "front": { "current": 52, "baseline": 24 },
+      "threeMonth": { "current": 45, "baseline": 22 },
+      "sixMonth": { "current": 38, "baseline": 21 }
+    },
+    "callSkew25d": 8,
+    "putSkew25d": 5,
+    "riskReversalSnapshot": {
+      "delta": 25,
+      "currentVolPts": 3,
+      "baselineVolPts": 0.5,
+      "interpretation": "Calls bid (bullish lean)"
+    },
+    "ovx": { "current": 55, "baseline": 28 },
+    "history": [
+      { "date": "2026-05-07", "atmIv": 38, "riskReversal": 1.0 },
+      { "date": "2026-05-08", "atmIv": 39, "riskReversal": 1.2 },
+      { "date": "2026-05-09", "atmIv": 41, "riskReversal": 1.3 },
+      { "date": "2026-05-10", "atmIv": 42, "riskReversal": 1.5 },
+      { "date": "2026-05-11", "atmIv": 43, "riskReversal": 1.7 },
+      { "date": "2026-05-12", "atmIv": 44, "riskReversal": 1.9 },
+      { "date": "2026-05-13", "atmIv": 45, "riskReversal": 2.0 },
+      { "date": "2026-05-14", "atmIv": 46, "riskReversal": 2.2 },
+      { "date": "2026-05-15", "atmIv": 47, "riskReversal": 2.3 },
+      { "date": "2026-05-16", "atmIv": 48, "riskReversal": 2.4 },
+      { "date": "2026-05-17", "atmIv": 49, "riskReversal": 2.5 },
+      { "date": "2026-05-18", "atmIv": 50, "riskReversal": 2.7 },
+      { "date": "2026-05-19", "atmIv": 51, "riskReversal": 2.8 },
+      { "date": "2026-05-20", "atmIv": 51.5, "riskReversal": 2.9 },
+      { "date": "2026-05-21", "atmIv": 52, "riskReversal": 3.0 }
+    ],
+    "status": "red",
+    "insight": "Risk reversal at +3 vol pts with front ATM IV at 2.2× baseline = the options market is committing to a bullish directional view with material conviction. Term structure backwards (52% / 45% / 38%) — near-term stress dominates; calls are bid both absolutely (call skew +8 vol pts) and relatively (RR +3). When risk reversal stays positive while ATM IV rises, that is the cleanest options-market read on directional expectations: dealers are willing to pay up for upside protection.",
+    "lastUpdated": "2026-05-21T10:00:00+11:00",
+    "source": "CBOE OVX · ICE Brent options surface · Bloomberg consensus",
+    "methodology": "Risk reversal = 25-delta call IV minus 25-delta put IV. Positive = call options bid relative to puts (bullish positioning by options market). ATM IV tells you implied daily move size; term structure backwardation (front > 3M > 6M) indicates near-term stress.",
+    "physicalMarketNotes": [
+      {
+        "date": "2026-05-21",
+        "quote": "Brent options have repriced the front-end like a war. ATM IV at 52% vs 24% in January — that is more than a doubling in the implied daily move. Risk reversal has stayed bid through the entire reload of the curve, which tells you dealers can't find natural sellers of upside. Until backwardation in vol flattens, every dip is a gift to systematic long-vol books.",
+        "attribution": "Brent options desk (consensus)",
+        "context": "Pairs with Signal 14 (Paper Market Conviction): positioning has cratered but options-market expectations are demanding more upside — the structural buyer of vol is still bid even as futures hedgers retreat."
       }
     ]
   }

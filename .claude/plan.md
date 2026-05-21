@@ -464,3 +464,235 @@ Task 1 (scaffold)
 - `.genius/memory/decisions.json`
 
 **Verify:** `npm run build` passes. Dashboard at localhost:3000 shows Signal 13 card below Signal 10 with "-7.5 mb/d" hero metric, implied-flow chips (+12.0 shut-in, +2.0 demand loss, −2.5 SPR releases, = 7.5 mb/d net draw), and Goldman Exhibit 10 mini-table with May column flagged partial. Verdict Banner Reopening Scenario sub-panel now has Sellside-vs-HFI contrast block below the two scenario cards. HFI May 19 quote appears newest-first on Signal 3 (oilSpread), Signal 8 (bufferMath), and Recovery Clock keyInsight.
+
+---
+
+## Task 18: Signal 14 — Paper Market Conviction Gauge (OIES / JH May 21)
+**Status:** [x]
+**Skill:** genius-dev-frontend
+**Duration:** ~60 min
+**Dependencies:** Task 17
+**Date:** 2026-05-21
+
+**Goal:** Add the *missing layer* explaining why spot Brent stays $107 despite physical tightness — paper-market deleveraging. Per JH/@CRUDEOIL231's read of OIES Q1–Q2 2026 paper market review: Brent OI cratered (anomaly — scares typically spike OI), money managers forced out by VaR + margin hikes, mega traders pinned WTI OI via Long WTI / Short Brent spread, and flow migrated to 0DTE/short-dated options (defined risk, no overnight margin calls). When paper conviction collapses, physical signals lead price by weeks not days — the dashboard's verdict needs this context.
+
+**Steps:**
+1. Add `PaperMarketSignal`, `OpenInterestSnapshot`, `OptionsShareEntry`, `PositioningEntry`, `PaperMarketHistoryPoint` interfaces to `src/lib/types.ts`. Add optional `paperMarket?: PaperMarketSignal` to `SignalData`.
+2. Add `paperMarket` block to `src/data/signals.json` with:
+   - Brent OI hero: current ≈1.9M contracts vs Jan baseline ≈2.9M (≈ -34%), labeled estimate "OIES Q1–Q2 2026 paper market review (JH/@CRUDEOIL231 synthesis, May 21)"
+   - WTI OI snapshot: held flatter via mega-trader Long-WTI/Short-Brent spread (note ICE doubled Brent margins; CME SPAN portfolio offsets favor WTI capital efficiency)
+   - Money manager net length: Brent MM net long collapsed from ~250k to ~80k (forced retrenchment, VaR breach)
+   - Swap dealer / commercial offset: WTI swap dealer short spike from shale panic hedging, mirrored by commercial long
+   - Options share table: 0DTE 25% → 30%, 1–3 DTE 34% → 39%, weekly WTI options ADV ~33,000 contracts (+50% YoY)
+   - ADV/OI ratio: hot-potato intraday turnover at multi-year high
+   - 6-point history of Brent OI and MM net length
+   - JH May 21 quote: full 8-point thesis condensed to 3-line attribution block
+3. Build `src/components/PaperMarketSignal.tsx` — full SignalCard with:
+   - Hero: Brent OI delta vs baseline ("-34%" red), with absolute contract count
+   - Three sub-stat chips: MM net length collapse / 0DTE share / Weekly options ADV YoY
+   - "Anomaly" insight banner: "Geopolitical scares usually SPIKE open interest. This one cratered. That's the deleveraging tell."
+   - Two-card positioning strip: Brent (deleveraging) vs WTI (mega-trader floor) — explains the divergence
+   - Options-share comparison table: pre-crisis vs current shares for 0DTE / 1–3 DTE / weekly ADV
+   - SparkChart of Brent OI history with horizontal baseline line
+   - Status-driven insight tying to spot-price suppression thesis (low conviction = physical signals lead price by weeks not days)
+   - Methodology footer crediting OIES report + JH synthesis
+4. Status logic: red if `currentBrentOI / baselineBrentOI < 0.75` (forced retrenchment confirmed), yellow 0.75–0.90, green ≥0.90.
+5. Wire `PaperMarketSignal` into `src/components/Dashboard.tsx` inside the "Market Belief Signals" section as a third card. Restructure that section's grid from `lg:grid-cols-2` to `lg:grid-cols-3` (or stack PaperMarket full-width above the existing CurveShape + EquityDisbelief pair if visual density warrants).
+6. Annotation additions (newest-first prepends):
+   - Prepend JH paper-market quote to `curveShape.physicalMarketNotes` — *"Backwardation hit ATH but spot can't break out because the marginal buyer/seller has been forced out. Money manager VaR limits + ICE margin doubling pushed conviction money to the sidelines; 0DTE option flow now dominates and exits by 4pm."*
+   - Prepend JH paper-market quote to `equityDisbelief.physicalMarketNotes` (add the field if not present) — *"Energy equity dislocation is amplified by the paper-market deleveraging. With OI cratered and CTAs sidelined, the marginal mark-to-market that would force rotation isn't there. Until paper conviction returns, the FCF gap persists."*
+   - Append JH paper-market quote to `verdictBanner` or top-of-dashboard caveat (decide best home during implementation; may live in Dashboard.tsx header instead).
+7. Append decision `d-014` to `.genius/memory/decisions.json` documenting the OIES/JH paper-market integration.
+8. `npm run build` passes.
+
+**Files:**
+- `src/lib/types.ts`
+- `src/data/signals.json`
+- `src/components/PaperMarketSignal.tsx` (new)
+- `src/components/Dashboard.tsx`
+- `.genius/memory/decisions.json`
+
+**Verify:** `npm run build` passes. Dashboard shows new "Signal 14 — Paper Market Conviction" card inside the Market Belief Signals section with "-34%" Brent OI hero, anomaly insight banner, Brent-vs-WTI positioning strip, options-share comparison table, and JH May 21 quote. Signal 11 (curveShape) and Signal 12 (equityDisbelief) each show the new JH paper-market quote stacked newest-first above prior Currie quotes. `d-014` appears in decisions.json with full rationale.
+
+---
+
+## Task 19: Actionability Restructure — 3-Tier Layout + Today's Tape + Watch This Week
+**Status:** [ ]
+**Skill:** genius-dev-frontend
+**Duration:** ~75 min
+**Dependencies:** Task 18
+**Date:** 2026-05-21
+
+**Goal:** Re-prioritize the dashboard around a single user goal: *actionable direction on oil*. Today the 14 signals sit in a flat grid that mixes tick-horizon signals (Insurance, Spread, Curve, Paper market — move daily) with structural signals (SPR cliff, Buffer math, Visible draws, Equity disbelief — move monthly). The flat layout dilutes tick signals with structural noise. Fix is hierarchy not deletion.
+
+**Steps:**
+1. Build `src/components/TodaysTape.tsx` — full-width horizontal strip directly beneath VerdictBanner. Six live numbers in one row, mobile-stacks-to-2-col: Brent ($), Dubai ($), spread ($), % backwardation, 0DTE share (%), insurance (% hull). Each tile shows: number, label, and tiny color-coded delta-vs-yesterday arrow. Data pulled from existing `oilSpread`, `curveShape`, `paperMarket`, `insurance` blocks — no new fields required.
+2. Build `src/components/WatchThisWeek.tsx` — full-width card beneath TodaysTape. Auto-compose the top 3 dated catalysts from `timeline.events`, `timeline.refineryTurnarounds`, and `buyerStress.wafProgrammeStatus`. Each row: date, event, why-it-matters one-liner, magnitude tag (Tier 1 / Tier 2 / Tier 3). Pure derived component — no new data.
+3. Restructure `src/components/Dashboard.tsx` into three explicit sections with prominent dividers:
+   - **TIER 1 — ACTION** (always visible): VerdictBanner → TodaysTape → WatchThisWeek
+   - **TIER 2 — REGIME** (always visible, 5–6 cards in 2-col grid): InsuranceSignal, OilSpreadSignal, CurveShapeSignal, PaperMarketSignal, BuyerStressSignal, ShipTransitSignal
+   - **TIER 3 — STRUCTURAL CONTEXT** (collapsible `<details>` block, closed by default): SPRCliffSignal, SupplyBalanceSignal (buffer math), InventoryDrawsSignal, USProductStocksSignal, EquityDisbeliefSignal, CriticalDeadlines (timeline detail + turnaround calendar), RecoveryClock
+4. Add visual section dividers between tiers — bold uppercase label + horizontal rule + one-sentence tier description: "Tier 1 — what to act on today / Tier 2 — the five signals that move the verdict / Tier 3 — depth, context, and structural drivers".
+5. Sharpen `VerdictBanner.tsx` direction call: add explicit "5-day directional bias" line beneath the headline magnitude band (e.g., "Bias: ↑ HIGHER over next 5 trading days · 60% confidence based on regime + paper market state"). Pull bias logic into a new helper in `src/lib/verdict.ts`.
+6. Update Dashboard header tagline from "X signals. Zero noise." to "Direction. Duration. Magnitude." — matches the new actionability framing.
+7. Append decision `d-015` to `.genius/memory/decisions.json` documenting the tier restructure rationale.
+
+**Files:**
+- `src/components/TodaysTape.tsx` (new)
+- `src/components/WatchThisWeek.tsx` (new)
+- `src/components/Dashboard.tsx`
+- `src/components/VerdictBanner.tsx`
+- `src/lib/verdict.ts`
+- `.genius/memory/decisions.json`
+
+**Verify:** `npm run build` passes. Dashboard at localhost:3000 shows three clearly delineated tiers. Tier 1 (VerdictBanner + TodaysTape + WatchThisWeek) is the first viewport. Tier 2 shows the 6 regime cards in a 2-col grid. Tier 3 is collapsed by default behind a single "Structural Context (7 signals)" toggle. Verdict banner now includes explicit 5-day directional bias line with confidence %.
+
+---
+
+## Task 20: Signal 15 — Tanker Rates (VLCC TD3 + Suezmax)
+**Status:** [ ]
+**Skill:** genius-dev-frontend
+**Duration:** ~45 min
+**Dependencies:** Task 19
+**Date:** 2026-05-21
+
+**Goal:** Add the highest-leverage missing leading indicator. VLCC TD3 (Middle East Gulf → China) and Suezmax day rates are daily-moving, Hormuz-attributable, and historically lead spot Brent moves by 1–3 days because freight is the first cost to spike when arbitrage opportunities open or close. Currently the dashboard has *ship counts* (Signal 2) but not *ship economics*.
+
+**Steps:**
+1. Add `TankerRatesSignal`, `TankerRoute`, `TankerHistoryPoint` interfaces to `src/lib/types.ts`. Add optional `tankerRates?: TankerRatesSignal` to `SignalData`.
+2. Add `tankerRates` block to `src/data/signals.json` with:
+   - VLCC TD3 (MEG→China): current ~$95k/day vs $30k baseline (≈ +217%), Worldscale WS135 vs WS50
+   - Suezmax: current ~$72k/day vs $25k baseline
+   - Aframax (Mediterranean): ~$58k/day vs $22k baseline (sanity check)
+   - 14-point daily history for each route
+   - Source attribution: Baltic Exchange BDTI + Clarksons + Argus
+3. Build `src/components/TankerRatesSignal.tsx` — SignalCard with VLCC TD3 hero ("$95k/day · +217%"), three-route sub-stat grid, dual SparkChart (VLCC + Suezmax overlay) with baseline reference lines, status insight tying freight spikes to spot price lead-lag pattern, methodology footer.
+4. Status logic: red if VLCC TD3 >2× baseline, yellow 1.5–2×, green <1.5×.
+5. Insert into Dashboard Tier 2 (after Task 19 restructure) as the 7th regime card OR promote to Tier 1 if user prefers — leave layout decision to implementation pass.
+
+**Files:**
+- `src/lib/types.ts`
+- `src/data/signals.json`
+- `src/components/TankerRatesSignal.tsx` (new)
+- `src/components/Dashboard.tsx`
+
+**Verify:** `npm run build` passes. Card renders with VLCC TD3 hero, dual sparkline, and freight-leads-spot insight banner. Slots cleanly into Tier 2 regime grid.
+
+---
+
+## Task 21: Signal 16 — Implied Vol Skew (Brent options market expectations)
+**Status:** [ ]
+**Skill:** genius-dev-frontend
+**Duration:** ~50 min
+**Dependencies:** Task 20
+**Date:** 2026-05-21
+
+**Goal:** Complete the paper-market picture. Signal 14 captures positioning (who's exposed). Signal 16 captures expectations (what options money EXPECTS to happen). Together they answer: "is there enough conviction in either direction for the verdict to play out, and which way are the options-money bets leaning?" Risk reversal (call IV − put IV) is the cleanest single number — positive = upside bid, negative = downside bid. Pair with ATM IV (how big a move) and term structure (how soon).
+
+**Steps:**
+1. Add `VolSkewSignal`, `VolPoint`, `RiskReversalSnapshot`, `VolHistoryPoint` interfaces to `src/lib/types.ts`. Add optional `volSkew?: VolSkewSignal` to `SignalData`.
+2. Add `volSkew` block to `src/data/signals.json` with:
+   - Front-month Brent ATM IV: current ~52%, baseline ~24% (≈ +117%)
+   - 3-month Brent ATM IV: current ~45%, baseline ~22%
+   - 25-delta call skew (front): +8 vol pts
+   - 25-delta put skew (front): +5 vol pts
+   - Risk reversal (25d front): +3 vol pts (call bid net)
+   - OVX equivalent: ~55 vs baseline ~28
+   - 14-point daily history of ATM IV + Risk Reversal
+   - Source: "CBOE OVX · ICE Brent options surface · Bloomberg consensus"
+   - Methodology line on what risk reversal means
+3. Build `src/components/VolSkewSignal.tsx` — SignalCard with:
+   - Hero: Risk Reversal "+3 vol pts" with label "CALLS BID" (or "PUTS BID" if negative)
+   - Three sub-stat chips: Front ATM IV (52%) / 3M ATM IV (45%) / OVX (55)
+   - Direction interpretation banner: "Options market leaning ↑ HIGHER — 25-delta calls trading 3 vol points over equivalent puts. Front-month ATM IV at 2.2× baseline = market pricing $14–18 daily Brent moves."
+   - Dual sparkline: ATM IV (red) + Risk Reversal (accent) overlay
+   - Term-structure mini display: front (52%) vs 3M (45%) showing backwardation in vol
+   - Methodology footer
+4. Status logic:
+   - red: |risk reversal| > 5 AND ATM IV > 45% (strong directional conviction in stressed market)
+   - yellow: ATM IV > 35% but risk reversal ambiguous
+   - green: ATM IV < 35% (normalizing)
+5. Wire `VolSkewSignal` into `src/components/Dashboard.tsx` Tier 2 REGIME grid after `TankerRatesSignal`. Grid stays 2-col.
+6. Append decision `d-016` to `.genius/memory/decisions.json` documenting why vol skew completes the paper-market picture (Signal 14 = positioning, Signal 16 = expectations; together they tell you whether the verdict will play out via options-driven flow or require physical signals to push through alone).
+
+**Files:**
+- `src/lib/types.ts`
+- `src/data/signals.json`
+- `src/components/VolSkewSignal.tsx` (new)
+- `src/components/Dashboard.tsx`
+- `.genius/memory/decisions.json`
+
+**Verify:** `npm run build` passes. Card renders with Risk Reversal hero, three sub-stats, dual sparkline, term-structure mini display, and direction-interpretation banner. Slots into Tier 2 grid as the 8th regime card.
+
+---
+
+## Task 22: TradeSetup — Conviction on the Trade + Exit Triggers + Thesis Health Score
+**Status:** [ ]
+**Skill:** genius-dev-frontend
+**Duration:** ~90 min
+**Dependencies:** Task 21
+**Date:** 2026-05-21
+
+**Goal:** The dashboard already conveys thesis (direction, magnitude, confidence). It does NOT construct a trade or surface exit triggers. A trader looking at the verdict knows "oil higher" but not (a) which instrument, (b) where to enter, (c) where to take profit, (d) what signal levels would invalidate the thesis. The exit-trigger piece is the most important — exits are where traders die. Build a TradeSetup component that auto-derives the entire trade lifecycle from existing signals and outputs a single Thesis Health Score.
+
+**Steps:**
+1. Add to `src/lib/verdict.ts`:
+   - `TradeDirection`, `ConvictionTier` types
+   - `EntryZone`, `TakeProfitLevel`, `InstrumentRecommendation`, `ExitTrigger`, `TradeSetup` interfaces
+   - `computeTradeSetup(data: SignalData, verdict: Verdict): TradeSetup` function
+   - `computeThesisHealth(triggers: ExitTrigger[]): { scorePct: number; label: string }` function — 100% = no triggers near firing, 0% = all triggers fired
+
+2. **Exit-trigger logic** (auto-derived from existing signals):
+   - Insurance threshold: when `data.insurance.current` falls below 2.0% — trigger fired if below, "% to trigger" if approaching from above
+   - VLCC TD3 threshold: when `data.tankerEconomics.routes[VLCC].currentRate` falls below $60,000/d
+   - Risk reversal flip: when `data.volSkew.hero.riskReversalVolPts` crosses zero (from positive to negative)
+   - Backwardation softening: when `data.curveShape.backwardationPct` falls below 15%
+   - Paper market OI recovery: when `data.paperMarket` OI delta improves to better than -20% (i.e., recovery to 80% of baseline)
+   - Ship transit normalizing: when `data.shipTransit.dailyCount` exceeds 50
+   - For each, compute: `current`, `trigger`, `pctToTrigger` (0% = not fired, 100% = fired or beyond), `status` (red = far from trigger, amber = within 30%, green = within 10% or fired)
+
+3. **Instrument recommendation logic:**
+   - If verdict direction = "higher" AND `data.volSkew.atmIv.front.current` > 40 AND `data.paperMarket` OI delta < -25% → recommend long calls (defined risk, paper-deleveraging-safe)
+   - If verdict direction = "higher" AND `data.curveShape.backwardationPct` > 20 → also recommend front-month futures (positive roll yield)
+   - If verdict direction = "higher" AND `data.equityDisbelief` exists → recommend energy basket (XLE/XOM/CVX) per Currie thesis
+   - If verdict direction = "lower" → recommend put spreads + short energy beta
+   - If "uncertain" → recommend strangle or sidelined
+   - Each instrument: `name`, `rationale`, `priority` ("primary" | "secondary" | "avoid")
+   - Include "AVOID" instruments too (e.g., outright futures when paper conviction collapsed)
+
+4. **Entry zone logic:**
+   - For long: buy zone = spot − (5%–7% pullback), or "buy now" if spot already at zone or below
+   - For short: sell zone = spot + (5%–7% rally)
+   - For uncertain: no zone, just "wait for break"
+   - Show current spot, whether it's in zone, and action ("scale in" / "wait" / "ahead of zone — patience")
+
+5. **Take profit logic:**
+   - T1 (trim 50%): `verdict.reopeningScenario.statusQuo.brentLow`
+   - T2 (full exit): `verdict.reopeningScenario.statusQuo.brentHigh`
+   - Show both with implied % return from current spot
+
+6. **Sizing guidance:**
+   - High conviction (composite |c| > 0.6): "1.5–2% portfolio risk"
+   - Moderate (0.4–0.6): "0.75–1% portfolio risk"
+   - Low (<0.4): "0.25–0.5% portfolio risk or sidelined"
+
+7. Build `src/components/TradeSetup.tsx`:
+   - Full-width Tier 1 card, sits directly below VerdictBanner (above TodaysTape)
+   - Header: "Trade Setup" + Direction badge + Conviction tier badge
+   - Row 1: Entry zone tile + Take Profit tile (2-col grid)
+   - Row 2: Instrument recommendations (3-tile horizontal — primary / secondary / avoid)
+   - Row 3: Exit Triggers table — 6 rows, each with: signal name · current · trigger level · % to trigger (progress bar) · status dot
+   - Footer row: large Thesis Health Score (e.g., "82% — THESIS INTACT") with color-coded status banner. If score drops below 40%, show "⚠ THESIS DEGRADING — REVIEW EXIT"
+   - Methodology footnote: how the score is computed, link to exit-trigger logic
+
+8. Wire `TradeSetup` into `src/components/Dashboard.tsx` Tier 1 between VerdictBanner and TodaysTape.
+
+9. Append decision `d-017` to `.genius/memory/decisions.json` documenting the trade-construction + exit-trigger framework.
+
+**Files:**
+- `src/lib/verdict.ts`
+- `src/components/TradeSetup.tsx` (new)
+- `src/components/Dashboard.tsx`
+- `.genius/memory/decisions.json`
+
+**Verify:** `npm run build` passes. Dashboard at localhost:3000 shows new TradeSetup card directly below VerdictBanner with: direction + conviction header, entry zone tile, take-profit tile, instrument recommendations row, 6-row exit-trigger table with progress bars + % to invalidation per signal, and a large Thesis Health Score at the bottom (intact/degrading/broken banner). `d-017` appended to decisions.json.

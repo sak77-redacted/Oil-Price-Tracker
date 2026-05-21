@@ -1,7 +1,7 @@
 "use client";
 
 import type { SignalData } from "@/lib/types";
-import { computeVerdict, type VerdictDirection } from "@/lib/verdict";
+import { computeVerdict, getDirectionalBias, type VerdictDirection } from "@/lib/verdict";
 import { getDaysUntil } from "@/lib/utils";
 
 interface VerdictBannerProps {
@@ -88,6 +88,9 @@ export default function VerdictBanner({ data, liveBrentPrice, wtiPrice }: Verdic
   const verdict = computeVerdict(verdictData);
   const config = directionConfig[verdict.direction];
   const nextCliff = getNextCliff(data);
+  const bias = getDirectionalBias(verdict.composite);
+  const biasArrow = bias.direction === "higher" ? "↑" : bias.direction === "lower" ? "↓" : "◆";
+  const biasLabel = bias.direction === "higher" ? "HIGHER" : bias.direction === "lower" ? "LOWER" : "UNCERTAIN";
 
   const supplyGapText =
     verdict.crisisCount >= 3
@@ -160,6 +163,15 @@ export default function VerdictBanner({ data, liveBrentPrice, wtiPrice }: Verdic
               </span>
             </div>
           )}
+
+          {/* 5-day directional bias — sharpens the call for the actionability tier */}
+          <div className={`flex flex-wrap items-baseline gap-x-2 gap-y-1 pl-9 text-sm font-semibold ${config.labelColor}`}>
+            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/55">Bias</span>
+            <span>{biasArrow} {biasLabel}</span>
+            <span className="text-xs font-normal text-white/55">over next {bias.horizonDays} trading days</span>
+            <span className="text-white/30">·</span>
+            <span className={`tabular-nums ${config.labelColor}`}>{bias.confidencePct}% confidence</span>
+          </div>
 
           {/* Row 3: Supply gap + Next cliff */}
           <div className={`flex flex-wrap items-center gap-x-2.5 gap-y-1 pl-9 text-xs sm:text-sm ${config.subtextColor}`}>

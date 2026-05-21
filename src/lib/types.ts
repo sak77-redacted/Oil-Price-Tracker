@@ -356,6 +356,193 @@ export interface InventoryDrawsSignal {
   physicalMarketNotes?: PhysicalMarketNote[];
 }
 
+/**
+ * Signal 14 — Paper Market Conviction Gauge.
+ *
+ * Per JH/@CRUDEOIL231 synthesis of OIES Q1–Q2 2026 paper market review
+ * (May 21, 2026): in this geopolitical scare, Brent open interest
+ * CRATERED instead of spiking (historical norm). Money managers hit
+ * VaR + ICE doubled Brent margins → forced retrenchment; mega physical
+ * trading houses ran Long-WTI / Short-Brent spreads (CME SPAN capital
+ * efficiency) which pinned WTI OI. Flow migrated to defined-risk
+ * options — 0DTE rose 25%→30% of WTI options, 1–3 DTE 34%→39%,
+ * weekly WTI options ADV +50% YoY (~33k contracts).
+ *
+ * Interpretation: spot price discovery is structurally degraded —
+ * physical signals lead price by weeks not days until paper
+ * conviction returns.
+ */
+export interface OpenInterestSnapshot {
+  /** Current OI (contracts). */
+  currentContracts: number;
+  /** Baseline OI (contracts) at the reference date. */
+  baselineContracts: number;
+  /** ISO date for baseline reading. */
+  baselineDate: string;
+  /** % change from baseline (negative = cratered). */
+  percentChange: number;
+  /** One-line behavioral interpretation. */
+  note: string;
+}
+
+export interface OptionsShareEntry {
+  /** Bucket label, e.g. "0DTE", "1–3 DTE", "Weekly WTI ADV". */
+  bucket: string;
+  /** Pre-crisis share or level (% or contracts). */
+  pre: number;
+  /** Current share or level (% or contracts). */
+  current: number;
+  /** Display unit: "%" for share, "k" for thousands of contracts. */
+  unit: "%" | "k";
+  /** Optional context for the change. */
+  context?: string;
+}
+
+export interface PositioningEntry {
+  /** Cohort label, e.g. "Brent Money Managers", "WTI Swap Dealers". */
+  cohort: string;
+  /** Pre-crisis net length or short (contracts). */
+  pre: number;
+  /** Current net length or short (contracts). */
+  current: number;
+  /** "long" if positive number = long; "short" if positive = short. */
+  side: "long" | "short";
+  /** Short narrative explaining the move. */
+  note: string;
+}
+
+export interface PaperMarketHistoryPoint {
+  date: string;
+  brentOI: number;          // contracts
+  mmNetLong: number;        // contracts (Brent MM)
+}
+
+export interface PaperMarketSignal {
+  /** Brent OI (the headline anomaly: scares usually spike OI). */
+  brentOI: OpenInterestSnapshot;
+  /** WTI OI (held flat via mega-trader spread pinning). */
+  wtiOI: OpenInterestSnapshot;
+  /** Brent money-manager net length — the forced-retrenchment proof. */
+  mmNetLong: PositioningEntry;
+  /** WTI swap dealer / commercial offset — shale panic-hedging tell. */
+  swapDealerShort: PositioningEntry;
+  /** Options-share migration table. */
+  optionsShares: OptionsShareEntry[];
+  /** ADV / OI ratio — multi-year high (intraday churn). */
+  advOiRatioStatus: string;
+  /** Threshold for red status (currentBrentOI / baselineBrentOI). */
+  retrenchmentThreshold: number;
+  /** 6-point history of OI + MM net length. */
+  history: PaperMarketHistoryPoint[];
+  /** Methodology footnote text. */
+  methodology: string;
+  lastUpdated: string;
+  source: string;
+  physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
+}
+
+/**
+ * Signal 15 — Tanker Day Rates (VLCC TD3 / Suezmax / Aframax).
+ *
+ * Per Baltic Exchange BDTI + Clarksons consensus (May 2026): freight is the
+ * FIRST cost to spike when arbitrage opens or closes — tanker day rates
+ * historically lead spot Brent by 1–3 trading days. VLCC TD3 (Middle East
+ * Gulf → China) is the canonical Hormuz-attributable freight benchmark;
+ * Worldscale (WS) is the freight-pricing convention. Suezmax and Aframax
+ * supply complementary route reads (MEG→Europe and Mediterranean).
+ *
+ * Distinct from the legacy `tankerRates` field on `ExtendedSignalData`,
+ * which carries the simpler `TankerRatesData` vessel snapshot.
+ */
+export interface TankerRoute {
+  name: string;              // "VLCC TD3", "Suezmax", "Aframax"
+  description: string;       // "Middle East Gulf → China"
+  currentRate: number;       // dollars/day
+  baselineRate: number;
+  worldscaleCurrent?: number;
+  worldscaleBaseline?: number;
+  pctChange: number;         // derived but stored for display
+}
+
+export interface TankerHistoryPoint {
+  date: string;
+  vlcc: number;
+  suezmax: number;
+  aframax: number;
+}
+
+export interface TankerRatesSignal {
+  title: string;
+  hero: {
+    route: string;           // "VLCC TD3"
+    rate: number;            // 95000
+    pctVsBaseline: number;   // 217
+  };
+  routes: TankerRoute[];
+  history: TankerHistoryPoint[];
+  status: SignalStatus;
+  insight: string;
+  lastUpdated: string;
+  source: string;
+  methodology: string;
+  physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
+}
+
+/**
+ * Signal 16 — Vol Skew / Options Market Expectations.
+ *
+ * Paired with Signal 14 (Paper Market Conviction) to complete the
+ * paper-market picture: Signal 14 captures POSITIONING (who's exposed —
+ * OI, MM net length, 0DTE share); Signal 16 captures EXPECTATIONS
+ * (what the options surface implies — risk reversal, ATM IV, term
+ * structure).
+ *
+ * Risk reversal (25-delta call IV minus 25-delta put IV) is the single
+ * cleanest directional read: positive = calls bid (bullish lean);
+ * negative = puts bid (bearish lean). ATM IV sizes the implied daily
+ * move; term-structure backwardation (front > 3M > 6M) flags near-term
+ * stress.
+ */
+export interface VolPoint {
+  date: string;
+  atmIv: number;          // %, e.g. 52
+  riskReversal: number;   // vol pts, signed
+}
+
+export interface RiskReversalSnapshot {
+  delta: number;          // e.g. 25 for 25-delta
+  currentVolPts: number;  // signed
+  baselineVolPts: number;
+  interpretation: string; // "Calls bid (bullish lean)" or "Puts bid (bearish lean)"
+}
+
+export interface VolSkewSignal {
+  title: string;
+  hero: {
+    riskReversalVolPts: number;  // signed
+    label: string;               // "CALLS BID" | "PUTS BID" | "BALANCED"
+  };
+  atmIv: {
+    front: { current: number; baseline: number };
+    threeMonth: { current: number; baseline: number };
+    sixMonth: { current: number; baseline: number };
+  };
+  callSkew25d: number;             // vol pts
+  putSkew25d: number;              // vol pts
+  riskReversalSnapshot: RiskReversalSnapshot;
+  ovx: { current: number; baseline: number };
+  history: VolPoint[];
+  status: SignalStatus;
+  insight: string;
+  lastUpdated: string;
+  source: string;
+  methodology: string;
+  physicalMarketNote?: PhysicalMarketNote;
+  physicalMarketNotes?: PhysicalMarketNote[];
+}
+
 export interface SignalData {
   insurance: InsuranceSignal;
   shipTransit: ShipTransitSignal;
@@ -367,6 +554,14 @@ export interface SignalData {
   curveShape?: CurveShapeSignal;
   equityDisbelief?: EquityDisbeliefSignal;
   inventoryDraws?: InventoryDrawsSignal;
+  paperMarket?: PaperMarketSignal;
+  /**
+   * Signal 15. Named `tankerEconomics` to avoid colliding with the legacy
+   * `tankerRates: TankerRatesData` field on `ExtendedSignalData`.
+   */
+  tankerEconomics?: TankerRatesSignal;
+  /** Signal 16 — Vol Skew / Options Market Expectations. */
+  volSkew?: VolSkewSignal;
 }
 
 export interface StraitStatus {

@@ -31,6 +31,9 @@ export default async function Home() {
         <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
           Hormuz Signal Tracker
         </h1>
+        <p className="mx-auto mt-2 text-sm font-semibold uppercase tracking-[0.22em] text-[var(--accent)]">
+          Direction. Duration. Magnitude.
+        </p>
         <p className="mx-auto mt-3 max-w-3xl text-base sm:text-lg leading-relaxed text-[var(--text-secondary)]">
           The Strait of Hormuz carries 20% of the world&apos;s oil supply. It is now effectively closed.
           This tracker monitors the only signals that matter — priced by people with real money at risk — and translates them into actionable trade intelligence.
