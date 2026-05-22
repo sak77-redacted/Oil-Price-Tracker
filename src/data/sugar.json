@@ -141,7 +141,7 @@
     { "commodity": "Wheat", "ytd": 9, "sector": "Grains" }
   ],
   "personalView": {
-    "qtyExecuted": null,
+    "qtyExecuted": 2,
     "executionTarget": "2-3 × Mar'27 SBH7 19¢ calls",
     "alternativeExecution": "1 × Mar'27 SBH7 17¢ ATM",
     "maxRiskDollars": 3300,
@@ -153,5 +153,32 @@
       "Don't market-order — work limits"
     ],
     "sizingLogic": "Sugar at 20-30% of oil book notional (satellite, not core). Don't size up at entry — add into confirming trend (India monsoon data, Brazilian mix reports)."
+  },
+  "executedPosition": {
+    "executed": true,
+    "executionDate": "2026-05-22",
+    "contractLabel": "SBG7 Feb'27 18¢ Call",
+    "qty": 2,
+    "strike": 0.18,
+    "expiryDate": "2027-02-16",
+    "averagePrice": 0.88,
+    "costBasisDollars": 1977,
+    "asOfDate": "2026-05-22T17:48:00",
+    "asOfMarketValueDollars": 1913,
+    "asOfUnrealizedPnLDollars": -63.85,
+    "asOfRealizedPnLDollars": 0,
+    "breakeven": 0.19,
+    "greeks": {
+      "delta": 0.364,
+      "gamma": 9.598,
+      "theta": 0,
+      "vega": 0,
+      "impliedVolPct": 27.8
+    },
+    "profitProbabilityPct": 25,
+    "openInterest": 10100,
+    "pctOfPortfolio": 1.27,
+    "contractSizeLbs": 112000,
+    "notes": "Selected 18¢ strike vs planned 19¢ — slightly closer to ATM, marginally less asymmetric but higher delta (0.364 vs ~0.30 estimate for 19¢). Feb'27 expiry vs planned Mar'27 — one less month of time value but catches all major catalysts (Indian monsoon Jun-Sep, Brazilian C-S Aug-Oct, El Niño peak Nov-Feb). Net: cleaner risk-reward with marginally tighter convexity."
   }
 }

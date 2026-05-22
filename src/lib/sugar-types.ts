@@ -159,6 +159,36 @@ export interface PersonalViewData {
   sizingLogic: string;
 }
 
+export interface ExecutedPositionGreeks {
+  delta: number;
+  gamma: number;
+  theta: number;
+  vega: number;
+  impliedVolPct: number;
+}
+
+export interface ExecutedPosition {
+  executed: boolean;
+  executionDate: string;             // ISO date
+  contractLabel: string;             // "SBG7 Feb'27 18¢ Call"
+  qty: number;
+  strike: number;                    // 0.18 (dollars per lb)
+  expiryDate: string;                // ISO
+  averagePrice: number;              // 0.88 (premium ¢/lb units shown in the broker)
+  costBasisDollars: number;          // 1977
+  asOfDate: string;                  // ISO timestamp of last broker snapshot
+  asOfMarketValueDollars: number;    // 1913
+  asOfUnrealizedPnLDollars: number;  // -63.85
+  asOfRealizedPnLDollars: number;    // 0
+  breakeven: number;                 // 0.19 (sugar price)
+  greeks: ExecutedPositionGreeks;
+  profitProbabilityPct: number;
+  openInterest: number;
+  pctOfPortfolio: number;
+  contractSizeLbs: number;           // 112000
+  notes: string;
+}
+
 export interface SugarData {
   metadata: SugarMetadata;
   thesis: SugarThesis;
@@ -174,4 +204,5 @@ export interface SugarData {
   tailScenario: TailScenarioData;
   ytdPerformance: YTDPerformanceEntry[];
   personalView: PersonalViewData;
+  executedPosition?: ExecutedPosition;
 }

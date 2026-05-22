@@ -19,6 +19,7 @@ import PersonalView from "./PersonalView";
 
 interface Props {
   data: SugarData;
+  liveSugarSpot?: number | null;
 }
 
 function SectionDivider({ label, description }: { label: string; description: string }) {
@@ -34,7 +35,9 @@ function SectionDivider({ label, description }: { label: string; description: st
   );
 }
 
-export default function SugarPageContent({ data }: Props) {
+export default function SugarPageContent({ data, liveSugarSpot = null }: Props) {
+  const positionLive = data.executedPosition?.executed === true;
+
   return (
     <SugarViewProvider>
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -53,19 +56,23 @@ export default function SugarPageContent({ data }: Props) {
               </p>
             </div>
             <div className="flex shrink-0 justify-center sm:pt-2">
-              <PersonalViewToggle />
+              <PersonalViewToggle positionLive={positionLive} />
             </div>
           </div>
         </header>
 
         <div className="mt-6 flex flex-col gap-4">
           {/* Tier 1 — Action */}
-          <SugarVerdict thesis={data.thesis} />
+          <SugarVerdict thesis={data.thesis} executedPosition={data.executedPosition} />
           <SugarTodaysTape data={data.todaysTape} />
           <CatalystTimeline events={data.catalystTimeline} />
 
           {/* Personal view (only when toggled) */}
-          <PersonalView data={data.personalView} />
+          <PersonalView
+            data={data.personalView}
+            executedPosition={data.executedPosition}
+            liveSugarSpot={liveSugarSpot}
+          />
 
           {/* Tier 2 — Thesis */}
           <SectionDivider
