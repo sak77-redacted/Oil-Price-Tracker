@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import sugarData from "@/data/sugar.json";
-import type { SugarData } from "@/lib/sugar-types";
+import type { SugarData, SugarFuturesHistory, SugarFuturesHistoryPoint } from "@/lib/sugar-types";
 
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -47,9 +47,60 @@ async function fetchSugarSpot(): Promise<number | null> {
   }
 }
 
+/**
+ * Fetch sugar futures daily-close history from Yahoo Finance. Tries the SBH27
+ * (Mar'27) contract first — the underlying of the user's Feb'27 option —
+ * then falls back to the continuous SB=F front-month series. Returns null on
+ * total failure so the caller can render a graceful empty state.
+ */
+async function fetchSugarFuturesHistory(): Promise<SugarFuturesHistory | null> {
+  const candidates: { symbol: string; label: string }[] = [
+    { symbol: "SBH27.NYB", label: "SBH27 (Mar'27)" },
+    { symbol: "SBH27.NYM", label: "SBH27 (Mar'27)" },
+    { symbol: "SB%3DF", label: "SB=F (continuous)" },
+  ];
+
+  for (const { symbol, label } of candidates) {
+    try {
+      const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=6mo`;
+      const response = await fetch(url, {
+        headers: { "User-Agent": "Mozilla/5.0 (compatible; HormuzTracker/1.0)" },
+        signal: AbortSignal.timeout(5000),
+        next: { revalidate: 900 },
+      });
+      if (!response.ok) continue;
+      const data = await response.json();
+      const result = data?.chart?.result?.[0];
+      const timestamps: number[] = result?.timestamp ?? [];
+      const closes: (number | null)[] = result?.indicators?.quote?.[0]?.close ?? [];
+      if (timestamps.length === 0 || closes.length === 0) continue;
+
+      const series: SugarFuturesHistoryPoint[] = timestamps
+        .map((t, i): SugarFuturesHistoryPoint | null => {
+          const c = closes[i];
+          if (typeof c !== "number" || !Number.isFinite(c) || c <= 0) return null;
+          return {
+            date: new Date(t * 1000).toISOString().slice(0, 10),
+            close: Math.round(c * 100) / 100,
+          };
+        })
+        .filter((p): p is SugarFuturesHistoryPoint => p !== null);
+
+      if (series.length < 10) continue;
+      return { contractLabel: label, symbol, series };
+    } catch {
+      continue;
+    }
+  }
+  return null;
+}
+
 export default async function SugarPage() {
   const data = sugarData as unknown as SugarData;
-  const liveSugarSpot = await fetchSugarSpot();
+  const [liveSugarSpot, sugarFuturesHistory] = await Promise.all([
+    fetchSugarSpot(),
+    fetchSugarFuturesHistory(),
+  ]);
 
   return (
     <main className="flex min-h-full flex-col">
@@ -59,7 +110,11 @@ export default async function SugarPage() {
           Not financial advice. For informational purposes only. Do your own research before making investment decisions.
         </p>
       </div>
-      <SugarPageContent data={data} liveSugarSpot={liveSugarSpot} />
+      <SugarPageContent
+        data={data}
+        liveSugarSpot={liveSugarSpot}
+        sugarFuturesHistory={sugarFuturesHistory}
+      />
       <Footer />
     </main>
   );

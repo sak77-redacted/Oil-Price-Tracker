@@ -1,11 +1,12 @@
 "use client";
 
-import type { SugarData } from "@/lib/sugar-types";
+import type { SugarData, SugarFuturesHistory } from "@/lib/sugar-types";
 
 import { SugarViewProvider } from "./ViewContext";
 import PersonalViewToggle from "./PersonalViewToggle";
 import SugarVerdict from "./SugarVerdict";
 import SugarTodaysTape from "./SugarTodaysTape";
+import SugarFuturesChart from "./SugarFuturesChart";
 import CatalystTimeline from "./CatalystTimeline";
 import ElNinoSetup from "./ElNinoSetup";
 import HormuzTransmission from "./HormuzTransmission";
@@ -20,6 +21,7 @@ import PersonalView from "./PersonalView";
 interface Props {
   data: SugarData;
   liveSugarSpot?: number | null;
+  sugarFuturesHistory?: SugarFuturesHistory | null;
 }
 
 function SectionDivider({ label, description }: { label: string; description: string }) {
@@ -35,8 +37,18 @@ function SectionDivider({ label, description }: { label: string; description: st
   );
 }
 
-export default function SugarPageContent({ data, liveSugarSpot = null }: Props) {
+export default function SugarPageContent({
+  data,
+  liveSugarSpot = null,
+  sugarFuturesHistory = null,
+}: Props) {
   const positionLive = data.executedPosition?.executed === true;
+  const executed = data.executedPosition;
+  // strike in cents/lb (executedPosition.strike is in $/lb e.g. 0.18 → 18)
+  const strikePriceCents = executed?.strike ? executed.strike * 100 : 18;
+  const entryPriceCents = executed?.entryUnderlyingPriceCents;
+  const entryDate = executed?.executionDate;
+  const positionLabel = executed?.contractLabel;
 
   return (
     <SugarViewProvider>
@@ -65,6 +77,13 @@ export default function SugarPageContent({ data, liveSugarSpot = null }: Props) 
           {/* Tier 1 — Action */}
           <SugarVerdict thesis={data.thesis} executedPosition={data.executedPosition} />
           <SugarTodaysTape data={data.todaysTape} />
+          <SugarFuturesChart
+            history={sugarFuturesHistory}
+            strikePriceCents={strikePriceCents}
+            entryPriceCents={entryPriceCents}
+            entryDate={entryDate}
+            positionLabel={positionLabel}
+          />
           <CatalystTimeline events={data.catalystTimeline} />
 
           {/* Personal view (only when toggled) */}

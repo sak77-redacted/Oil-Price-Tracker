@@ -187,6 +187,18 @@ export interface ExecutedPosition {
   pctOfPortfolio: number;
   contractSizeLbs: number;           // 112000
   notes: string;
+  entryUnderlyingPriceCents?: number; // sugar futures price at trade entry (cents/lb)
+}
+
+export interface SugarFuturesHistoryPoint {
+  date: string;   // YYYY-MM-DD
+  close: number;  // cents/lb
+}
+
+export interface SugarFuturesHistory {
+  contractLabel: string;
+  symbol: string;
+  series: SugarFuturesHistoryPoint[];
 }
 
 export interface SugarData {
