@@ -302,36 +302,71 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
             <span className="inline-flex items-center rounded-full bg-zinc-800/70 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/70 ring-1 ring-zinc-700">
               {daysToExpiry} days to expiry
             </span>
+            <span className="inline-flex items-center rounded-full bg-zinc-800/70 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/70 ring-1 ring-zinc-700">
+              {data.pctOfPortfolio.toFixed(2)}% of portfolio
+            </span>
           </div>
         </div>
 
-        {/* Hero P&L row */}
-        <div className="grid gap-3 sm:grid-cols-3">
+        {/* Hero P&L row — broker snapshot vs live model side-by-side */}
+        <div className={`grid gap-3 ${modelEstimate !== null ? "lg:grid-cols-2" : ""}`}>
+          {/* Broker snapshot — frozen */}
           <div className="rounded-lg border border-zinc-800/70 bg-zinc-950/70 p-4">
-            <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
-              Unrealized P&amp;L
+            <div className="mb-2 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/70">
+                Broker Snapshot
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.14em] text-white/40">
+                frozen · {formatTimeShort(data.asOfDate)} {formatDateShort(data.asOfDate)}
+              </span>
             </div>
-            <div className={`mt-1 text-2xl font-extrabold tabular-nums ${pnlColor}`}>
+            <div className={`text-2xl font-extrabold tabular-nums ${pnlColor}`}>
               {data.asOfUnrealizedPnLDollars >= 0 ? "+" : ""}
               {formatCurrency(data.asOfUnrealizedPnLDollars)}
             </div>
-          </div>
-          <div className="rounded-lg border border-zinc-800/70 bg-zinc-950/70 p-4">
-            <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
-              % of Cost Basis
+            <div className={`mt-0.5 text-sm font-semibold tabular-nums ${pnlColor}/90`}>
+              {formatPct(pnlPctOfBasis)} of cost basis
             </div>
-            <div className={`mt-1 text-2xl font-extrabold tabular-nums ${pnlColor}`}>
-              {formatPct(pnlPctOfBasis)}
-            </div>
-          </div>
-          <div className="rounded-lg border border-zinc-800/70 bg-zinc-950/70 p-4">
-            <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
-              % of Portfolio
-            </div>
-            <div className="mt-1 text-2xl font-extrabold tabular-nums text-white">
-              {data.pctOfPortfolio.toFixed(2)}%
+            <div className="mt-1.5 text-[11px] text-white/45">
+              MV {formatCurrencyWhole(data.asOfMarketValueDollars)} · exact, updates on
+              refresh
             </div>
           </div>
+
+          {/* Live model — moves with SB=F */}
+          {modelEstimate !== null && (
+            <div className="rounded-lg border border-amber-500/40 bg-amber-500/5 p-4">
+              <div className="mb-2 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300/90">
+                  Live Model (Black-76)
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.14em] text-white/40">
+                  SB=F live · σ {(modelEstimate.calibratedSigma * 100).toFixed(1)}%
+                </span>
+              </div>
+              <div
+                className={`text-2xl font-extrabold tabular-nums ${modelEstimate.modelUnrealizedPnL >= 0 ? "text-emerald-300" : "text-red-300"}`}
+              >
+                {modelEstimate.modelUnrealizedPnL >= 0 ? "+" : ""}
+                {formatCurrency(modelEstimate.modelUnrealizedPnL)}
+              </div>
+              <div
+                className={`mt-0.5 text-sm font-semibold tabular-nums ${modelEstimate.modelUnrealizedPnL >= 0 ? "text-emerald-300/90" : "text-red-300/90"}`}
+              >
+                {formatPct(modelEstimate.modelPnLPctOfCostBasis)} of cost basis
+              </div>
+              <div className="mt-1.5 text-[11px] text-white/55">
+                MV {formatCurrencyWhole(modelEstimate.modelMarketValue)} · Δ since
+                snapshot{" "}
+                <span
+                  className={`font-semibold tabular-nums ${modelEstimate.driftSinceSnapshot >= 0 ? "text-emerald-300" : "text-red-300"}`}
+                >
+                  {modelEstimate.driftSinceSnapshot >= 0 ? "+" : ""}
+                  {formatCurrency(modelEstimate.driftSinceSnapshot)}
+                </span>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Position details — 2 columns */}
