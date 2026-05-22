@@ -1,6 +1,9 @@
 "use client";
 
+import { useMemo } from "react";
+
 import type { ExecutedPosition as ExecutedPositionData } from "@/lib/sugar-types";
+import { black76Call, yearsBetween, daysBetween as preciseDaysBetween } from "@/lib/black76";
 import SugarCard from "./SugarCard";
 
 interface Props {
@@ -10,6 +13,10 @@ interface Props {
 
 // SB futures: standard contract size 112,000 lb. Premium quotes in ¢/lb,
 // strike stored in $/lb (0.18 = 18¢). Yahoo SB=F price is in cents/lb.
+
+// Risk-free rate for Black-76 model (annualized, continuous).
+// 4.5% is a reasonable proxy for 1y US Treasury yield in 2026.
+const RISK_FREE_RATE = 0.045;
 
 function formatCurrency(n: number): string {
   const sign = n < 0 ? "-" : "";
@@ -54,6 +61,56 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
 
   const todayIso = new Date().toISOString().slice(0, 10);
   const daysToExpiry = daysBetween(todayIso, data.expiryDate);
+
+  // Live Black-76 model estimate. Computed only when liveSugarSpot is
+  // available. Frozen IV from broker snapshot; refresh broker weekly to
+  // recalibrate. SB=F (continuous front-month) is a small approximation
+  // vs the actual SBH27 underlying of SBG7.
+  const modelEstimate = useMemo(() => {
+    if (liveSugarSpot === null) return null;
+    const nowIso = new Date().toISOString();
+    const F = liveSugarSpot / 100;            // ¢/lb → $/lb
+    const K = data.strike;                    // already $/lb (0.18)
+    const T = yearsBetween(nowIso, data.expiryDate);
+    const sigma = data.greeks.impliedVolPct / 100; // 27.8% → 0.278
+    const r = RISK_FREE_RATE;
+
+    const bs = black76Call({ F, K, T, r, sigma });
+    const modelPricePerLb = bs.price;                                     // $/lb
+    const modelPricePerContract = modelPricePerLb * data.contractSizeLbs; // $
+    const modelMarketValue = modelPricePerContract * data.qty;            // $
+    const modelUnrealizedPnL = modelMarketValue - data.costBasisDollars;
+    const modelPnLPctOfCostBasis =
+      data.costBasisDollars > 0
+        ? (modelUnrealizedPnL / data.costBasisDollars) * 100
+        : 0;
+
+    const driftSinceSnapshot = modelUnrealizedPnL - data.asOfUnrealizedPnLDollars;
+    const ivStalenessDays = Math.max(0, preciseDaysBetween(data.asOfDate, nowIso));
+
+    return {
+      F,
+      T,
+      sigma,
+      modelPricePerLb,
+      modelMarketValue,
+      modelUnrealizedPnL,
+      modelPnLPctOfCostBasis,
+      driftSinceSnapshot,
+      ivStalenessDays,
+      computedAtIso: nowIso,
+    };
+  }, [
+    liveSugarSpot,
+    data.strike,
+    data.expiryDate,
+    data.greeks.impliedVolPct,
+    data.contractSizeLbs,
+    data.qty,
+    data.costBasisDollars,
+    data.asOfUnrealizedPnLDollars,
+    data.asOfDate,
+  ]);
 
   // Intrinsic floor (live) — Yahoo gives cents/lb; strike in $/lb.
   const strikeCents = data.strike * 100;
@@ -321,6 +378,156 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
           </div>
         </div>
 
+        {/* Live model estimate — Black-76 */}
+        {modelEstimate !== null && (
+          <div className="rounded-lg border border-amber-500/40 bg-amber-500/5 p-4">
+            <div className="mb-3 flex flex-wrap items-baseline gap-2">
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300/90">
+                Live Model Estimate (Black-76)
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.14em] text-white/40">
+                SB=F · refreshes every 15 min · σ frozen {data.greeks.impliedVolPct.toFixed(1)}%
+              </span>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <ModelStat
+                label="Live SB=F (proxy)"
+                value={`${liveSugarSpot!.toFixed(2)}¢/lb`}
+                sub="forward, continuous"
+              />
+              <ModelStat
+                label="Model Option Price"
+                value={`$${modelEstimate.modelPricePerLb.toFixed(4)}/lb`}
+                sub={`${(modelEstimate.modelPricePerLb * 100).toFixed(3)}¢/lb premium`}
+              />
+              <ModelStat
+                label="Model Market Value"
+                value={formatCurrency(modelEstimate.modelMarketValue)}
+                sub={`${data.qty} contract${data.qty === 1 ? "" : "s"} × 112,000 lbs`}
+              />
+            </div>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-md border border-zinc-800/70 bg-zinc-950/70 p-3">
+                <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
+                  Model P&amp;L (vs cost basis {formatCurrencyWhole(data.costBasisDollars)})
+                </div>
+                <div
+                  className={`mt-1 text-xl font-extrabold tabular-nums ${modelEstimate.modelUnrealizedPnL >= 0 ? "text-emerald-300" : "text-red-300"}`}
+                >
+                  {modelEstimate.modelUnrealizedPnL >= 0 ? "+" : ""}
+                  {formatCurrency(modelEstimate.modelUnrealizedPnL)}
+                </div>
+                <div
+                  className={`mt-0.5 text-xs font-semibold tabular-nums ${modelEstimate.modelUnrealizedPnL >= 0 ? "text-emerald-300/80" : "text-red-300/80"}`}
+                >
+                  {formatPct(modelEstimate.modelPnLPctOfCostBasis)} of cost basis
+                </div>
+              </div>
+              <div className="rounded-md border border-zinc-800/70 bg-zinc-950/70 p-3">
+                <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
+                  Drift since broker snapshot
+                </div>
+                <div
+                  className={`mt-1 text-xl font-extrabold tabular-nums ${modelEstimate.driftSinceSnapshot >= 0 ? "text-emerald-300" : "text-red-300"}`}
+                >
+                  {modelEstimate.driftSinceSnapshot >= 0 ? "+" : ""}
+                  {formatCurrency(modelEstimate.driftSinceSnapshot)}
+                </div>
+                <div className="mt-0.5 text-xs text-white/55">
+                  {formatTimeShort(data.asOfDate)} {formatDateShort(data.asOfDate)} ·{" "}
+                  <span className="font-semibold text-white/75">
+                    IV frozen at {data.greeks.impliedVolPct.toFixed(1)}% (
+                    {modelEstimate.ivStalenessDays === 0
+                      ? "fresh today"
+                      : `${modelEstimate.ivStalenessDays} day${modelEstimate.ivStalenessDays === 1 ? "" : "s"} old`}
+                    )
+                  </span>
+                </div>
+              </div>
+            </div>
+            <p className="mt-3 text-[11px] leading-relaxed text-white/50">
+              <span className="font-semibold text-white/70">Methodology:</span>{" "}
+              Black-76 futures option price using live SB=F as forward proxy,
+              frozen σ from broker ({data.greeks.impliedVolPct.toFixed(1)}%),
+              r={(RISK_FREE_RATE * 100).toFixed(1)}%. Underlying SBG7 is
+              technically on SBH27 — using continuous SB=F is a small
+              approximation. Refresh broker snapshot weekly to recalibrate
+              IV.
+            </p>
+          </div>
+        )}
+
+        {/* Three-view comparison */}
+        {modelEstimate !== null && liveSugarSpot !== null && (
+          <div>
+            <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
+              Three Views of the Position
+            </div>
+            <div className="overflow-x-auto rounded-lg border border-zinc-800/70">
+              <table className="min-w-full text-sm">
+                <thead className="bg-zinc-950/70">
+                  <tr className="text-left text-[10px] uppercase tracking-[0.14em] text-white/50">
+                    <th className="px-3 py-2 font-semibold"> </th>
+                    <th className="px-3 py-2 text-right font-semibold">Broker Snapshot</th>
+                    <th className="px-3 py-2 text-right font-semibold">Model Estimate</th>
+                    <th className="px-3 py-2 text-right font-semibold">Intrinsic Floor</th>
+                  </tr>
+                </thead>
+                <tbody className="text-white/80">
+                  <ComparisonRow
+                    label="P&L"
+                    broker={`${data.asOfUnrealizedPnLDollars >= 0 ? "+" : ""}${formatCurrency(data.asOfUnrealizedPnLDollars)}`}
+                    brokerTone={data.asOfUnrealizedPnLDollars >= 0 ? "good" : "bad"}
+                    model={`${modelEstimate.modelUnrealizedPnL >= 0 ? "+" : ""}${formatCurrency(modelEstimate.modelUnrealizedPnL)}`}
+                    modelTone={modelEstimate.modelUnrealizedPnL >= 0 ? "good" : "bad"}
+                    floor={(() => {
+                      const itmCents = liveSugarSpot - data.strike * 100;
+                      const intrinsicDollars = itmCents > 0
+                        ? (itmCents / 100) * data.contractSizeLbs * data.qty
+                        : 0;
+                      const pnl = intrinsicDollars - data.costBasisDollars;
+                      return `${pnl >= 0 ? "+" : ""}${formatCurrency(pnl)}`;
+                    })()}
+                    floorTone={(() => {
+                      const itmCents = liveSugarSpot - data.strike * 100;
+                      const intrinsicDollars = itmCents > 0
+                        ? (itmCents / 100) * data.contractSizeLbs * data.qty
+                        : 0;
+                      return intrinsicDollars - data.costBasisDollars >= 0 ? "good" : "bad";
+                    })()}
+                  />
+                  <ComparisonRow
+                    label="Market Value"
+                    broker={formatCurrencyWhole(data.asOfMarketValueDollars)}
+                    model={formatCurrencyWhole(modelEstimate.modelMarketValue)}
+                    floor={(() => {
+                      const itmCents = liveSugarSpot - data.strike * 100;
+                      const intrinsicDollars = itmCents > 0
+                        ? (itmCents / 100) * data.contractSizeLbs * data.qty
+                        : 0;
+                      return formatCurrencyWhole(intrinsicDollars);
+                    })()}
+                  />
+                  <ComparisonRow
+                    label="Source"
+                    broker={`${formatTimeShort(data.asOfDate)} ${formatDateShort(data.asOfDate)}`}
+                    model="Black-76 (live)"
+                    floor="Spot intrinsic only"
+                    muted
+                  />
+                  <ComparisonRow
+                    label="Confidence"
+                    broker="Exact"
+                    model="Model approx"
+                    floor="Lower bound"
+                    muted
+                  />
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
         {/* Live intrinsic floor */}
         {liveBlock}
 
@@ -400,5 +607,72 @@ function GreekChip({ label, value }: { label: string; value: string }) {
       <span className="font-bold text-white/55">{label}</span>
       <span className="font-semibold tabular-nums text-white">{value}</span>
     </span>
+  );
+}
+
+function ModelStat({
+  label,
+  value,
+  sub,
+}: {
+  label: string;
+  value: string;
+  sub?: string;
+}) {
+  return (
+    <div className="rounded-md border border-zinc-800/70 bg-zinc-950/70 p-3">
+      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
+        {label}
+      </div>
+      <div className="mt-1 text-lg font-extrabold tabular-nums text-white">
+        {value}
+      </div>
+      {sub ? <div className="mt-0.5 text-[11px] text-white/50">{sub}</div> : null}
+    </div>
+  );
+}
+
+function ComparisonRow({
+  label,
+  broker,
+  model,
+  floor,
+  brokerTone,
+  modelTone,
+  floorTone,
+  muted,
+}: {
+  label: string;
+  broker: string;
+  model: string;
+  floor: string;
+  brokerTone?: "good" | "bad";
+  modelTone?: "good" | "bad";
+  floorTone?: "good" | "bad";
+  muted?: boolean;
+}) {
+  const toneClass = (tone?: "good" | "bad") =>
+    tone === "good"
+      ? "text-emerald-300 font-semibold"
+      : tone === "bad"
+        ? "text-red-300 font-semibold"
+        : muted
+          ? "text-white/60"
+          : "text-white/85 font-semibold";
+  return (
+    <tr className="border-t border-zinc-800/70">
+      <td className="px-3 py-2 text-[11px] uppercase tracking-[0.12em] text-white/45">
+        {label}
+      </td>
+      <td className={`px-3 py-2 text-right tabular-nums ${toneClass(brokerTone)}`}>
+        {broker}
+      </td>
+      <td className={`px-3 py-2 text-right tabular-nums ${toneClass(modelTone)}`}>
+        {model}
+      </td>
+      <td className={`px-3 py-2 text-right tabular-nums ${toneClass(floorTone)}`}>
+        {floor}
+      </td>
+    </tr>
   );
 }
