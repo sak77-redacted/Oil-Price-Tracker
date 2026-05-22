@@ -191,8 +191,9 @@ export interface ExecutedPosition {
 }
 
 export interface SugarFuturesHistoryPoint {
-  date: string;   // YYYY-MM-DD
-  close: number;  // cents/lb
+  date: string;    // YYYY-MM-DD
+  close: number;   // cents/lb
+  volume?: number; // daily volume (contracts traded)
 }
 
 export interface SugarFuturesHistory {

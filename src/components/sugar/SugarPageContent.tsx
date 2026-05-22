@@ -83,6 +83,8 @@ export default function SugarPageContent({
             entryPriceCents={entryPriceCents}
             entryDate={entryDate}
             positionLabel={positionLabel}
+            catalysts={data.catalystTimeline}
+            executedPosition={data.executedPosition}
           />
           <CatalystTimeline events={data.catalystTimeline} />
 

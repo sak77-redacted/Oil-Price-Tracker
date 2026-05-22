@@ -62,7 +62,7 @@ async function fetchSugarFuturesHistory(): Promise<SugarFuturesHistory | null> {
 
   for (const { symbol, label } of candidates) {
     try {
-      const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=6mo`;
+      const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=1y`;
       const response = await fetch(url, {
         headers: { "User-Agent": "Mozilla/5.0 (compatible; HormuzTracker/1.0)" },
         signal: AbortSignal.timeout(5000),
@@ -73,15 +73,19 @@ async function fetchSugarFuturesHistory(): Promise<SugarFuturesHistory | null> {
       const result = data?.chart?.result?.[0];
       const timestamps: number[] = result?.timestamp ?? [];
       const closes: (number | null)[] = result?.indicators?.quote?.[0]?.close ?? [];
+      const volumes: (number | null)[] = result?.indicators?.quote?.[0]?.volume ?? [];
       if (timestamps.length === 0 || closes.length === 0) continue;
 
       const series: SugarFuturesHistoryPoint[] = timestamps
         .map((t, i): SugarFuturesHistoryPoint | null => {
           const c = closes[i];
           if (typeof c !== "number" || !Number.isFinite(c) || c <= 0) return null;
+          const v = volumes[i];
+          const volume = typeof v === "number" && Number.isFinite(v) && v >= 0 ? Math.round(v) : undefined;
           return {
             date: new Date(t * 1000).toISOString().slice(0, 10),
             close: Math.round(c * 100) / 100,
+            ...(volume !== undefined ? { volume } : {}),
           };
         })
         .filter((p): p is SugarFuturesHistoryPoint => p !== null);
