@@ -112,3 +112,53 @@ export function daysBetween(from: string | Date, to: string | Date): number {
   const toMs = typeof to === "string" ? Date.parse(to) : to.getTime();
   return Math.floor((toMs - fromMs) / (1000 * 60 * 60 * 24));
 }
+
+export interface ImpliedVolInputs {
+  F: number;
+  K: number;
+  T: number;
+  r: number;
+  marketPrice: number;
+  tolerance?: number;
+  maxIter?: number;
+}
+
+/**
+ * Back-solve implied volatility from an observed call price via bisection.
+ *
+ * Use case: broker reports a position's MV but its "IV" field is the 30-day
+ * ATM IV of the underlying — not the option-specific IV (which includes the
+ * vol smile/skew for OTM strikes). Back-solving σ from MV + spot at snapshot
+ * recovers the true market-implied vol for THIS specific option.
+ *
+ * Why bisection vs Newton-Raphson: vega collapses near zero for deep OTM
+ * options near expiry, which destabilises Newton. Bisection always converges
+ * inside the bracket. For occasional recalibration, ~30-50 iters is
+ * sub-millisecond.
+ *
+ * Returns null when the marketPrice is outside [σ=1e-4, σ=5.0] reachable
+ * range — typically an arbitrage violation or stale data.
+ */
+export function impliedVolBlack76Call(args: ImpliedVolInputs): number | null {
+  const { F, K, T, r, marketPrice, tolerance = 1e-6, maxIter = 100 } = args;
+
+  if (T <= 0 || marketPrice <= 0 || F <= 0 || K <= 0) return null;
+
+  let lo = 1e-4;
+  let hi = 5.0;
+
+  const priceLo = black76Call({ F, K, T, r, sigma: lo }).price;
+  const priceHi = black76Call({ F, K, T, r, sigma: hi }).price;
+  if (marketPrice < priceLo - tolerance || marketPrice > priceHi + tolerance) {
+    return null;
+  }
+
+  for (let i = 0; i < maxIter; i++) {
+    const mid = (lo + hi) / 2;
+    const price = black76Call({ F, K, T, r, sigma: mid }).price;
+    if (Math.abs(price - marketPrice) < tolerance) return mid;
+    if (price < marketPrice) lo = mid;
+    else hi = mid;
+  }
+  return (lo + hi) / 2;
+}

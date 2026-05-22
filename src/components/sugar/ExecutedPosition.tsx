@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 
 import type { ExecutedPosition as ExecutedPositionData } from "@/lib/sugar-types";
-import { black76Call, yearsBetween, daysBetween as preciseDaysBetween } from "@/lib/black76";
+import { black76Call, impliedVolBlack76Call, yearsBetween, daysBetween as preciseDaysBetween } from "@/lib/black76";
 import SugarCard from "./SugarCard";
 
 interface Props {
@@ -72,9 +72,28 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
     const F = liveSugarSpot / 100;            // ¢/lb → $/lb
     const K = data.strike;                    // already $/lb (0.18)
     const T = yearsBetween(nowIso, data.expiryDate);
-    const sigma = data.greeks.impliedVolPct / 100; // 27.8% → 0.278
     const r = RISK_FREE_RATE;
 
+    // Broker reports a "displayed IV" that's typically the 30-day ATM IV
+    // of the underlying — NOT the option-specific IV (which includes the
+    // vol smile/skew for OTM strikes). Back-solve σ from the broker
+    // snapshot MV so the model is calibrated to actual market price.
+    // Uses liveSugarSpot as proxy for snapshot spot (small bias acceptable
+    // for snapshots within ~1 day).
+    const brokerIv = data.greeks.impliedVolPct / 100;
+    const snapshotPricePerLb =
+      data.asOfMarketValueDollars / (data.contractSizeLbs * data.qty);
+    const T_atSnapshot = yearsBetween(data.asOfDate, data.expiryDate);
+    const calibratedSigma =
+      impliedVolBlack76Call({
+        F,
+        K,
+        T: T_atSnapshot,
+        r,
+        marketPrice: snapshotPricePerLb,
+      }) ?? brokerIv;
+
+    const sigma = calibratedSigma;
     const bs = black76Call({ F, K, T, r, sigma });
     const modelPricePerLb = bs.price;                                     // $/lb
     const modelPricePerContract = modelPricePerLb * data.contractSizeLbs; // $
@@ -92,6 +111,8 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
       F,
       T,
       sigma,
+      brokerIv,
+      calibratedSigma,
       modelPricePerLb,
       modelMarketValue,
       modelUnrealizedPnL,
@@ -386,7 +407,8 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
                 Live Model Estimate (Black-76)
               </span>
               <span className="text-[10px] uppercase tracking-[0.14em] text-white/40">
-                SB=F · refreshes every 15 min · σ frozen {data.greeks.impliedVolPct.toFixed(1)}%
+                SB=F · refreshes every 15 min · σ calibrated{" "}
+                {(modelEstimate.calibratedSigma * 100).toFixed(1)}%
               </span>
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
@@ -436,7 +458,7 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
                 <div className="mt-0.5 text-xs text-white/55">
                   {formatTimeShort(data.asOfDate)} {formatDateShort(data.asOfDate)} ·{" "}
                   <span className="font-semibold text-white/75">
-                    IV frozen at {data.greeks.impliedVolPct.toFixed(1)}% (
+                    σ calibrated {(modelEstimate.calibratedSigma * 100).toFixed(1)}% (
                     {modelEstimate.ivStalenessDays === 0
                       ? "fresh today"
                       : `${modelEstimate.ivStalenessDays} day${modelEstimate.ivStalenessDays === 1 ? "" : "s"} old`}
@@ -447,12 +469,16 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
             </div>
             <p className="mt-3 text-[11px] leading-relaxed text-white/50">
               <span className="font-semibold text-white/70">Methodology:</span>{" "}
-              Black-76 futures option price using live SB=F as forward proxy,
-              frozen σ from broker ({data.greeks.impliedVolPct.toFixed(1)}%),
-              r={(RISK_FREE_RATE * 100).toFixed(1)}%. Underlying SBG7 is
-              technically on SBH27 — using continuous SB=F is a small
-              approximation. Refresh broker snapshot weekly to recalibrate
-              IV.
+              Black-76 futures option price using live SB=F as forward proxy.
+              σ is <em className="not-italic font-semibold text-amber-300/85">back-solved
+              from the broker snapshot MV</em>{" "}
+              ({(modelEstimate.calibratedSigma * 100).toFixed(1)}%) — this
+              captures the vol smile/skew that the broker&apos;s displayed
+              ATM IV ({(modelEstimate.brokerIv * 100).toFixed(1)}%) does not
+              include. r={(RISK_FREE_RATE * 100).toFixed(1)}%. Underlying SBG7
+              is technically on SBH27 — using continuous SB=F is a small
+              approximation. Refresh broker snapshot to recalibrate σ as the
+              skew evolves.
             </p>
           </div>
         )}
