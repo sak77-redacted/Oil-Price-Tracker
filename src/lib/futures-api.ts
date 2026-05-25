@@ -1,4 +1,16 @@
-import type { FuturesContract, FuturesData, CrackSpreadData, ForwardCurveData, ForwardPoint, WTIBrentSpreadData, MarketIndex, MarketIndicesData } from "./types";
+import { unstable_cache } from "next/cache";
+import type {
+  FuturesContract,
+  FuturesData,
+  CrackSpreadData,
+  ForwardCurveData,
+  ForwardPoint,
+  WTIBrentSpreadData,
+  MarketIndex,
+  MarketIndicesData,
+  LiveTickerData,
+  LiveTickerQuote,
+} from "./types";
 
 interface ContractConfig {
   symbol: string;
@@ -59,6 +71,7 @@ async function fetchContract(
         "User-Agent": "Mozilla/5.0 (compatible; HormuzTracker/1.0)",
       },
       signal: AbortSignal.timeout(5000),
+      next: { revalidate: 30 },
     });
 
     if (!response.ok) {
@@ -207,6 +220,7 @@ async function fetchSinglePrice(
         "User-Agent": "Mozilla/5.0 (compatible; HormuzTracker/1.0)",
       },
       signal: AbortSignal.timeout(5000),
+      next: { revalidate: 30 },
     });
 
     if (!response.ok) {
@@ -764,3 +778,100 @@ export async function fetchHyperliquidPerps(): Promise<HyperliquidData> {
     return { perps: [], timestamp: new Date().toISOString(), live: false };
   }
 }
+
+/**
+ * Live ticker symbols: energy core + metals + softs. Slim list — these are
+ * the marquee tickers shown in the always-visible LivePriceTicker bar.
+ *
+ * `display` is the short label shown in the tile (4 chars max).
+ * `fallbackPrice` is only used if Yahoo is completely unreachable; the ticker
+ * still renders so the page doesn't look broken.
+ */
+interface TickerSymbolConfig {
+  symbol: string;
+  display: string;
+  fullName: string;
+  fallbackPrice: number;
+}
+
+const LIVE_TICKER_SYMBOLS: TickerSymbolConfig[] = [
+  { symbol: "CL=F", display: "WTI", fullName: "WTI Crude Oil", fallbackPrice: 87 },
+  { symbol: "BZ=F", display: "Brent", fullName: "Brent Crude", fallbackPrice: 91 },
+  { symbol: "RB=F", display: "RBOB", fullName: "RBOB Gasoline", fallbackPrice: 3.05 },
+  { symbol: "HO=F", display: "HO", fullName: "Heating Oil", fallbackPrice: 3.5 },
+  { symbol: "NG=F", display: "NG", fullName: "Natural Gas", fallbackPrice: 4.5 },
+  { symbol: "GC=F", display: "Gold", fullName: "Gold", fallbackPrice: 2950 },
+  { symbol: "SI=F", display: "Silver", fullName: "Silver", fallbackPrice: 32 },
+  { symbol: "SB=F", display: "Sugar", fullName: "Sugar #11", fallbackPrice: 15 },
+  { symbol: "KC=F", display: "Coffee", fullName: "Coffee 'C'", fallbackPrice: 280 },
+];
+
+/**
+ * Fetch the live ticker bar payload. Wrapped in unstable_cache so the Yahoo
+ * fetches are coalesced across all incoming `/api/ticker` requests to a single
+ * upstream hit per 30s window — this is the protection against client polling
+ * flooding Yahoo. Each underlying fetch ALSO uses next.revalidate:30 as a
+ * defense-in-depth layer.
+ *
+ * Never throws — always returns valid LiveTickerData (fallbacks fill any gap).
+ */
+async function fetchTickerDataInner(): Promise<LiveTickerData> {
+  const results = await Promise.allSettled(
+    LIVE_TICKER_SYMBOLS.map(async (cfg): Promise<LiveTickerQuote> => {
+      const { price, previousClose } = await fetchSinglePrice(
+        cfg.symbol,
+        cfg.fallbackPrice,
+      );
+
+      let change = 0;
+      let changePercent = 0;
+      if (previousClose > 0) {
+        change = Math.round((price - previousClose) * 100) / 100;
+        changePercent =
+          Math.round(((price - previousClose) / previousClose) * 10000) / 100;
+      }
+
+      const live = price !== cfg.fallbackPrice;
+
+      return {
+        symbol: cfg.symbol,
+        display: cfg.display,
+        fullName: cfg.fullName,
+        price,
+        change,
+        changePercent,
+        live,
+      };
+    }),
+  );
+
+  const quotes: LiveTickerQuote[] = results.map((result, i) => {
+    if (result.status === "fulfilled") return result.value;
+    const cfg = LIVE_TICKER_SYMBOLS[i];
+    return {
+      symbol: cfg.symbol,
+      display: cfg.display,
+      fullName: cfg.fullName,
+      price: cfg.fallbackPrice,
+      change: 0,
+      changePercent: 0,
+      live: false,
+    };
+  });
+
+  return {
+    quotes,
+    timestamp: new Date().toISOString(),
+  };
+}
+
+/**
+ * Cached entry point — single Yahoo fan-out per 30s window across the entire
+ * Vercel data-cache layer (shared across users). This is the line that
+ * protects Yahoo from rate-limiting when many clients are polling.
+ */
+export const fetchTickerData = unstable_cache(
+  fetchTickerDataInner,
+  ["live-ticker-data"],
+  { revalidate: 30, tags: ["live-ticker"] },
+);

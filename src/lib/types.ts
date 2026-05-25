@@ -978,6 +978,26 @@ export interface FuturesData {
   timestamp: string;
 }
 
+/**
+ * Slim live-ticker payload. Independent of FuturesData so we can carry a wider
+ * symbol set (energy + metals + softs) without history baggage. Polled by the
+ * client every 60s; server-side cached at 30s via unstable_cache.
+ */
+export interface LiveTickerQuote {
+  symbol: string;        // e.g. "CL=F"
+  display: string;       // short label, e.g. "WTI"
+  fullName: string;      // e.g. "WTI Crude Oil"
+  price: number;
+  change: number;
+  changePercent: number;
+  live: boolean;
+}
+
+export interface LiveTickerData {
+  quotes: LiveTickerQuote[];
+  timestamp: string;
+}
+
 export interface CrackSpreadData {
   gasolineCrack: number;    // RBOB price - CL price (per barrel, RBOB is per gallon * 42)
   heatingOilCrack: number;  // HO price - CL price (per barrel, HO is per gallon * 42)

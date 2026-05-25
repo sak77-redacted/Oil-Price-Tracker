@@ -6,9 +6,10 @@ import type { CommoditiesThesisData } from "@/lib/commodities-types";
 
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import LivePriceTicker from "@/components/LivePriceTicker";
 import CommoditiesPageContent from "@/components/commodities/CommoditiesPageContent";
 
-export const revalidate = 900;
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title:
@@ -36,6 +37,7 @@ export default async function CommoditiesPage() {
   return (
     <main className="flex min-h-full flex-col">
       <Nav />
+      <LivePriceTicker />
       <div className="mx-auto max-w-7xl w-full px-4 pt-4 sm:px-6 lg:px-8">
         <p className="text-[10px] text-center text-[var(--text-secondary)]">
           Not financial advice. For informational purposes only. Do your own research before making investment decisions.

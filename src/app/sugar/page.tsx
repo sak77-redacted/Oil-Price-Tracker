@@ -5,7 +5,11 @@ import type { SugarData, SugarFuturesHistory, SugarFuturesHistoryPoint } from "@
 
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import LivePriceTicker from "@/components/LivePriceTicker";
 import SugarPageContent from "@/components/sugar/SugarPageContent";
+
+// Revalidate every 60s so server-rendered futures stay fresh between client polls.
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Sugar #11 — El Niño + Hormuz Compound Thesis",
@@ -109,6 +113,7 @@ export default async function SugarPage() {
   return (
     <main className="flex min-h-full flex-col">
       <Nav />
+      <LivePriceTicker />
       <div className="mx-auto max-w-7xl w-full px-4 pt-4 sm:px-6 lg:px-8">
         <p className="text-[10px] text-center text-[var(--text-secondary)]">
           Not financial advice. For informational purposes only. Do your own research before making investment decisions.
