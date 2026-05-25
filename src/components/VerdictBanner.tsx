@@ -266,6 +266,97 @@ export default function VerdictBanner({ data, liveBrentPrice, wtiPrice }: Verdic
                   </div>
                 )}
 
+                {/* Polymarket Resolution Probabilities — Downey May 24 */}
+                {data.diplomaticWatch.polymarketProbabilities && data.diplomaticWatch.polymarketProbabilities.length > 0 && (
+                  <div className="mt-3 rounded border border-indigo-500/30 bg-black/30 p-3">
+                    <div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-indigo-300/90">
+                        Polymarket Resolution Probabilities
+                      </span>
+                      <span className="text-[10px] italic text-white/45">
+                        per Morgan Downey (@morgan_downey) · May 24, 2026
+                      </span>
+                    </div>
+                    <p className="mb-2.5 text-[11px] leading-relaxed text-white/65">
+                      What the market EXPECTS will happen by a discrete resolution date — complements the qualitative War-Ending Triggers and the quantitative Physical Confirmation Gates below.
+                    </p>
+                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                      {data.diplomaticWatch.polymarketProbabilities.map((p) => {
+                        const pct = p.currentProbabilityPct;
+                        const pctColor =
+                          pct >= 70
+                            ? "text-emerald-300"
+                            : pct >= 40
+                              ? "text-amber-300"
+                              : "text-red-300";
+                        const pctBorder =
+                          pct >= 70
+                            ? "border-emerald-500/30"
+                            : pct >= 40
+                              ? "border-amber-500/30"
+                              : "border-red-500/30";
+                        const delta =
+                          p.priorProbabilityPct != null
+                            ? pct - p.priorProbabilityPct
+                            : null;
+                        const deltaSign = delta != null && delta > 0 ? "+" : "";
+                        const deltaArrow =
+                          delta != null && delta > 0
+                            ? "↑"
+                            : delta != null && delta < 0
+                              ? "↓"
+                              : "";
+                        return (
+                          <div
+                            key={p.question}
+                            className={`rounded border ${pctBorder} bg-black/30 px-3 py-2.5`}
+                          >
+                            <p className="text-[11px] font-semibold leading-snug text-white/90">
+                              {p.question}
+                            </p>
+                            <p className="mt-0.5 text-[9px] uppercase tracking-wider text-white/45">
+                              Resolves {p.resolutionDate}
+                            </p>
+                            <div className="mt-2 flex items-baseline gap-2">
+                              <span
+                                className={`text-2xl font-extrabold tabular-nums ${pctColor}`}
+                              >
+                                {pct}%
+                              </span>
+                              {delta != null && p.priorProbabilityPct != null && (
+                                <span className="text-[10px] text-white/55">
+                                  was{" "}
+                                  <span className="tabular-nums text-white/75">
+                                    {p.priorProbabilityPct}%
+                                  </span>
+                                  {p.priorAsOfDate ? (
+                                    <span className="text-white/40">
+                                      {" "}
+                                      ({p.priorAsOfDate})
+                                    </span>
+                                  ) : null}
+                                  {" · "}
+                                  <span className={`tabular-nums font-bold ${pctColor}`}>
+                                    {deltaArrow}
+                                    {deltaSign}
+                                    {delta}pp
+                                  </span>
+                                </span>
+                              )}
+                            </div>
+                            <p className="mt-2 text-[10.5px] italic leading-relaxed text-white/60">
+                              {p.interpretation}
+                            </p>
+                            <p className="mt-1.5 text-[9px] italic text-white/35">
+                              {p.source}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
                 {/* Physical Confirmation Gates mini-table */}
                 <div className="mt-3 rounded border border-white/10 bg-black/30 p-2.5">
                   <div className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white/70">
@@ -523,9 +614,34 @@ export default function VerdictBanner({ data, liveBrentPrice, wtiPrice }: Verdic
           </div>
         )}
 
-        {/* Morgan Downey 30-Day Stress Test — only shown when direction = higher */}
+        {/* Morgan Downey stress test — newest-first when direction = higher */}
         {verdict.direction === "higher" && (
           <div className="mb-3 rounded-lg border-2 border-red-500/50 bg-red-500/5 p-3 sm:p-4">
+            {/* May 24 — Peace doesn't crash to $70 */}
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">
+                {"⚠"} Peace Doesn&rsquo;t Crash to $70
+              </span>
+              <span className="text-[10px] text-amber-200/65">
+                · Morgan Downey, May 24
+              </span>
+            </div>
+            <p className="mt-2 text-[12px] font-medium italic leading-relaxed text-amber-200/95">
+              &ldquo;Even with peace, the damage has been done. Over the next 6
+              months a $150+ oil spike is still not just in play, it is highly
+              likely. Don&rsquo;t expect a collapse to $70 over the next months.
+              Longer term (2&ndash;3 years) $100+ crude is the new normal as
+              Hormuz-avoiding pipelines will take 3&ndash;5 years to
+              build.&rdquo;
+            </p>
+            <p className="mt-1.5 text-[10px] text-amber-200/55">
+              Source: @morgan_downey, X post May 24, 2026
+            </p>
+
+            {/* Divider */}
+            <div className="my-3 border-t border-red-500/20" />
+
+            {/* May 21 — 30-day stress test */}
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">
                 {"⏱"} 30-Day Stress Test

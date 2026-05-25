@@ -1689,7 +1689,21 @@
       ],
       "conclusion": "Even if Hormuz fully reopens today, oil stays $100+ for 1\u20132 years on risk premium + restart lag. The dashboard's 'crisis end' is NOT the trade end.",
       "attribution": "Morgan Downey (Boxwood CEO, author of Oil 101)",
-      "context": "Macrovoices Ep. 533, May 21, 2026"
+      "context": "Macrovoices Ep. 533, May 21, 2026",
+      "outageRecoveryCurve": {
+        "title": "Implied Outage Recovery Curve (per Polymarket / Downey May 24)",
+        "currentOutageMbd": 12,
+        "preCrisisProductionMbd": 105,
+        "currentProductionMbd": 93,
+        "trajectory": [
+          { "date": "2026-05-25", "label": "Today", "outageMbd": 12, "recoveredMbd": 0, "source": "Current production levels" },
+          { "date": "2026-07-31", "label": "July 2026", "outageMbd": 7, "recoveredMbd": 5, "source": "Polymarket-implied recovery curve via Downey" },
+          { "date": "2026-12-31", "label": "December 2026", "outageMbd": 2, "recoveredMbd": 10, "source": "Polymarket-implied recovery curve via Downey" }
+        ],
+        "cumulativeInventoryDrawBnBbl": 1.5,
+        "inventoryContext": "Equivalent to total global SPR \u2014 wiped out even WITH peace today. This is ADDITIONAL drawdown on top of existing draws since Feb 2026.",
+        "attribution": "Morgan Downey (@morgan_downey), X post May 24, 2026"
+      }
     }
   },
   "sprStatus": {
@@ -3247,7 +3261,25 @@
       "permittedVessels": "China, Russia, India, Pakistan, South Korea",
       "estimatedAnnualTolls": "$70-90 Bn/year (J.P. Morgan estimate)",
       "sourceNote": "Persian Gulf Strait Authority operational since early May 2026. Iran will not walk away from this revenue stream in a one-page MOU \u2014 explains why 'free and open Strait' is incompatible with Iranian framing."
-    }
+    },
+    "polymarketProbabilities": [
+      {
+        "question": "US blockade of Iranian ports lifted by June 30, 2026",
+        "resolutionDate": "2026-06-30",
+        "currentProbabilityPct": 85,
+        "priorProbabilityPct": 50,
+        "priorAsOfDate": "2026-05-17",
+        "source": "Polymarket via Morgan Downey (@morgan_downey), May 24, 2026",
+        "interpretation": "Spiked from <50% to 85% in a week on the Trump May 23 'peace deal' Truth Social announcement. Market pricing high confidence that the blockade lifts soon."
+      },
+      {
+        "question": "Normal Hormuz traffic by June 30, 2026",
+        "resolutionDate": "2026-06-30",
+        "currentProbabilityPct": 60,
+        "source": "Polymarket via Morgan Downey, May 24, 2026",
+        "interpretation": "Market correctly senses blockade lifting \u2260 normal traffic. 25 percentage-point gap between 'blockade lifted' (85%) and 'normal traffic' (60%) is the implied recovery friction. Per Downey: 5 mb/d recovers by July, ~10 mb/d by December (still 2 mb/d short)."
+      }
+    ]
   },
   "phaseIndicator": {
     "phase": 1,

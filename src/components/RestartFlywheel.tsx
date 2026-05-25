@@ -80,6 +80,89 @@ export default function RestartFlywheel({ data }: RestartFlywheelProps) {
       <p className="mt-2 text-[10px] italic text-white/45">
         — {data.attribution} · {data.context}
       </p>
+
+      {/* Implied Outage Recovery Curve — Downey May 24 / Polymarket */}
+      {data.outageRecoveryCurve && (() => {
+        const curve = data.outageRecoveryCurve;
+        const peak = curve.currentOutageMbd;
+        return (
+          <div className="mt-4 rounded border border-amber-500/30 bg-black/40 p-3">
+            <div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300/90">
+                {curve.title}
+              </span>
+              <span className="text-[10px] italic text-amber-200/55">
+                Production {curve.preCrisisProductionMbd} → {curve.currentProductionMbd} mb/d
+              </span>
+            </div>
+
+            {/* Trajectory bars */}
+            <div className="space-y-1.5">
+              {curve.trajectory.map((p) => {
+                const outagePct = Math.min(100, (p.outageMbd / peak) * 100);
+                const recoveredPct = Math.min(100, (p.recoveredMbd / peak) * 100);
+                const isToday = p.label.toLowerCase() === "today";
+                return (
+                  <div
+                    key={p.date}
+                    className="grid grid-cols-[110px_auto_1fr_auto] items-center gap-x-2.5 text-[11px]"
+                  >
+                    <span
+                      className={`font-semibold ${
+                        isToday ? "text-amber-200" : "text-white/80"
+                      }`}
+                    >
+                      {p.label}
+                    </span>
+                    <span
+                      className={`tabular-nums ${
+                        isToday ? "text-amber-200" : "text-white/75"
+                      }`}
+                    >
+                      {p.outageMbd} mb/d outage
+                    </span>
+                    {/* Stacked bar: outage (amber/red) | recovered (emerald) */}
+                    <div className="flex h-2 w-full overflow-hidden rounded-sm bg-white/5">
+                      <div
+                        className={`h-full ${
+                          isToday ? "bg-red-500/70" : "bg-amber-400/70"
+                        }`}
+                        style={{ width: `${outagePct}%` }}
+                      />
+                      <div
+                        className="h-full bg-emerald-500/60"
+                        style={{ width: `${recoveredPct}%` }}
+                      />
+                    </div>
+                    <span className="tabular-nums text-[10px] text-emerald-300/80">
+                      {p.recoveredMbd > 0 ? `+${p.recoveredMbd} recov.` : "—"}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Inventory math callout */}
+            <div className="mt-3 rounded border border-amber-500/40 bg-amber-500/10 px-3 py-2.5">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-300">
+                  Cumulative inventory draw · balance of 2026
+                </span>
+                <span className="text-base font-bold tabular-nums text-amber-200">
+                  {curve.cumulativeInventoryDrawBnBbl} Bn bbl
+                </span>
+              </div>
+              <p className="mt-1.5 text-[10.5px] italic leading-relaxed text-amber-200/85">
+                {curve.inventoryContext}
+              </p>
+            </div>
+
+            <p className="mt-2 text-[10px] italic text-white/45">
+              — {curve.attribution}
+            </p>
+          </div>
+        );
+      })()}
     </div>
   );
 }

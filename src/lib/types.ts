@@ -672,6 +672,29 @@ export interface StraitAuthorityTolls {
   sourceNote: string;
 }
 
+/**
+ * Polymarket binary-event probability — surfaced by Morgan Downey (X, May 24
+ * 2026). Complements the qualitative War-Ending Triggers and quantitative
+ * Physical Confirmation Gates: gates measure WHAT has happened, Polymarket
+ * measures WHAT THE MARKET EXPECTS will happen by a discrete resolution date.
+ */
+export interface PolymarketProbability {
+  /** Question text, e.g. "US blockade lifted by June 30, 2026". */
+  question: string;
+  /** ISO resolution date. */
+  resolutionDate: string;
+  /** Current % probability (0–100). */
+  currentProbabilityPct: number;
+  /** Prior reading (optional) for delta arrow. */
+  priorProbabilityPct?: number;
+  /** ISO date of prior reading. */
+  priorAsOfDate?: string;
+  /** Attribution string (e.g. "Polymarket via Morgan Downey, May 24 2026"). */
+  source: string;
+  /** Interpretation note (1–2 sentences). */
+  interpretation: string;
+}
+
 export interface DiplomaticWatch {
   status: DiplomaticStatus;
   latestHeadline: string;
@@ -694,6 +717,8 @@ export interface DiplomaticWatch {
   heuStockpile?: HeuStockpile;
   /** Persian Gulf Strait Authority toll regime detail. */
   straitAuthorityTolls?: StraitAuthorityTolls;
+  /** Polymarket resolution-probability tiles (Downey May 24). */
+  polymarketProbabilities?: PolymarketProbability[];
 }
 
 /**
@@ -934,6 +959,45 @@ export interface RestartFlywheelStage {
   detail: string;
 }
 
+/**
+ * Implied outage-recovery trajectory derived from Polymarket-implied
+ * normalization timing. Per Morgan Downey (X, May 24, 2026): from a current
+ * 12 mb/d outage (production 105 → 93 mb/d), the implied path is ~5 mb/d
+ * recovered by July and ~10 mb/d by December — leaving balance-of-2026 at
+ * an average ~7 mb/d outage = ~1.5 Bn bbl additional inventory drawdown,
+ * roughly the size of total global SPR.
+ */
+export interface OutageRecoveryPoint {
+  /** ISO date for the projected point. */
+  date: string;
+  /** Display label (e.g. "Today", "July 2026"). */
+  label: string;
+  /** Remaining outage at this point (mb/d). */
+  outageMbd: number;
+  /** Cumulative recovered from peak outage (mb/d). */
+  recoveredMbd: number;
+  /** Source attribution. */
+  source: string;
+}
+
+export interface OutageRecoveryCurve {
+  title: string;
+  /** Current outage (mb/d). */
+  currentOutageMbd: number;
+  /** Pre-crisis production (mb/d). */
+  preCrisisProductionMbd: number;
+  /** Current production (mb/d). */
+  currentProductionMbd: number;
+  /** Trajectory points (today + future). */
+  trajectory: OutageRecoveryPoint[];
+  /** Cumulative additional inventory draw across balance-of-2026 (Bn bbl). */
+  cumulativeInventoryDrawBnBbl: number;
+  /** Context note framing the inventory math. */
+  inventoryContext: string;
+  /** Attribution (e.g. "Morgan Downey (@morgan_downey), X post May 24, 2026"). */
+  attribution: string;
+}
+
 export interface RestartFlywheel {
   title: string;
   subtitle: string;
@@ -941,6 +1005,8 @@ export interface RestartFlywheel {
   conclusion: string;
   attribution: string;
   context: string;
+  /** Polymarket-implied outage recovery curve (Downey May 24, 2026). */
+  outageRecoveryCurve?: OutageRecoveryCurve;
 }
 
 export interface SPRCountryStatus {
