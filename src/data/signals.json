@@ -610,7 +610,15 @@
       }
     ],
     "lastUpdated": "2026-05-21T00:00:00Z",
-    "source": "Windward Maritime Intelligence, Bloomberg Hormuz Tracker, NBC News Hormuz tracker, hormuztracking.com. May 13 saw a brief spike to 11 transits (4 in / 7 out) during the one-page-memo optimism window (Axios, May 6); reverted after May 11 Trump rejection. May 15 print: 6 vessels vs ~60 baseline (~90% below). 1,550+ vessels and 22,500 mariners still stranded in/around the strait."
+    "source": "Windward Maritime Intelligence, Bloomberg Hormuz Tracker, NBC News Hormuz tracker, hormuztracking.com. May 13 saw a brief spike to 11 transits (4 in / 7 out) during the one-page-memo optimism window (Axios, May 6); reverted after May 11 Trump rejection. May 15 print: 6 vessels vs ~60 baseline (~90% below). 1,550+ vessels and 22,500 mariners still stranded in/around the strait.",
+    "physicalMarketNotes": [
+      {
+        "date": "2026-05-24",
+        "quote": "Watch the tanker count through Hormuz. Those are the real instruments. The headlines are just weather. The variable to watch is not the deal. It is the tanker count. If Iran genuinely permits traffic to climb back toward pre-war levels — and some Iranian signaling suggests willingness, conditional on collecting handsome tolls — then the global economic event already coming could be meaningfully less severe. If actual flow does not rise toward pre-war levels and soon, then the already-certain moderate global energy crisis gets considerably worse. Headlines about MOUs will not tell you which path we're on. Hard tanker-transit data will.",
+        "attribution": "Erik Townsend, Macrovoices",
+        "context": "Substack 'Saturday Night Musings on Crude & Iran', May 24, 2026"
+      }
+    ]
   },
   "oilSpread": {
     "brent": 105.54,
@@ -848,6 +856,12 @@
     "dubaiSource": "Dubai Crude Oil Platts futures (Investing.com). May 14 inversion print: $100.70.",
     "note": "May 19 SETTLE: Brent $111.28 (-0.73%), WTI $107.77 (-0.82%). DAY 81 OF CRISIS. Investors weigh mixed signals on Trump-Iran: Gulf Arab leaders say deal 'within reach' but US officials call Iran proposal 'insufficient'. Trump gave Iran 2–3 days (Fri-Sun). Oil eased from May 18 highs ($112.10 Brent) but held most of recent gains. Dubai physical estimated ~$129 (manual review needed — no fresh Platts print). May 18 SETTLE: Brent $112.10 (+2%), WTI $108.66 (+3%). MAJOR DIPLOMATIC DEVELOPMENT: Trump called off planned Tuesday (May 19) Iran strikes at request of Gulf Arab leaders (Qatar, Saudi Arabia, UAE) who told him 'serious negotiations are underway with Iran that will result in a deal acceptable to the US.' Trump still directed Pentagon to 'be prepared to go forward with a full, large scale assault of Iran, on a moment's notice.' Oil held all gains. IEA May 2026 report: global inventories drew 250 mb over March-April (~4 mb/d); Q2 projected 8.5 mb/d draw; 'Rapidly shrinking buffers amid continued disruptions may herald future price spikes ahead.' Dubai physical ~$129 estimated — manual review needed for fresh Platts data. ── Volatile week. Brent rode an arc: $109 May 7 → trough $102 May 11 on Axios May 6 one-page-memo optimism → snapped back as Trump rejected Iran's counterproposal May 11 → $111 May 13 → fell sharply to $106 on the May 14 Trump-Xi Beijing summit (both leaders agreed Strait of Hormuz 'must remain open'; China pledged to work behind scenes with Iran; Saudi June OSP for Asia cut to +$15.50/bbl from record +$19.50). Dubai briefly inverted to ~$5 DISCOUNT vs Brent (first time since crisis onset) as Gulf physical premiums compressed → reverted to $111.04 / $128 by May 15 after US Navy was attacked in the Strait and US retaliated. WTI ~$100–105.42. Brent–WTI spread widened to ~$8–11 (Hormuz routes don't affect WTI as directly). Dec '26 Brent still sub-$80 — backwardation of ~$30+ pricing rapid normalization the supply math contradicts.",
     "physicalMarketNotes": [
+      {
+        "date": "2026-05-24",
+        "quote": "Trump's May 23 Truth Social 'peace deal' is April 7 Round 2. Same triumphalist announcement, same omission of the only issue that matters (Iran's 440.9 kg of 60% HEU). When April 7 announcement hit, Brent fell ~16% in a session. May 24 Sunday open will likely gap down similarly — but if so, it is selling into a misreading. The MOU defers the nuclear file 30-60 days while preserving every Iranian Strait toll card.",
+        "attribution": "Erik Townsend, Macrovoices",
+        "context": "Substack May 24, 2026"
+      },
       {
         "date": "2026-05-19",
         "quote": "Sellside is publishing $100 year-end Brent assuming a June 1 strait reopening. There's nothing like price changing the narrative — when the consensus has to mark to a strait that hasn't reopened, the contrarian signal will be obvious. We're not there yet.",
@@ -3119,10 +3133,10 @@
   },
   "diplomaticWatch": {
     "status": "JAWBONE_ONLY",
-    "latestHeadline": "Trump: 'final stages with Iran'",
-    "latestDate": "2026-05-21",
-    "latestSource": "POTUS public statement, May 21, 2026",
-    "jawboneCount": 8,
+    "latestHeadline": "Trump: 'largely negotiated peace deal' / MOU + Strait reopen (Truth Social)",
+    "latestDate": "2026-05-23",
+    "latestSource": "Truth Social, May 23, 2026 (Townsend Substack analysis May 24)",
+    "jawboneCount": 9,
     "daysSinceFirstJawbone": 51,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
@@ -3152,9 +3166,74 @@
         "status": "not met"
       }
     ],
-    "interpretation": "Trump has made 8 'final stages' / 'deal imminent' / 'very close' statements since the war began (51 days ago). Per HFI anchoring-bias framework, repeated unconfirmed jawboning that doesn't produce physical change is itself a bullish signal — extends crisis duration and erodes diplomatic-resolution probability daily. Status will not escalate above JAWBONE_ONLY without concrete physical confirmation across the gates below.",
+    "interpretation": "Trump's May 23 Truth Social 'peace deal' announcement mirrors the April 7 pattern almost exactly — 14-point MOU that declares war over and gradually reopens Hormuz, but defers the nuclear file (the actual war trigger) to a 30-60 day follow-on negotiation. Iran's own Foreign Ministry confirmed same day that nuclear file is NOT in the framework. Per Townsend (Macrovoices): 'Watch the tanker count through Hormuz. Those are the real instruments. The headlines are just weather.' Status will not escalate above JAWBONE_ONLY without concrete physical confirmation across the gates below.",
     "impactIfConfirmed": "Brent could retest $95–100 within 5–10 days; would invalidate primary long thesis",
-    "impactIfJawboneContinues": "Each unconfirmed statement extends crisis duration — bullish thesis strengthens, not weakens. Watch for the FIRST physical-confirmation gate to flip — that's the real exit signal."
+    "impactIfJawboneContinues": "Each unconfirmed statement extends crisis duration — bullish thesis strengthens, not weakens. Watch for the FIRST physical-confirmation gate to flip — that's the real exit signal.",
+    "warEndingTriggers": [
+      {
+        "id": "heu-handover",
+        "label": "HEU handover by named senior Iranian official",
+        "detail": "Pezeshkian, Araghchi, or formal SNSC statement (NOT anonymous sources) confirming 60% enriched stockpile physically leaves Iran for third country or IAEA-supervised escrow",
+        "status": "not occurred",
+        "asOfDate": "2026-05-25"
+      },
+      {
+        "id": "strait-authority-dissolved",
+        "label": "Persian Gulf Strait Authority wound down",
+        "detail": "Iran's transit permit + toll regime ($2M/transit, vessel exclusions) is publicly suspended or dismantled",
+        "status": "not occurred",
+        "asOfDate": "2026-05-25"
+      },
+      {
+        "id": "iaea-access-restored",
+        "label": "IAEA inspector access restored to Fordow / Natanz / Isfahan",
+        "detail": "IAEA Board of Governors statement confirming on-site inspector return to the three key enrichment sites (none since Nov 2025)",
+        "status": "not occurred",
+        "asOfDate": "2026-05-25"
+      }
+    ],
+    "jawboneHistory": [
+      {
+        "date": "2026-04-07",
+        "headline": "Trump announces 'essentially agreed to terms'",
+        "source": "Truth Social + WH briefing, April 7, 2026",
+        "outcome": "unfulfilled",
+        "outcomeNote": "Walked back by April 12: 'most points agreed to, but the only point that mattered, NUCLEAR, was not'"
+      },
+      {
+        "date": "2026-05-23",
+        "headline": "Trump announces 'largely negotiated peace deal' / 14-point MOU",
+        "source": "Truth Social, May 23, 2026",
+        "outcome": "pending",
+        "outcomeNote": "Per Townsend: April 7 pattern Round 2 — defers nuclear file to 30-60 day window. Iran Foreign Ministry confirmed same day nuclear NOT in framework. Watch the tanker count, not the headlines."
+      }
+    ],
+    "mouCountdown": {
+      "mouSignedDate": "2026-05-23",
+      "negotiationWindowDays": 60,
+      "deadline": "2026-07-22",
+      "whatExpiresLabel": "Nuclear negotiation follow-on window (HEU disposition, dismantlement, inspections)"
+    },
+    "heuStockpile": {
+      "kg": 440.9,
+      "enrichmentPct": 60,
+      "swuToWeaponsGradePct": 1.0,
+      "swuAlreadyCompleted": 99.0,
+      "weaponsFromStock": 9,
+      "timeToOneWeaponDays": 2.5,
+      "timeToNineWeaponsWeeks": 3,
+      "currentLocation": "Mostly buried at Isfahan tunnels under Iran's own backfill + US cruise missile rubble (June 2025 strike)",
+      "verificationStatus": "IAEA-verified pre-strike (June 2025 Board of Governors report: 432.9 kg in UF₆ form independently verified). Inspectors withdrawn mid-2025. Iran terminated IAEA cooperation Nov 2025 — significant verification blackout since.",
+      "cylinderCount": "~16-20 5B-type cylinders, propane-tank-sized (~25kg each, 3ft tall). Whole stockpile fits in a single medium truck.",
+      "source": "IAEA Board of Governors report June 2025; ISIS / Center for Arms Control analysis; Townsend Substack May 24 2026"
+    },
+    "straitAuthorityTolls": {
+      "perTransitFee": "$2M per transit (paid in yuan or Bitcoin)",
+      "excludedVessels": "Israeli-linked vessels banned outright. US and other 'hostile' ships heavily restricted.",
+      "permittedVessels": "China, Russia, India, Pakistan, South Korea",
+      "estimatedAnnualTolls": "$70-90 Bn/year (J.P. Morgan estimate)",
+      "sourceNote": "Persian Gulf Strait Authority operational since early May 2026. Iran will not walk away from this revenue stream in a one-page MOU — explains why 'free and open Strait' is incompatible with Iranian framing."
+    }
   },
   "phaseIndicator": {
     "phase": 1,

@@ -1,8 +1,51 @@
 "use client";
 
-import type { SignalData } from "@/lib/types";
+import type { JawboneEvent, SignalData, WarEndingTrigger } from "@/lib/types";
 import { computeVerdict, getDirectionalBias, type VerdictDirection } from "@/lib/verdict";
 import { getDaysUntil } from "@/lib/utils";
+
+const TRIGGER_ICON: Record<WarEndingTrigger["status"], string> = {
+  "not occurred": "⊘",
+  rumored: "◐",
+  occurred: "●",
+};
+
+const TRIGGER_ICON_COLOR: Record<WarEndingTrigger["status"], string> = {
+  "not occurred": "text-white/40",
+  rumored: "text-amber-300",
+  occurred: "text-emerald-300",
+};
+
+const TRIGGER_STATUS_BADGE: Record<WarEndingTrigger["status"], string> = {
+  "not occurred": "bg-white/10 text-white/55",
+  rumored: "bg-amber-500/20 text-amber-300",
+  occurred: "bg-emerald-500/20 text-emerald-300",
+};
+
+const JAWBONE_OUTCOME_BADGE: Record<JawboneEvent["outcome"], string> = {
+  unfulfilled: "bg-red-500/20 text-red-300 border-red-500/40",
+  partial: "bg-amber-500/20 text-amber-300 border-amber-500/40",
+  pending: "bg-amber-500/20 text-amber-300 border-amber-500/40",
+  fulfilled: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+};
+
+function formatLongDate(iso: string): string {
+  const d = new Date(`${iso}T00:00:00Z`);
+  if (isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+function daysBetween(fromIso: string, toIso: string): number {
+  const from = new Date(`${fromIso}T00:00:00Z`).getTime();
+  const to = new Date(`${toIso}T00:00:00Z`).getTime();
+  if (isNaN(from) || isNaN(to)) return 0;
+  return Math.round((to - from) / (1000 * 60 * 60 * 24));
+}
 
 interface VerdictBannerProps {
   data: SignalData;
@@ -173,6 +216,56 @@ export default function VerdictBanner({ data, liveBrentPrice, wtiPrice }: Verdic
                   {data.diplomaticWatch.interpretation}
                 </p>
 
+                {/* Sub-panel A — War-Ending Triggers (Townsend falsifiability framework) */}
+                {data.diplomaticWatch.warEndingTriggers && data.diplomaticWatch.warEndingTriggers.length > 0 && (
+                  <div className="mt-3 rounded border border-amber-500/25 bg-black/30 p-3">
+                    <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300/90">
+                        War-Ending Triggers
+                      </span>
+                      <span className="text-[10px] italic text-white/45">
+                        per Erik Townsend, Macrovoices &middot; May 24, 2026
+                      </span>
+                    </div>
+                    <p className="mb-2.5 text-[11px] leading-relaxed text-white/65">
+                      The three discrete events that would actually end this war. Until one is in a signed text, every &ldquo;peace deal&rdquo; is a tactical pause dressed up as an ending.
+                    </p>
+                    <div className="space-y-2">
+                      {data.diplomaticWatch.warEndingTriggers.map((t) => (
+                        <div
+                          key={t.id}
+                          className="rounded border border-white/10 bg-black/20 px-2.5 py-2"
+                        >
+                          <div className="flex items-start gap-2">
+                            <span className={`mt-0.5 text-base leading-none ${TRIGGER_ICON_COLOR[t.status]}`}>
+                              {TRIGGER_ICON[t.status]}
+                            </span>
+                            <div className="flex-1">
+                              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
+                                <span className="text-[11px] font-semibold text-white/90">
+                                  {t.label}
+                                </span>
+                                <span
+                                  className={`rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider ${TRIGGER_STATUS_BADGE[t.status]}`}
+                                >
+                                  {t.status}
+                                </span>
+                              </div>
+                              <p className="mt-1 text-[10.5px] leading-relaxed text-white/55">
+                                {t.detail}
+                              </p>
+                              <p className="mt-1 text-[9px] italic text-white/35">
+                                As of {t.asOfDate}
+                                {t.source ? <> &middot; {t.source}</> : null}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Physical Confirmation Gates mini-table */}
                 <div className="mt-3 rounded border border-white/10 bg-black/30 p-2.5">
                   <div className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white/70">
@@ -201,6 +294,226 @@ export default function VerdictBanner({ data, liveBrentPrice, wtiPrice }: Verdic
                     Status escalates only when gates flip from &lsquo;not met&rsquo; &rarr; &lsquo;approaching&rsquo; &rarr; &lsquo;met&rsquo;. Rhetoric alone does not escalate.
                   </div>
                 </div>
+
+                {/* Sub-panel B — Jawbone Pattern History */}
+                {data.diplomaticWatch.jawboneHistory && data.diplomaticWatch.jawboneHistory.length > 0 && (
+                  <div className="mt-3 rounded border border-white/10 bg-black/30 p-3">
+                    <div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/80">
+                        Major Jawbone Events &mdash; Pattern Repeats
+                      </span>
+                      <span className="text-[10px] italic text-white/45">
+                        Outcome tracking
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                      {data.diplomaticWatch.jawboneHistory.map((ev) => (
+                        <div
+                          key={ev.date}
+                          className="rounded border border-white/10 bg-black/20 px-3 py-2.5"
+                        >
+                          <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                            <span className="text-[11px] font-bold tabular-nums text-white">
+                              {formatLongDate(ev.date)}
+                            </span>
+                            <span
+                              className={`rounded border px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider ${JAWBONE_OUTCOME_BADGE[ev.outcome]}`}
+                            >
+                              {ev.outcome}
+                            </span>
+                          </div>
+                          <p className="mt-1 text-[11px] font-medium leading-snug text-white/85">
+                            {ev.headline}
+                          </p>
+                          <p className="mt-0.5 text-[9px] uppercase tracking-wider text-white/40">
+                            {ev.source}
+                          </p>
+                          {ev.outcomeNote && (
+                            <p className="mt-1.5 text-[10.5px] italic leading-relaxed text-white/60">
+                              {ev.outcomeNote}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Sub-panel C — Nuclear MOU Countdown */}
+                {data.diplomaticWatch.mouCountdown && (() => {
+                  const mou = data.diplomaticWatch.mouCountdown;
+                  const today = new Date().toISOString().slice(0, 10);
+                  const elapsed = Math.max(0, daysBetween(mou.mouSignedDate, today));
+                  const remaining = Math.max(0, mou.negotiationWindowDays - elapsed);
+                  const pct = Math.min(100, Math.max(0, (elapsed / mou.negotiationWindowDays) * 100));
+                  return (
+                    <div className="mt-3 rounded border border-white/10 bg-black/30 p-3">
+                      <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
+                        <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300/90">
+                          {mou.negotiationWindowDays}-Day Nuclear Negotiation Window
+                        </span>
+                        <span className="text-[10px] italic text-white/45">
+                          Started {mou.mouSignedDate} &middot; Deadline {mou.deadline}
+                        </span>
+                      </div>
+                      <div className="mt-1.5 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[11px] text-white/75">
+                        <span>
+                          Day <span className="font-bold tabular-nums text-white">{elapsed}</span> of {mou.negotiationWindowDays}
+                        </span>
+                        <span className="text-white/30">&middot;</span>
+                        <span>
+                          <span className="font-bold tabular-nums text-white">{remaining}</span> days remaining
+                        </span>
+                      </div>
+                      {/* Progress bar */}
+                      <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                        <div
+                          className="h-full rounded-full bg-amber-400/70"
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                      <p className="mt-2 text-[10.5px] leading-relaxed text-white/60">
+                        <span className="font-semibold text-white/75">What expires:</span>{" "}
+                        {mou.whatExpiresLabel}
+                      </p>
+                    </div>
+                  );
+                })()}
+
+                {/* Sub-panel D — HEU Stockpile Fact Block */}
+                {data.diplomaticWatch.heuStockpile && (() => {
+                  const heu = data.diplomaticWatch.heuStockpile;
+                  return (
+                    <div className="mt-3 rounded border border-red-500/30 bg-black/30 p-3">
+                      <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
+                        <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-red-300/90">
+                          Iran HEU Stockpile &mdash; The Central War Fact
+                        </span>
+                        <span className="text-[10px] italic text-white/45">
+                          Per Townsend, May 24, 2026
+                        </span>
+                      </div>
+                      {/* Four-stat hero row */}
+                      <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                        <div className="rounded border border-white/10 bg-black/20 px-2 py-2">
+                          <div className="text-base font-bold tabular-nums text-white">
+                            {heu.kg} kg
+                          </div>
+                          <div className="mt-0.5 text-[9px] uppercase tracking-wider text-white/50">
+                            {heu.enrichmentPct}% enriched
+                          </div>
+                        </div>
+                        <div className="rounded border border-white/10 bg-black/20 px-2 py-2">
+                          <div className="text-base font-bold tabular-nums text-white">
+                            ~{heu.swuAlreadyCompleted}%
+                          </div>
+                          <div className="mt-0.5 text-[9px] uppercase tracking-wider text-white/50">
+                            SWU to weapons-grade
+                          </div>
+                          <div className="mt-0.5 text-[9px] italic text-white/40">
+                            only ~{heu.swuToWeaponsGradePct}% remains
+                          </div>
+                        </div>
+                        <div className="rounded border border-white/10 bg-black/20 px-2 py-2">
+                          <div className="text-base font-bold tabular-nums text-white">
+                            {heu.weaponsFromStock} weapons
+                          </div>
+                          <div className="mt-0.5 text-[9px] uppercase tracking-wider text-white/50">
+                            from stock
+                          </div>
+                          <div className="mt-0.5 text-[9px] italic text-white/40">
+                            ~{heu.timeToNineWeaponsWeeks} wks at Fordow
+                          </div>
+                        </div>
+                        <div className="rounded border border-white/10 bg-black/20 px-2 py-2">
+                          <div className="text-base font-bold tabular-nums text-white">
+                            {heu.timeToOneWeaponDays} d
+                          </div>
+                          <div className="mt-0.5 text-[9px] uppercase tracking-wider text-white/50">
+                            to 1 weapon
+                          </div>
+                        </div>
+                      </div>
+                      {/* Explanatory blocks */}
+                      <div className="mt-3 space-y-1.5 text-[10.5px] leading-relaxed text-white/65">
+                        <p>
+                          <span className="font-semibold text-white/80">Location:</span>{" "}
+                          {heu.currentLocation}
+                        </p>
+                        <p>
+                          <span className="font-semibold text-white/80">Verification:</span>{" "}
+                          {heu.verificationStatus}
+                        </p>
+                        <p>
+                          <span className="font-semibold text-white/80">Physical form:</span>{" "}
+                          {heu.cylinderCount}
+                        </p>
+                      </div>
+                      <p className="mt-2.5 rounded border border-white/10 bg-black/20 px-2.5 py-2 text-[10.5px] italic leading-relaxed text-white/60">
+                        <span className="font-semibold not-italic text-white/75">
+                          Nuclear hedging note:
+                        </span>{" "}
+                        Iran has chosen the &ldquo;threshold state&rdquo; posture (like Japan).
+                        Has material + centrifuges. Has not (per IC) authorized warhead
+                        assembly. Both &ldquo;weeks from bomb&rdquo; and &ldquo;no active weapons
+                        program 20yrs&rdquo; are true &mdash; capability &ne; weaponization.
+                        The 60% material is the rung directly below weapons-grade; getting from
+                        60% to 90% requires only ~{heu.swuToWeaponsGradePct}% of the work already done.
+                      </p>
+                      <p className="mt-2 text-[9px] italic text-white/35">
+                        Source: {heu.source}
+                      </p>
+                    </div>
+                  );
+                })()}
+
+                {/* Sub-panel E — Strait Authority Tolls */}
+                {data.diplomaticWatch.straitAuthorityTolls && (() => {
+                  const tolls = data.diplomaticWatch.straitAuthorityTolls;
+                  return (
+                    <div className="mt-3 rounded border border-amber-500/25 bg-black/30 p-3">
+                      <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
+                        <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300/90">
+                          Persian Gulf Strait Authority &mdash; Why Iran Won&rsquo;t Walk Away
+                        </span>
+                        <span className="text-[10px] italic text-white/45">
+                          Operational since early May 2026
+                        </span>
+                      </div>
+                      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                        <div className="rounded border border-white/10 bg-black/20 px-2.5 py-2">
+                          <div className="text-[9px] uppercase tracking-wider text-white/50">
+                            Per transit fee
+                          </div>
+                          <div className="mt-0.5 text-sm font-bold tabular-nums text-white">
+                            {tolls.perTransitFee}
+                          </div>
+                        </div>
+                        <div className="rounded border border-white/10 bg-black/20 px-2.5 py-2">
+                          <div className="text-[9px] uppercase tracking-wider text-white/50">
+                            Estimated annual tolls
+                          </div>
+                          <div className="mt-0.5 text-sm font-bold tabular-nums text-white">
+                            {tolls.estimatedAnnualTolls}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-2 space-y-1 text-[10.5px] leading-relaxed text-white/65">
+                        <p>
+                          <span className="font-semibold text-red-300/85">Banned outright:</span>{" "}
+                          {tolls.excludedVessels}
+                        </p>
+                        <p>
+                          <span className="font-semibold text-emerald-300/85">Permitted:</span>{" "}
+                          {tolls.permittedVessels}
+                        </p>
+                      </div>
+                      <p className="mt-2.5 rounded border border-white/10 bg-black/20 px-2.5 py-2 text-[10.5px] italic leading-relaxed text-white/60">
+                        {tolls.sourceNote}
+                      </p>
+                    </div>
+                  );
+                })()}
 
                 <p className="mt-2 text-[10px] italic leading-relaxed text-white/55">
                   <span className="font-semibold not-italic text-white/70">If jawbone continues:</span> {data.diplomaticWatch.impactIfJawboneContinues}

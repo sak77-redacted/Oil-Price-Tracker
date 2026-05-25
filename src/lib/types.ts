@@ -603,6 +603,75 @@ export interface PhysicalConfirmationGate {
   status: "not met" | "approaching" | "met";
 }
 
+/**
+ * Townsend (Macrovoices, May 24 2026) falsifiability framework.
+ * The three discrete events that would actually end the war — distinct
+ * from the existing physical-confirmation gates (which track tactical
+ * normalization). These are diplomatic-resolution proofs.
+ */
+export interface WarEndingTrigger {
+  id: string;
+  label: string;
+  detail: string;
+  status: "not occurred" | "rumored" | "occurred";
+  asOfDate: string;
+  source?: string;
+}
+
+/**
+ * Major diplomatic announcement event (jawbone) with outcome tracking.
+ * Used to display the April 7 → May 23 pattern repeat.
+ */
+export interface JawboneEvent {
+  date: string;
+  headline: string;
+  source: string;
+  outcome: "unfulfilled" | "partial" | "fulfilled" | "pending";
+  outcomeNote?: string;
+}
+
+/**
+ * Townsend MOU follow-on negotiation window (e.g. 30–60 day nuclear file).
+ */
+export interface NuclearMouCountdown {
+  mouSignedDate: string;
+  negotiationWindowDays: number;
+  deadline: string;
+  whatExpiresLabel: string;
+}
+
+/**
+ * Iran HEU stockpile fact block — the central war fact per Townsend.
+ * 440.9 kg of 60% enriched uranium, ~99% of SWU to weapons-grade
+ * already completed (only ~1% additional SWU required to reach 90%).
+ */
+export interface HeuStockpile {
+  kg: number;
+  enrichmentPct: number;
+  swuToWeaponsGradePct: number;
+  swuAlreadyCompleted: number;
+  weaponsFromStock: number;
+  timeToOneWeaponDays: number;
+  timeToNineWeaponsWeeks: number;
+  currentLocation: string;
+  verificationStatus: string;
+  cylinderCount: string;
+  source: string;
+}
+
+/**
+ * Persian Gulf Strait Authority toll regime — Iran's revenue stream that
+ * makes a "free and open Strait" framing structurally incompatible with
+ * any Iranian-signed MOU.
+ */
+export interface StraitAuthorityTolls {
+  perTransitFee: string;
+  excludedVessels: string;
+  permittedVessels: string;
+  estimatedAnnualTolls: string;
+  sourceNote: string;
+}
+
 export interface DiplomaticWatch {
   status: DiplomaticStatus;
   latestHeadline: string;
@@ -615,6 +684,16 @@ export interface DiplomaticWatch {
   interpretation: string;
   impactIfConfirmed: string;
   impactIfJawboneContinues: string;
+  /** Townsend's three discrete war-ending events. */
+  warEndingTriggers?: WarEndingTrigger[];
+  /** Major jawbone announcements with outcome tracking (pattern history). */
+  jawboneHistory?: JawboneEvent[];
+  /** Active follow-on nuclear negotiation window (post-MOU). */
+  mouCountdown?: NuclearMouCountdown;
+  /** Iran 60% HEU stockpile fact block. */
+  heuStockpile?: HeuStockpile;
+  /** Persian Gulf Strait Authority toll regime detail. */
+  straitAuthorityTolls?: StraitAuthorityTolls;
 }
 
 /**

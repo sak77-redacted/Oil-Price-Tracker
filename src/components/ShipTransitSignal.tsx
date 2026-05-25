@@ -36,6 +36,17 @@ export default function ShipTransitSignal({ data }: ShipTransitSignalProps) {
       source={data.source}
     >
       <div className="flex flex-col gap-4">
+        {/* Townsend quote banner — the metric he's calling out */}
+        <blockquote className="border-l-2 border-amber-500/50 bg-amber-500/[0.04] px-3 py-2">
+          <p className="text-[12px] italic leading-relaxed text-amber-200/90">
+            &ldquo;Watch the tanker count through Hormuz. Those are the real
+            instruments. The headlines are just weather.&rdquo;
+          </p>
+          <footer className="mt-1 text-[9px] font-bold uppercase tracking-[0.18em] text-amber-300/70">
+            Erik Townsend &middot; Macrovoices &middot; May 24, 2026
+          </footer>
+        </blockquote>
+
         {/* Big number: daily transit count */}
         <div>
           <span className="text-5xl font-bold tracking-tight text-[var(--text-primary)]">
