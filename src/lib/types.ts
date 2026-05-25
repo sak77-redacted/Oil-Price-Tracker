@@ -722,6 +722,106 @@ export interface PhaseIndicator {
   morganDowneyContext?: string;
 }
 
+/**
+ * HFI Research "Death By A Thousand Headlines" (May 22, 2026).
+ *
+ * Two dated milestones that determine when oil math forces price discovery:
+ * (1) Mid-June 2026 — US crude exports get priced out (marginal barrel
+ *     cushion exhausted; US has offset 25% of global crude export decline
+ *     via record exports).
+ * (2) Late July 2026 — US commercial crude hits operational minimum
+ *     (~290 mb floor per JH MOI framework).
+ *
+ * HFI framing: "Jawbones are buying time, not changing fundamentals.
+ * Pick your poison — re-escalation drives August scramble, or we go straight
+ * to operational minimums."
+ */
+export interface CriticalPathMilestone {
+  /** ISO date (YYYY-MM-DD). */
+  date: string;
+  /** Optional pre-computed days from today (otherwise derived at render time). */
+  daysFromNow?: number;
+  /** Headline label, e.g. "US crude exports priced out". */
+  label: string;
+  /** 2-3 sentence description of the mechanism / why this matters. */
+  description: string;
+  /** Source attribution (e.g. "HFI Research, May 22 2026"). */
+  source: string;
+  /** Visual priority: 1 = primary milestone, 2 = secondary. */
+  tier: 1 | 2;
+}
+
+export interface CriticalPath {
+  title: string;
+  subtitle: string;
+  /** "Death by a thousand headlines" thesis paragraph. */
+  framing: string;
+  milestones: CriticalPathMilestone[];
+  attribution: string;
+}
+
+/**
+ * Per-region demand y-o-y reality check (Goldman real-time / EIA).
+ * Used by DemandDestructionReality to surface how little destruction has
+ * actually occurred vs. what HFI estimates is required for balance.
+ */
+export interface RegionalDemand {
+  region: string;
+  totalMbd: number;
+  /** Year-on-year change in mb/d (negative = destruction). */
+  yoyChangeMbd: number;
+  source: string;
+}
+
+export interface DemandDestructionReality {
+  regions: RegionalDemand[];
+  /** Sum of yoyChangeMbd across regions (negative = net destruction). */
+  netGlobalChangeMbd: number;
+  /** HFI estimate of demand destruction required to balance the supply shock. */
+  requiredForBalanceMbd: number;
+  /** (|netGlobalChangeMbd| / requiredForBalanceMbd) * 100. */
+  progressPct: number;
+  /** HFI commentary on the reality vs. requirement. */
+  context: string;
+  source: string;
+}
+
+/**
+ * Crude export tracker entry. Complements the demand-destruction reality
+ * check by showing supply collapse on the other side of the balance.
+ */
+export interface ExportTracker {
+  metric: string;
+  yoyChangeMbd: number;
+  currentMbd?: number;
+  note: string;
+}
+
+/**
+ * US Commercial Crude Storage tracker (EIA / HFI).
+ * The single inventory series HFI flags as the "Phase 3 trigger" — when
+ * US commercial crude approaches operational minimum (~290 mb floor),
+ * sidelined buyers are forced into desperate bidding.
+ */
+export interface USCommercialCrudeStorage {
+  /** Latest EIA reading, mb. */
+  currentMb: number;
+  /** 5-year average for the same week, mb. */
+  fiveYrAvgMb: number;
+  /** 2026 peak reading, mb. */
+  peak2026Mb: number;
+  /** ISO date of 2026 peak. */
+  peak2026Date: string;
+  /** JH MOI floor estimate (midpoint of 280-300), mb. */
+  operationalMinimumMb: number;
+  /** Recent weekly commercial draw rate, mb. */
+  weeklyDrawRateMb: number;
+  /** Derived weeks-to-floor at current draw rate. */
+  weeksToFloor: number;
+  asOfDate: string;
+  source: string;
+}
+
 export interface SignalData {
   insurance: InsuranceSignal;
   shipTransit: ShipTransitSignal;
@@ -745,6 +845,18 @@ export interface SignalData {
   diplomaticWatch?: DiplomaticWatch;
   /** JH/@CRUDEOIL231 inventory-phase indicator (Tier 1 card). */
   phaseIndicator?: PhaseIndicator;
+  /** HFI "Death By A Thousand Headlines" — two dated milestones. */
+  criticalPath?: CriticalPath;
+  /**
+   * Per-region demand y-o-y reality check.
+   * Named `demandDestructionReality` to avoid colliding with the legacy
+   * `demandDestruction: DemandDestructionData` field on `ExtendedSignalData`.
+   */
+  demandDestructionReality?: DemandDestructionReality;
+  /** Global / US / OPEC+ crude export y-o-y tracker (HFI). */
+  exportTrackers?: ExportTracker[];
+  /** US commercial crude storage vs operational floor (EIA / HFI). */
+  usCommercialCrudeStorage?: USCommercialCrudeStorage;
 }
 
 export interface StraitStatus {

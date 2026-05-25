@@ -329,6 +329,20 @@ export default function SupplyBalanceSignal({
             {usInventoryDecomp && <InventoryDecompColumn decomp={usInventoryDecomp} />}
             {globalInventoryDecomp && <InventoryDecompColumn decomp={globalInventoryDecomp} />}
           </div>
+          {/* Bennie K MOI callout — concrete global tank-bottoms number */}
+          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 rounded border border-amber-500/30 bg-amber-500/5 px-3 py-2">
+            <span className="rounded bg-amber-500/20 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-amber-200">
+              Bennie K MOI
+            </span>
+            <span className="text-[11px] font-semibold tabular-nums text-amber-200">
+              2.8 Bn bbl
+            </span>
+            <span className="text-[10.5px] text-white/65">
+              globally locked · 1.264 Bn linefill + 1.519 Bn tank bottoms ·
+              China ~600 / US ~450 / Russia ~250 / Japan ~225 MMbbl
+            </span>
+          </div>
+
           <p className="mt-3 text-[11px] italic leading-snug text-[var(--text-secondary)]">
             Burn rate measured against AVAILABLE buffer, not total inventory. Per JH framework, only ~5–15% of headline inventory can actually absorb shocks.
           </p>

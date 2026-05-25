@@ -8,6 +8,7 @@ import type { AISummaryData } from "@/lib/ai-summary";
 import VerdictBanner from "./VerdictBanner";
 import TradeSetup from "./TradeSetup";
 import PhaseIndicator from "./PhaseIndicator";
+import CriticalPath from "./CriticalPath";
 import TodaysTape from "./TodaysTape";
 import WatchThisWeek from "./WatchThisWeek";
 
@@ -26,6 +27,8 @@ import SPRCliffSignal from "./SPRCliffSignal";
 import SupplyBalanceSignal from "./SupplyBalanceSignal";
 import InventoryDrawsSignal from "./InventoryDrawsSignal";
 import USProductStocksSignal from "./USProductStocksSignal";
+import USCommercialCrudeStorage from "./USCommercialCrudeStorage";
+import DemandDestructionReality from "./DemandDestructionReality";
 import EquityDisbeliefSignal from "./EquityDisbeliefSignal";
 import CriticalDeadlines from "./CriticalDeadlines";
 import RecoveryClock from "./RecoveryClock";
@@ -135,6 +138,9 @@ export default function Dashboard({
       {/* Inventory Phase Indicator — JH/@CRUDEOIL231 framework */}
       {data.phaseIndicator && <PhaseIndicator data={data.phaseIndicator} />}
 
+      {/* HFI Critical Path — two dated milestones (mid-June / late-July) */}
+      {data.criticalPath && <CriticalPath data={data.criticalPath} />}
+
       <div className="mt-3 flex items-center justify-center gap-2 text-[10px] text-[var(--text-secondary)]">
         <span>
           Data as of{" "}
@@ -228,6 +234,15 @@ export default function Dashboard({
           />
           {data.inventoryDraws && <InventoryDrawsSignal data={data.inventoryDraws} />}
           {data.usProductStocks && <USProductStocksSignal data={data.usProductStocks} />}
+          {data.usCommercialCrudeStorage && (
+            <USCommercialCrudeStorage data={data.usCommercialCrudeStorage} />
+          )}
+          {data.demandDestructionReality && (
+            <DemandDestructionReality
+              data={data.demandDestructionReality}
+              exports={data.exportTrackers}
+            />
+          )}
           {data.equityDisbelief && <EquityDisbeliefSignal data={data.equityDisbelief} />}
           <CriticalDeadlines data={data.timeline} />
           <div>

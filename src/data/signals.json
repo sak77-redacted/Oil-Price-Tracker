@@ -1256,6 +1256,12 @@
     "source": "IEA OECD inventories. EIA Weekly Petroleum Status Report (May 21 release, week ending May 16): SPR -9.9 Mb + commercial crude -7.9 Mb = single-week record 17.8 Mb total US crude draw. Cushing 4th consecutive weekly decline. Total commercial oil + product stock at 5-yr range floor (1.22 Bn bbl vs 5-yr avg 1.25 Bn). Prior EIA May 13: record 8.6 Mb single-week SPR; SPR was 384.1 Mb; now 374.2 Mb. Goldman/JPM/HFI: April inventory draws 7.1 Mbpd, demand destruction 4.3 Mbpd; cumulative ~410 Mbbl drawn Mar+Apr+May to date. IEA SPR 120-day window exhausts ~Jul 9.",
     "physicalMarketNotes": [
       {
+        "date": "2026-05-22",
+        "quote": "Bennie K @tleilax___ data via GEM + Kayrros: 2.8 billion barrels of linefill + tank bottoms globally that is unavailable for commerce. Breakdown: 1.264 Bn pipeline linefill + 1.519 Bn tank bottoms. Top countries by storage: China ~600 MMbbl, US ~450 MMbbl, Russia ~250 MMbbl, Japan ~225 MMbbl. This is the harder number behind the JH MOI framework \u2014 2.8 Bn 'permanently locked' bbl out of ~8 Bn global onshore inventory.",
+        "attribution": "Bennie K (@tleilax___) via HFI Research, May 22, 2026",
+        "context": "MOI/Tank Bottoms framework \u2014 concrete number"
+      },
+      {
         "date": "2026-05-21",
         "quote": "BP, Shell, Exxon disclosed 20-30% more efficient working capital usage over the past 5 years \u2014 roughly 1Bn bbl of effective inventory loosened up through electronic sensors and hyper-local demand forecasting. That hidden cushion took the edge off this rally and stalled the price spike. But it's a one-time thing. Once spent, you can't print more by being more efficient. The cushion has been drawn down in real time during this crisis.",
         "attribution": "Morgan Downey (Boxwood CEO, author of Oil 101)",
@@ -3137,7 +3143,7 @@
     "latestHeadline": "Trump: 'largely negotiated peace deal' / MOU + Strait reopen (Truth Social)",
     "latestDate": "2026-05-23",
     "latestSource": "Truth Social, May 23, 2026 (Townsend Substack analysis May 24)",
-    "jawboneCount": 9,
+    "jawboneCount": 10,
     "daysSinceFirstJawbone": 55,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
@@ -3202,6 +3208,13 @@
         "outcomeNote": "Walked back by April 12: 'most points agreed to, but the only point that mattered, NUCLEAR, was not'"
       },
       {
+        "date": "2026-05-20",
+        "headline": "Al Arabiya: 'deal imminent' (later retracted as professional error)",
+        "source": "Al Arabiya diplomatic source, May 20, 2026",
+        "outcome": "unfulfilled",
+        "outcomeNote": "Published 15 minutes BEFORE EIA released largest US crude draw in history (-17.8 mb). Al Arabiya later deleted tweets and acknowledged 'professional error.' Same pattern: jawbone-prints-just-before-bullish-data."
+      },
+      {
         "date": "2026-05-23",
         "headline": "Trump announces 'largely negotiated peace deal' / 14-point MOU",
         "source": "Truth Social, May 23, 2026",
@@ -3245,5 +3258,91 @@
     "weeksToNextPhase": 18,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
     "morganDowneyContext": "Per Morgan Downey (Macrovoices, May 21, 2026): 'Down to weeks, not months. Working-capital efficiency cushion (~1Bn bbl loosened over 5 years) has been spent into this crisis. >50% probability of $150-200 oil within 30 days at current pace.' Our 18-week linear estimate is the UPPER bound \u2014 burn rate accelerates as buffer thins."
+  },
+  "criticalPath": {
+    "title": "HFI Critical Path \u2014 When the Thesis Plays Out",
+    "subtitle": "Death by a thousand headlines is delaying demand destruction. Two specific dated milestones determine when oil math forces price discovery.",
+    "framing": "Jawbones are buying time, not changing fundamentals. The oil math at 4\u00d7 historical supply shock scale doesn't care about Truth Social. Either US/Iran re-escalates (traders scramble for August barrels) or we go straight to operational minimums. Pick your poison.",
+    "milestones": [
+      {
+        "date": "2026-06-15",
+        "label": "US crude exports priced out",
+        "description": "Marginal barrel cushion exhausted. US has offset 25% of global crude export decline via record 5,750 kbbl/d exports. When that's priced out, the rest of the world competes for the 1\u20132 mb/d gap.",
+        "source": "HFI Research, May 22 2026",
+        "tier": 1
+      },
+      {
+        "date": "2026-07-31",
+        "label": "US commercial crude \u2192 operational minimum",
+        "description": "US commercial storage reaches the JH MOI floor (~290 mb). US is the LAST place to draw (structural: shale ultra-light sweet vs heavy/medium sour refinery needs). When US can't supply the gap, sidelined buyers are forced into desperate bidding. Phase 3.",
+        "source": "HFI Research, May 22 2026",
+        "tier": 1
+      }
+    ],
+    "attribution": "HFI Research, Substack 'Death By A Thousand Headlines', May 22, 2026"
+  },
+  "demandDestructionReality": {
+    "regions": [
+      {
+        "region": "United States",
+        "totalMbd": 20.3,
+        "yoyChangeMbd": 0.6,
+        "source": "EIA implied demand"
+      },
+      {
+        "region": "China",
+        "totalMbd": 16.35,
+        "yoyChangeMbd": -0.4,
+        "source": "Goldman real-time"
+      },
+      {
+        "region": "OECD Europe",
+        "totalMbd": 13.1,
+        "yoyChangeMbd": -0.7,
+        "source": "Goldman real-time"
+      },
+      {
+        "region": "Japan",
+        "totalMbd": 3.2,
+        "yoyChangeMbd": 0,
+        "source": "Goldman real-time"
+      }
+    ],
+    "netGlobalChangeMbd": -0.5,
+    "requiredForBalanceMbd": 10,
+    "progressPct": 5,
+    "context": "At COVID-driven peak demand destruction, global demand fell ~20 mb/d. We've barely moved. Jawbones keep prices suppressed \u2192 no demand destruction \u2192 no balance. Per HFI: 'we are going full speed into the wall.'",
+    "source": "HFI Research May 22 2026; Goldman real-time; EIA"
+  },
+  "exportTrackers": [
+    {
+      "metric": "Global crude exports y-o-y",
+      "yoyChangeMbd": -6,
+      "currentMbd": 36,
+      "note": "Down from ~42 mb/d in January 2026 to ~36 mb/d May 2026 (Kpler)"
+    },
+    {
+      "metric": "US crude exports y-o-y",
+      "yoyChangeMbd": 2.1,
+      "currentMbd": 5.75,
+      "note": "RECORD. Up from ~4 mb/d to ~5.75 mb/d \u2014 the cushion that's offsetting 25% of global decline"
+    },
+    {
+      "metric": "OPEC+ crude exports y-o-y",
+      "yoyChangeMbd": -8,
+      "currentMbd": 17.5,
+      "note": "Collapsed from ~25 mb/d to ~17.5 mb/d (Kpler)"
+    }
+  ],
+  "usCommercialCrudeStorage": {
+    "currentMb": 440,
+    "fiveYrAvgMb": 430,
+    "peak2026Mb": 462,
+    "peak2026Date": "2026-05-08",
+    "operationalMinimumMb": 290,
+    "weeklyDrawRateMb": 7.9,
+    "weeksToFloor": 19,
+    "asOfDate": "2026-05-25",
+    "source": "EIA Weekly Stocks Report; HFI Research May 22 2026; JH MOI floor estimate"
   }
 }
