@@ -788,23 +788,74 @@ export async function fetchHyperliquidPerps(): Promise<HyperliquidData> {
  * still renders so the page doesn't look broken.
  */
 interface TickerSymbolConfig {
-  symbol: string;
+  symbol: string;          // Yahoo symbol (CL=F)
+  stooqSymbol?: string;    // Stooq alt (cl.f) — preferred for live overnight ticks
   display: string;
   fullName: string;
   fallbackPrice: number;
 }
 
 const LIVE_TICKER_SYMBOLS: TickerSymbolConfig[] = [
-  { symbol: "CL=F", display: "WTI", fullName: "WTI Crude Oil", fallbackPrice: 87 },
-  { symbol: "BZ=F", display: "Brent", fullName: "Brent Crude", fallbackPrice: 91 },
-  { symbol: "RB=F", display: "RBOB", fullName: "RBOB Gasoline", fallbackPrice: 3.05 },
-  { symbol: "HO=F", display: "HO", fullName: "Heating Oil", fallbackPrice: 3.5 },
-  { symbol: "NG=F", display: "NG", fullName: "Natural Gas", fallbackPrice: 4.5 },
-  { symbol: "GC=F", display: "Gold", fullName: "Gold", fallbackPrice: 2950 },
-  { symbol: "SI=F", display: "Silver", fullName: "Silver", fallbackPrice: 32 },
-  { symbol: "SB=F", display: "Sugar", fullName: "Sugar #11", fallbackPrice: 15 },
-  { symbol: "KC=F", display: "Coffee", fullName: "Coffee 'C'", fallbackPrice: 280 },
+  { symbol: "CL=F", stooqSymbol: "cl.f", display: "WTI", fullName: "WTI Crude Oil", fallbackPrice: 87 },
+  { symbol: "BZ=F", stooqSymbol: "b.f", display: "Brent", fullName: "Brent Crude", fallbackPrice: 91 },
+  { symbol: "RB=F", stooqSymbol: "rb.f", display: "RBOB", fullName: "RBOB Gasoline", fallbackPrice: 3.05 },
+  { symbol: "HO=F", stooqSymbol: "ho.f", display: "HO", fullName: "Heating Oil", fallbackPrice: 3.5 },
+  { symbol: "NG=F", stooqSymbol: "ng.f", display: "NG", fullName: "Natural Gas", fallbackPrice: 4.5 },
+  { symbol: "GC=F", stooqSymbol: "gc.f", display: "Gold", fullName: "Gold", fallbackPrice: 2950 },
+  { symbol: "SI=F", stooqSymbol: "si.f", display: "Silver", fullName: "Silver", fallbackPrice: 32 },
+  { symbol: "SB=F", stooqSymbol: "sb.f", display: "Sugar", fullName: "Sugar #11", fallbackPrice: 15 },
+  { symbol: "KC=F", stooqSymbol: "kc.f", display: "Coffee", fullName: "Coffee 'C'", fallbackPrice: 280 },
 ];
+
+/**
+ * Stooq returns live Globex overnight ticks for actively-trading futures.
+ * Yahoo's regularMarketPrice for CL=F etc. is sticky to the Friday/session
+ * close — it doesn't reflect Sunday-evening reopen or Asian-session trading.
+ *
+ * Stooq CSV format: symbol,date,time,open,high,low,close (where "close" is
+ * the last trade price). Returns null on parse failure or N/D rows.
+ *
+ * Caveat: Silver SI.F is returned in cents/oz on Stooq (e.g., 7824 = $78.24).
+ * We auto-detect and normalize.
+ */
+async function fetchStooqPrice(
+  stooqSymbol: string,
+): Promise<{ price: number; date: string } | null> {
+  try {
+    const url = `https://stooq.com/q/l/?s=${stooqSymbol}&f=sd2t2ohlc&h&e=csv`;
+    const response = await fetch(url, {
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; HormuzTracker/1.0)" },
+      signal: AbortSignal.timeout(5000),
+      next: { revalidate: 30 },
+    });
+    if (!response.ok) return null;
+    const text = await response.text();
+    // skip header line
+    const lines = text.trim().split("\n");
+    if (lines.length < 2) return null;
+    const dataLine = lines[lines.length - 1];
+    const parts = dataLine.split(",");
+    // [symbol, date, time, open, high, low, close]
+    if (parts.length < 7) return null;
+    const date = parts[1];
+    const closeStr = parts[6];
+    if (date === "N/D" || closeStr === "N/D") return null;
+    const price = Number(closeStr);
+    if (!Number.isFinite(price) || price <= 0) return null;
+    return { price, date };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Symbol-specific normalisation: Stooq silver is in cents/oz, divide by 100
+ * to match Yahoo's $/oz convention.
+ */
+function normaliseStooqPrice(stooqSymbol: string, raw: number): number {
+  if (stooqSymbol === "si.f" && raw > 1000) return raw / 100;
+  return raw;
+}
 
 /**
  * Fetch the live ticker bar payload. Wrapped in unstable_cache so the Yahoo
@@ -818,10 +869,21 @@ const LIVE_TICKER_SYMBOLS: TickerSymbolConfig[] = [
 async function fetchTickerDataInner(): Promise<LiveTickerData> {
   const results = await Promise.allSettled(
     LIVE_TICKER_SYMBOLS.map(async (cfg): Promise<LiveTickerQuote> => {
-      const { price, previousClose } = await fetchSinglePrice(
-        cfg.symbol,
-        cfg.fallbackPrice,
-      );
+      // Yahoo gives us the previous-close (needed for delta math) but its
+      // regularMarketPrice is sticky to the Friday/session close — doesn't
+      // reflect Globex overnight ticks during Sunday-eve reopen or Asian
+      // sessions. Stooq DOES have live overnight prices.
+      //
+      // Strategy: pull both. Use Stooq's price (live), Yahoo's previousClose
+      // (reliable). Fall back to Yahoo entirely if Stooq is unavailable.
+      const [yahoo, stooq] = await Promise.all([
+        fetchSinglePrice(cfg.symbol, cfg.fallbackPrice),
+        cfg.stooqSymbol ? fetchStooqPrice(cfg.stooqSymbol) : Promise.resolve(null),
+      ]);
+
+      const stooqPrice = stooq ? normaliseStooqPrice(cfg.stooqSymbol!, stooq.price) : null;
+      const price = stooqPrice ?? yahoo.price;
+      const previousClose = yahoo.previousClose;
 
       let change = 0;
       let changePercent = 0;
