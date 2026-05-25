@@ -22,7 +22,8 @@ function formatChangePercent(pct: number): string {
 
 function changeColor(pct: number): string {
   if (pct === 0) return "text-white/40";
-  return pct > 0 ? "text-red-400" : "text-green-400";
+  // Standard finance convention: green = up, red = down.
+  return pct > 0 ? "text-emerald-400" : "text-red-400";
 }
 
 /**
