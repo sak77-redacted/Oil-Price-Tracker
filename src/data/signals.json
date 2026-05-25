@@ -849,6 +849,11 @@
         "date": "2026-05-20",
         "brent": 105.54,
         "dubai": 120.0
+      },
+      {
+        "date": "2026-05-25",
+        "brent": 100.21,
+        "dubai": 111.21
       }
     ],
     "lastUpdated": "2026-05-25T18:00:00Z",
@@ -1339,8 +1344,8 @@
   "straitStatus": {
     "status": "closed",
     "since": "2026-04-18",
-    "description": "Day 83. May 20-21: Brent $105.54 (-5.1%), WTI $99.75 (-7.5%) on Trump 'final stages with Iran' + satellite confirmation of 3 East Asia-bound VLCCs attempting Strait transit \u2014 first VLCC crossing attempt since March blockade. Transit count ~12/day (est.). Physical gates NOT MET: spread $14.46 (need <$5), transit 12/day (need >50), insurance 5.8% (need <3%). Jawbone 8 statements / 51 days / 0 confirmed. | PRIOR: Day 81 of crisis. Strait remains effectively closed (~5% of pre-war traffic). May 19: Oil eased slightly (Brent -$0.82 to $111.28, WTI -$0.89 to $107.77) as Trump gave Iran 2\u20133 days (Fri\u2013Sun window) before resuming strike planning. Gulf Arab leaders say deal 'serious and underway'; US officials (Axios) call Iran proposal 'insufficient for a deal.' ...",
-    "lastUpdated": "2026-05-21T00:00:00Z",
+    "description": "Day 87. May 24-25: Trump Truth Social 'largely negotiated peace deal' (14-point MOU, defers nuclear file 30-60 days). April 7 Round 2 per Townsend/HFI. Brent $100.21 (-5.1% from May 21 $105.54 on Sunday open gap-down), WTI $96.60. Polymarket: blockade lifted by Jun 30 = 85% (was <50%); normal traffic by Jun 30 = 60%. 25-pp gap = market pricing partial recovery. Physical gates NOT MET: spread $11 (need <$5), transit ~12/day (need >50), insurance 5.8% (need <3%). Jawbone 10 statements / 55 days / 0 physical confirmations. HFI critical path: mid-June US exports priced out, late-July US commercial \u2192 operational minimum. | PRIOR:  Day 81 of crisis. Strait remains effectively closed (~5% of pre-war traffic). May 19: Oil eased slightly (Brent -$0.82 to $111.28, WTI -$0.89 to $107.77) as Trump gave Iran 2\u20133 days (Fri\u2013Sun window) before resuming strike planning. Gulf Arab leaders say deal 'serious and underway'; US officials (Axios) call Iran proposal 'insufficient for a deal.' ...",
+    "lastUpdated": "2026-05-25T04:30:00Z",
     "crisisDay": 87
   },
   "globalImpact": {
@@ -1696,9 +1701,27 @@
         "preCrisisProductionMbd": 105,
         "currentProductionMbd": 93,
         "trajectory": [
-          { "date": "2026-05-25", "label": "Today", "outageMbd": 12, "recoveredMbd": 0, "source": "Current production levels" },
-          { "date": "2026-07-31", "label": "July 2026", "outageMbd": 7, "recoveredMbd": 5, "source": "Polymarket-implied recovery curve via Downey" },
-          { "date": "2026-12-31", "label": "December 2026", "outageMbd": 2, "recoveredMbd": 10, "source": "Polymarket-implied recovery curve via Downey" }
+          {
+            "date": "2026-05-25",
+            "label": "Today",
+            "outageMbd": 12,
+            "recoveredMbd": 0,
+            "source": "Current production levels"
+          },
+          {
+            "date": "2026-07-31",
+            "label": "July 2026",
+            "outageMbd": 7,
+            "recoveredMbd": 5,
+            "source": "Polymarket-implied recovery curve via Downey"
+          },
+          {
+            "date": "2026-12-31",
+            "label": "December 2026",
+            "outageMbd": 2,
+            "recoveredMbd": 10,
+            "source": "Polymarket-implied recovery curve via Downey"
+          }
         ],
         "cumulativeInventoryDrawBnBbl": 1.5,
         "inventoryContext": "Equivalent to total global SPR \u2014 wiped out even WITH peace today. This is ADDITIONAL drawdown on top of existing draws since Feb 2026.",
@@ -2539,10 +2562,16 @@
         "spotBrent": 105.54,
         "brent36m": 75.0,
         "percentBackwardation": 28.9
+      },
+      {
+        "date": "2026-05-25",
+        "spotBrent": 100.21,
+        "brent36m": 75.0,
+        "percentBackwardation": 25.2
       }
     ],
     "lastUpdated": "2026-05-25T18:00:00Z",
-    "source": "ICE Brent futures curve: spot $105.54 (May 20 settle, -5.1% on Trump 'final stages' + supertanker transit attempt); 36-mo ~$75 (back end anchored \u2014 Currie thesis holds despite headline drop). % backwardation: 32.6% -> 28.9% as spot falls but back end stays pinned.",
+    "source": "ICE Brent futures curve: spot $100.21 (May 25 \u2014 softened on Trump 'peace deal' MOU announcement; ~$5 gap-down from May 20 $105.54 on April 7 Round 2 pattern); 36-mo ~$75 (back end anchored \u2014 Currie thesis holds). % backwardation: 28.9% \u2192 25.2% as spot falls but back end stays pinned. Polymarket pricing 85% blockade lifted by Jun 30.",
     "methodology": "% backwardation = (spot \u2212 36mo) / spot \u00d7 100. Extreme backwardation = supply shock priced into spot, not into long-run expectations \u2014 implying market expects rapid normalization. When the back end stays anchored ($75 vs Russia-Ukraine $86), spot can't break out even when the physical disruption deepens.",
     "physicalMarketNote": {
       "date": "2026-05-16",
