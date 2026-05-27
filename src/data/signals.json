@@ -1346,7 +1346,7 @@
     "since": "2026-04-18",
     "description": "Day 87. May 24-25: Trump Truth Social 'largely negotiated peace deal' (14-point MOU, defers nuclear file 30-60 days). April 7 Round 2 per Townsend/HFI. Brent $100.21 (-5.1% from May 21 $105.54 on Sunday open gap-down), WTI $96.60. Polymarket: blockade lifted by Jun 30 = 85% (was <50%); normal traffic by Jun 30 = 60%. 25-pp gap = market pricing partial recovery. Physical gates NOT MET: spread $11 (need <$5), transit ~12/day (need >50), insurance 5.8% (need <3%). Jawbone 10 statements / 55 days / 0 physical confirmations. HFI critical path: mid-June US exports priced out, late-July US commercial → operational minimum. | PRIOR:  Day 81 of crisis. Strait remains effectively closed (~5% of pre-war traffic). May 19: Oil eased slightly (Brent -$0.82 to $111.28, WTI -$0.89 to $107.77) as Trump gave Iran 2–3 days (Fri–Sun window) before resuming strike planning. Gulf Arab leaders say deal 'serious and underway'; US officials (Axios) call Iran proposal 'insufficient for a deal.' ...",
     "lastUpdated": "2026-05-25T04:30:00Z",
-    "crisisDay": 87
+    "crisisDay": 89
   },
   "globalImpact": {
     "worldOilAtRiskPct": 20,
@@ -3187,7 +3187,7 @@
     "latestDate": "2026-05-24",
     "latestSource": "Axios (Swan/Treene exclusive, May 24); CNBC (May 23); CBS News (May 24); CNN (May 24); Times of Israel (May 24)",
     "jawboneCount": 12,
-    "daysSinceFirstJawbone": 55,
+    "daysSinceFirstJawbone": 57,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3321,7 +3321,7 @@
     "phase": 1,
     "phaseName": "Excess Cash Burn",
     "phaseDescription": "Commercial available buffer above MOI cushion is being drawn down. EIA US commercial -7.9 mb/wk, global visible draws -52.5 mb/wk (Goldman). Burning ~3-4× faster than headline numbers suggest when measured against available, not total.",
-    "daysInPhase": 87,
+    "daysInPhase": 89,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
     "weeksToNextPhase": 17,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
