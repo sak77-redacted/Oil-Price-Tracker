@@ -621,9 +621,9 @@
     ]
   },
   "oilSpread": {
-    "brent": 95.81,
+    "brent": 96.89,
     "dubai": 105.1,
-    "spread": 9.29,
+    "spread": 8.21,
     "history": [
       {
         "date": "2026-02-26",
@@ -864,9 +864,14 @@
         "date": "2026-06-02",
         "brent": 95.81,
         "dubai": 105.1
+      },
+      {
+        "date": "2026-06-03",
+        "brent": 96.89,
+        "dubai": 105.1
       }
     ],
-    "lastUpdated": "2026-06-02T00:00:00Z",
+    "lastUpdated": "2026-06-03T00:00:00Z",
     "brentSource": "Yahoo Finance / OilPriceAPI Jun 2, 2026: Brent $95.81 (-0.79% DoD). WTI ~$92.50. Range: $92.86-$96.27. US-Iran negotiations ongoing; Rubio confirms Iran's new supreme leader 'engaged'. Brent easing as market prices rising diplomatic resolution probability.",
     "dubaiSource": "Dubai Crude Oil Platts futures (Investing.com). May 14 inversion print: $100.70.",
     "note": "[AUTO-SWEEP 2026-06-02] Brent $95.81 (-0.79% DoD from $96.57). Dubai $105.1 (unchanged — no fresh Platts print, manual review needed). Spread $9.29 (Dubai-Brent, widened as Brent falls while Dubai held). Crisis Day 95. SPR -9.1 mb/wk (374.2→365.1 mb, week ending May 22, approaching 10 mb/wk phase-2 trigger). HEADLINE: Japan MoF reverses crisis-era benchmark — switches gasoline subsidies BACK to Dubai from Brent (eff. Jun 4) as Dubai-Brent spread narrows from crisis peak. WTI 3-2-1 crack: $43.43/bbl (RBOB $3.0795/gal, HO ~$3.55/gal vs WTI $92.50 — compressed from $53-55 in May). US-Iran: Rubio says Iran's new supreme leader 'engaged'; negotiations still stalled on key issues. Hormuz shipping ~5% of pre-conflict levels. DHL: 4-6 months to normalise. ━━ [PRIOR MAY-28] [AUTO-SWEEP 2026-05-28] Brent $96.57 (+2.41% DoD). US-Iran 'renewed hostilities' weakened MOU optimism (Axios 60-day Hormuz ceasefire framework stalling per renewed military activity). Brent reboundin",
@@ -1155,7 +1160,7 @@
     "burnDownDays": 47,
     "futureBestCaseMissingMb": 760,
     "sprBreakdown": {
-      "us": 365.1,
+      "us": 357.1,
       "japan": 263,
       "europe": 179
     },
@@ -1171,11 +1176,11 @@
     "recordExportsMbd": 12.9,
     "usInventoryDecomp": {
       "region": "US Commercial",
-      "totalMb": 441.7,
+      "totalMb": 433.7,
       "moiFloorMb": 300,
-      "availableBufferMb": 141.7,
-      "weeklyBurnMb": 3.327,
-      "weeksToMOI": 42.6,
+      "availableBufferMb": 133.7,
+      "weeklyBurnMb": 7.974,
+      "weeksToMOI": 16.8,
       "moiComponents": {
         "linefillMb": 115,
         "tankBottomsMb": 85,
@@ -1267,7 +1272,7 @@
         "sprMb": 741
       }
     ],
-    "lastUpdated": "2026-06-02T00:00:00Z",
+    "lastUpdated": "2026-06-03T00:00:00Z",
     "source": "IEA OECD inventories. EIA Weekly Petroleum Status Report (May 21 release, week ending May 16): SPR -9.9 Mb + commercial crude -7.9 Mb = single-week record 17.8 Mb total US crude draw. Cushing 4th consecutive weekly decline. Total commercial oil + product stock at 5-yr range floor (1.22 Bn bbl vs 5-yr avg 1.25 Bn). Prior EIA May 13: record 8.6 Mb single-week SPR; SPR was 384.1 Mb; now 374.2 Mb. Goldman/JPM/HFI: April inventory draws 7.1 Mbpd, demand destruction 4.3 Mbpd; cumulative ~410 Mbbl drawn Mar+Apr+May to date. IEA SPR 120-day window exhausts ~Jul 9.",
     "physicalMarketNotes": [
       {
@@ -1322,13 +1327,13 @@
   },
   "usProductStocks": {
     "weeksToCritical": 2,
-    "criticalDateLabel": "late May 2026",
+    "criticalDateLabel": "early June 2026",
     "commercialDrawsMbd": 1.5,
     "pad1Status": "1–2 draws from critical",
     "japanAugFixturesMb": 12,
     "japanPreCrisisRange": "1–5 mb/month",
     "methodology": "Distillate inventories near 20-year seasonal lows per EIA May 21 (small modest tick-up this week but levels remain near record-low seasonal). PAD1 stocks 1–2 draws away from very low after EIA May 13 (commercial crude −4.3 Mb, gasoline below expectations, refineries at 91.7%). EIA May 21 follow-up: 7.9 Mb commercial crude draw, Cushing 4th weekly decline. Houston→Rotterdam and NYH→Rotterdam diesel arbs both wide open. US must defend product pricing or lose more barrels to Europe. Reference Signal 7 for the parallel SPR draw — 9.9 Mb single-week SPR release layered on simultaneous commercial draws.",
-    "lastUpdated": "2026-05-21T12:00:00+11:00",
+    "lastUpdated": "2026-06-03T00:00:00Z",
     "source": "EIA weekly stocks (May 21 release); Trade with Conviction (Neil Crosby), May 8, 2026; Ole S Hansen, Saxo (May 21, 2026)",
     "physicalMarketNote": {
       "date": "2026-05-08",
@@ -1746,9 +1751,9 @@
         "flag": "US",
         "released": true,
         "reserveDays": 0,
-        "releasedMb": 434.9,
-        "totalMb": 365.1,
-        "notes": "EIA Weekly Petroleum Status Report (May 21 release, data for week ending May 16): SPR = 374.2 Mb after 9.9 Mb single-week SPR release — layered on a 7.9 Mb commercial crude draw for a record 17.8 mb total US crude decline. Prior May 13 reading: 384.1 Mb (record 8.6 Mb withdrawal at that point). SPR now lowest since 2023 and approaching the ~160 day runway to the 150 Mb operational floor at the 1.4 Mbpd IEA-committed draw rate. (The original 400 Mb authorization was framed as 'exhausted' Apr 15; new tranche now well underway — releasedMb reflects cumulative draws across both tranches.)"
+        "releasedMb": 442.9,
+        "totalMb": 357.1,
+        "notes": "EIA Weekly Petroleum Status Report (June 3 release, data for week ending May 29): SPR = 357.1 Mb after 7.993 Mb draw (prior week: 365.1 Mb). Cumulative SPR decline since crisis withdrawals started (week ending March 20): 58.323 Mb total. Commercial crude also drew 7.974 Mb this week (EIA May 29). SPR draw rate 7.993 Mb/wk — just below the 10 Mb/wk Phase-2 transition trigger. releasedMb (442.9 Mb) reflects cumulative lifetime draws from historical ~800 Mb peak."
       },
       {
         "country": "Japan",
@@ -1788,7 +1793,7 @@
       }
     ],
     "chinaSignal": "China holds ~1.3–1.4 bn barrels in strategic reserves (largest in the world) and has still NOT released any as of May 21. Per EIA expectations, China is *expanding* stockpiles by ~1 mbpd in 2026 (record 580 mt 2025 imports = +4.6% YoY). Japan and South Korea (IEA members) have released; the US drew 9.9 Mb in a single SPR release per EIA May 21 (on top of a 7.9 Mb commercial draw — 17.8 Mb total record). China's continued forbearance — even with Brent recovering to $111 and the US bleeding SPR + commercial in tandem — remains the single most important crisis-tier signal we track. When China taps its SPR, it signals peak crisis.",
-    "lastUpdated": "2026-06-02T00:00:00Z",
+    "lastUpdated": "2026-06-03T00:00:00Z",
     "physicalMarketNotes": [
       {
         "date": "2026-05-21",
@@ -2435,14 +2440,14 @@
   "buyerStress": {
     "wafProgrammeStatus": "stalled",
     "wafProgrammeDescription": "WAF May programme bidding from Asian buyers remains unusually quiet — Indian and Chinese refiners largely absent from cargoes that would normally clear in the first half of the month. JH reads this as 'sitting on the sidelines hoping the Strait opens', not genuine demand softness.",
-    "crackSpread321": 43.43,
+    "crackSpread321": 41.71,
     "crackSpreadThreshold": 40,
     "buyerBehavior": "wait-and-see",
-    "buyerBehaviorDescription": "[Jun 2 update] WTI 3-2-1 crack compressed to $43.43/bbl at WTI ~$92.50 (RBOB $3.0795/gal, HO ~$3.55/gal). Down from $53-55 in mid-May as crude rallied harder than products. Still above $40 threshold — US refiners maintain economic pull on crude. WAF programme: Asian refiners in wait-and-see ahead of Axios 60-day MOU resolution. If deal closes, crack compresses further as crude reprices down. Watch for crack break below $40: that flips the bull signal. ━━ [May 19] WTI $107.77, crack $53.42. Asian refiners on max throughput from March/April cargoes.",
+    "buyerBehaviorDescription": "[Jun 3 update] WTI 3-2-1 crack 41.71/bbl at WTI $95.91 (RBOB $3.14/gal, HO ~$3.55/gal). Crude rose +$3.41 from Jun 2 ($92.50→$95.91) while RBOB +$0.06 — crack compressed as crude rallied harder than products. Still above $40 threshold (current $41.71 vs $40 trigger) — US refiners maintain economic pull on crude. Geopolitical risk premium re-bid as US-Iran peace talk uncertainty persists (Axios 60-day framework, May 24). WAF programme: Asian refiners in wait-and-see ahead of Axios 60-day MOU resolution. Watch for crack break below $40: that flips the bull signal. ━━ [May 19] WTI $107.77, crack $53.42. Asian refiners on max throughput from March/April cargoes.",
     "crisisStartDate": "2026-02-28",
     "demandDestructionVisible": false,
-    "lastUpdated": "2026-06-02T00:00:00Z",
-    "source": "WTI 3-2-1 crack 2026-06-02: RBOB $3.0795/gal (CME/Barchart) + HO est. ~$3.55/gal (TradingEconomics) vs WTI est. $92.50. Formula: (2*RBOB_bbl + HO_bbl - 3*WTI_bbl) / 3.",
+    "lastUpdated": "2026-06-03T00:00:00Z",
+    "source": "WTI 3-2-1 crack 2026-06-03: RBOB $3.14/gal (June 3, 2026) + HO est. ~$3.55/gal vs WTI $95.91. Formula: (2*RBOB_bbl + HO_bbl - 3*WTI_bbl) / 3.",
     "methodology": "When this lull breaks, WAF May programme bidding will spike first. Watch this for the inflection. Crack > $40 = refiners keep pulling crude (bullish-crude). Crack < $40 = product demand cracking (bearish-crude topping signal).",
     "physicalMarketNotes": [
       {
@@ -2460,12 +2465,12 @@
     ]
   },
   "curveShape": {
-    "spotBrent": 96.57,
+    "spotBrent": 96.89,
     "brent12m": 91,
     "brent24m": 81,
     "brent36m": 75.0,
-    "percentBackwardation": 22.3,
-    "absoluteBackwardation": 21.57,
+    "percentBackwardation": 22.6,
+    "absoluteBackwardation": 21.89,
     "threshold": 25,
     "atHigh": {
       "date": "2026-04-30",
@@ -2584,9 +2589,15 @@
         "spotBrent": 96.57,
         "brent36m": 75.0,
         "percentBackwardation": 22.3
+      },
+      {
+        "date": "2026-06-03",
+        "spotBrent": 96.89,
+        "brent36m": 75.0,
+        "percentBackwardation": 22.6
       }
     ],
-    "lastUpdated": "2026-05-28T23:30:00Z",
+    "lastUpdated": "2026-06-03T00:00:00Z",
     "source": "ICE Brent futures curve: spot $100.21 (May 25 — softened on Trump 'peace deal' MOU announcement; ~$5 gap-down from May 20 $105.54 on April 7 Round 2 pattern); 36-mo ~$75 (back end anchored — Currie thesis holds). % backwardation: 28.9% → 25.2% as spot falls but back end stays pinned. Polymarket pricing 85% blockade lifted by Jun 30.",
     "methodology": "% backwardation = (spot − 36mo) / spot × 100. Extreme backwardation = supply shock priced into spot, not into long-run expectations — implying market expects rapid normalization. When the back end stays anchored ($75 vs Russia-Ukraine $86), spot can't break out even when the physical disruption deepens.",
     "physicalMarketNote": {
@@ -3203,7 +3214,7 @@
     "latestDate": "2026-05-24",
     "latestSource": "Axios (Swan/Treene exclusive, May 24); CNBC (May 23); CBS News (May 24); CNN (May 24); Times of Israel (May 24)",
     "jawboneCount": 12,
-    "daysSinceFirstJawbone": 63,
+    "daysSinceFirstJawbone": 64,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3223,12 +3234,12 @@
       },
       {
         "label": "Spread compression below $5",
-        "currentValue": "$8.53",
+        "currentValue": "$8.21",
         "status": "not met"
       },
       {
         "label": "Backwardation below 15%",
-        "currentValue": "22.3%",
+        "currentValue": "22.6%",
         "status": "not met"
       }
     ],
@@ -3336,10 +3347,10 @@
   "phaseIndicator": {
     "phase": 1,
     "phaseName": "Excess Cash Burn",
-    "phaseDescription": "Commercial available buffer above MOI cushion being drawn down. EIA US commercial -3.3 mb/wk (week ending May 22; prior week was record -7.9 mb/wk). SPR: -9.1 mb/wk (week ending May 22: 374.2→365.1 mb — approaching 10 mb/wk Phase-2 transition trigger). Global visible draws -52.5 mb/wk (Goldman Exhibit 10, last updated May 2026). US available buffer: 141.7 mb; at current -3.3 mb/wk = 42.6 weeks to MOI floor. Caution: weekly burn highly variable (prior week was 2.4x higher at 7.9 mb). Phase 2 (SPR Draws) triggers if SPR draw sustains >10 mb/wk — current SPR at 9.1 mb/wk is approaching this threshold.",
-    "daysInPhase": 95,
+    "phaseDescription": "Commercial available buffer above MOI cushion being drawn down. EIA US commercial -7.974 mb/wk (week ending May 29; previous week -3.3 mb/wk). SPR: -7.993 mb/wk (week ending May 29: 365.1→357.1 mb). Cumulative SPR drawn since March 20: 58.323 Mb. Global visible draws -52.5 mb/wk (Goldman Exhibit 10, last updated May 2026). US available buffer: 133.7 mb; at -7.974 mb/wk = 16.8 weeks to MOI floor. Phase 2 (SPR Draws) triggers if SPR draw sustains >10 mb/wk — current SPR at 7.993 mb/wk remains below threshold. Burn rate returned to -8 mb/wk after prior week's brief moderation to -3.3 mb/wk.",
+    "daysInPhase": 96,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
-    "weeksToNextPhase": 16,
+    "weeksToNextPhase": 17,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
     "morganDowneyContext": "Per Morgan Downey (Macrovoices, May 21, 2026): 'Down to weeks, not months. Working-capital efficiency cushion (~1Bn bbl loosened over 5 years) has been spent into this crisis. >50% probability of $150-200 oil within 30 days at current pace.' Our 18-week linear estimate is the UPPER bound — burn rate accelerates as buffer thins."
   },
@@ -3419,14 +3430,14 @@
     }
   ],
   "usCommercialCrudeStorage": {
-    "currentMb": 440,
+    "currentMb": 433.7,
     "fiveYrAvgMb": 430,
     "peak2026Mb": 462,
     "peak2026Date": "2026-05-08",
     "operationalMinimumMb": 290,
-    "weeklyDrawRateMb": 7.9,
-    "weeksToFloor": 19,
-    "asOfDate": "2026-05-25",
+    "weeklyDrawRateMb": 7.97,
+    "weeksToFloor": 18.0,
+    "asOfDate": "2026-05-29",
     "source": "EIA Weekly Stocks Report; HFI Research May 22 2026; JH MOI floor estimate"
   }
 }
