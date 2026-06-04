@@ -1361,7 +1361,7 @@
     "since": "2026-04-18",
     "description": "Day 87. May 24-25: Trump Truth Social 'largely negotiated peace deal' (14-point MOU, defers nuclear file 30-60 days). April 7 Round 2 per Townsend/HFI. Brent $100.21 (-5.1% from May 21 $105.54 on Sunday open gap-down), WTI $96.60. Polymarket: blockade lifted by Jun 30 = 85% (was <50%); normal traffic by Jun 30 = 60%. 25-pp gap = market pricing partial recovery. Physical gates NOT MET: spread $11 (need <$5), transit ~12/day (need >50), insurance 5.8% (need <3%). Jawbone 10 statements / 55 days / 0 physical confirmations. HFI critical path: mid-June US exports priced out, late-July US commercial → operational minimum. | PRIOR:  Day 81 of crisis. Strait remains effectively closed (~5% of pre-war traffic). May 19: Oil eased slightly (Brent -$0.82 to $111.28, WTI -$0.89 to $107.77) as Trump gave Iran 2–3 days (Fri–Sun window) before resuming strike planning. Gulf Arab leaders say deal 'serious and underway'; US officials (Axios) call Iran proposal 'insufficient for a deal.' ...",
     "lastUpdated": "2026-05-28T00:00:00Z",
-    "crisisDay": 94
+    "crisisDay": 97
   },
   "globalImpact": {
     "worldOilAtRiskPct": 20,
@@ -3214,7 +3214,7 @@
     "latestDate": "2026-05-24",
     "latestSource": "Axios (Swan/Treene exclusive, May 24); CNBC (May 23); CBS News (May 24); CNN (May 24); Times of Israel (May 24)",
     "jawboneCount": 12,
-    "daysSinceFirstJawbone": 64,
+    "daysSinceFirstJawbone": 65,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3348,7 +3348,7 @@
     "phase": 1,
     "phaseName": "Excess Cash Burn",
     "phaseDescription": "Commercial available buffer above MOI cushion being drawn down. EIA US commercial -7.974 mb/wk (week ending May 29; previous week -3.3 mb/wk). SPR: -7.993 mb/wk (week ending May 29: 365.1→357.1 mb). Cumulative SPR drawn since March 20: 58.323 Mb. Global visible draws -52.5 mb/wk (Goldman Exhibit 10, last updated May 2026). US available buffer: 133.7 mb; at -7.974 mb/wk = 16.8 weeks to MOI floor. Phase 2 (SPR Draws) triggers if SPR draw sustains >10 mb/wk — current SPR at 7.993 mb/wk remains below threshold. Burn rate returned to -8 mb/wk after prior week's brief moderation to -3.3 mb/wk.",
-    "daysInPhase": 96,
+    "daysInPhase": 97,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
     "weeksToNextPhase": 17,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
