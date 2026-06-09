@@ -621,15 +621,10 @@
     ]
   },
   "oilSpread": {
-    "brent": 93.09,
-    "dubai": 105.1,
-    "spread": 12.01,
+    "brent": 91.11,
+    "dubai": 100.7,
+    "spread": 9.59,
     "history": [
-      {
-        "date": "2026-02-26",
-        "brent": 76,
-        "dubai": 77
-      },
       {
         "date": "2026-02-27",
         "brent": 78,
@@ -874,9 +869,14 @@
         "date": "2026-06-05",
         "brent": 93.09,
         "dubai": 105.1
+      },
+      {
+        "date": "2026-06-09",
+        "brent": 91.11,
+        "dubai": 100.7
       }
     ],
-    "lastUpdated": "2026-06-05T00:00:00Z",
+    "lastUpdated": "2026-06-09T00:00:00Z",
     "brentSource": "Yahoo Finance / WebSearch Jun 5, 2026: Brent $93.09 (-2.04% DoD from $95.81). WTI ~$92.09. Brent slid on diplomatic progress (SPECIFIC_TERMS_LEAKED status) and weaker Chinese import data (10-year low refinery throughput).",
     "dubaiSource": "Dubai Crude Oil Platts futures (Investing.com). May 14 inversion print: $100.70.",
     "note": "[AUTO-SWEEP 2026-06-05] Brent $93.09 (-2.04% DoD from $95.81). Dubai $105.1 (unchanged — no fresh Platts print, manual review needed). Spread $12.01 (Dubai-Brent, WIDENED — Brent fell faster than Dubai physical as market prices diplomatic resolution risk; physical tightness persists). Crisis Day 100. Saudi OSP: Arab Light June OSP to Asia CUT $4/bbl to $15.50 over Oman/Dubai — FLAGGED FOR HUMAN REVIEW (per discoveryalert.com.au). Chinese crude imports 10-year low — demand-side headwind confirmed. Physical gates: spread $12.01 (need <$5), transit ~12/day (need >50), insurance 5.8% (need <3%). EIA: no new report (next Jun 11 for week ending Jun 6). ━━ [AUTO-SWEEP 2026-06-02] Brent $95.81 (-0.79% DoD from $96.57). Dubai $105.1 (unchanged — no fresh Platts print, manual review needed). Spread $9.29 (Dubai-Brent, widened as Brent falls while Dubai held). Crisis Day 95. SPR -9.1 mb/wk (374.2→365.1 mb, week ending May 22, approaching 10 mb/wk phase-2 trigger). HEADLINE: Japan MoF reverses crisis-era benchmark — switches gasoline subsidies BACK to Dubai from Brent (eff. Jun 4) as Dubai-Brent spread narrows from crisis peak. WTI 3-2-1 crack: $43.43/bbl (RBOB $3.0795/gal, HO ~$3.55/gal vs WTI $92.50 — compressed from $53-55 in May). US-Iran: Rubio says Iran's new supreme leader 'engaged'; negotiations still stalled on key issues. Hormuz shipping ~5% of pre-conflict levels. DHL: 4-6 months to normalise. ━━ [PRIOR MAY-28] [AUTO-SWEEP 2026-05-28] Brent $96.57 (+2.41% DoD). US-Iran 'renewed hostilities' weakened MOU optimism (Axios 60-day Hormuz ceasefire framework stalling per renewed military activity). Brent reboundin",
@@ -2445,13 +2445,13 @@
   "buyerStress": {
     "wafProgrammeStatus": "stalled",
     "wafProgrammeDescription": "WAF May programme bidding from Asian buyers remains unusually quiet — Indian and Chinese refiners largely absent from cargoes that would normally clear in the first half of the month. JH reads this as 'sitting on the sidelines hoping the Strait opens', not genuine demand softness.",
-    "crackSpread321": 41.8,
+    "crackSpread321": 43.74,
     "crackSpreadThreshold": 40,
     "buyerBehavior": "wait-and-see",
     "buyerBehaviorDescription": "[Jun 5 update] WTI 3-2-1 crack 41.8/bbl at WTI ~$92.09 (RBOB $2.9868/gal, HO $3.59/gal). Crack essentially flat vs Jun 3 ($41.71) — both crude and products fell proportionally. Crack at $41.8 vs $40 threshold: US refiners marginally economic pulling crude. Watch for break below $40 as diplomatic resolution accelerates. Chinese imports 10-yr low headwind. Brent -2.04% on SPECIFIC_TERMS_LEAKED diplomatic status. ━━ [Jun 3 update] WTI 3-2-1 crack 41.71/bbl at WTI $95.91 (RBOB $3.14/gal, HO ~$3.55/gal). Crude rose +$3.41 from Jun 2 ($92.50→$95.91) while RBOB +$0.06 — crack compressed as crude rallied harder than products. Still above $40 threshold (current $41.71 vs $40 trigger) — US refiners maintain economic pull on crude. Geopolitical risk premium re-bid as US-Iran peace talk uncertainty persists (Axios 60-day framework, May 24). WAF programme: Asian refiners in wait-and-see ahead of Axios 60-day MOU resolution. Watch for crack break below $40: that flips the bull signal. ━━ [May 19] WTI $107.77, crack $53.42. Asian refiners on max throughput from March/April cargoes.",
     "crisisStartDate": "2026-02-28",
     "demandDestructionVisible": false,
-    "lastUpdated": "2026-06-05T00:00:00Z",
+    "lastUpdated": "2026-06-09T00:00:00Z",
     "source": "WTI 3-2-1 crack 2026-06-05: RBOB $2.9868/gal + HO $3.59/gal vs WTI ~$92.09/bbl. Formula: (2*RBOB_bbl + HO_bbl - 3*WTI_bbl)/3. RBOB: Yahoo Finance RB=F Jun 5, 2026 confirmed $2.9868/gal. HO: TradingEconomics heating oil Jun 5, 2026 confirmed $3.59/gal (-2.35%). WTI: estimated ~$92.09 (Brent $93.09 - $1.00 observed spread).",
     "methodology": "When this lull breaks, WAF May programme bidding will spike first. Watch this for the inflection. Crack > $40 = refiners keep pulling crude (bullish-crude). Crack < $40 = product demand cracking (bearish-crude topping signal).",
     "physicalMarketNotes": [
@@ -2470,12 +2470,12 @@
     ]
   },
   "curveShape": {
-    "spotBrent": 93.09,
+    "spotBrent": 91.11,
     "brent12m": 91,
     "brent24m": 81,
     "brent36m": 75.0,
-    "percentBackwardation": 19.4,
-    "absoluteBackwardation": 18.09,
+    "percentBackwardation": 17.68,
+    "absoluteBackwardation": 16.11,
     "threshold": 25,
     "atHigh": {
       "date": "2026-04-30",
@@ -2606,10 +2606,16 @@
         "spotBrent": 93.09,
         "brent36m": 75.0,
         "percentBackwardation": 19.4
+      },
+      {
+        "date": "2026-06-09",
+        "spotBrent": 91.11,
+        "brent36m": 75.0,
+        "percentBackwardation": 17.68
       }
     ],
-    "lastUpdated": "2026-06-05T00:00:00Z",
-    "source": "ICE Brent futures curve: spot $100.21 (May 25 — softened on Trump 'peace deal' MOU announcement; ~$5 gap-down from May 20 $105.54 on April 7 Round 2 pattern); 36-mo ~$75 (back end anchored — Currie thesis holds). % backwardation: 28.9% → 25.2% as spot falls but back end stays pinned. Polymarket pricing 85% blockade lifted by Jun 30.",
+    "lastUpdated": "2026-06-09T00:00:00Z",
+    "source": "ICE Brent futures curve: spot $91.11 (2026-06-09 — Iran-Israel halt attacks/ceasefire optimism; down from $93.09 on 2026-06-05); 36-mo ~$75.0 (back end anchored — Currie thesis holds). % backwardation: 17.68% (16.11 pts absolute). Polymarket pricing 85% blockade lifted by Jun 30.",
     "methodology": "% backwardation = (spot − 36mo) / spot × 100. Extreme backwardation = supply shock priced into spot, not into long-run expectations — implying market expects rapid normalization. When the back end stays anchored ($75 vs Russia-Ukraine $86), spot can't break out even when the physical disruption deepens.",
     "physicalMarketNote": {
       "date": "2026-05-16",
@@ -3225,7 +3231,7 @@
     "latestDate": "2026-05-24",
     "latestSource": "Axios (Swan/Treene exclusive, May 24); CNBC (May 23); CBS News (May 24); CNN (May 24); Times of Israel (May 24)",
     "jawboneCount": 12,
-    "daysSinceFirstJawbone": 68,
+    "daysSinceFirstJawbone": 70,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3359,7 +3365,7 @@
     "phase": 1,
     "phaseName": "Excess Cash Burn",
     "phaseDescription": "Commercial available buffer above MOI cushion being drawn down. EIA US commercial -7.974 mb/wk (week ending May 29; previous week -3.3 mb/wk). SPR: -7.993 mb/wk (week ending May 29: 365.1→357.1 mb). Cumulative SPR drawn since March 20: 58.323 Mb. Global visible draws -52.5 mb/wk (Goldman Exhibit 10, last updated May 2026). US available buffer: 133.7 mb; at -7.974 mb/wk = 16.8 weeks to MOI floor. Phase 2 (SPR Draws) triggers if SPR draw sustains >10 mb/wk — current SPR at 7.993 mb/wk remains below threshold. Burn rate returned to -8 mb/wk after prior week's brief moderation to -3.3 mb/wk.",
-    "daysInPhase": 100,
+    "daysInPhase": 102,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
     "weeksToNextPhase": 17,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
