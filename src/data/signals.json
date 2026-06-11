@@ -3231,7 +3231,7 @@
     "latestDate": "2026-05-24",
     "latestSource": "Axios (Swan/Treene exclusive, May 24); CNBC (May 23); CBS News (May 24); CNN (May 24); Times of Israel (May 24)",
     "jawboneCount": 12,
-    "daysSinceFirstJawbone": 70,
+    "daysSinceFirstJawbone": 72,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3365,9 +3365,9 @@
     "phase": 1,
     "phaseName": "Excess Cash Burn",
     "phaseDescription": "Commercial available buffer above MOI cushion being drawn down. EIA US commercial -7.974 mb/wk (week ending May 29; previous week -3.3 mb/wk). SPR: -7.993 mb/wk (week ending May 29: 365.1→357.1 mb). Cumulative SPR drawn since March 20: 58.323 Mb. Global visible draws -52.5 mb/wk (Goldman Exhibit 10, last updated May 2026). US available buffer: 133.7 mb; at -7.974 mb/wk = 16.8 weeks to MOI floor. Phase 2 (SPR Draws) triggers if SPR draw sustains >10 mb/wk — current SPR at 7.993 mb/wk remains below threshold. Burn rate returned to -8 mb/wk after prior week's brief moderation to -3.3 mb/wk.",
-    "daysInPhase": 102,
+    "daysInPhase": 104,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
-    "weeksToNextPhase": 17,
+    "weeksToNextPhase": 16,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
     "morganDowneyContext": "Per Morgan Downey (Macrovoices, May 21, 2026): 'Down to weeks, not months. Working-capital efficiency cushion (~1Bn bbl loosened over 5 years) has been spent into this crisis. >50% probability of $150-200 oil within 30 days at current pace.' Our 18-week linear estimate is the UPPER bound — burn rate accelerates as buffer thins."
   },
