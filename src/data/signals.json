@@ -649,9 +649,9 @@
     ]
   },
   "oilSpread": {
-    "brent": 72.0,
-    "dubai": 76.5,
-    "spread": 4.5,
+    "brent": 72.4,
+    "dubai": 72.1,
+    "spread": -0.3,
     "history": [
       {
         "date": "2026-02-27",
@@ -922,9 +922,14 @@
         "date": "2026-06-26",
         "brent": 72.0,
         "dubai": 76.5
+      },
+      {
+        "date": "2026-06-30",
+        "brent": 72.4,
+        "dubai": 72.1
       }
     ],
-    "lastUpdated": "2026-06-28T00:00:00Z",
+    "lastUpdated": "2026-06-30T20:01:00Z",
     "brentSource": "WebSearch via tradingeconomics.com / CNBC Jun 21 2026: Brent $80.38 (Jun 19 close, down from $87.33 on Jun 12 as MOU signed Versailles Jun 17). WTI $76.51 (Jul'26, CNBC Jun 21). Dubai physical $100.7 STALE — no fresh Platts print available; manual update required. Apparent spread $20.32 = paper Brent collapsed on MOU news while physical Dubai lagged (consistent with prior sweep pattern).",
     "dubaiSource": "Dubai Crude Oil Platts futures (Investing.com). May 14 inversion print: $100.70.",
     "note": "Brent-Dubai spread compressed from $20.32 peak to $6.22 (Jun 25) as MOU signed Versailles Jun 17 allows partial physical recovery. IRGC renewed transit warnings Jun 25 — spread exit trigger (<$5) APPROACHING. Dubai est. via CME range low $80.24 (stale spot — manual review recommended for confirmed Platts Dubai). Brent $74.02 — near pre-crisis level.",
@@ -1413,8 +1418,8 @@
     "status": "closed",
     "since": "2026-04-18",
     "description": "Day 120. Islamabad MoU signed Jun 17 (Trump + Iranian President Pezeshkian) — 60-day ceasefire, Hormuz reopening. Transit briefly hit 55-93/day Jun 19-21. Then: Iran IRGC drones struck Ever Lovely (Jun 25, Singapore-flagged) and crude tanker Kiku (Jun 27, Panama-flagged) on JMIC-designated safe Omani corridor. US struck Iran Jun 27. Transit back to ~5/day. VLCC rates at 22-month high (~$420k/day). Jul 19: US naval blockade-lift deadline (21 days). Brent $72.00 — 4% below pre-crisis level. Curve in contango (-4.17%). Insurance ~3.5% hull.",
-    "lastUpdated": "2026-06-28T00:00:00Z",
-    "crisisDay": 117
+    "lastUpdated": "2026-06-30T20:01:00Z",
+    "crisisDay": 119
   },
   "globalImpact": {
     "worldOilAtRiskPct": 20,
@@ -2515,7 +2520,8 @@
         "attribution": "JH (@CRUDEOIL231)",
         "context": "The leading indicator: WAF May programme activity is the canary."
       }
-    ]
+    ],
+    "crackSpreadUsd": 55.82
   },
   "curveShape": {
     "spotBrent": 72.0,
@@ -3297,7 +3303,7 @@
     "latestDate": "2026-06-27",
     "latestSource": "Bloomberg Jun 26 (Trump ceasefire-violation claim); Al Jazeera Jun 26 (US strikes Iran); TechTimes Jun 28 (VLCC rates 22-month high); hormuztracking.com Jun 28 (live: 4 vessels); straits.live Jun 27 (Day 119 closed); NPR Jun 15 (Islamabad MoU)",
     "jawboneCount": 16,
-    "daysSinceFirstJawbone": 89,
+    "daysSinceFirstJawbone": 91,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3431,12 +3437,12 @@
     "phase": 1,
     "phaseName": "Excess Cash Burn",
     "phaseDescription": "[Updated Jun 25] MOU signed Versailles Jun 17 (Trump/Pezeshkian) — US blockade lift by Jul 19 (24 days), Iran 'best efforts' to restore flows. IRGC renewed transit warnings Jun 25: ships turning back, ~5/day transits (vs 93/day Jun 19-21 peak, 39/day Jun 23). MOU physically contested. SPR: 331.2 Mb — new record low since 1983; -9.1 Mb draw week ending Jun 19 (ACCELERATING from ~5.6 Mb/wk). Brent paper $74.02 (lowest since pre-crisis); Dubai est. $80.24; spread compressed $20.32→$6.22 (exit trigger <$5 approaching). Forward curve near flat (~-1.3% backwardation): market pricing future normalization. Jul 19 blockade-lift deadline: 24 days. Jul 22 nuclear window: 27 days. Phase 1 (Excess Cash Burn) continues: burn rate re-accelerated; physical transit not yet normalized. Crisis Day 118.",
-    "daysInPhase": 120,
+    "daysInPhase": 122,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
     "weeksToNextPhase": 14,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
     "morganDowneyContext": "Per Morgan Downey (Macrovoices, May 21, 2026): 'Down to weeks, not months. Working-capital efficiency cushion (~1Bn bbl loosened over 5 years) has been spent into this crisis. >50% probability of $150-200 oil within 30 days at current pace.' Our 18-week linear estimate is the UPPER bound — burn rate accelerates as buffer thins.",
-    "lastUpdated": "2026-06-28T00:00:00Z"
+    "lastUpdated": "2026-06-30T20:01:00Z"
   },
   "criticalPath": {
     "title": "HFI Critical Path — When the Thesis Plays Out",
