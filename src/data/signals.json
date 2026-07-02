@@ -3303,7 +3303,7 @@
     "latestDate": "2026-06-27",
     "latestSource": "Bloomberg Jun 26 (Trump ceasefire-violation claim); Al Jazeera Jun 26 (US strikes Iran); TechTimes Jun 28 (VLCC rates 22-month high); hormuztracking.com Jun 28 (live: 4 vessels); straits.live Jun 27 (Day 119 closed); NPR Jun 15 (Islamabad MoU)",
     "jawboneCount": 16,
-    "daysSinceFirstJawbone": 91,
+    "daysSinceFirstJawbone": 93,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3436,13 +3436,13 @@
   "phaseIndicator": {
     "phase": 1,
     "phaseName": "Excess Cash Burn",
-    "phaseDescription": "[Updated Jun 25] MOU signed Versailles Jun 17 (Trump/Pezeshkian) — US blockade lift by Jul 19 (24 days), Iran 'best efforts' to restore flows. IRGC renewed transit warnings Jun 25: ships turning back, ~5/day transits (vs 93/day Jun 19-21 peak, 39/day Jun 23). MOU physically contested. SPR: 331.2 Mb — new record low since 1983; -9.1 Mb draw week ending Jun 19 (ACCELERATING from ~5.6 Mb/wk). Brent paper $74.02 (lowest since pre-crisis); Dubai est. $80.24; spread compressed $20.32→$6.22 (exit trigger <$5 approaching). Forward curve near flat (~-1.3% backwardation): market pricing future normalization. Jul 19 blockade-lift deadline: 24 days. Jul 22 nuclear window: 27 days. Phase 1 (Excess Cash Burn) continues: burn rate re-accelerated; physical transit not yet normalized. Crisis Day 118.",
-    "daysInPhase": 122,
+    "phaseDescription": "[Updated Jun 25] MOU signed Versailles Jun 17 (Trump/Pezeshkian) — US blockade lift by Jul 19 (17 days), Iran 'best efforts' to restore flows. IRGC renewed transit warnings Jun 25: ships turning back, ~5/day transits (vs 93/day Jun 19-21 peak, 39/day Jun 23). MOU physically contested. SPR: 331.2 Mb — new record low since 1983; -9.1 Mb draw week ending Jun 19 (ACCELERATING from ~5.6 Mb/wk). Brent paper $74.02 (lowest since pre-crisis); Dubai est. $80.24; spread compressed $20.32→$6.22 (exit trigger <$5 approaching). Forward curve near flat (~-1.3% backwardation): market pricing future normalization. Jul 19 blockade-lift deadline: 17 days. Jul 22 nuclear window: 20 days. Phase 1 (Excess Cash Burn) continues: burn rate re-accelerated; physical transit not yet normalized. Crisis Day 125.",
+    "daysInPhase": 124,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
     "weeksToNextPhase": 14,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
     "morganDowneyContext": "Per Morgan Downey (Macrovoices, May 21, 2026): 'Down to weeks, not months. Working-capital efficiency cushion (~1Bn bbl loosened over 5 years) has been spent into this crisis. >50% probability of $150-200 oil within 30 days at current pace.' Our 18-week linear estimate is the UPPER bound — burn rate accelerates as buffer thins.",
-    "lastUpdated": "2026-06-30T20:01:00Z"
+    "lastUpdated": "2026-07-02T00:00:00Z"
   },
   "criticalPath": {
     "title": "HFI Critical Path — When the Thesis Plays Out",
