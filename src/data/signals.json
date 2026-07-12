@@ -1429,7 +1429,7 @@
     "since": "2026-04-18",
     "description": "Day 131. Jul 8: Trump declared Jun 17 Versailles MoU ceasefire 'over', threatened second bombing campaign + reimposition of US naval blockade. US Treasury reimposed sanctions on Iranian oil exports (lifted after MoU). CENTCOM announced strikes on IRGC military sites near Hormuz. Preceding events: IRGC drones hit 3 ships Jul 6-7 — Qatari LNG carrier Al Rekayyat (engine room fire), Saudi supertanker Wedyan, third tanker off Oman. Most attacks in single day since late April per IMO. Brent settled $78.02 (+5.2%), intraday $80.12. WTI ~$74. Transit ~5/day. VLCC rates $286.5k/day (Jul 3 Baltic). Insurance ~3.5% hull. Jul 19 US blockade-lift deadline: VOID (Trump stated naval blockade will be reimposed).",
     "lastUpdated": "2026-07-08T20:00:00Z",
-    "crisisDay": 131
+    "crisisDay": 135
   },
   "globalImpact": {
     "worldOilAtRiskPct": 20,
@@ -3319,7 +3319,7 @@
     "latestDate": "2026-07-08",
     "latestSource": "CNBC Jul 8 (Trump ceasefire 'over', naval blockade threat); Reuters Jul 7-8 (tanker attacks, sanctions); NPR Jul 7 (3 ships hit Hormuz); US Treasury/CENTCOM announcements Jul 8; S&P Global Jul 8 (Brent $80.12 intraday)",
     "jawboneCount": 16,
-    "daysSinceFirstJawbone": 98,
+    "daysSinceFirstJawbone": 103,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3460,12 +3460,12 @@
     "phase": 1,
     "phaseName": "Excess Cash Burn",
     "phaseDescription": "[Updated Jul 8] Jun 17 Versailles MoU VOIDED — Trump declared ceasefire 'over', naval blockade reimposition announced. US reimposed Iran oil sanctions. Crisis returns to pre-deal trajectory. SPR: 325.7 Mb (week ending Jun 26 EIA) — record low since 1983. Drawing ~7.9+ Mb/wk. Brent +5.2% to $78.02 on Jul 8. VLCC $286.5k/day. Transit ~5/day. Available buffer burns ~3-4× faster than headline suggests (MOI floor ~300 Mb). Phase 1 continues — Phase 2 (SPR draws > 10 Mb/wk) transition risk elevated.",
-    "daysInPhase": 131,
+    "daysInPhase": 135,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
-    "weeksToNextPhase": 14,
+    "weeksToNextPhase": 13,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
     "morganDowneyContext": "Per Morgan Downey (Macrovoices, May 21, 2026): 'Down to weeks, not months. Working-capital efficiency cushion (~1Bn bbl loosened over 5 years) has been spent into this crisis. >50% probability of $150-200 oil within 30 days at current pace.' Our 18-week linear estimate is the UPPER bound — burn rate accelerates as buffer thins.",
-    "lastUpdated": "2026-07-06T20:04:00Z"
+    "lastUpdated": "2026-07-12T20:04:00Z"
   },
   "criticalPath": {
     "title": "HFI Critical Path — When the Thesis Plays Out",
