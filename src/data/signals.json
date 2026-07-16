@@ -1436,9 +1436,9 @@
   "straitStatus": {
     "status": "closed",
     "since": "2026-04-18",
-    "description": "Day 138. Jul 15: US airstrikes on Iran day 5; naval blockade of Iranian ports near Hormuz formally reinstated by CENTCOM. Brent $85.84 (+$7.82 since Jul 8 close $78.02). VLCC GOO-China $145k/day (Baltic Exchange, up 7% vs Jul 1). Insurance ~5% hull (back near peak). SPR 319.48 Mb (Jul 3, 1983 record low). Commercial crude 409.7 Mb (Jul 10). Transit ~5/day (AIS). Ceasefire: VOID (Jun 17 Versailles MoU declared over Jul 8 by Trump).",
-    "lastUpdated": "2026-07-15T00:00:00Z",
-    "crisisDay": 138
+    "description": "Day 139. Jul 15: US airstrikes on Iran day 5; naval blockade of Iranian ports near Hormuz formally reinstated by CENTCOM. Brent $85.84 (+$7.82 since Jul 8 close $78.02). VLCC GOO-China $145k/day (Baltic Exchange, up 7% vs Jul 1). Insurance ~5% hull (back near peak). SPR 319.48 Mb (Jul 3, 1983 record low). Commercial crude 409.7 Mb (Jul 10). Transit ~5/day (AIS). Ceasefire: VOID (Jun 17 Versailles MoU declared over Jul 8 by Trump).",
+    "lastUpdated": "2026-07-16T00:00:00Z",
+    "crisisDay": 139
   },
   "globalImpact": {
     "worldOilAtRiskPct": 20,
@@ -3334,7 +3334,7 @@
     "latestDate": "2026-07-15",
     "latestSource": "CNBC / Reuters / CENTCOM announcements Jul 15, 2026; InsuranceJournal Jul 9 (war-risk rates back to 5%); Rigzone Jul 13 (SPR record low); IndexBox / OilAndGas360 (EIA wk ending Jul 10)",
     "jawboneCount": 16,
-    "daysSinceFirstJawbone": 106,
+    "daysSinceFirstJawbone": 107,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3474,13 +3474,13 @@
   "phaseIndicator": {
     "phase": 1,
     "phaseName": "Excess Cash Burn",
-    "phaseDescription": "[Updated Jul 15] US airstrikes day 5, naval blockade reinstated. Ceasefire VOID (Jun 17 Versailles MoU, declared over Jul 8). SPR: 319.48 Mb (Jul 3) — 1983 record low. Commercial crude: 409.7 Mb (Jul 10, -1.7 Mb wk). Brent $85.84 (+5% since Jul 8). Insurance 5% hull. VLCC $145k/day. Phase 1 continues. Phase 2 transition risk elevated: SPR draw rate was ~6.2 Mb/wk; sustaining >10 Mb/wk would trigger Phase 2 (SPR Draws).",
-    "daysInPhase": 138,
+    "phaseDescription": "[Updated Jul 16] US airstrikes day 5, naval blockade reinstated. Ceasefire VOID (Jun 17 Versailles MoU, declared over Jul 8). SPR: 319.48 Mb (Jul 3) — 1983 record low. Commercial crude: 409.7 Mb (Jul 10, -1.7 Mb wk). Brent $85.84 (+5% since Jul 8). Insurance 5% hull. VLCC $145k/day. Phase 1 continues. Phase 2 transition risk elevated: SPR draw rate was ~6.2 Mb/wk; sustaining >10 Mb/wk would trigger Phase 2 (SPR Draws).",
+    "daysInPhase": 139,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
-    "weeksToNextPhase": 12.7,
+    "weeksToNextPhase": 12.6,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
     "morganDowneyContext": "Per Morgan Downey (Macrovoices, May 21, 2026): 'Down to weeks, not months. Working-capital efficiency cushion (~1Bn bbl loosened over 5 years) has been spent into this crisis. >50% probability of $150-200 oil within 30 days at current pace.' Our 18-week linear estimate is the UPPER bound — burn rate accelerates as buffer thins.",
-    "lastUpdated": "2026-07-15T00:00:00Z"
+    "lastUpdated": "2026-07-16T00:00:00Z"
   },
   "criticalPath": {
     "title": "HFI Critical Path — When the Thesis Plays Out",
