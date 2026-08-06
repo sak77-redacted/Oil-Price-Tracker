@@ -653,9 +653,9 @@
     ]
   },
   "oilSpread": {
-    "brent": 90.12,
-    "dubai": 73.76,
-    "spread": -16.36,
+    "brent": 82.49,
+    "dubai": 78.04,
+    "spread": -4.45,
     "history": [
       {
         "date": "2026-02-27",
@@ -951,9 +951,14 @@
         "date": "2026-08-02",
         "brent": 90.12,
         "dubai": 73.76
+      },
+      {
+        "date": "2026-08-06",
+        "brent": 82.49,
+        "dubai": 78.04
       }
     ],
-    "lastUpdated": "2026-08-02T00:00:00Z",
+    "lastUpdated": "2026-08-06T20:00:00Z",
     "brentSource": "Yahoo Finance BZ=F (search result, auto-sweep 2026-08-02). Dubai physical: carried forward from 2026-07-20 — no live source available.",
     "dubaiSource": "Dubai Crude Oil Platts futures (Investing.com). May 14 inversion print: $100.70.",
     "note": "Dubai premium re-widening to +$2.48 as crisis re-escalates (Jul 8). Trump declared Jun 17 Versailles MoU ceasefire 'over'. US reimposed Iran sanctions, CENTCOM struck IRGC sites near Hormuz. Prior spread history: $20.32 peak (May 2026), $4.50 (Jun 26 post-attack), -$0.30 (Jun 30 ceasefire), +$0.84 (Jul 7 post-Al Rekayyat). Spread exit trigger (<$5) is MET — now receding from that threshold.",
@@ -1242,7 +1247,7 @@
     "burnDownDays": 47,
     "futureBestCaseMissingMb": 760,
     "sprBreakdown": {
-      "us": 316.5,
+      "us": 304.8,
       "japan": 263,
       "europe": 179
     },
@@ -1408,14 +1413,14 @@
     ]
   },
   "usProductStocks": {
-    "weeksToCritical": 5,
-    "criticalDateLabel": "early June 2026",
+    "weeksToCritical": 4,
+    "criticalDateLabel": "mid-September 2026",
     "commercialDrawsMbd": 1.7,
-    "pad1Status": "4–5 draws from critical (distillate +4.6 Mb wk ending Jul 10; still 11% below 5-yr avg)",
+    "pad1Status": "4-5 draws from critical (distillate -3.5 Mb wk ending Jul 31, 2026; 12% below 5-yr avg). Jul 10 had +4.6 Mb build, Jul 31 reversed with -3.5 Mb draw — oscillating near critical levels. Diplomatic progress (Hormuz draft) may ease product supply pressure in 2-4 weeks if Khamenei approves and transit resumes.",
     "japanAugFixturesMb": 12,
     "japanPreCrisisRange": "1–5 mb/month",
     "methodology": "Distillate inventories near 20-year seasonal lows per EIA May 21 (small modest tick-up this week but levels remain near record-low seasonal). PAD1 stocks 1–2 draws away from very low after EIA May 13 (commercial crude −4.3 Mb, gasoline below expectations, refineries at 91.7%). EIA May 21 follow-up: 7.9 Mb commercial crude draw, Cushing 4th weekly decline. Houston→Rotterdam and NYH→Rotterdam diesel arbs both wide open. US must defend product pricing or lose more barrels to Europe. Reference Signal 7 for the parallel SPR draw — 9.9 Mb single-week SPR release layered on simultaneous commercial draws.",
-    "lastUpdated": "2026-07-15T00:00:00Z",
+    "lastUpdated": "2026-08-06T20:00:00Z",
     "source": "EIA weekly stocks (May 21 release); Trade with Conviction (Neil Crosby), May 8, 2026; Ole S Hansen, Saxo (May 21, 2026)",
     "physicalMarketNote": {
       "date": "2026-05-08",
@@ -1834,8 +1839,8 @@
         "released": true,
         "reserveDays": 0,
         "releasedMb": 442.9,
-        "totalMb": 316.5,
-        "notes": "EIA Weekly Petroleum Status Report (week ending Jul 3, 2026): SPR = 319.48 Mb — 1983 record low, 56% empty (44% full). Down 6.22 Mb from prior week (325.7 Mb wk ending Jun 26). Cumulative SPR decline since crisis withdrawal start (wk ending Mar 20): ~96+ Mb total. Source: EIA WCSSTUS1 / Rigzone Jul 13 2026."
+        "totalMb": 304.8,
+        "notes": "EIA Weekly Petroleum Status Report (week ending Jul 31, 2026): SPR = 304.8 Mb — 1983 record low territory, ~57.3% empty (42.7% full). Down 2.9 Mb from prior week (Jul 24: ~307.7 Mb). Cumulative SPR decline since crisis withdrawal start (wk ending Mar 20): ~107+ Mb total. Source: EIA WCSSTUS1 via thevaultreport.com / EIA (Aug 5, 2026)."
       },
       {
         "country": "Japan",
@@ -1875,7 +1880,7 @@
       }
     ],
     "chinaSignal": "China holds ~1.3–1.4 bn barrels in strategic reserves (largest in the world) and has still NOT released any as of May 21. Per EIA expectations, China is *expanding* stockpiles by ~1 mbpd in 2026 (record 580 mt 2025 imports = +4.6% YoY). Japan and South Korea (IEA members) have released; the US drew 9.9 Mb in a single SPR release per EIA May 21 (on top of a 7.9 Mb commercial draw — 17.8 Mb total record). China's continued forbearance — even with Brent recovering to $111 and the US bleeding SPR + commercial in tandem — remains the single most important crisis-tier signal we track. When China taps its SPR, it signals peak crisis.",
-    "lastUpdated": "2026-07-20T00:00:00Z",
+    "lastUpdated": "2026-08-05T00:00:00Z",
     "physicalMarketNotes": [
       {
         "date": "2026-05-21",
@@ -2522,14 +2527,14 @@
   "buyerStress": {
     "wafProgrammeStatus": "stalled",
     "wafProgrammeDescription": "WAF May programme bidding from Asian buyers remains unusually quiet — Indian and Chinese refiners largely absent from cargoes that would normally clear in the first half of the month. JH reads this as 'sitting on the sidelines hoping the Strait opens', not genuine demand softness.",
-    "crackSpread321": 61.96,
+    "crackSpread321": 28.08,
     "crackSpreadThreshold": 40,
     "buyerBehavior": "wait-and-see",
-    "buyerBehaviorDescription": "[Jun 5 update] WTI 3-2-1 crack 41.8/bbl at WTI ~$92.09 (RBOB $2.9868/gal, HO $3.59/gal). Crack essentially flat vs Jun 3 ($41.71) — both crude and products fell proportionally. Crack at $41.8 vs $40 threshold: US refiners marginally economic pulling crude. Watch for break below $40 as diplomatic resolution accelerates. Chinese imports 10-yr low headwind. Brent -2.04% on SPECIFIC_TERMS_LEAKED diplomatic status. ━━ [Jun 3 update] WTI 3-2-1 crack 41.71/bbl at WTI $95.91 (RBOB $3.14/gal, HO ~$3.55/gal). Crude rose +$3.41 from Jun 2 ($92.50→$95.91) while RBOB +$0.06 — crack compressed as crude rallied harder than products. Still above $40 threshold (current $41.71 vs $40 trigger) — US refiners maintain economic pull on crude. Geopolitical risk premium re-bid as US-Iran peace talk uncertainty persists (Axios 60-day framework, May 24). WAF programme: Asian refiners in wait-and-see ahead of Axios 60-day MOU resolution. Watch for crack break below $40: that flips the bull signal. ━━ [May 19] WTI $107.77, crack $53.42. Asian refiners on max throughput from March/April cargoes.",
+    "buyerBehaviorDescription": "[2026-08-06 auto-sweep] WTI 3-2-1 crack COLLAPSED to $28.08/bbl (from $61.96 on Aug 2) — WTI $77.29/bbl, RBOB $1.8831/gal (Sep futures confirmed), HO $3.76/gal (estimated, flag for manual review). Crack below $40 threshold: US refiners at sub-economic pull on crude. Driver: Iran/Oman draft Hormuz agreement (Aug 5-6) pricing in product supply restoration. Brent fell to $79 on agreement news, then rebounded +3.8% to $82.49 on Iran's restrictive terms (US/Israeli ban + 5-7% tolls). [Jun 5 update] WTI 3-2-1 crack 41.8/bbl at WTI ~$92.09 (RBOB $2.9868/gal, HO $3.59/gal). Crack essentially flat vs Jun 3 ($41.71) — both crude and products fell proportionally. Crack at $41.8 vs $40 threshold: US refiners marginally economic pulling crude. Watch for break below $40 as diplomatic res",
     "crisisStartDate": "2026-02-28",
     "demandDestructionVisible": false,
-    "lastUpdated": "2026-08-02T00:00:00Z",
-    "source": "WTI 3-2-1 crack 2026-06-05: RBOB $2.9868/gal + HO $3.59/gal vs WTI ~$92.09/bbl. Formula: (2*RBOB_bbl + HO_bbl - 3*WTI_bbl)/3. RBOB: Yahoo Finance RB=F Jun 5, 2026 confirmed $2.9868/gal. HO: TradingEconomics heating oil Jun 5, 2026 confirmed $3.59/gal (-2.35%). WTI: estimated ~$92.09 (Brent $93.09 - $1.00 observed spread).",
+    "lastUpdated": "2026-08-06T20:00:00Z",
+    "source": "WTI 3-2-1 crack 2026-08-06 auto-sweep: RBOB $1.8831/gal (Barchart RBU26 confirmed), HO $3.76/gal (search estimate — MANUAL REVIEW NEEDED), WTI ~$77.29/bbl (confirmed close Aug 6). Formula: (2*RBOB_bbl + HO_bbl - 3*WTI_bbl)/3. Tier 2 — HO source uncertain.",
     "methodology": "When this lull breaks, WAF May programme bidding will spike first. Watch this for the inflection. Crack > $40 = refiners keep pulling crude (bullish-crude). Crack < $40 = product demand cracking (bearish-crude topping signal).",
     "physicalMarketNotes": [
       {
@@ -2545,15 +2550,15 @@
         "context": "The leading indicator: WAF May programme activity is the canary."
       }
     ],
-    "crackSpreadUsd": 61.96
+    "crackSpreadUsd": 28.08
   },
   "curveShape": {
-    "spotBrent": 90.12,
-    "brent12m": 78.0,
-    "brent24m": 72.5,
-    "brent36m": 69.5,
-    "percentBackwardation": 22.88,
-    "absoluteBackwardation": 20.62,
+    "spotBrent": 82.49,
+    "brent12m": 74.5,
+    "brent24m": 72.0,
+    "brent36m": 71.0,
+    "percentBackwardation": 13.93,
+    "absoluteBackwardation": 11.49,
     "threshold": 25,
     "atHigh": {
       "date": "2026-04-30",
@@ -2726,9 +2731,14 @@
         "spotBrent": 90.12,
         "brent36m": 69.5,
         "percentBackwardation": 22.88
+      },
+      {
+        "date": "2026-08-06",
+        "spotBrent": 82.49,
+        "backwardationPct": 13.93
       }
     ],
-    "lastUpdated": "2026-08-02T00:00:00Z",
+    "lastUpdated": "2026-08-06T20:00:00Z",
     "source": "ICE Brent spot $87.72 (Jul 20, 2026 — TradingEconomics/Fortune). 12m $78.0 / 24m $72.5 / 36m $69.5 estimated from curve shape analysis (CMB News commodity-board.com Jul 2026: 'curve drops ~$20/bbl from Aug 2026 to early-2030s'; 6m spread ~$8-9 per tradingpedia.com Jul 15). % backwardation 20.8% (18.22 pts absolute) — YELLOW zone (15-25%).",
     "methodology": "% backwardation = (spot − 36mo) / spot × 100. Extreme backwardation = supply shock priced into spot, not into long-run expectations — implying market expects rapid normalization. When the back end stays anchored ($75 vs Russia-Ukraine $86), spot can't break out even when the physical disruption deepens.",
     "physicalMarketNote": {
@@ -3340,12 +3350,12 @@
     ]
   },
   "diplomaticWatch": {
-    "status": "JAWBONE_ONLY",
-    "latestHeadline": "Trump: 'good chance of progress' in Iran Hormuz talks (Jul 28). Brent briefly topped $100 (Jul 23) before moderating to ~$90. Physical gates all remain unmet: Aug 1 LNG carrier struck, 2 tankers transiting dark with no AIS. Status: JAWBONE_ONLY — no physical gate has been met.",
-    "latestDate": "2026-07-28",
-    "latestSource": "Al Jazeera / Bloomberg Jul 28, 2026 (Trump 'good chance'); CNBC Aug 1, 2026 (LNG carrier struck; dark transits confirmed)",
-    "jawboneCount": 18,
-    "daysSinceFirstJawbone": 127,
+    "status": "SPECIFIC_TERMS_LEAKED",
+    "latestHeadline": "Iran/Oman draft Hormuz agreement finalized — specific terms published by Iran state media. Brent surges +3.8% to $82.49 as Iran demands restrictive conditions (US/Israeli ship ban + 5-7% cargo tolls).",
+    "latestDate": "2026-08-06",
+    "latestSource": "Bloomberg (Aug 5, 2026): 'Iran, Oman Reach Agreement on Proposed Strait of Hormuz Shipping Route'. CNBC (Aug 6, 2026): 'Oil prices jump after Iran publishes restrictive draft plan for Strait of Hormuz'. Al Jazeera (Aug 6): 'Oil holds losses as Iran and Oman reach agreement over Hormuz'. OilPrice.com: 'Hormuz Draft Agreement Reportedly Awaits Khamenei Approval'. Key contested terms: Iran demands 5-7% cargo tolls, Oman proposes 3%, US wants zero fees. Khamenei approval pending — reportedly wounded, not seen publicly since war's opening strikes.",
+    "jawboneCount": 19,
+    "daysSinceFirstJawbone": 128,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3360,21 +3370,21 @@
       },
       {
         "label": "VLCC TD3 below $60k/day",
-        "currentValue": "$145k/day",
+        "currentValue": "$369k/day",
         "status": "not met"
       },
       {
         "label": "Spread compression below $5",
-        "currentValue": "-$13.96 (Dubai deep discount to Brent — blockade premium inverted; eased from -$15.36)",
-        "status": "not met"
+        "currentValue": "-$4.45 (Dubai $78.04 vs Brent $82.49 — GATE MET: Dubai at discount)",
+        "status": "met"
       },
       {
         "label": "Backwardation below 15%",
-        "currentValue": "20.2%",
-        "status": "not met"
+        "currentValue": "~14% (compressed from 22.9% — approaching 15% threshold)",
+        "status": "approaching"
       }
     ],
-    "interpretation": "STATUS: JAWBONE_ONLY — Jun 17 Versailles MoU VOIDED. Trump declared ceasefire 'over' Jul 8; US Treasury reimposed Iran oil sanctions; CENTCOM struck IRGC sites near Hormuz. Bullish thesis RE-VALIDATED: diplomatic resolution risk (exit trigger) drops from 75% back to 10%. Physical confirmation gates: only spread (<$5) was approaching met; all others remain far from met (transit, insurance, VLCC rates, backwardation all crisis-level). Thesis health score IMPROVES on this development. Watch: whether CENTCOM strikes prompt Iranian full closure of Hormuz (escalation) vs. Iran seeks talks again (new jawbone cycle). History: 16 deal statements since 2026-03-31, none fulfilled. Each unconfirmed statement extended crisis duration. Jul 8 collapse confirms bullish thesis.",
+    "interpretation": "SECOND SPECIFIC_TERMS_LEAKED cycle. Round 1 (May 24 Axios) collapsed Jul 8 when Trump declared ceasefire 'over.' Round 2: Iran and Oman finalized a draft agreement Aug 5; Iran published restrictive terms Aug 6 — US/Israeli ships banned, 5-7% cargo tolls (Oman proposed 3%, US wants zero). Draft awaits Khamenei approval (reportedly wounded, not seen publicly since war's opening strikes). HFI anchoring-bias framework applies: physical gates (insurance <3%, transit >50/day, freight <$60k/day, spread <$5) must flip BEFORE the thesis changes. The Dubai-Brent spread gate (#4) IS NOW MET (Dubai at -$4.45 vs Brent — physical premium has gone negative, pricing in partial Hormuz flow restoration). Status escalation only valid if Khamenei approves AND physical gates confirm. If Khamenei rejects/stalls: Round 2 collapses, bull thesis re-validates as in Jul 8.",
     "impactIfConfirmed": "Brent could retest $95–100 within 5–10 days; would invalidate primary long thesis",
     "impactIfJawboneContinues": "Beyond jawboning stage — MOU formally signed. If implementation collapses (re-closure sustained, nuclear talks fail), Brent likely rebounds to $90-95+ as deal premium unwinds. Bull thesis re-validates. If implementation proceeds (gates flip: transit >50/day, insurance <3%, Dubai-Brent spread <$5), thesis invalidated within 5-10 days.",
     "warEndingTriggers": [
@@ -3435,6 +3445,13 @@
         "source": "POTUS statement + CNBC Jul 8, 2026",
         "outcome": "reversal",
         "outcomeNote": "Full reversal of Jun 17 MoU. US reimposed Iran oil sanctions, CENTCOM launched strikes on IRGC military sites near Hormuz. Bullish thesis re-validated."
+      },
+      {
+        "date": "2026-08-06",
+        "headline": "Iran/Oman draft agreement finalized — Iran publishes restrictive terms (US/Israeli ban + 5-7% tolls); Khamenei approval pending",
+        "source": "Bloomberg, CNBC, Al Jazeera, OilPrice.com (Aug 5-6, 2026)",
+        "outcome": "pending",
+        "outcomeNote": "ROUND 2 SPECIFIC_TERMS_LEAKED. Unlike May 24 (US-mediated terms), this is Iran's own draft with more restrictive conditions. US demands zero fees; Iran wants 5-7% cargo tolls. Khamenei reportedly wounded — approval timeline uncertain. Brent fell to $79 on initial news, then surged +3.8% to $82.49 when Iran's restrictive terms published. Physical gates: spread gate MET (Dubai -$4.45 vs Brent); freight, transit, insurance all still 'not met'. If Khamenei approves + US/Iran agree on tolls: status escalates to PHYSICAL_CONFIRMATION. If talks collapse: bull thesis re-validates (Brent $90+)."
       }
     ],
     "mouCountdown": {
@@ -3485,13 +3502,13 @@
   "phaseIndicator": {
     "phase": 1,
     "phaseName": "Excess Cash Burn",
-    "phaseDescription": "[Updated Jul 20] US airstrikes day 5, naval blockade reinstated. Ceasefire VOID (Jun 17 Versailles MoU, declared over Jul 8). SPR: 316.5 Mb (Jul 10, EIA wk) — 1983 record low. Commercial crude: 409.7 Mb (Jul 10, -1.7 Mb wk). Brent $87.72 (+8% since Jul 8). Insurance 5% hull. VLCC $369k/day (Baltic TD3C WS372, Jul 17). Phase 1 continues. Phase 2 transition risk elevated: SPR draw rate was ~6.2 Mb/wk; sustaining >10 Mb/wk would trigger Phase 2 (SPR Draws).",
-    "daysInPhase": 158,
+    "phaseDescription": "[Updated 2026-08-06] ROUND 2 SPECIFIC_TERMS_LEAKED — Iran/Oman draft Hormuz agreement published. SPR: 304.8 Mb (Jul 31, EIA wk) — 1983 record low territory. Commercial crude: 407.0 Mb (Jul 31, +2.479 Mb build — crude flow partially restoring). Brent $82.49 (down from $90.12 on diplomatic progress, rebounded +3.8% on Iran's restrictive draft terms). Insurance 5% hull. VLCC $369k/day. Dubai-Brent spread gate MET: Dubai at -$4.45 vs Brent (physical premium inverted). Phase 1 continues but exit path emerging — if Khamenei approves + physical gates confirm, thesis degrades toward Phase 0 (pre-crisis). If Round 2 collapses (as Jul 8 Round 1): Phase 2 risk (SPR Draws) re-elevates rapidly.",
+    "daysInPhase": 160,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
-    "weeksToNextPhase": 11.26,
+    "weeksToNextPhase": 118.9,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
     "morganDowneyContext": "Per Morgan Downey (Macrovoices, May 21, 2026): 'Down to weeks, not months. Working-capital efficiency cushion (~1Bn bbl loosened over 5 years) has been spent into this crisis. >50% probability of $150-200 oil within 30 days at current pace.' Our 18-week linear estimate is the UPPER bound — burn rate accelerates as buffer thins.",
-    "lastUpdated": "2026-08-05T00:00:00Z"
+    "lastUpdated": "2026-08-06T20:00:00Z"
   },
   "criticalPath": {
     "title": "HFI Critical Path — When the Thesis Plays Out",
@@ -3569,14 +3586,14 @@
     }
   ],
   "usCommercialCrudeStorage": {
-    "currentMb": 409.7,
+    "currentMb": 407.0,
     "fiveYrAvgMb": 443.0,
     "peak2026Mb": 462,
     "peak2026Date": "2026-05-08",
     "operationalMinimumMb": 290,
-    "weeklyDrawRateMb": 1.7,
-    "weeksToFloor": 70.4,
-    "asOfDate": "2026-07-10",
-    "source": "EIA Weekly Petroleum Status Report wk ending Jul 10, 2026 (released Jul 15): Commercial crude -1.7 Mb to 409.7 Mb (~6% below 5-yr avg). Distillate +4.6 Mb (still 11% below 5-yr avg). Refinery runs 17.1 Mbpd (96.2%). Source: IndexBox / OilAndGas360 Jul 15 2026."
+    "weeklyDrawRateMb": 0.9,
+    "weeksToFloor": 130.0,
+    "asOfDate": "2026-07-31",
+    "source": "EIA Weekly Petroleum Status Report wk ending Jul 31, 2026 (released Aug 5): Commercial crude +2.479 Mb to 407.0 Mb (~6% below 5-yr avg). Distillates -3.5 Mb (12% below 5-yr avg). Crude build reflects partial Hormuz diplomatic progress — tanker flow partially restoring. 4-wk avg draw: 0.9 Mb/wk (slowing from 1.7 Mb/wk in prior period)."
   }
 }
