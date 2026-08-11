@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { InventoryDecomposition, PhysicalMarketNote } from "@/lib/types";
+import { isStale } from "@/lib/staleness";
 
 interface SupplyBalanceSignalProps {
   physicalMarketNote?: PhysicalMarketNote;
@@ -349,31 +350,60 @@ export default function SupplyBalanceSignal({
         </div>
       )}
 
-      {/* Physical market notes (newest first) */}
-      {notes.length > 0 && (
-        <div className="flex flex-col gap-3 border-t border-[var(--card-border)] px-5 py-4">
-          {notes.map((note, idx) => (
-            <blockquote
-              key={`${note.date}-${idx}`}
-              className="border-l-2 border-amber-500/40 pl-3 text-sm italic leading-relaxed text-[var(--text-primary)]"
-            >
-              <p>&ldquo;{note.quote}&rdquo;</p>
-              <footer className="mt-2 not-italic text-[11px] text-[var(--text-secondary)]">
-                <span className="font-semibold text-amber-300/80">
-                  {note.attribution}
-                </span>
-                <span className="mx-1.5 text-[var(--card-border)]">·</span>
-                <span>{formatNoteDate(note.date)}</span>
-                {note.context && (
-                  <div className="mt-1 text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
-                    {note.context}
-                  </div>
-                )}
-              </footer>
-            </blockquote>
-          ))}
-        </div>
-      )}
+      {/* Physical market notes — fresh inline, dated collapsed */}
+      {notes.length > 0 && (() => {
+        const freshNotes = notes.filter((n) => !isStale(n.date));
+        const datedNotes = notes.filter((n) => isStale(n.date));
+        const shortDate = (iso: string): string => {
+          const d = new Date(iso + (iso.length === 10 ? "T00:00:00Z" : ""));
+          if (isNaN(d.getTime())) return iso;
+          return d.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            timeZone: "UTC",
+          });
+        };
+        // notes sorted newest-first: newest = [0], oldest = last.
+        const datedRangeLabel =
+          datedNotes.length > 0
+            ? `${shortDate(datedNotes[datedNotes.length - 1].date)}–${shortDate(datedNotes[0].date)}`
+            : "";
+        const renderNote = (note: PhysicalMarketNote, idx: number) => (
+          <blockquote
+            key={`${note.date}-${idx}`}
+            className="border-l-2 border-amber-500/40 pl-3 text-sm italic leading-relaxed text-[var(--text-primary)]"
+          >
+            <p>&ldquo;{note.quote}&rdquo;</p>
+            <footer className="mt-2 not-italic text-[11px] text-[var(--text-secondary)]">
+              <span className="font-semibold text-amber-300/80">
+                {note.attribution}
+              </span>
+              <span className="mx-1.5 text-[var(--card-border)]">·</span>
+              <span>{formatNoteDate(note.date)}</span>
+              {note.context && (
+                <div className="mt-1 text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
+                  {note.context}
+                </div>
+              )}
+            </footer>
+          </blockquote>
+        );
+        return (
+          <div className="flex flex-col gap-3 border-t border-[var(--card-border)] px-5 py-4">
+            {freshNotes.map(renderNote)}
+            {datedNotes.length > 0 && (
+              <details className="rounded-lg border border-[var(--card-border)] bg-black/20">
+                <summary className="cursor-pointer list-none px-3 py-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
+                  Dated commentary ({datedNotes.length}) — {datedRangeLabel} ▾
+                </summary>
+                <div className="flex flex-col gap-3 px-3 pb-3 pt-1">
+                  {datedNotes.map(renderNote)}
+                </div>
+              </details>
+            )}
+          </div>
+        );
+      })()}
 
       <div className="border-t border-[var(--card-border)] px-5 py-3 text-[10px] leading-relaxed text-[var(--text-secondary)]">
         <span className="font-semibold">Sources:</span> HFI Research (Jon Costello, May 6 2026); JPMorgan oil balance estimates (April 2026); IEA Mar 11 coordinated release announcement; Kpler / S&P Global tanker transit data. Numbers as quoted at publication and refresh weekly rather than live.

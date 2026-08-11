@@ -1,6 +1,7 @@
 "use client";
 
 import type { SignalStatus, PhysicalMarketNote } from "@/lib/types";
+import { isStale } from "@/lib/staleness";
 import StatusBadge from "./StatusBadge";
 
 interface SignalCardProps {
@@ -81,6 +82,49 @@ export default function SignalCard({
     );
   })();
 
+  // Date-gate: notes older than STALE_AFTER_DAYS collapse into a single
+  // <details> at the card bottom; fresh sweep notes still render inline.
+  const freshNotes = notes.filter((n) => !isStale(n.date));
+  const datedNotes = notes.filter((n) => isStale(n.date));
+
+  const formatShortDate = (iso: string): string => {
+    const d = new Date(iso + (iso.length === 10 ? "T00:00:00Z" : ""));
+    if (isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC",
+    });
+  };
+  // datedNotes is sorted newest-first: newest = [0], oldest = last.
+  const datedRangeLabel =
+    datedNotes.length > 0
+      ? `${formatShortDate(datedNotes[datedNotes.length - 1].date)}–${formatShortDate(datedNotes[0].date)}`
+      : "";
+
+  const renderNote = (note: PhysicalMarketNote, idx: number) => (
+    <blockquote
+      key={`${note.date}-${idx}`}
+      className="border-l-2 border-amber-500/40 pl-3 text-sm italic leading-relaxed text-[var(--text-primary)]"
+    >
+      <p>&ldquo;{note.quote}&rdquo;</p>
+      <footer className="mt-2 not-italic text-[11px] text-[var(--text-secondary)]">
+        <span className="font-semibold text-amber-300/80">
+          {note.attribution}
+        </span>
+        <span className="mx-1.5 text-[var(--card-border)]">·</span>
+        <span className="text-[var(--text-secondary)]">
+          {formatNoteDate(note.date)}
+        </span>
+        {note.context && (
+          <div className="mt-1 not-italic text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
+            {note.context}
+          </div>
+        )}
+      </footer>
+    </blockquote>
+  );
+
   return (
     <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6 transition-colors hover:border-[var(--accent)]">
       <div className="flex flex-col gap-4">
@@ -102,32 +146,21 @@ export default function SignalCard({
         {/* Main content */}
         <div>{children}</div>
 
-        {/* Physical market notes (newest first) */}
-        {notes.length > 0 && (
-          <div className="flex flex-col gap-3">
-            {notes.map((note, idx) => (
-              <blockquote
-                key={`${note.date}-${idx}`}
-                className="border-l-2 border-amber-500/40 pl-3 text-sm italic leading-relaxed text-[var(--text-primary)]"
-              >
-                <p>&ldquo;{note.quote}&rdquo;</p>
-                <footer className="mt-2 not-italic text-[11px] text-[var(--text-secondary)]">
-                  <span className="font-semibold text-amber-300/80">
-                    {note.attribution}
-                  </span>
-                  <span className="mx-1.5 text-[var(--card-border)]">·</span>
-                  <span className="text-[var(--text-secondary)]">
-                    {formatNoteDate(note.date)}
-                  </span>
-                  {note.context && (
-                    <div className="mt-1 not-italic text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
-                      {note.context}
-                    </div>
-                  )}
-                </footer>
-              </blockquote>
-            ))}
-          </div>
+        {/* Physical market notes ≤30 days old (newest first) */}
+        {freshNotes.length > 0 && (
+          <div className="flex flex-col gap-3">{freshNotes.map(renderNote)}</div>
+        )}
+
+        {/* Dated commentary (>30 days old) — collapsed by default */}
+        {datedNotes.length > 0 && (
+          <details className="rounded-lg border border-[var(--card-border)] bg-black/20">
+            <summary className="cursor-pointer list-none px-3 py-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
+              Dated commentary ({datedNotes.length}) — {datedRangeLabel} ▾
+            </summary>
+            <div className="flex flex-col gap-3 px-3 pb-3 pt-1">
+              {datedNotes.map(renderNote)}
+            </div>
+          </details>
         )}
 
         {/* Footer: source + last updated */}

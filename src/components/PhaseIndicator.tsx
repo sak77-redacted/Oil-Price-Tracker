@@ -48,6 +48,10 @@ function segmentClasses(segment: PhaseSegment, currentPhase: InventoryPhase): st
 
 export default function PhaseIndicator({ data }: PhaseIndicatorProps) {
   const current = data.phase;
+  // Suppress implausible countdowns (e.g. "118.9 weeks") — only show the
+  // weeks-to-next-phase chip when the estimate is plausible (≤ 1 year).
+  const showWeeksToNextPhase =
+    data.weeksToNextPhase > 0 && data.weeksToNextPhase <= 52;
 
   return (
     <div className="mt-6 w-full rounded-xl border border-amber-500/30 bg-zinc-950/60 p-5 sm:p-6">
@@ -109,7 +113,7 @@ export default function PhaseIndicator({ data }: PhaseIndicatorProps) {
       </p>
 
       {/* ─── Transition tile row ─── */}
-      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className={`mt-4 grid grid-cols-1 gap-3 ${showWeeksToNextPhase ? "sm:grid-cols-2" : ""}`}>
         <div className="rounded-lg border border-white/10 bg-black/30 p-4">
           <div className="text-[10px] font-semibold uppercase tracking-wider text-white/55">
             Transition Trigger
@@ -118,20 +122,22 @@ export default function PhaseIndicator({ data }: PhaseIndicatorProps) {
             {data.transitionTrigger}
           </div>
         </div>
-        <div className="rounded-lg border border-white/10 bg-black/30 p-4">
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-white/55">
-            Est. weeks to next phase
+        {showWeeksToNextPhase && (
+          <div className="rounded-lg border border-white/10 bg-black/30 p-4">
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-white/55">
+              Est. weeks to next phase
+            </div>
+            <div className="mt-2 flex items-baseline gap-2">
+              <span className="text-3xl font-bold tabular-nums text-white">
+                {data.weeksToNextPhase}
+              </span>
+              <span className="text-xs text-white/55">weeks</span>
+            </div>
+            <div className="mt-1 text-[11px] text-white/55">
+              Phase {current} &rarr; Phase {Math.min(3, current + 1) as InventoryPhase}
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-3xl font-bold tabular-nums text-white">
-              {data.weeksToNextPhase}
-            </span>
-            <span className="text-xs text-white/55">weeks</span>
-          </div>
-          <div className="mt-1 text-[11px] text-white/55">
-            Phase {current} &rarr; Phase {Math.min(3, current + 1) as InventoryPhase}
-          </div>
-        </div>
+        )}
       </div>
 
       {/* ─── Price implication footer ─── */}

@@ -12,6 +12,8 @@ interface CatalystRow {
   tier: Tier;
   /** Optional display tag, e.g. "In progress" */
   tag?: string;
+  /** True when the source date could not be parsed — shown as "Ongoing". */
+  undated?: boolean;
 }
 
 interface WatchThisWeekProps {
@@ -29,6 +31,22 @@ function startOfDay(d: Date): Date {
 function daysBetween(from: Date, to: Date): number {
   const ms = startOfDay(to).getTime() - startOfDay(from).getTime();
   return Math.round(ms / 86400000);
+}
+
+/**
+ * Defensive date parsing for sweep-written event dates. Handles plain ISO
+ * strings ("2026-05-27") and ranges ("2026-05-27 to 2026-06-03", "2026-06-01/
+ * 2026-06-15") — for a range, the END date is used. Returns null when no
+ * date can be extracted (caller keeps the row as undated/ongoing).
+ */
+function parseEventDate(raw: string): Date | null {
+  const isoMatches = raw.match(/\d{4}-\d{2}-\d{2}/g);
+  if (isoMatches && isoMatches.length > 0) {
+    const d = new Date(`${isoMatches[isoMatches.length - 1]}T00:00:00Z`);
+    return isNaN(d.getTime()) ? null : d;
+  }
+  const fallback = new Date(raw);
+  return isNaN(fallback.getTime()) ? null : fallback;
 }
 
 function classifyTimelineEvent(event: TimelineEvent): Tier {
@@ -65,7 +83,20 @@ function refineryRowsFromTurnarounds(
   if (!turnarounds) return [];
   const rows: CatalystRow[] = [];
   for (const t of turnarounds) {
-    const start = new Date(`${t.startDate}T00:00:00Z`);
+    const start = parseEventDate(t.startDate);
+    if (start == null) {
+      // Unparseable start date — keep as an ongoing row rather than dropping.
+      rows.push({
+        date: t.startDate,
+        daysUntil: 0,
+        title: `${t.refiner} turnaround`,
+        why: `${t.capacityNote} — ${t.notes}`,
+        tier: 2,
+        tag: "Ongoing",
+        undated: true,
+      });
+      continue;
+    }
     const endMs = start.getTime() + t.durationDays * 86400000;
     const end = new Date(endMs);
     const startDays = daysBetween(ref, start);
@@ -111,8 +142,22 @@ function refineryRowsFromTurnarounds(
 function timelineRowsFromEvents(events: TimelineEvent[], ref: Date): CatalystRow[] {
   const rows: CatalystRow[] = [];
   for (const e of events) {
-    const d = new Date(`${e.date}T00:00:00Z`);
+    const d = parseEventDate(e.date);
+    if (d == null) {
+      // Unparseable date — keep the row as ongoing rather than dropping it.
+      rows.push({
+        date: e.date,
+        daysUntil: 0,
+        title: e.event,
+        why: e.impact,
+        tier: classifyTimelineEvent(e),
+        tag: "Ongoing",
+        undated: true,
+      });
+      continue;
+    }
     const days = daysBetween(ref, d);
+    // Past catalysts are filtered out; only upcoming ones inside the window stay.
     if (days < 0 || days > WINDOW_DAYS) continue;
     rows.push({
       date: e.date,
@@ -243,7 +288,7 @@ export default function WatchThisWeek({ data, referenceDate }: WatchThisWeekProp
 
       {top3.length === 0 ? (
         <p className="text-sm text-white/55">
-          No further catalysts in the {WINDOW_DAYS}-day window — watch the regime signals for regime-shift surprise.
+          No dated catalysts on the board — daily sweep will surface the next one.
         </p>
       ) : (
         <ul className="divide-y divide-zinc-800/70">
@@ -254,7 +299,7 @@ export default function WatchThisWeek({ data, referenceDate }: WatchThisWeekProp
                 <div className="flex shrink-0 items-center gap-2 sm:w-44">
                   <span className={`h-2 w-2 rounded-full ${style.dot}`} />
                   <span className="text-xs font-semibold tabular-nums text-white/85">
-                    {formatDateChip(row.date, row.daysUntil)}
+                    {row.undated ? "Ongoing" : formatDateChip(row.date, row.daysUntil)}
                   </span>
                 </div>
                 <div className="min-w-0 flex-1">

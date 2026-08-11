@@ -5,8 +5,10 @@ import type {
   SignalStatus,
 } from "@/lib/types";
 import { statusColor } from "@/lib/utils";
+import { isStale } from "@/lib/staleness";
 import SignalCard from "./SignalCard";
 import SparkChart from "./SparkChart";
+import StaleBadge from "./StaleBadge";
 
 interface TankerRatesSignalProps {
   data: TankerRatesSignalType;
@@ -70,6 +72,17 @@ export default function TankerRatesSignal({ data }: TankerRatesSignalProps) {
       physicalMarketNotes={data.physicalMarketNotes}
     >
       <div className="flex flex-col gap-4">
+        {/* Staleness flag — rates carried forward by the sweep, not fresh
+            fixtures. Stale when the block timestamp OR the underlying rate
+            history (the actual data vintage) is >30 days old. */}
+        {(isStale(data.lastUpdated) ||
+          (data.history.length > 0 &&
+            isStale(data.history[data.history.length - 1].date))) && (
+          <div>
+            <StaleBadge date={data.lastUpdated} />
+          </div>
+        )}
+
         {/* Hero: $95k/day + % vs baseline */}
         <div>
           <span

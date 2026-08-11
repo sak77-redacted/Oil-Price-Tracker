@@ -11,6 +11,7 @@ import PhaseIndicator from "./PhaseIndicator";
 import CriticalPath from "./CriticalPath";
 import TodaysTape from "./TodaysTape";
 import WatchThisWeek from "./WatchThisWeek";
+import StaleBadge from "./StaleBadge";
 
 // Tier 2 — regime signals
 import InsuranceSignal from "./InsuranceSignal";
@@ -138,8 +139,7 @@ export default function Dashboard({
       {/* Inventory Phase Indicator — JH/@CRUDEOIL231 framework */}
       {data.phaseIndicator && <PhaseIndicator data={data.phaseIndicator} />}
 
-      {/* HFI Critical Path — two dated milestones (mid-June / late-July) */}
-      {data.criticalPath && <CriticalPath data={data.criticalPath} />}
+      {/* CriticalPath moved to Archive — both milestones are in the past. */}
 
       <div className="mt-3 flex items-center justify-center gap-2 text-[10px] text-[var(--text-secondary)]">
         <span>
@@ -188,20 +188,18 @@ export default function Dashboard({
           ═════════════════════════════════════════════════════════════════ */}
       <TierDivider
         label="Tier 2 — Regime"
-        description="The five-to-six signals that move the verdict. Tick-horizon — these move daily."
+        description="The six live-swept signals that move the verdict. Tick-horizon — these move daily."
       />
 
       <section className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <InsuranceSignal data={data.insurance} />
         <OilSpreadSignal data={oilSpreadData} />
         {data.curveShape && <CurveShapeSignal data={data.curveShape} />}
-        {data.paperMarket && <PaperMarketSignal data={data.paperMarket} />}
-        {data.buyerStress && <BuyerStressSignal data={data.buyerStress} />}
         <ShipTransitSignal data={data.shipTransit} />
         {data.tankerEconomics && (
           <TankerRatesSignal data={data.tankerEconomics} />
         )}
-        {data.volSkew && <VolSkewSignal data={data.volSkew} />}
+        {data.buyerStress && <BuyerStressSignal data={data.buyerStress} />}
       </section>
 
       {/* ═════════════════════════════════════════════════════════════════
@@ -219,43 +217,14 @@ export default function Dashboard({
         onToggle={(e) => setStructuralOpen((e.target as HTMLDetailsElement).open)}
       >
         <summary className="flex cursor-pointer items-center justify-between gap-3 px-5 py-4 text-sm font-semibold text-white/85 hover:bg-zinc-900/40">
-          <span>Show 7 structural signals</span>
+          <span>Show 2 structural signals</span>
           <span className="text-xs text-white/45">
             {structuralOpen ? "Hide ▴" : "Show ▾"}
           </span>
         </summary>
         <div className="space-y-6 px-5 pb-6 pt-2">
-          <SPRCliffSignal />
-          <SupplyBalanceSignal
-            physicalMarketNote={data.bufferMath.physicalMarketNote}
-            physicalMarketNotes={data.bufferMath.physicalMarketNotes}
-            usInventoryDecomp={data.bufferMath.usInventoryDecomp}
-            globalInventoryDecomp={data.bufferMath.globalInventoryDecomp}
-          />
-          {data.inventoryDraws && <InventoryDrawsSignal data={data.inventoryDraws} />}
           {data.usProductStocks && <USProductStocksSignal data={data.usProductStocks} />}
-          {data.usCommercialCrudeStorage && (
-            <USCommercialCrudeStorage data={data.usCommercialCrudeStorage} />
-          )}
-          {data.demandDestructionReality && (
-            <DemandDestructionReality
-              data={data.demandDestructionReality}
-              exports={data.exportTrackers}
-            />
-          )}
-          {data.equityDisbelief && <EquityDisbeliefSignal data={data.equityDisbelief} />}
-          <CriticalDeadlines data={data.timeline} />
-          <div>
-            <div className="mb-4">
-              <h3 className="text-base font-bold text-[var(--text-primary)]">
-                Crisis Recovery Timeline
-              </h3>
-              <p className="mt-1 text-xs text-[var(--text-secondary)]">
-                From Sparta Commodities & Palmer Energy — Asia needs 4-5 months to normalize even after reopening
-              </p>
-            </div>
-            <RecoveryClock data={data.recoveryClock} />
-          </div>
+          <SPRStatusBoard data={data.sprStatus} />
         </div>
       </details>
 
@@ -361,9 +330,6 @@ export default function Dashboard({
 
       {contextOpen && (
         <div className="mt-4 space-y-8">
-          <InflationThreshold data={data.inflationThreshold} currentOilPrice={forwardData?.promptPrice} />
-          <SPRStatusBoard data={data.sprStatus} />
-          <DemandDestruction data={data.demandDestruction} />
           <StraitStatus data={data.straitStatus} />
           <section>
             <div className="mb-4">
@@ -376,7 +342,109 @@ export default function Dashboard({
             </div>
             <VesselMapWrapper crisisCount={data.shipTransit.dailyCount} normalCount={data.shipTransit.baseline} />
           </section>
+          {aiSummary && <AISummary data={aiSummary} />}
+        </div>
+      )}
+
+      {/* ═════════════════════════════════════════════════════════════════
+          ARCHIVE — Frozen thesis layers from the May 2026 build-out.
+          Data no longer refreshed by the daily sweep. Preserved, collapsed.
+          ═════════════════════════════════════════════════════════════════ */}
+      <TierDivider
+        label="Archive — Frozen Thesis Layers"
+        description="Analysis layers from the May 2026 build-out whose data is no longer refreshed. Preserved for the record; dates shown on each."
+      />
+
+      <details className="mt-4 rounded-xl border border-zinc-800 bg-zinc-950/40">
+        <summary className="flex cursor-pointer items-center justify-between gap-3 px-5 py-4 text-sm font-semibold text-white/85 hover:bg-zinc-900/40">
+          <span>Show 16 archived layers</span>
+          <span className="text-xs text-white/45">Show ▾</span>
+        </summary>
+        <div className="space-y-8 px-5 pb-6 pt-2">
+          {data.paperMarket && (
+            <div>
+              <div className="mb-2"><StaleBadge date="2026-05-21" /></div>
+              <PaperMarketSignal data={data.paperMarket} />
+            </div>
+          )}
+          {data.volSkew && (
+            <div>
+              <div className="mb-2"><StaleBadge date="2026-05-21" /></div>
+              <VolSkewSignal data={data.volSkew} />
+            </div>
+          )}
+          {data.equityDisbelief && (
+            <div>
+              <div className="mb-2"><StaleBadge date="2026-05-21" /></div>
+              <EquityDisbeliefSignal data={data.equityDisbelief} />
+            </div>
+          )}
+          {data.inventoryDraws && (
+            <div>
+              <div className="mb-2"><StaleBadge date="2026-05-21" /></div>
+              <InventoryDrawsSignal data={data.inventoryDraws} />
+            </div>
+          )}
+          <div>
+            <div className="mb-2"><StaleBadge date="2026-05-16" /></div>
+            <SPRCliffSignal />
+          </div>
+          <div>
+            <div className="mb-2"><StaleBadge date="2026-06-03" /></div>
+            <SupplyBalanceSignal
+              physicalMarketNote={data.bufferMath.physicalMarketNote}
+              physicalMarketNotes={data.bufferMath.physicalMarketNotes}
+              usInventoryDecomp={data.bufferMath.usInventoryDecomp}
+              globalInventoryDecomp={data.bufferMath.globalInventoryDecomp}
+            />
+          </div>
+          <div>
+            <div className="mb-2"><StaleBadge date="2026-05-18" /></div>
+            <CriticalDeadlines data={data.timeline} />
+          </div>
+          <div>
+            <div className="mb-2"><StaleBadge date="2026-05-16" /></div>
+            <div className="mb-4">
+              <h3 className="text-base font-bold text-[var(--text-primary)]">
+                Crisis Recovery Timeline
+              </h3>
+              <p className="mt-1 text-xs text-[var(--text-secondary)]">
+                From Sparta Commodities & Palmer Energy — Asia needs 4-5 months to normalize even after reopening
+              </p>
+            </div>
+            <RecoveryClock data={data.recoveryClock} />
+          </div>
+          {data.criticalPath && (
+            <div>
+              <div className="mb-2"><StaleBadge date="2026-07-31" /></div>
+              <CriticalPath data={data.criticalPath} />
+            </div>
+          )}
+          {data.usCommercialCrudeStorage && (
+            <div>
+              <div className="mb-2"><StaleBadge date="2026-05-22" /></div>
+              <USCommercialCrudeStorage data={data.usCommercialCrudeStorage} />
+            </div>
+          )}
+          {data.demandDestructionReality && (
+            <div>
+              <div className="mb-2"><StaleBadge date="2026-05-21" /></div>
+              <DemandDestructionReality
+                data={data.demandDestructionReality}
+                exports={data.exportTrackers}
+              />
+            </div>
+          )}
+          <div>
+            <div className="mb-2"><StaleBadge date="2026-05-18" /></div>
+            <InflationThreshold data={data.inflationThreshold} currentOilPrice={forwardData?.promptPrice} />
+          </div>
+          <div>
+            <div className="mb-2"><StaleBadge date="2026-05-16" /></div>
+            <DemandDestruction data={data.demandDestruction} />
+          </div>
           <section>
+            <div className="mb-2"><StaleBadge date="2026-05-16" /></div>
             <div className="mb-4">
               <h2 className="text-xl font-bold text-[var(--text-primary)]">Global Supply Disruption</h2>
               <p className="mt-1 text-sm text-[var(--text-secondary)]">
@@ -385,11 +453,16 @@ export default function Dashboard({
             </div>
             <GlobalSupplyDisruption globalData={data.globalImpact} regionalData={data.regionalImpact} />
           </section>
-          <IranianAttacks data={data.iranianAttacks} />
-          <CrisisTimeline data={data.crisisTimeline} />
-          {aiSummary && <AISummary data={aiSummary} />}
+          <div>
+            <div className="mb-2"><StaleBadge date="2026-05-16" /></div>
+            <IranianAttacks data={data.iranianAttacks} />
+          </div>
+          <div>
+            <div className="mb-2"><StaleBadge date="2026-05-18" /></div>
+            <CrisisTimeline data={data.crisisTimeline} />
+          </div>
         </div>
-      )}
+      </details>
     </div>
   );
 }
