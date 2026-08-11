@@ -45,8 +45,9 @@ export async function POST(request: NextRequest) {
     // Write override file
     await writeFile(OVERRIDE_PATH, JSON.stringify(merged, null, 2));
 
-    // Trigger revalidation so ISR picks up new data
+    // Trigger revalidation so ISR picks up new data (oil dashboard lives at /oil)
     revalidatePath("/");
+    revalidatePath("/oil");
 
     return NextResponse.json({
       ok: true,

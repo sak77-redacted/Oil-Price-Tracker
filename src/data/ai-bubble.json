@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "title": "AI Bubble Tracker",
+    "thesis": "The AI capex/circular-financing structure fails not when the numbers fall — it fails when they stop accelerating. Watch the speed, not the level.",
+    "videoSource": "The Jay Martin Show — 'The 2006 Question' (Aug 2026)",
+    "lastSweep": "2026-08-11",
+    "crisisFrame": "2006: loans failed when prices rose 8% instead of 15%. Watch the speed."
+  },
+  "verdict": {
+    "status": "ACCELERATION INTACT — WATCH THE SPEED",
+    "compositeNote": "Backlogs and capex are still accelerating, which is the only thing holding the three-borrower stack together. But the next OpenAI step-up is projected at 1.17x — the smallest ever — while free Chinese models attack the revenue growth that justifies it. No kill trigger has fired. The structure holds exactly as long as the second derivative stays positive.",
+    "signalsAccelerating": 2,
+    "signalsDecelerating": 1,
+    "signalsWatch": 5,
+    "signalsBroken": 0
+  },
+  "stack": [
+    {
+      "borrower": "2/28 subprime borrower (2003-2006)",
+      "collateral": "House price appreciation",
+      "requirement": "Prices rising ~15%/yr",
+      "broke": "2006: +8% instead of +15%"
+    },
+    {
+      "borrower": "OpenAI (2024-2026)",
+      "collateral": "Valuation step-ups",
+      "requirement": "Each round 1.7-1.9x the last",
+      "broke": null
+    },
+    {
+      "borrower": "US Treasury",
+      "collateral": "Belief in American growth",
+      "requirement": "$12T rollover by end-2027 + $1.6T/yr new borrowing",
+      "broke": null
+    }
+  ],
+  "signals": {
+    "stepUpLadder": {
+      "id": "stepUpLadder",
+      "name": "The Step-Up Ladder",
+      "question": "Does OpenAI's next raise price above the last, and by how much?",
+      "status": "watch",
+      "rounds": [
+        { "date": "2024-01", "valuationB": 86 },
+        { "date": "2024-10", "valuationB": 157, "multiple": 1.83 },
+        { "date": "2025-03", "valuationB": 300, "multiple": 1.91 },
+        { "date": "2025-10", "valuationB": 500, "multiple": 1.67 },
+        { "date": "2026-03", "valuationB": 852, "multiple": 1.7, "raiseB": 122, "note": "Largest private raise in history" }
+      ],
+      "nextExpected": {
+        "event": "IPO",
+        "valuationB": 1000,
+        "impliedMultiple": 1.17,
+        "note": "Smallest step-up ever — at the exact moment free Chinese models attack the growth that justifies it"
+      },
+      "thresholds": {
+        "intact": ">=1.6x",
+        "warning": "1.3-1.6x",
+        "broken": "<1.3x or down round"
+      },
+      "history": [
+        { "date": "2024-01", "value": 86, "label": "Round valuation ($B)" },
+        { "date": "2024-10", "value": 157 },
+        { "date": "2025-03", "value": 300 },
+        { "date": "2025-10", "value": 500 },
+        { "date": "2026-03", "value": 852 }
+      ],
+      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026)",
+      "lastUpdated": "2026-08-11",
+      "notes": [
+        {
+          "date": "2026-08-11",
+          "text": "The step-up multiple IS the collateral. Like 2006 house prices, the ladder doesn't need to fall to break the structure — it just needs to stop climbing at the required rate.",
+          "attribution": "Jay Martin, The Jay Martin Show"
+        }
+      ]
+    },
+    "backlog": {
+      "id": "backlog",
+      "name": "The Backlog",
+      "question": "Do the backlogs keep GROWING, or do they just stay large? Not the same thing.",
+      "status": "accelerating",
+      "platforms": [
+        { "name": "Oracle", "backlogB": 638, "yoyGrowthPct": 363 },
+        { "name": "Microsoft", "backlogB": 625 },
+        { "name": "Google" },
+        { "name": "Amazon" }
+      ],
+      "totalB": 2100,
+      "concentration": {
+        "note": "~50% owed by OpenAI + Anthropic — neither profitable. >50% of Oracle's backlog traces to OpenAI alone."
+      },
+      "trigger": "Backlog growth rate declines two consecutive quarters = decelerating; flat/shrinking = broken",
+      "history": [
+        { "date": "2025-08", "value": 138, "label": "Oracle backlog ($B, derived from +363% YoY)" },
+        { "date": "2026-08", "value": 638, "label": "Oracle backlog ($B)" }
+      ],
+      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); platform earnings backlogs (RPO)",
+      "lastUpdated": "2026-08-11"
+    },
+    "capex": {
+      "id": "capex",
+      "name": "Capex Acceleration",
+      "question": "The day the market rewards a company for LEAVING the race is the day the race is over.",
+      "status": "accelerating",
+      "annual": [
+        { "year": 2023, "capexB": 150 },
+        { "year": 2024, "capexB": 226 },
+        { "year": 2025, "capexB": 410 },
+        { "year": 2026, "capexB": 725, "planned": true }
+      ],
+      "keyFact": "2026: first year construction spend exceeds combined operating cash flow of the four platforms — every marginal dollar is debt-funded, borrowed against backlog owed by unprofitable borrowers",
+      "killTrigger": {
+        "description": "First hyperscaler announces capex CUT and its stock RISES",
+        "fired": false
+      },
+      "history": [
+        { "date": "2023-12", "value": 150, "label": "Combined hyperscaler capex ($B)" },
+        { "date": "2024-12", "value": 226 },
+        { "date": "2025-12", "value": 410 },
+        { "date": "2026-12", "value": 725, "label": "Planned" }
+      ],
+      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); hyperscaler capex guidance",
+      "lastUpdated": "2026-08-11"
+    },
+    "chinaShare": {
+      "id": "chinaShare",
+      "name": "China Share Pressure",
+      "question": "Chinese models don't need to be better. Nearly as good and nearly free is enough.",
+      "status": "decelerating",
+      "openRouter": {
+        "usSharePct": { "current": 30, "yearAgo": 70 },
+        "topProvider": "Chinese (Moonshot)"
+      },
+      "events": [
+        {
+          "date": "2026-07-16",
+          "text": "Moonshot releases Kimi K3 — #1 on coding leaderboard within a day, beating Anthropic and OpenAI blind at ~40% lower cost"
+        },
+        {
+          "date": "2026-07-27",
+          "text": "Kimi K3 open-sourced — free to download and self-host"
+        }
+      ],
+      "mechanism": "Pulls customers away AND forces down prices American labs can charge — both push on the speed of US AI revenue growth. The speed is the collateral.",
+      "history": [
+        { "date": "2025-08", "value": 70, "label": "US model share of OpenRouter usage (%)" },
+        { "date": "2026-08", "value": 30, "label": "US model share of OpenRouter usage (%)" }
+      ],
+      "source": "OpenRouter usage share via The Jay Martin Show (Aug 2026)",
+      "lastUpdated": "2026-08-11",
+      "notes": [
+        {
+          "date": "2026-08-11",
+          "text": "Red here does not mean Chinese models are failing — it means pressure against US share is RISING. This signal measures the force pushing on US revenue speed.",
+          "attribution": "Display note"
+        }
+      ]
+    },
+    "revenueSpeed": {
+      "id": "revenueSpeed",
+      "name": "Revenue Speed",
+      "question": "Is US AI revenue growth still accelerating?",
+      "status": "watch",
+      "openai": {
+        "revenue2025B": 20,
+        "yoyMultiple": 3,
+        "lossNote": "Loses tens of billions/yr; has never earned a profit"
+      },
+      "history": [
+        { "date": "2024-12", "value": 6.7, "label": "OpenAI revenue ($B, derived from 3x YoY)" },
+        { "date": "2025-12", "value": 20, "label": "OpenAI revenue ($B)" }
+      ],
+      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026)",
+      "lastUpdated": "2026-08-11"
+    },
+    "policyWatch": {
+      "id": "policyWatch",
+      "name": "Policy Watch",
+      "question": "Ban or no ban — either path stresses the structure.",
+      "status": "watch",
+      "ladder": ["NONE", "DEBATE", "DRAFT_LEGISLATION", "ENACTED"],
+      "current": "DEBATE",
+      "headline": "Washington debating emergency ban on Chinese AI; David Sacks: 'this is concerning'",
+      "interpretation": "The catfish effect run backwards — China used competition to grow strong; a US ban removes the pressure that forces improvement while cutting US businesses off from a nearly-free tool. Either path stresses the structure: ban → protected stagnation; no ban → growth curve flattens.",
+      "history": [
+        { "date": "2026-07-16", "value": 0, "label": "NONE" },
+        { "date": "2026-08-08", "value": 1, "label": "DEBATE" }
+      ],
+      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); Washington policy debate coverage",
+      "lastUpdated": "2026-08-11"
+    },
+    "concentration": {
+      "id": "concentration",
+      "name": "Index Concentration",
+      "question": "Know what you actually own.",
+      "status": "watch",
+      "sp500Top10WeightPct": 40,
+      "note": "An index fund is not 500 businesses — nearly half is one bet on one belief: that America owns the future of technology.",
+      "history": [
+        { "date": "2026-08", "value": 40, "label": "S&P 500 top-10 weight (%)" }
+      ],
+      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); S&P index weights",
+      "lastUpdated": "2026-08-11"
+    },
+    "treasuryStack": {
+      "id": "treasuryStack",
+      "name": "The Treasury Stack",
+      "question": "In the next crisis, the fear points AT the belief that funds the Treasury.",
+      "status": "watch",
+      "nationalDebtT": 39.8,
+      "deficit12moT": 1.6,
+      "rolloverByEnd2027T": 12,
+      "annualInterestT": 1.0,
+      "interestVsDefense": "Interest now exceeds the entire military budget",
+      "watch": "Auction bid-to-cover + 10Y behavior during AI-led selloffs: in 2008 scared money BOUGHT treasuries (fear pointed at banks). An AI crash points fear at the belief in American growth itself — scared money may walk.",
+      "history": [
+        { "date": "2026-08", "value": 39.8, "label": "National debt ($T)" }
+      ],
+      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); US Treasury data",
+      "lastUpdated": "2026-08-11"
+    }
+  },
+  "weeklyBrief": {
+    "date": "2026-08-11",
+    "headline": "Baseline established from Jay Martin's 'The 2006 Question'",
+    "changes": [],
+    "nextSweep": "weekly"
+  }
+}

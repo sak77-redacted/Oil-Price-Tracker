@@ -57,7 +57,7 @@ export default function HormuzTransmission({ data }: Props) {
         </div>
 
         <Link
-          href="/"
+          href="/oil"
           className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/45 hover:text-emerald-300 sm:col-span-2"
         >
           <span aria-hidden>←</span>

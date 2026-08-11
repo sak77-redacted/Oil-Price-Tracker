@@ -11,7 +11,8 @@ interface NavLink {
 }
 
 const NAV_LINKS: NavLink[] = [
-  { href: "/", label: "Oil" },
+  { href: "/", label: "AI Bubble", shortLabel: "AI" },
+  { href: "/oil", label: "Oil" },
   { href: "/sugar", label: "Sugar" },
   {
     href: "/commodities",

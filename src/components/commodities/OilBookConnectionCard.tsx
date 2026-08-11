@@ -14,7 +14,7 @@ export default function OilBookConnectionCard({ text }: Props) {
           Connection to existing oil book
         </p>
         <div className="flex gap-2 text-[10px] font-semibold uppercase tracking-[0.16em]">
-          <Link href="/" className="text-white/55 hover:text-emerald-200">
+          <Link href="/oil" className="text-white/55 hover:text-emerald-200">
             ← Oil tracker
           </Link>
           <span className="text-white/20">·</span>

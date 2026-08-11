@@ -29,9 +29,10 @@ export async function GET(request: Request) {
   // Bust the signal data cache — next page visit will re-scrape
   revalidateTag("signal-overrides", { expire: 0 });
 
-  // Also revalidate the page itself
+  // Also revalidate the pages themselves (oil dashboard now lives at /oil)
   const { revalidatePath } = await import("next/cache");
   revalidatePath("/");
+  revalidatePath("/oil");
 
   return NextResponse.json({
     status: "ok",
