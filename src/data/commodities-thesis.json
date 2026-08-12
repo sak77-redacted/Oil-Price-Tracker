@@ -4,10 +4,10 @@
   "sectorDrivers": {
     "Energy": "Hormuz disruption, supply premium, refined product squeeze",
     "Precious Metals": "Geopolitical safe haven, real rate compression, CB buying",
-    "Grains": "Fertilizer input shock (urea +50%), 2026 acreage uncertainty",
+    "Grains": "Fertilizer input shock + US crop shock: wheat production forecast -23% YoY (smallest HRW crop since 1957/58), heatwave damage across US/Canada/Europe",
     "Industrial Metals": "Mixed: energy-cost pass-through vs. China demand wobble",
     "Livestock": "Range-bound; feed costs partly offsetting tight supply",
-    "Softs": "Cocoa/coffee unwinding 2024-25 supply shock as harvests improve"
+    "Softs": "REVERSED: cocoa at 6-month highs, sugar at multi-month highs — the market is now repricing El Niño supply risk it was ignoring in May"
   },
   "keyObservations": [
     {
@@ -16,11 +16,11 @@
     },
     {
       "headline": "Grains are the second-order Hormuz trade",
-      "body": "The +13-17% in corn and soy isn't direct supply disruption — it's the fertilizer cost transmission. Watch July USDA reports as the next catalyst."
+      "body": "Corn and soy strength began as fertilizer cost transmission; now a direct US supply shock is stacking on top — 2026/27 US wheat production forecast down 23% (HRW smallest since 1957/58), corn crop projected -7% with season-average farm price raised to $6.50/bu. Watch the August and September WASDE reports."
     },
     {
-      "headline": "Softs are the inverse trade",
-      "body": "Cocoa down 30% and coffee down 22% is the unwind of the 2024 weather/disease supply shocks. These markets are decoupled from the Hormuz story and trading on their own fundamentals (Brazilian arabica bumper crop, West African cocoa recovery)."
+      "headline": "Softs flipped — the May mispricing resolved",
+      "body": "In May this page argued softs were priced for the wrong direction (cocoa -30%, coffee -22% on recovery narratives incompatible with El Niño). That trade has now happened: NY cocoa broke $5,000/t in June (+19% in a month) on Ivory Coast 2026/27 output fears (1.7-1.8 MMT vs ~2.2 expected), and sugar hit multi-month highs as deficit forecasts deepened. The question is no longer IF El Niño reprices the softs — it's how far the damage runs through the Oct-Jan peak."
     },
     {
       "headline": "Metals dispersion matters",
@@ -29,12 +29,24 @@
   ],
   "compoundThesis": {
     "stats": [
-      { "label": "El Niño probability May-Jul 2026 (CCSR/IRI plume)", "value": "98%" },
-      { "label": "Probability of persistence through 2026", "value": "97-98%" },
-      { "label": "Niño 3.4 SST anomaly (May 13 reading)", "value": "+0.9°C" },
-      { "label": "Odds of strong/very strong El Niño for Nov-Jan peak", "value": "2-in-3" }
+      {
+        "label": "El Niño status (NOAA, Aug 2026)",
+        "value": "ADVISORY ACTIVE"
+      },
+      {
+        "label": "Odds of very strong peak (Niño 3.4 ≥ +2.0°C), Oct–Jan",
+        "value": "63% · 23/26 models"
+      },
+      {
+        "label": "Persistence through early spring 2027",
+        "value": "97%"
+      },
+      {
+        "label": "Ivory Coast 2026/27 cocoa output (vs ~2.2 MMT prior)",
+        "value": "1.7–1.8 MMT"
+      }
     ],
-    "coreThesis": "The market is currently pricing two narratives that are mutually incompatible with a strong El Niño — West African cocoa recovery and Brazilian arabica bumper crop. Both depend on continued favorable weather. A confirmed El Niño breaks both narratives, and the price action year-to-date (cocoa -30%, coffee -22%) means these markets are positioned for the wrong direction. Combined with the Hormuz fertilizer cost shock affecting nitrogen-hungry crops globally, the softs offer compound exposure that isn't priced in."
+    "coreThesis": "The May setup — softs priced for weather recovery while a strong El Niño loomed — has largely played out: cocoa at 6-month highs, sugar at multi-month highs, all major sugar forecasters revised into deficit. El Niño is no longer a probability, it's an active NOAA Advisory forecast to peak very strong Oct–Jan. The remaining trade is duration and magnitude: the Oct–Dec West African pod-fill window, the Sep–Nov Brazilian coffee flowering, and the 2027/28 crop-cycle effects that lag the peak. Positioning has improved but history (2015-16, 2023) says the biggest price responses come DURING the peak, when crop damage becomes measurable."
   },
   "exposureMapping": [
     {
@@ -43,7 +55,7 @@
       "elNinoRisk": "Very High",
       "fertilizerRisk": "Moderate",
       "ytdLabel": "-30%",
-      "pricedIn": "No — opposite direction",
+      "pricedIn": "Repricing underway — rally started Jun",
       "priority": 1
     },
     {
@@ -52,7 +64,7 @@
       "elNinoRisk": "Very High",
       "fertilizerRisk": "Moderate",
       "ytdLabel": "-22%",
-      "pricedIn": "No — opposite direction",
+      "pricedIn": "Partially — flowering window Sep-Nov is the test",
       "priority": 1
     },
     {
@@ -61,7 +73,7 @@
       "elNinoRisk": "Very High",
       "fertilizerRisk": "High",
       "ytdLabel": "-7%",
-      "pricedIn": "No",
+      "pricedIn": "Partially — deficits still being revised deeper (POSITION HELD)",
       "priority": 1
     },
     {
@@ -70,7 +82,7 @@
       "elNinoRisk": "Very High",
       "fertilizerRisk": "Very High",
       "ytdLabel": "+9%",
-      "pricedIn": "Partially",
+      "pricedIn": "Repricing — US crop shock emerging",
       "priority": 2
     },
     {
@@ -110,12 +122,12 @@
   ],
   "tradeIdeas": [
     {
-      "name": "Long Sugar #11 — Best risk-adjusted compound exposure",
+      "name": "Long Sugar #11 — HELD since May 22 (+37% at Aug 12 mark)",
       "conviction": "High Conviction",
       "ticker": "SB",
-      "contract": "SBV6 (Oct'26) or SBH7 (Mar'27)",
+      "contract": "SBH7 Mar'27 — via Feb16'27 18¢ calls × 2",
       "why": "Triple-exposed — Brazil cane (drought sensitivity), Indian monsoon (rainfall failure risk), Australian crush. Sugarcane is also heavily N-dependent so fertilizer shock compounds. Currently grinding near multi-year lows on supply glut narrative that requires continued favorable weather. Lower volatility than cocoa, more liquid options chain than coffee.",
-      "expression": "Outright long futures (small size) OR October sugar call spread (e.g., 16/20 strikes) for defined-risk asymmetric exposure.",
+      "expression": "Executed: 2× Feb'27 18¢ calls @ 0.88¢ ($1,977 basis). Add trigger per plan: deepening UNICA ethanol-pivot data. Any adds: consider later months (SBK7/SBN7) or higher strikes for convexity.",
       "tier": 1,
       "crossLinkHref": "/sugar",
       "crossLinkLabel": "View full thesis on /sugar"
@@ -125,7 +137,7 @@
       "conviction": "Speculative",
       "ticker": "CC",
       "contract": "CCH7 (Mar'27)",
-      "why": "Just round-tripped $2.5k → $12k → $4.2k. Market is pricing West African crop recovery — historically El Niño causes drought in Ghana/Ivory Coast during the critical Oct-Dec pod-fill window. The 2015-16 Super El Niño contributed to the 2017 supply crisis. Down 30% YTD on the recovery narrative that El Niño would invalidate.",
+      "why": "The recovery narrative broke: excessive rains damaged Côte d'Ivoire/Ghana crops and Ivory Coast 2026/27 output is seen at 1.7-1.8 MMT (vs ~2.2 prior). NY cocoa crossed $5,000/t in June, 6-month highs in July; Citi's Q3 outlook flags $6,000 within a year if El Niño damages the main crop. No longer a contrarian entry — now a momentum/chase decision into the Oct-Dec pod-fill window.",
       "expression": "Options only (DCC contracts) — outright futures are too volatile and margin-intensive for sizing discipline. Consider March 2027 call spreads, OTM strikes around $5,000/$7,000.",
       "sizingNote": "Small relative to oil book — think 5-10% of oil notional. This is a satellite convex bet, not a portfolio allocation.",
       "tier": 1
@@ -153,7 +165,7 @@
     {
       "dateRange": "Jun–Sep 2026",
       "event": "India monsoon",
-      "description": "First major El Niño impact window. Drives sugar, rice, cotton, Indian wheat. Below-normal rainfall signals come through July-August.",
+      "description": "LIVE AND CONFIRMING: cumulative rainfall 12% below normal (Aug 10); IMD warns Aug-Sep below normal — possibly weakest monsoon in 11 years. Drives sugar, rice, cotton, Indian wheat.",
       "tier": 1
     },
     {
@@ -165,7 +177,7 @@
     {
       "dateRange": "Aug–Oct 2026",
       "event": "Brazilian Centre-South cane",
-      "description": "Drought signal compounds through Q3 if El Niño strengthens. Crush data and ATR signals matter.",
+      "description": "LIVE: sugar mix collapsed to 41.4% (from 50.1%) as mills pivot to ethanol; C-S sugar output -2.0% YoY through May. UNICA biweekly reports are the add/trim trigger for the sugar position.",
       "tier": 1
     },
     {
@@ -188,11 +200,11 @@
     }
   ],
   "riskFactors": [
-    "Weak/failed El Niño event — the 1-in-3 scenario from NOAA where atmospheric coupling doesn't intensify through summer. Q4 crop impacts get muted.",
+    "Weaker-than-forecast El Niño peak — the event is confirmed (NOAA Advisory), so the residual risk is a peak below the very-strong threshold, muting Q4 crop impacts. Related: Indian monsoon has been RECOVERING (-42% Jun 30 → -12% Aug 10); a continued catch-up weakens the India leg.",
     "Combined unwind — Hormuz resolves AND El Niño underperforms. Worst case for both legs; size accordingly.",
     "Cocoa-specific: faster-than-expected Ghana/Ivory Coast harvest recovery announcement before El Niño impacts show in production data.",
     "Coffee-specific: Brazilian Real strength would cap upside even with weather issues (export economics). Sugar-specific: Indian export policy shifts or Brazilian ethanol mix shifts toward sugar could add supply independent of weather."
   ],
   "oilBookConnection": "This thesis is complementary, not redundant, to the Hormuz oil position. Both express variants of the same macro view (global supply shock, geopolitical/weather catalyst convergence), but they're driven by largely independent transmission mechanisms and will move on different news flow. Suggested allocation: 20-30% of oil notional, spread across 2-3 of the trades above. Cleanest portfolio construction: sugar as core (lowest vol), cocoa as convex satellite (options only), coffee as opportunistic add if it breaks lower.",
-  "dispersionCallout": "Grains have already moved (+13-17% YTD) on the fertilizer thesis — the easy money there is gone. The softs have moved AGAINST the El Niño thesis (-7% to -30% YTD) because the market is still pricing 2024-25 supply shock unwind. That's a setup where positioning is wrong AND the catalyst is high-probability — the textbook definition of asymmetric."
+  "dispersionCallout": "The May dispersion trade (softs priced against El Niño) has largely converged — cocoa +19% in June to 6-month highs, sugar at multi-month highs. What remains: coffee hasn't fully repriced ahead of its Sep-Nov flowering test, and the 2027/28 lagged effects (the 2011 analogue: the 36¢ sugar ATH came AFTER consecutive damaged seasons) are not in the curve. The asymmetry has shifted from 'positioning is wrong' to 'duration is underpriced.'"
 }
