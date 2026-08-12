@@ -17,7 +17,7 @@ export default function SugarTradeSetup({ trade, exitTriggers }: Props) {
           Sugar Trade Setup
         </h3>
         <span className="text-[11px] uppercase tracking-[0.18em] text-emerald-300/80">
-          Mar&apos;27 SBH7 Call Options
+          Feb&apos;27 SBG7 18&cent; Calls &middot; Live Position
         </span>
       </div>
 
@@ -25,7 +25,7 @@ export default function SugarTradeSetup({ trade, exitTriggers }: Props) {
       <div className="grid gap-4 lg:grid-cols-2">
         <TradeColumn
           variant="primary"
-          title="Primary"
+          title="Executed Position"
           contract={primary.contract}
           rows={[
             { label: "Strike", value: `${primary.strike}¢` },
@@ -38,11 +38,11 @@ export default function SugarTradeSetup({ trade, exitTriggers }: Props) {
         />
         <TradeColumn
           variant="alternative"
-          title="Alternative"
+          title="Original Plan (reference)"
           contract={alternative.contract}
           rows={[
-            { label: "Strike", value: `${alternative.strike}¢ ATM` },
-            { label: "Quantity", value: `${alternative.qty} contract` },
+            { label: "Strike", value: `${alternative.strike}¢` },
+            { label: "Quantity", value: `${alternative.qty} contract${alternative.qty === 1 ? "" : "s"}` },
             { label: "Premium / call", value: `$${alternative.premiumPerCall.toLocaleString()}` },
             { label: "Total cost", value: `$${alternative.totalCost.toLocaleString()}` },
             { label: "Breakeven", value: `${alternative.breakeven}¢` },
@@ -54,7 +54,7 @@ export default function SugarTradeSetup({ trade, exitTriggers }: Props) {
       {/* Payoff table */}
       <div className="mt-6">
         <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
-          Payoff Table — 19¢ Call × 1 @ $1,100 Premium
+          Payoff Table — 18¢ Call × 2 @ $1,977 Cost Basis
         </div>
         <div className="overflow-x-auto -mx-2 px-2">
           <table className="w-full text-left text-sm">
