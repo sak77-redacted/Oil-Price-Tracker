@@ -8,7 +8,7 @@
   },
   "verdict": {
     "status": "ACCELERATION INTACT — WATCH THE SPEED",
-    "compositeNote": "Backlogs and capex are still accelerating, which is the only thing holding the three-borrower stack together. But the next OpenAI step-up is projected at 1.17x — the smallest ever — while free Chinese models attack the revenue growth that justifies it. No kill trigger has fired. The structure holds exactly as long as the second derivative stays positive.",
+    "compositeNote": "Big Tech's AI spending and order books are still growing faster every year — and that growth is the only thing holding the whole structure up. Warning signs: OpenAI's next fundraise is expected to value it at only about 1.2x its last round (every earlier round was 1.7-1.9x), and free Chinese models are eating into the revenue growth that justifies those valuations. The event that would mark the turn hasn't happened yet. The lesson of 2006: this structure doesn't need the numbers to fall — it breaks as soon as they stop growing faster each year.",
     "signalsAccelerating": 2,
     "signalsDecelerating": 1,
     "signalsWatch": 5,
@@ -41,11 +41,32 @@
       "question": "Does OpenAI's next raise price above the last, and by how much?",
       "status": "watch",
       "rounds": [
-        { "date": "2024-01", "valuationB": 86 },
-        { "date": "2024-10", "valuationB": 157, "multiple": 1.83 },
-        { "date": "2025-03", "valuationB": 300, "multiple": 1.91 },
-        { "date": "2025-10", "valuationB": 500, "multiple": 1.67 },
-        { "date": "2026-03", "valuationB": 852, "multiple": 1.7, "raiseB": 122, "note": "Largest private raise in history" }
+        {
+          "date": "2024-01",
+          "valuationB": 86
+        },
+        {
+          "date": "2024-10",
+          "valuationB": 157,
+          "multiple": 1.83
+        },
+        {
+          "date": "2025-03",
+          "valuationB": 300,
+          "multiple": 1.91
+        },
+        {
+          "date": "2025-10",
+          "valuationB": 500,
+          "multiple": 1.67
+        },
+        {
+          "date": "2026-03",
+          "valuationB": 852,
+          "multiple": 1.7,
+          "raiseB": 122,
+          "note": "Largest private raise in history"
+        }
       ],
       "nextExpected": {
         "event": "IPO",
@@ -59,11 +80,27 @@
         "broken": "<1.3x or down round"
       },
       "history": [
-        { "date": "2024-01", "value": 86, "label": "Round valuation ($B)" },
-        { "date": "2024-10", "value": 157 },
-        { "date": "2025-03", "value": 300 },
-        { "date": "2025-10", "value": 500 },
-        { "date": "2026-03", "value": 852 }
+        {
+          "date": "2024-01",
+          "value": 86,
+          "label": "Round valuation ($B)"
+        },
+        {
+          "date": "2024-10",
+          "value": 157
+        },
+        {
+          "date": "2025-03",
+          "value": 300
+        },
+        {
+          "date": "2025-10",
+          "value": 500
+        },
+        {
+          "date": "2026-03",
+          "value": 852
+        }
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026)",
       "lastUpdated": "2026-08-11",
@@ -81,10 +118,21 @@
       "question": "Do the backlogs keep GROWING, or do they just stay large? Not the same thing.",
       "status": "accelerating",
       "platforms": [
-        { "name": "Oracle", "backlogB": 638, "yoyGrowthPct": 363 },
-        { "name": "Microsoft", "backlogB": 625 },
-        { "name": "Google" },
-        { "name": "Amazon" }
+        {
+          "name": "Oracle",
+          "backlogB": 638,
+          "yoyGrowthPct": 363
+        },
+        {
+          "name": "Microsoft",
+          "backlogB": 625
+        },
+        {
+          "name": "Google"
+        },
+        {
+          "name": "Amazon"
+        }
       ],
       "totalB": 2100,
       "concentration": {
@@ -92,8 +140,16 @@
       },
       "trigger": "Backlog growth rate declines two consecutive quarters = decelerating; flat/shrinking = broken",
       "history": [
-        { "date": "2025-08", "value": 138, "label": "Oracle backlog ($B, derived from +363% YoY)" },
-        { "date": "2026-08", "value": 638, "label": "Oracle backlog ($B)" }
+        {
+          "date": "2025-08",
+          "value": 138,
+          "label": "Oracle backlog ($B, derived from +363% YoY)"
+        },
+        {
+          "date": "2026-08",
+          "value": 638,
+          "label": "Oracle backlog ($B)"
+        }
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); platform earnings backlogs (RPO)",
       "lastUpdated": "2026-08-11"
@@ -104,21 +160,49 @@
       "question": "The day the market rewards a company for LEAVING the race is the day the race is over.",
       "status": "accelerating",
       "annual": [
-        { "year": 2023, "capexB": 150 },
-        { "year": 2024, "capexB": 226 },
-        { "year": 2025, "capexB": 410 },
-        { "year": 2026, "capexB": 725, "planned": true }
+        {
+          "year": 2023,
+          "capexB": 150
+        },
+        {
+          "year": 2024,
+          "capexB": 226
+        },
+        {
+          "year": 2025,
+          "capexB": 410
+        },
+        {
+          "year": 2026,
+          "capexB": 725,
+          "planned": true
+        }
       ],
       "keyFact": "2026: first year construction spend exceeds combined operating cash flow of the four platforms — every marginal dollar is debt-funded, borrowed against backlog owed by unprofitable borrowers",
       "killTrigger": {
-        "description": "First hyperscaler announces capex CUT and its stock RISES",
-        "fired": false
+        "description": "A tech giant announces it is cutting AI data-center spending — and its share price goes UP on the news",
+        "fired": false,
+        "explainer": "Right now investors treat every extra billion of AI spending as good news, so cutting back would normally hurt a stock. The day the market cheers a company for spending less, investors have stopped believing the race is worth winning. That is the clearest early sign the boom is turning — it would show up long before any crash."
       },
       "history": [
-        { "date": "2023-12", "value": 150, "label": "Combined hyperscaler capex ($B)" },
-        { "date": "2024-12", "value": 226 },
-        { "date": "2025-12", "value": 410 },
-        { "date": "2026-12", "value": 725, "label": "Planned" }
+        {
+          "date": "2023-12",
+          "value": 150,
+          "label": "Combined hyperscaler capex ($B)"
+        },
+        {
+          "date": "2024-12",
+          "value": 226
+        },
+        {
+          "date": "2025-12",
+          "value": 410
+        },
+        {
+          "date": "2026-12",
+          "value": 725,
+          "label": "Planned"
+        }
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); hyperscaler capex guidance",
       "lastUpdated": "2026-08-11"
@@ -129,7 +213,10 @@
       "question": "Chinese models don't need to be better. Nearly as good and nearly free is enough.",
       "status": "decelerating",
       "openRouter": {
-        "usSharePct": { "current": 30, "yearAgo": 70 },
+        "usSharePct": {
+          "current": 30,
+          "yearAgo": 70
+        },
         "topProvider": "Chinese (Moonshot)"
       },
       "events": [
@@ -144,8 +231,16 @@
       ],
       "mechanism": "Pulls customers away AND forces down prices American labs can charge — both push on the speed of US AI revenue growth. The speed is the collateral.",
       "history": [
-        { "date": "2025-08", "value": 70, "label": "US model share of OpenRouter usage (%)" },
-        { "date": "2026-08", "value": 30, "label": "US model share of OpenRouter usage (%)" }
+        {
+          "date": "2025-08",
+          "value": 70,
+          "label": "US model share of OpenRouter usage (%)"
+        },
+        {
+          "date": "2026-08",
+          "value": 30,
+          "label": "US model share of OpenRouter usage (%)"
+        }
       ],
       "source": "OpenRouter usage share via The Jay Martin Show (Aug 2026)",
       "lastUpdated": "2026-08-11",
@@ -168,8 +263,16 @@
         "lossNote": "Loses tens of billions/yr; has never earned a profit"
       },
       "history": [
-        { "date": "2024-12", "value": 6.7, "label": "OpenAI revenue ($B, derived from 3x YoY)" },
-        { "date": "2025-12", "value": 20, "label": "OpenAI revenue ($B)" }
+        {
+          "date": "2024-12",
+          "value": 6.7,
+          "label": "OpenAI revenue ($B, derived from 3x YoY)"
+        },
+        {
+          "date": "2025-12",
+          "value": 20,
+          "label": "OpenAI revenue ($B)"
+        }
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026)",
       "lastUpdated": "2026-08-11"
@@ -179,13 +282,26 @@
       "name": "Policy Watch",
       "question": "Ban or no ban — either path stresses the structure.",
       "status": "watch",
-      "ladder": ["NONE", "DEBATE", "DRAFT_LEGISLATION", "ENACTED"],
+      "ladder": [
+        "NONE",
+        "DEBATE",
+        "DRAFT_LEGISLATION",
+        "ENACTED"
+      ],
       "current": "DEBATE",
       "headline": "Washington debating emergency ban on Chinese AI; David Sacks: 'this is concerning'",
       "interpretation": "The catfish effect run backwards — China used competition to grow strong; a US ban removes the pressure that forces improvement while cutting US businesses off from a nearly-free tool. Either path stresses the structure: ban → protected stagnation; no ban → growth curve flattens.",
       "history": [
-        { "date": "2026-07-16", "value": 0, "label": "NONE" },
-        { "date": "2026-08-08", "value": 1, "label": "DEBATE" }
+        {
+          "date": "2026-07-16",
+          "value": 0,
+          "label": "NONE"
+        },
+        {
+          "date": "2026-08-08",
+          "value": 1,
+          "label": "DEBATE"
+        }
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); Washington policy debate coverage",
       "lastUpdated": "2026-08-11"
@@ -198,7 +314,11 @@
       "sp500Top10WeightPct": 40,
       "note": "An index fund is not 500 businesses — nearly half is one bet on one belief: that America owns the future of technology.",
       "history": [
-        { "date": "2026-08", "value": 40, "label": "S&P 500 top-10 weight (%)" }
+        {
+          "date": "2026-08",
+          "value": 40,
+          "label": "S&P 500 top-10 weight (%)"
+        }
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); S&P index weights",
       "lastUpdated": "2026-08-11"
@@ -215,7 +335,11 @@
       "interestVsDefense": "Interest now exceeds the entire military budget",
       "watch": "Auction bid-to-cover + 10Y behavior during AI-led selloffs: in 2008 scared money BOUGHT treasuries (fear pointed at banks). An AI crash points fear at the belief in American growth itself — scared money may walk.",
       "history": [
-        { "date": "2026-08", "value": 39.8, "label": "National debt ($T)" }
+        {
+          "date": "2026-08",
+          "value": 39.8,
+          "label": "National debt ($T)"
+        }
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); US Treasury data",
       "lastUpdated": "2026-08-11"

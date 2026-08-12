@@ -90,11 +90,16 @@ export default function AIVerdictBanner({ verdict, meta, capex }: AIVerdictBanne
         <div className="flex flex-col gap-2 rounded-lg border border-white/15 bg-black/30 p-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/55">
-              Kill trigger
+              The endgame signal — the one event that would mark the top
             </div>
             <div className="mt-1 text-sm font-semibold text-white/90">
               {capex.killTrigger.description}
             </div>
+            {capex.killTrigger.explainer && (
+              <p className="mt-1.5 max-w-2xl text-[12px] leading-relaxed text-white/55">
+                {capex.killTrigger.explainer}
+              </p>
+            )}
           </div>
           <span
             className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wider ${
@@ -106,7 +111,7 @@ export default function AIVerdictBanner({ verdict, meta, capex }: AIVerdictBanne
             <span
               className={`h-2 w-2 rounded-full ${capex.killTrigger.fired ? "animate-ping bg-red-500" : "bg-emerald-400"}`}
             />
-            {capex.killTrigger.fired ? "FIRED" : "Not yet fired"}
+            {capex.killTrigger.fired ? "It happened" : "Hasn't happened yet"}
           </span>
         </div>
 

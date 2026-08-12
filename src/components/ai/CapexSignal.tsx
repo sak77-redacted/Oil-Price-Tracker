@@ -79,16 +79,17 @@ export default function CapexSignal({ signal }: CapexSignalProps) {
             <span
               className={`h-1.5 w-1.5 rounded-full ${signal.killTrigger.fired ? "bg-red-500" : "bg-emerald-400"}`}
             />
-            {signal.killTrigger.fired ? "FIRED" : "NOT FIRED"}
+            {signal.killTrigger.fired ? "IT HAPPENED" : "HASN'T HAPPENED YET"}
           </span>
         </div>
         <p className="mt-2 text-sm font-semibold leading-snug text-white/90">
-          First capex cut that the market rewards.
+          {signal.killTrigger.description}.
         </p>
-        <p className="mt-1 text-[12px] leading-relaxed text-white/60">
-          {signal.killTrigger.description}. The day the market rewards a company for leaving
-          the race is the day the race is over.
-        </p>
+        {signal.killTrigger.explainer && (
+          <p className="mt-1 text-[12px] leading-relaxed text-white/60">
+            {signal.killTrigger.explainer}
+          </p>
+        )}
       </div>
     </AISignalCard>
   );

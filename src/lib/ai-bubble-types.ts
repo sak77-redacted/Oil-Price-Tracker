@@ -116,7 +116,7 @@ export interface CapexYear {
 export interface CapexSignalData extends AISignalBase {
   annual: CapexYear[];
   keyFact: string;
-  killTrigger: { description: string; fired: boolean };
+  killTrigger: { description: string; explainer?: string; fired: boolean };
 }
 
 /* ─── Signal 4: China Share ─── */
