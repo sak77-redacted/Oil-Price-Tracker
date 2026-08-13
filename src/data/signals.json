@@ -667,9 +667,9 @@
     ]
   },
   "oilSpread": {
-    "brent": 89.7,
-    "dubai": 82.0,
-    "spread": -7.7,
+    "brent": 87.92,
+    "dubai": 80.2,
+    "spread": -7.72,
     "history": [
       {
         "date": "2026-02-27",
@@ -985,9 +985,14 @@
         "date": "2026-08-12",
         "brent": 89.7,
         "dubai": 82.0
+      },
+      {
+        "date": "2026-08-13",
+        "brent": 87.92,
+        "dubai": 80.2
       }
     ],
-    "lastUpdated": "2026-08-12T00:00:00Z",
+    "lastUpdated": "2026-08-13T00:00:00Z",
     "brentSource": "Multiple sources Aug 10 2026: CNBC 'U.S. oil rises back above $82' / Sunday Guardian 'Brent Nears $85' / Fortune Aug 10 2026. WTI settled $82.13, Brent settled ~$87.72 (+5%). Auto-sweep 2026-08-10.",
     "dubaiSource": "Dubai Crude Oil Platts futures (Investing.com). May 14 inversion print: $100.70.",
     "note": "Dubai discount re-widening to $6.72 on diplomatic breakdown (Aug 10). Iran/Oman framework increasingly uncertain — Iran hardened conditions, US positions uncompromising. Brent surged +5% intraday on positioning unwind. Dubai discount last at -$4.45 on Aug 6-7 peak-optimism; now widening back. Physical premium will recover toward zero only on physical gate confirmations.",
@@ -1268,7 +1273,7 @@
   "bufferMath": {
     "oecdCommercialDaysCover": 21,
     "operationalFloor": 24,
-    "oecdSPRRemainingMb": 741,
+    "oecdSPRRemainingMb": 734.9,
     "oecdSPRTotalCapacityMb": 855,
     "cumulativeMissingMb": 1075,
     "dailyMissingMbd": 8.5,
@@ -1276,7 +1281,7 @@
     "burnDownDays": 47,
     "futureBestCaseMissingMb": 760,
     "sprBreakdown": {
-      "us": 304.8,
+      "us": 298.7,
       "japan": 263,
       "europe": 179
     },
@@ -1292,9 +1297,9 @@
     "recordExportsMbd": 12.9,
     "usInventoryDecomp": {
       "region": "US Commercial",
-      "totalMb": 409.7,
+      "totalMb": 424.4,
       "moiFloorMb": 300,
-      "availableBufferMb": 109.7,
+      "availableBufferMb": 124.4,
       "weeklyBurnMb": 1.7,
       "weeksToMOI": 64.5,
       "moiComponents": {
@@ -1388,7 +1393,7 @@
         "sprMb": 741
       }
     ],
-    "lastUpdated": "2026-06-03T00:00:00Z",
+    "lastUpdated": "2026-08-13T00:00:00Z",
     "source": "IEA OECD inventories. EIA Weekly Petroleum Status Report (May 21 release, week ending May 16): SPR -9.9 Mb + commercial crude -7.9 Mb = single-week record 17.8 Mb total US crude draw. Cushing 4th consecutive weekly decline. Total commercial oil + product stock at 5-yr range floor (1.22 Bn bbl vs 5-yr avg 1.25 Bn). Prior EIA May 13: record 8.6 Mb single-week SPR; SPR was 384.1 Mb; now 374.2 Mb. Goldman/JPM/HFI: April inventory draws 7.1 Mbpd, demand destruction 4.3 Mbpd; cumulative ~410 Mbbl drawn Mar+Apr+May to date. IEA SPR 120-day window exhausts ~Jul 9.",
     "physicalMarketNotes": [
       {
@@ -1445,11 +1450,11 @@
     "weeksToCritical": 4,
     "criticalDateLabel": "mid-September 2026",
     "commercialDrawsMbd": 1.7,
-    "pad1Status": "4-5 draws from critical (distillate -3.5 Mb wk ending Jul 31, 2026; 12% below 5-yr avg). Jul 10 had +4.6 Mb build, Jul 31 reversed with -3.5 Mb draw — oscillating near critical levels. Diplomatic progress (Hormuz draft) may ease product supply pressure in 2-4 weeks if Khamenei approves and transit resumes.",
+    "pad1Status": "Oscillating near critical — distillate -0.1 Mb wk ending Aug 7, 2026 (EIA Aug 12); 12% below 5-yr avg. Prior week -3.5 Mb draw (Jul 31); this week near-flat. Trend remains weak; regional shortages persist. NOTE: US commercial crude BUILT +17.4 Mb this week (largest weekly gain since Jan 2023) — driven by reduced exports, not demand recovery. This is a crude-oil-specific build; distillate/product picture unchanged.",
     "japanAugFixturesMb": 12,
     "japanPreCrisisRange": "1–5 mb/month",
     "methodology": "Distillate inventories near 20-year seasonal lows per EIA May 21 (small modest tick-up this week but levels remain near record-low seasonal). PAD1 stocks 1–2 draws away from very low after EIA May 13 (commercial crude −4.3 Mb, gasoline below expectations, refineries at 91.7%). EIA May 21 follow-up: 7.9 Mb commercial crude draw, Cushing 4th weekly decline. Houston→Rotterdam and NYH→Rotterdam diesel arbs both wide open. US must defend product pricing or lose more barrels to Europe. Reference Signal 7 for the parallel SPR draw — 9.9 Mb single-week SPR release layered on simultaneous commercial draws.",
-    "lastUpdated": "2026-08-06T20:00:00Z",
+    "lastUpdated": "2026-08-13T00:00:00Z",
     "source": "EIA weekly stocks (May 21 release); Trade with Conviction (Neil Crosby), May 8, 2026; Ole S Hansen, Saxo (May 21, 2026)",
     "physicalMarketNote": {
       "date": "2026-05-08",
@@ -1868,8 +1873,8 @@
         "released": true,
         "reserveDays": 0,
         "releasedMb": 442.9,
-        "totalMb": 304.8,
-        "notes": "EIA Weekly Petroleum Status Report (week ending Jul 31, 2026): SPR = 304.8 Mb — 1983 record low territory, ~57.3% empty (42.7% full). Down 2.9 Mb from prior week (Jul 24: ~307.7 Mb). Cumulative SPR decline since crisis withdrawal start (wk ending Mar 20): ~107+ Mb total. Source: EIA WCSSTUS1 via thevaultreport.com / EIA (Aug 5, 2026)."
+        "totalMb": 298.7,
+        "notes": "EIA Weekly Petroleum Status Report (week ending Aug 7, 2026; released Aug 12): SPR = 298.7 Mb — new multi-decade low, now below 300 Mb for first time since 1983. Down 6.1 Mb from prior week (Jul 31: 304.8 Mb). 433 Mb below maximum capacity. Cumulative decline since crisis withdrawal start (wk ending Mar 20): ~113+ Mb total. Source: EIA WCSSTUS1 (Aug 12, 2026)."
       },
       {
         "country": "Japan",
@@ -1909,7 +1914,7 @@
       }
     ],
     "chinaSignal": "China holds ~1.3–1.4 bn barrels in strategic reserves (largest in the world) and has still NOT released any as of May 21. Per EIA expectations, China is *expanding* stockpiles by ~1 mbpd in 2026 (record 580 mt 2025 imports = +4.6% YoY). Japan and South Korea (IEA members) have released; the US drew 9.9 Mb in a single SPR release per EIA May 21 (on top of a 7.9 Mb commercial draw — 17.8 Mb total record). China's continued forbearance — even with Brent recovering to $111 and the US bleeding SPR + commercial in tandem — remains the single most important crisis-tier signal we track. When China taps its SPR, it signals peak crisis.",
-    "lastUpdated": "2026-08-05T00:00:00Z",
+    "lastUpdated": "2026-08-13T00:00:00Z",
     "physicalMarketNotes": [
       {
         "date": "2026-05-21",
@@ -1991,7 +1996,7 @@
       {
         "class": "VLCC",
         "description": "Very Large Crude Carrier (2M barrels)",
-        "currentRate": 368900,
+        "currentRate": 481286,
         "baselineRate": 50000,
         "peakRate": 424000,
         "unit": "$/day TCE",
@@ -2016,8 +2021,8 @@
         "route": "Intra-Asia / Mediterranean"
       }
     ],
-    "source": "Baltic Exchange BDTI TD3C WS372 → $368,900/day (Jul 17, 2026). Rates surged as naval blockade reinstated Jul 15 (CENTCOM). Week progression: Jul 3 WS294/$286.5k → Jul 10 WS345/$344.3k → Jul 17 WS372/$368.9k. Full AG-East (Gulf-loaded spot) technically inactive (blockade); TD3C assessed rate. Source: Baltic Exchange weekly tanker report Jul 17 2026 / theedgemalaysia.com.",
-    "lastUpdated": "2026-07-20T00:00:00Z",
+    "source": "Baltic Exchange BDTI TD3C WS475.56 → $481,286/day TCE (Aug 10, 2026). Rate surged 23% in single day, breaking off-season weakness early. Progression: Jul 3 WS294/$286.5k → Jul 10 WS345/$344.3k → Jul 17 WS372/$368.9k → Aug 10 WS475.56/$481.3k. Source: Baltic Exchange weekly tanker report / Hellenic Shipping News Aug 2026.",
+    "lastUpdated": "2026-08-13T00:00:00Z",
     "context": "Jun 26-27 2026: Iran IRGC drones struck Ever Lovely (Jun 25) and crude tanker Kiku (Jun 27) on JMIC-designated safe Omani corridor. VLCC freight rates surged to 22-month high (~$420k/day). Post-Islamabad-MoU (Jun 17) calm had briefly brought VLCC to ~$95k/day; reversed entirely. Chinese and Indian state refiners unable to procure supertankers (TechTimes Jun 28, OilPrice.com)."
   },
   "iranianAttacks": {
@@ -2556,13 +2561,13 @@
   "buyerStress": {
     "wafProgrammeStatus": "stalled",
     "wafProgrammeDescription": "WAF May programme bidding from Asian buyers remains unusually quiet — Indian and Chinese refiners largely absent from cargoes that would normally clear in the first half of the month. JH reads this as 'sitting on the sidelines hoping the Strait opens', not genuine demand softness.",
-    "crackSpread321": 64.19,
+    "crackSpread321": 66.65,
     "crackSpreadThreshold": 40,
     "buyerBehavior": "wait-and-see",
     "buyerBehaviorDescription": "[2026-08-06 auto-sweep] WTI 3-2-1 crack COLLAPSED to $28.08/bbl (from $61.96 on Aug 2) — WTI $77.29/bbl, RBOB $1.8831/gal (Sep futures confirmed), HO $3.76/gal (estimated, flag for manual review). Crack below $40 threshold: US refiners at sub-economic pull on crude. Driver: Iran/Oman draft Hormuz agreement (Aug 5-6) pricing in product supply restoration. Brent fell to $79 on agreement news, then rebounded +3.8% to $82.49 on Iran's restrictive terms (US/Israeli ban + 5-7% tolls). [Jun 5 update] WTI 3-2-1 crack 41.8/bbl at WTI ~$92.09 (RBOB $2.9868/gal, HO $3.59/gal). Crack essentially flat vs Jun 3 ($41.71) — both crude and products fell proportionally. Crack at $41.8 vs $40 threshold: US refiners marginally economic pulling crude. Watch for break below $40 as diplomatic res",
     "crisisStartDate": "2026-02-28",
     "demandDestructionVisible": false,
-    "lastUpdated": "2026-08-12T00:00:00Z",
+    "lastUpdated": "2026-08-13T00:00:00Z",
     "source": "WTI 3-2-1 crack 2026-08-12 auto-sweep: RBOB $3.13/gal (WebSearch Aug 12), HO $4.26/gal (WebSearch — near 4-month high), WTI ~$83.09/bbl (WebSearch). Formula: (2*RBOB_bbl + HO_bbl - 3*WTI_bbl)/3. Tier 2.",
     "methodology": "When this lull breaks, WAF May programme bidding will spike first. Watch this for the inflection. Crack > $40 = refiners keep pulling crude (bullish-crude). Crack < $40 = product demand cracking (bearish-crude topping signal).",
     "physicalMarketNotes": [
@@ -2579,7 +2584,7 @@
         "context": "The leading indicator: WAF May programme activity is the canary."
       }
     ],
-    "crackSpreadUsd": 64.19
+    "crackSpreadUsd": 66.65
   },
   "curveShape": {
     "spotBrent": 89.7,
@@ -3143,18 +3148,18 @@
     "title": "Tanker Day Rates",
     "hero": {
       "route": "VLCC TD3",
-      "rate": 420000,
-      "pctVsBaseline": 1300
+      "rate": 481286,
+      "pctVsBaseline": 1504
     },
     "routes": [
       {
         "name": "VLCC TD3",
         "description": "Middle East Gulf → China",
-        "currentRate": 368900,
+        "currentRate": 481286,
         "baselineRate": 30000,
-        "worldscaleCurrent": 372,
+        "worldscaleCurrent": 476,
         "worldscaleBaseline": 50,
-        "pctChange": 1130
+        "pctChange": 1504
       },
       {
         "name": "Suezmax",
@@ -3402,7 +3407,7 @@
     "latestDate": "2026-08-12",
     "latestSource": "HDFCSky Aug 12 2026 (Brent $89.7 on fading deal hopes); Trump Aug 11 'We'll know in 48 hours'; CNBC (ship traffic near 3-month low, 8 total vessels Tuesday).",
     "jawboneCount": 21,
-    "daysSinceFirstJawbone": 134,
+    "daysSinceFirstJawbone": 135,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3557,7 +3562,7 @@
     "phase": 1,
     "phaseName": "Excess Cash Burn",
     "phaseDescription": "[Updated 2026-08-10] ROUND 2 SPECIFIC_TERMS_LEAKED — but deal increasingly uncertain. Iran hardened positions Aug 10; Brent surged +5% to $87.72. Insurance re-escalated to 8.5% hull. Ship transit ~2/day. Brent-Dubai discount widening back to $6.72 as diplomatic optimism fades. SPR: 304.8 Mb (Jul 31, EIA wk) — 1983 record low territory. Phase 1 continues with diplomatic exit path increasingly uncertain. If Round 2 collapses: Phase 2 risk (SPR Draws) re-elevates rapidly.",
-    "daysInPhase": 166,
+    "daysInPhase": 167,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
     "weeksToNextPhase": 118.9,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
