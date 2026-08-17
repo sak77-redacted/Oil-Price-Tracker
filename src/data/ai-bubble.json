@@ -3,15 +3,15 @@
     "title": "AI Bubble Tracker",
     "thesis": "The AI capex/circular-financing structure fails not when the numbers fall — it fails when they stop accelerating. Watch the speed, not the level.",
     "videoSource": "The Jay Martin Show — 'The 2006 Question' (Aug 2026)",
-    "lastSweep": "2026-08-11",
+    "lastSweep": "2026-08-17",
     "crisisFrame": "2006: loans failed when prices rose 8% instead of 15%. Watch the speed."
   },
   "verdict": {
     "status": "ACCELERATION INTACT — WATCH THE SPEED",
-    "compositeNote": "Big Tech's AI spending and order books are still growing faster every year — and that growth is the only thing holding the whole structure up. Warning signs: OpenAI's next fundraise is expected to value it at only about 1.2x its last round (every earlier round was 1.7-1.9x), and free Chinese models are eating into the revenue growth that justifies those valuations. The event that would mark the turn hasn't happened yet. The lesson of 2006: this structure doesn't need the numbers to fall — it breaks as soon as they stop growing faster each year.",
+    "compositeNote": "Big Tech's AI spending and order books are still growing faster every year — and that growth is the only thing holding the whole structure up. Warning signs: OpenAI's next fundraise is expected to value it at only about 1.2x its last round (every earlier round was 1.7-1.9x), and free Chinese models are eating into the revenue growth that justifies those valuations. The event that would mark the turn hasn't happened yet. The lesson of 2006: this structure doesn't need the numbers to fall — it breaks as soon as they stop growing faster each year. Independent corroboration (Eisman, Aug 13): AI infrastructure earnings still accelerating — CoreWeave revenue +112% YoY (still unprofitable), Super Micro +91%, Cisco beat and raised — but a new $500B Nvidia securitization push moves data-center debt off hyperscaler balance sheets into banks and private credit, the most literal 2006 rhyme yet.",
     "signalsAccelerating": 2,
     "signalsDecelerating": 1,
-    "signalsWatch": 5,
+    "signalsWatch": 6,
     "signalsBroken": 0
   },
   "stack": [
@@ -31,6 +31,12 @@
       "borrower": "US Treasury",
       "collateral": "Belief in American growth",
       "requirement": "$12T rollover by end-2027 + $1.6T/yr new borrowing",
+      "broke": null
+    },
+    {
+      "borrower": "AI data-center securitizations (2026–)",
+      "collateral": "Compute-lease payments from unprofitable labs",
+      "requirement": "Leases stay current + structures keep finding buyers",
       "broke": null
     }
   ],
@@ -136,7 +142,7 @@
       ],
       "totalB": 2100,
       "concentration": {
-        "note": "~50% owed by OpenAI + Anthropic — neither profitable. >50% of Oracle's backlog traces to OpenAI alone."
+        "note": "~50% owed by OpenAI + Anthropic — neither profitable. >50% of Oracle's backlog traces to OpenAI alone. Research-firm estimates (via Eisman, Aug 2026): ~70% of hyperscaler AI revenue and 25–35% of total cloud revenue comes from Anthropic + OpenAI."
       },
       "trigger": "Backlog growth rate declines two consecutive quarters = decelerating; flat/shrinking = broken",
       "history": [
@@ -152,7 +158,14 @@
         }
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); platform earnings backlogs (RPO)",
-      "lastUpdated": "2026-08-11"
+      "lastUpdated": "2026-08-17",
+      "notes": [
+        {
+          "date": "2026-08-17",
+          "text": "The dependency of the hyperscalers on Anthropic and OpenAI is just huge — both lose billions and rely on raising capital for survival. Oracle's debt is rated barely above junk. There is no hedge for the LLMs: hyperscalers have fallback franchises, the labs don't.",
+          "attribution": "Steve Eisman, The Real Eisman Playbook"
+        }
+      ]
     },
     "capex": {
       "id": "capex",
@@ -205,7 +218,19 @@
         }
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); hyperscaler capex guidance",
-      "lastUpdated": "2026-08-11"
+      "lastUpdated": "2026-08-17",
+      "notes": [
+        {
+          "date": "2026-08-17",
+          "text": "Nvidia's $500B securitized-financing push means some data-center capex shifts off hyperscaler cash flow — hyperscaler FCF 'could improve' optically while the debt stack extends into banks and private credit. Read improving FCF with suspicion from here.",
+          "attribution": "Steve Eisman, The Real Eisman Playbook"
+        },
+        {
+          "date": "2026-08-17",
+          "text": "Kill-trigger watch candidate: Meta is getting squeezed — latest quarter revenue +28% but expenses +55%, no cloud business to monetize AI through. Most likely first major player to cut; watch how the market reacts when it does.",
+          "attribution": "Steve Eisman, The Real Eisman Playbook"
+        }
+      ]
     },
     "chinaShare": {
       "id": "chinaShare",
@@ -249,6 +274,11 @@
           "date": "2026-08-11",
           "text": "Red here does not mean Chinese models are failing — it means pressure against US share is RISING. This signal measures the force pushing on US revenue speed.",
           "attribution": "Display note"
+        },
+        {
+          "date": "2026-08-17",
+          "text": "Independent corroboration: enterprises are using Chinese open-weight models more and more; 'overcharging for tokens is going to be very difficult with good-enough competition.' A price war is possible — and Anthropic + OpenAI are ~70% of hyperscaler AI revenue, so a price war transmits straight into the backlog.",
+          "attribution": "Steve Eisman, The Real Eisman Playbook"
         }
       ]
     },
@@ -343,12 +373,62 @@
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); US Treasury data",
       "lastUpdated": "2026-08-11"
+    },
+    "securitization": {
+      "id": "securitization",
+      "name": "Compute Securitization Watch",
+      "question": "When compute becomes securitized collateral, who ends up holding the paper — and does the remittance data start publishing?",
+      "status": "watch",
+      "deal": {
+        "announced": "2026-08",
+        "sizeB": 500,
+        "structure": "Nvidia partnering with six large asset managers on a $500B financing push treating AI data centers like commercial real estate or toll roads — structure unclear, securitizations assumed",
+        "shift": "Until now AI data centers were financed by hyperscaler cash flow and corporate debt. This moves some financing into securitized paper held by banks and private credit."
+      },
+      "interpretation": "The most literal 2006 rhyme yet: debt collateralized by payments owed largely by two unprofitable borrowers (OpenAI and Anthropic), relocating off hyperscaler balance sheets into banks and private credit. Watch for a masking effect — hyperscaler free cash flow can LOOK better while the risk relocates rather than shrinks.",
+      "metaNote": "Eisman shorted subprime because Moody's securitization database published monthly delinquency data. He says no such dataset exists for AI. If these deals securitize, monthly remittance data on compute-lease payments would eventually become exactly that dataset — the first real credit tape for the AI buildout.",
+      "watchItems": [
+        "Deal structure disclosure — true securitization or just secured lending?",
+        "Who holds the paper: banks, private credit, insurers?",
+        "Whether monthly remittance/delinquency data starts publishing",
+        "Hyperscaler FCF optically improving while consolidated leverage rises"
+      ],
+      "history": [
+        {
+          "date": "2026-08",
+          "value": 500,
+          "label": "Announced compute-financing push ($B)"
+        }
+      ],
+      "source": "The Real Eisman Playbook — weekly rap, week ending Aug 14, 2026 (recorded Aug 13)",
+      "lastUpdated": "2026-08-17"
     }
   },
   "weeklyBrief": {
-    "date": "2026-08-11",
-    "headline": "Baseline established from Jay Martin's 'The 2006 Question'",
-    "changes": [],
+    "date": "2026-08-17",
+    "headline": "Eisman independently converges on the Achilles-heel thesis — and flags the Nvidia $500B securitization push",
+    "changes": [
+      {
+        "signalId": "securitization",
+        "text": "NEW SIGNAL: Compute Securitization Watch — Nvidia + six asset managers, $500B, CRE/toll-road style financing of AI data centers"
+      },
+      {
+        "signalId": "backlog",
+        "text": "Backlog: quantified lab dependency — ~70% of hyperscaler AI revenue and 25–35% of total cloud revenue from Anthropic + OpenAI; Oracle debt barely above junk"
+      },
+      {
+        "signalId": "capex",
+        "text": "Capex: Meta squeeze noted (rev +28% vs expenses +55%) — kill-trigger watch candidate; FCF masking-effect caveat added"
+      },
+      {
+        "signalId": "verdict",
+        "text": "Confirming data: CoreWeave rev +112%, Super Micro +91%, Cisco beat-and-raise — acceleration intact as of Aug 13"
+      },
+      {
+        "signalId": "chinaShare",
+        "text": "China share: Eisman corroborates price-war transmission mechanism"
+      }
+    ],
     "nextSweep": "weekly"
   }
 }

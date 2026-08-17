@@ -16,6 +16,7 @@ import RevenueSpeedSignal from "@/components/ai/RevenueSpeedSignal";
 import PolicyWatch from "@/components/ai/PolicyWatch";
 import ConcentrationSignal from "@/components/ai/ConcentrationSignal";
 import TreasuryStackSignal from "@/components/ai/TreasuryStackSignal";
+import SecuritizationSignal from "@/components/ai/SecuritizationSignal";
 
 export const metadata: Metadata = {
   title: "AI Bubble Tracker — The 2006 Question",
@@ -113,6 +114,7 @@ export default function Home() {
           description="What amplifies the unwind: policy, concentration, and the sovereign layer."
         />
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <SecuritizationSignal signal={signals.securitization} />
           <PolicyWatch signal={signals.policyWatch} />
           <ConcentrationSignal signal={signals.concentration} />
           <TreasuryStackSignal signal={signals.treasuryStack} />

@@ -172,6 +172,21 @@ export interface TreasuryStackSignalData extends AISignalBase {
   watch: string;
 }
 
+/* ─── Signal 9: Compute Securitization Watch ─── */
+
+export interface SecuritizationSignalData extends AISignalBase {
+  deal: {
+    announced: string;
+    sizeB: number;
+    structure: string;
+    shift: string;
+  };
+  interpretation: string;
+  /** Why remittance data would be the first real credit tape for AI. */
+  metaNote: string;
+  watchItems: string[];
+}
+
 /* ─── Weekly brief ─── */
 
 export interface WeeklyBriefChange {
@@ -197,6 +212,7 @@ export interface AIBubbleSignals {
   policyWatch: PolicyWatchSignalData;
   concentration: ConcentrationSignalData;
   treasuryStack: TreasuryStackSignalData;
+  securitization: SecuritizationSignalData;
 }
 
 export interface AIBubbleData {
