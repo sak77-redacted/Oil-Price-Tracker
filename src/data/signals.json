@@ -3407,7 +3407,7 @@
     "latestDate": "2026-08-12",
     "latestSource": "HDFCSky Aug 12 2026 (Brent $89.7 on fading deal hopes); Trump Aug 11 'We'll know in 48 hours'; CNBC (ship traffic near 3-month low, 8 total vessels Tuesday).",
     "jawboneCount": 21,
-    "daysSinceFirstJawbone": 135,
+    "daysSinceFirstJawbone": 139,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3562,12 +3562,12 @@
     "phase": 1,
     "phaseName": "Excess Cash Burn",
     "phaseDescription": "[Updated 2026-08-10] ROUND 2 SPECIFIC_TERMS_LEAKED — but deal increasingly uncertain. Iran hardened positions Aug 10; Brent surged +5% to $87.72. Insurance re-escalated to 8.5% hull. Ship transit ~2/day. Brent-Dubai discount widening back to $6.72 as diplomatic optimism fades. SPR: 304.8 Mb (Jul 31, EIA wk) — 1983 record low territory. Phase 1 continues with diplomatic exit path increasingly uncertain. If Round 2 collapses: Phase 2 risk (SPR Draws) re-elevates rapidly.",
-    "daysInPhase": 167,
+    "daysInPhase": 171,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
     "weeksToNextPhase": 118.9,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
     "morganDowneyContext": "Per Morgan Downey (Macrovoices, May 21, 2026): 'Down to weeks, not months. Working-capital efficiency cushion (~1Bn bbl loosened over 5 years) has been spent into this crisis. >50% probability of $150-200 oil within 30 days at current pace.' Our 18-week linear estimate is the UPPER bound — burn rate accelerates as buffer thins.",
-    "lastUpdated": "2026-08-10T20:05:00Z"
+    "lastUpdated": "2026-08-17T00:00:00Z"
   },
   "criticalPath": {
     "title": "HFI Critical Path — When the Thesis Plays Out",
