@@ -17,6 +17,7 @@ import PolicyWatch from "@/components/ai/PolicyWatch";
 import ConcentrationSignal from "@/components/ai/ConcentrationSignal";
 import TreasuryStackSignal from "@/components/ai/TreasuryStackSignal";
 import SecuritizationSignal from "@/components/ai/SecuritizationSignal";
+import IpoWatchSignal from "@/components/ai/IpoWatchSignal";
 
 export const metadata: Metadata = {
   title: "AI Bubble Tracker — The 2006 Question",
@@ -86,6 +87,7 @@ export default function Home() {
         <div className="mt-6 flex flex-col gap-6">
           <AIVerdictBanner verdict={verdict} meta={meta} capex={signals.capex} />
           <StepUpLadder signal={signals.stepUpLadder} />
+          <IpoWatchSignal signal={signals.ipoWatch} />
           <WeeklyBrief brief={weeklyBrief} />
         </div>
 

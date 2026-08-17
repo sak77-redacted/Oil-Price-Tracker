@@ -187,6 +187,46 @@ export interface SecuritizationSignalData extends AISignalBase {
   watchItems: string[];
 }
 
+/* ─── Signal 10: IPO Watch ─── */
+
+/** Post-IPO performance slots — null until the company actually lists;
+ *  populated by the weekly sweep at pricing. */
+export interface IpoPostIpoData {
+  offerValuationB: number;
+  firstDayClosePctVsOffer: number;
+  day30PctVsOffer: number;
+  currentPctVsOffer: number;
+}
+
+export interface IpoWatchCompany {
+  name: string;
+  confidentialFiling: string;
+  expectedWindow: string;
+  expectedWindowNote: string;
+  exchange: string | null;
+  underwriters: string[];
+  raiseTargetB: number | null;
+  lastPrivateValuationB: number;
+  targetValuationLowB: number;
+  targetValuationHighB: number;
+  valuationNote: string;
+  postIpo: IpoPostIpoData | null;
+}
+
+export interface IpoWatchEvent {
+  date: string;
+  text: string;
+}
+
+export interface IpoWatchSignalData extends AISignalBase {
+  companies: IpoWatchCompany[];
+  /** Doc string for the sweep: which fields to fill once each company lists. */
+  postIpoFields: string;
+  thresholds: { intact: string; warning: string; broken: string };
+  interpretation: string;
+  events: IpoWatchEvent[];
+}
+
 /* ─── Weekly brief ─── */
 
 export interface WeeklyBriefChange {
@@ -213,6 +253,7 @@ export interface AIBubbleSignals {
   concentration: ConcentrationSignalData;
   treasuryStack: TreasuryStackSignalData;
   securitization: SecuritizationSignalData;
+  ipoWatch: IpoWatchSignalData;
 }
 
 export interface AIBubbleData {

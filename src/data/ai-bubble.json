@@ -11,7 +11,7 @@
     "compositeNote": "Big Tech's AI spending and order books are still growing faster every year — and that growth is the only thing holding the whole structure up. Warning signs: OpenAI's next fundraise is expected to value it at only about 1.2x its last round (every earlier round was 1.7-1.9x), and free Chinese models are eating into the revenue growth that justifies those valuations. The event that would mark the turn hasn't happened yet. The lesson of 2006: this structure doesn't need the numbers to fall — it breaks as soon as they stop growing faster each year. Independent corroboration (Eisman, Aug 13): AI infrastructure earnings still accelerating — CoreWeave revenue +112% YoY (still unprofitable), Super Micro +91%, Cisco beat and raised — but a new $500B Nvidia securitization push moves data-center debt off hyperscaler balance sheets into banks and private credit, the most literal 2006 rhyme yet.",
     "signalsAccelerating": 2,
     "signalsDecelerating": 1,
-    "signalsWatch": 6,
+    "signalsWatch": 7,
     "signalsBroken": 0
   },
   "stack": [
@@ -78,7 +78,7 @@
         "event": "IPO",
         "valuationB": 1000,
         "impliedMultiple": 1.17,
-        "note": "Smallest step-up ever — at the exact moment free Chinese models attack the growth that justifies it"
+        "note": "Smallest step-up ever — at the exact moment free Chinese models attack the growth that justifies it — S-1 confidentially filed 2026-05-22; window Q4 2026–early 2027 (see IPO Watch)"
       },
       "thresholds": {
         "intact": ">=1.6x",
@@ -402,6 +402,72 @@
       ],
       "source": "The Real Eisman Playbook — weekly rap, week ending Aug 14, 2026 (recorded Aug 13)",
       "lastUpdated": "2026-08-17"
+    },
+    "ipoWatch": {
+      "id": "ipoWatch",
+      "name": "IPO Watch",
+      "question": "Where do Anthropic and OpenAI price vs their last private rounds — and how do they trade after? Weak aftermarket = this thesis accelerates.",
+      "status": "watch",
+      "companies": [
+        {
+          "name": "Anthropic",
+          "confidentialFiling": "2026-06-01",
+          "expectedWindow": "Late Sep – Oct 2026",
+          "expectedWindowNote": "Consensus among underwriters, media, and prediction markets points to an October 2026 Nasdaq listing — roughly 6 weeks out as of Aug 17",
+          "exchange": "Nasdaq",
+          "underwriters": ["Goldman Sachs", "JPMorgan", "Morgan Stanley"],
+          "raiseTargetB": 60,
+          "lastPrivateValuationB": 965,
+          "targetValuationLowB": 1000,
+          "targetValuationHighB": 2000,
+          "valuationNote": "Reports split between ~$1T (barely above the $965B last private round — a ~1.0x step-up, the weakest ever) and $2T+ (investor expectations — would be the largest IPO in history). The spread IS the tell: where it actually prices is the step-up data point.",
+          "postIpo": null
+        },
+        {
+          "name": "OpenAI",
+          "confidentialFiling": "2026-05-22",
+          "expectedWindow": "Q4 2026 – early 2027",
+          "expectedWindowNote": "Targeting a debut 'as soon as Q4 2026'; no ticker, price range, or confirmed date yet",
+          "exchange": null,
+          "underwriters": ["Goldman Sachs", "Morgan Stanley"],
+          "raiseTargetB": null,
+          "lastPrivateValuationB": 852,
+          "targetValuationLowB": 1000,
+          "targetValuationHighB": 1000,
+          "valuationNote": "Groundwork laid for a listing at up to $1T — an implied 1.17x step-up from the March 2026 $852B round, the smallest ever (see The Step-Up Ladder)",
+          "postIpo": null
+        }
+      ],
+      "postIpoFields": "Populated by the weekly sweep once each company lists: offerValuationB, firstDayClosePctVsOffer, day30PctVsOffer, currentPctVsOffer",
+      "thresholds": {
+        "intact": "Prices within/above target range AND holds above offer for 30+ days",
+        "warning": "Prices below the low end of expectations, or trades below offer within 30 days",
+        "broken": "Prices below last private round (a public down round), or breaks the offer price and stays below — thesis accelerates"
+      },
+      "interpretation": "The IPOs are where the step-up ladder finally meets a real market. Eisman: 'When OpenAI and Anthropic go public, we will have some real data. Until then, we have supposition.' Pricing below the last private round is the public-market version of the 2006 moment, and weak aftermarket trading transmits straight into hyperscaler revenue credibility — these two companies are ~70% of hyperscaler AI revenue.",
+      "events": [
+        {
+          "date": "2026-05-22",
+          "text": "OpenAI confidentially files S-1 with the SEC (Goldman Sachs + Morgan Stanley leading)"
+        },
+        {
+          "date": "2026-06-01",
+          "text": "Anthropic confidentially files for IPO — October 2026 Nasdaq listing targeted, $60B+ raise"
+        },
+        {
+          "date": "2026-08-14",
+          "text": "Reports: Anthropic investors expect an October IPO at $2T+; other reports say near $1T vs the $965B last private round"
+        }
+      ],
+      "history": [
+        {
+          "date": "2026-08",
+          "value": 0,
+          "label": "Listings completed (of 2)"
+        }
+      ],
+      "source": "IPO filing/timeline press coverage, Aug 2026 (Reuters via MarketScreener, Forge Global, prediction-market consensus); The Real Eisman Playbook (Aug 13, 2026)",
+      "lastUpdated": "2026-08-17"
     }
   },
   "weeklyBrief": {
@@ -427,6 +493,10 @@
       {
         "signalId": "chinaShare",
         "text": "China share: Eisman corroborates price-war transmission mechanism"
+      },
+      {
+        "signalId": "ipoWatch",
+        "text": "NEW SIGNAL: IPO Watch — Anthropic filed Jun 1, targeting late Sep–Oct Nasdaq listing ($1T–$2T expectations vs $965B last round); OpenAI filed S-1 May 22, Q4 2026–early 2027 window at ~$1T (1.17x step-up). Post-IPO performance slots ready for the sweep to fill at pricing."
       }
     ],
     "nextSweep": "weekly"
