@@ -149,31 +149,31 @@
       "crossLinkLabel": "View full thesis on /sugar"
     },
     {
+      "name": "Long Cocoa — Best odds on the board per the Aug 19 check",
+      "conviction": "Speculative",
+      "ticker": "CC",
+      "contract": "CCH7 (Mar'27)",
+      "why": "Odds check (Aug 19, spot ~6,070, realized vol ~58%): implied P(>6,520 — the July high) ≈ 35%, P(>8,500 — the suggested spread's short leg) ≈ 15%. Both targets have deep recent precedent: 6,520+ traded in 19 of the last 154 months and 8,500+ in 13 of them (the 2024-25 shortage regime, ATH ~12,260). Compare coffee, where the equivalent tail strike has NEVER traded. So the market pays ~6:1 on a level cocoa occupied for over a year, with a dated catalyst (Oct-Dec pod-fill at the El Niño peak) still ahead. The two-sided caveats stand — ICE inventories at a 2-yr high, Ivory Coast arrivals +20% YoY — which is exactly why the odds are this fat.",
+      "expression": "Options only (DCC contracts) — outright futures are too volatile and margin-intensive for sizing discipline. With spot ~6,070, Mar'27 call spreads around 7,000/9,000 keep defined risk; the Aug pullback zone is the entry the June chase never offered. Trigger to add: first weak pod-count/arrivals data in Oct.",
+      "sizingNote": "Small relative to oil book — think 5-10% of oil notional. This is a satellite convex bet, not a portfolio allocation.",
+      "tier": 1
+    },
+    {
       "name": "Long EU Natural Gas (TTF) — Hard-deadline refill trade",
       "conviction": "Moderate Conviction",
       "ticker": "TTF",
       "contract": "TTF Q1'27 strip, or Dec'26–Feb'27 calls (ICE Endex)",
-      "why": "EU storage was 60.4% full on Aug 15 — roughly 9-10pp below the 5-yr seasonal norm and the lowest early-August reading on record — with Qatari LNG cargoes delayed by shipping disruptions and TTF already ~€62.5/MWh. Even hitting the relaxed 80% Nov-1 target leaves Europe entering winter with buffer in the low-70s vs 90%+ in normal years: no headroom for cold snaps. Per Currie (mid-Aug 2026): 'dangerously, precariously tight.' Note US natgas (-23% YTD) is NOT the expression — the US is an island; this must be TTF (or JKM).",
-      "expression": "Defined-risk winter calls (Dec'26–Feb'27) rather than outright futures — the payoff is weather-contingent and a mild winter plus LNG recovery kills it. Check IBKR permissions for ICE Endex TTF; US-listed gas ETPs track Henry Hub, not TTF, and do not express this trade.",
+      "why": "EU storage was 60.4% full on Aug 15 — roughly 9-10pp below the 5-yr seasonal norm and the lowest early-August reading on record — with Qatari LNG cargoes delayed by shipping disruptions and TTF already ~€62.5/MWh. Even hitting the relaxed 80% Nov-1 target leaves Europe entering winter with buffer in the low-70s vs 90%+ in normal years: no headroom for cold snaps. Per Currie (mid-Aug 2026): 'dangerously, precariously tight.' Note US natgas (-23% YTD) is NOT the expression — the US is an island; this must be TTF (or JKM). Odds check (Aug 19, TTF ~€63, realized vol ~73%): implied P(>€100) ≈ 13%, P(>€150) ≈ 2.6%. Precedent is real — €100+ traded in 12 of the last 92 months and €150+ in 6 (the 2021-22 crisis) — and winter option IV runs above realized, so true market odds are richer. The counterexample: 2023, 2024 and 2025 each opened with storage scares that mild winters fizzled — this trade has lost three years running; what's different now is starting from the lowest early-August storage on record.",
+      "expression": "Defined-risk winter calls (Dec'26–Feb'27) rather than outright futures — the payoff is weather-contingent and a mild winter plus LNG recovery kills it. Check IBKR permissions for ICE Endex TTF; US-listed gas ETPs track Henry Hub, not TTF, and do not express this trade. Trigger discipline: if the EU storage trajectory closes the gap to the 5-yr norm by late Sep, the edge is gone — stand down.",
       "tier": 2
     },
     {
-      "name": "Long Gold — Systemic hedge on the yen/UST loop",
+      "name": "Long Gold — Systemic hedge, now a dip-buy of the January spike",
       "conviction": "Moderate Conviction",
       "ticker": "GC",
       "contract": "GCJ7 (Apr'27) or GLD-equivalent",
-      "why": "Per Jeff Currie (mid-Aug 2026), who re-entered gold that week: the 30-yr UST auction cleared 5.22% (highest since Aug 2001), CPI has been above 2% for 65 consecutive months, and Japan is selling Treasuries to defend the yen while the US reportedly sells euro reserves to support it — 'when one of them breaks, they probably all break at the same time.' Gold here is the hedge vs ALL fiat, not just USD, and the monetary leg of the HALO (Hard Assets, Local Operations) framework. Copper's all-time high confirms the hard-asset bid is already broadening — while gold itself sits roughly flat YTD (~$4,400, +2%), meaning this sleeve hasn't run yet.",
-      "expression": "Outright futures or a GLD-equivalent for the sleeve. Currie's own caveat: a surprise Fed rate hike (a Warsh-style move) is the main drawdown risk — it would knock gold and the whole complex temporarily. Size so that scenario is survivable. High-beta alternative: silver (-10.5% YTD, ~$63) historically outruns gold in monetary-fear regimes as the gold/silver ratio (~70) compresses — but its industrial half carries a structural drag (solar makers thrifting silver loadings), so treat it as a leveraged expression of this card, not a substitute.",
-      "tier": 2
-    },
-    {
-      "name": "Long Cocoa — High convexity, now genuinely two-sided",
-      "conviction": "Speculative",
-      "ticker": "CC",
-      "contract": "CCH7 (Mar'27)",
-      "why": "The June flood spike came and went: NY cocoa ran ~$3,780 → $6,520 (Jun 12–Jul 9, +70%) on Côte d'Ivoire/Ghana flooding and weak 2026/27 crop surveys, then retraced to ~$5,900 (Aug 19) as ICE inventories hit a 2-year high and Ivory Coast port arrivals ran +20% YoY. Genuinely two-sided now — but the El Niño catalyst hasn't fired yet: the Oct-Dec pod-fill window is when main-crop damage gets priced. Ghana + Ivory Coast also aligned farm-gate pricing in dollars from 2026/27, a structural floor under farmgate supply economics.",
-      "expression": "Options only (DCC contracts) — outright futures are too volatile and margin-intensive for sizing discipline. With spot ~$5,900, consider March 2027 call spreads around $6,500/$8,500; the Aug pullback is the entry the June chase never offered.",
-      "sizingNote": "Small relative to oil book — think 5-10% of oil notional. This is a satellite convex bet, not a portfolio allocation.",
+      "why": "Correction to the earlier framing (Aug 19 review): 'flat YTD' hides the path — gold spiked to $5,586 on Jan 29, 2026, held $5,300-5,400 into early March, and has retraced ~21% to ~$4,420. It HAS run; Currie's mid-Aug re-entry is a dip-buy of that spike, not a pre-breakout entry. Odds check (realized vol ~29%): implied P(>5,000) ≈ 24% — a retest of levels that traded for weeks in Q1 — and P(>6,000) ≈ 5.5% (never traded). The thesis (30-yr UST at 5.22%, 65-month CPI streak, Japan selling USTs to defend the yen, US selling euro reserves — 'when one breaks, they probably all break') is unchanged; what changed is knowing you're buying a 5-month drawdown, with the risk that January WAS the blow-off.",
+      "expression": "Outright futures or a GLD-equivalent for the sleeve. Currie's own caveat: a surprise Fed rate hike (a Warsh-style move) is the main drawdown risk. Size so that scenario is survivable. High-beta alternative: silver (-10.5% YTD, ~$63) historically outruns gold in monetary-fear regimes as the gold/silver ratio (~70) compresses — but its industrial half carries a structural drag (solar makers thrifting silver loadings), so treat it as a leveraged expression of this card, not a substitute.",
       "tier": 2
     },
     {
@@ -190,7 +190,7 @@
       "conviction": "Moderate Conviction",
       "ticker": "HO",
       "contract": "HOZ6 (Dec'26), or HO-CL crack",
-      "why": "The most confirmed leg of the Currie thesis: the US diesel crack broke $100/bbl for the FIRST TIME EVER on Aug 17 ($102.20 intraday), US distillate inventories (~107.1M bbl) are the lowest for the date since 1996, and a Russian export ban tied to Ukrainian refinery strikes stacks on the refinery-strike wave and the SPR grade mismatch. Structural tightness into winter — but it is also the most repriced idea on this page (HO +106% YTD), so the risk-adjusted entry is poor at the record print.",
+      "why": "The most confirmed leg of the Currie thesis: the US diesel crack broke $100/bbl for the FIRST TIME EVER on Aug 17 ($102.20 intraday), US distillate inventories (~107.1M bbl) are the lowest for the date since 1996, and a Russian export ban tied to Ukrainian refinery strikes stacks on the refinery-strike wave and the SPR grade mismatch. Structural tightness into winter — but it is also the most repriced idea on this page (HO +106% YTD), so the risk-adjusted entry is poor at the record print. Odds check (Aug 19, spot ~$4.32, realized vol ~57%): implied P(>$5.15 — the 2022 all-time-high zone, traded in just 1 of 154 months) ≈ 26%, P(>$6.00 — never traded) ≈ 15%. Like coffee's 470 strike, the upside targets here are record prints, not revisits — the odds look generous only because crisis-year vol is in the input. Confirms the tier-3 'worst entry' call.",
       "expression": "Don't chase the record: buy pullbacks or use defined-risk Dec/Jan calls. The crack spread (long HO / short CL) isolates refining tightness from crude-level ceasefire risk. The oil book already carries correlated exposure — size as a satellite, not a new core.",
       "sizingNote": "Overlaps the existing oil position — treat as an extension of the molecules leg, not a diversifier.",
       "tier": 3
@@ -200,7 +200,7 @@
       "conviction": "Moderate Conviction",
       "ticker": "KE",
       "contract": "KEZ6 (Dec'26) or KEH7 (Mar'27)",
-      "why": "The +9% 'room to extend' call extended: CBOT wheat is +34% YTD (~$6.70-6.80/bu, mid-Aug) on Black Sea escalation (Russia/Ukraine attacks on commercial shipping; USDA cut Russia's 2026/27 exports to 46 MMT and Ukraine's to 13.5 MMT) stacked on the smallest US winter wheat crop in 61 years (HRW lowest since the late 1950s) and southern-Plains dryness heading into 2027 planting. Hard red winter remains more drought-sensitive than Chicago SRW.",
+      "why": "The +9% 'room to extend' call extended: CBOT wheat is +34% YTD (~$6.70-6.80/bu, mid-Aug) on Black Sea escalation (Russia/Ukraine attacks on commercial shipping; USDA cut Russia's 2026/27 exports to 46 MMT and Ukraine's to 13.5 MMT) stacked on the smallest US winter wheat crop in 61 years (HRW lowest since the late 1950s) and southern-Plains dryness heading into 2027 planting. Hard red winter remains more drought-sensitive than Chicago SRW. Odds check (Aug 19, ZW ~684¢, realized vol ~27%): implied P(>800¢) ≈ 18% — a 3-year high; wheat hasn't printed 800 since 2023 (high 798) — and P(>1,000¢) ≈ 2% (2022-crisis territory, ATH 1,425). Reasonable odds for the 800 retest, but after +34% YTD you're paying up for a level the market rejected last time.",
       "expression": "Much of the asymmetry has been captured — chasing here buys headline risk. Prefer buying pullbacks on Black Sea ceasefire headlines (the supply math survives them) or defined-risk calls; sized smaller than the softs trades.",
       "tier": 3
     },
@@ -209,7 +209,7 @@
       "conviction": "Speculative",
       "ticker": "PL",
       "contract": "PLJ7 (Apr'27)",
-      "why": "The -19% YTD (~$1,727) is a burst positioning bubble, not a broken fundamental story: platinum spiked toward ~$2,900 around the turn of the year on investment inflows, then crashed on ETF liquidation. Underneath, the market is in its 4th consecutive annual deficit and WPIC projects deficits averaging ~331koz/yr through 2030 — 2026 demand falls 8% only because last year's investment mania isn't repeating (industrial +11%, auto just -3%). It trades at ~0.39× gold vs a historical premium. Currie kicker: South African supply is extremely energy-intensive, so the diesel/power squeeze curbs output at exactly the wrong time. The catch: no dated catalyst — this is a regime trade that fires with the monetary leg, and 'structural deficit' hasn't stopped a 40% drawdown before. Flows set the price here, not the deficit.",
+      "why": "The -19% YTD (~$1,727) is a burst positioning bubble, not a broken fundamental story: platinum spiked toward ~$2,900 around the turn of the year on investment inflows, then crashed on ETF liquidation. Underneath, the market is in its 4th consecutive annual deficit and WPIC projects deficits averaging ~331koz/yr through 2030 — 2026 demand falls 8% only because last year's investment mania isn't repeating (industrial +11%, auto just -3%). It trades at ~0.39× gold vs a historical premium. Currie kicker: South African supply is extremely energy-intensive, so the diesel/power squeeze curbs output at exactly the wrong time. The catch: no dated catalyst — this is a regime trade that fires with the monetary leg, and 'structural deficit' hasn't stopped a 40% drawdown before. Flows set the price here, not the deficit. Odds check (Aug 19, spot ~$1,743, realized vol ~56% post-crash): implied P(>$2,200) ≈ 22% — a +26% move to a level that traded only 2 of the last 154 months — and P(>$2,900, above the $2,852 spike high) ≈ 7%. The deficit story doesn't need new highs to pay: the 2,200 zone is the realistic target, and ~4.5:1 implied odds against a persistent structural deficit is the actual bet.",
       "expression": "The 50-oz contract ($50 per $1 move) makes PL one of the most retail-sizable metals — outright futures or long-dated calls, but options are thinner than gold/silver so check spreads. Expect the ETF overhang to sell rallies: scale in on weakness rather than chase, and treat it as the deep-value satellite of the atoms leg.",
       "tier": 3
     }
