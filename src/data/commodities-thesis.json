@@ -70,8 +70,8 @@
       "symbol": "CC=F",
       "elNinoRisk": "Very High",
       "fertilizerRisk": "Moderate",
-      "ytdLabel": "-30%",
-      "pricedIn": "Repricing underway — rally started Jun",
+      "ytdLabel": "+1% (post-spike)",
+      "pricedIn": "June spike +70% partially retraced — two-sided: ICE stocks at 2-yr high vs weak 26/27 surveys",
       "priority": 1
     },
     {
@@ -79,8 +79,8 @@
       "symbol": "KC=F",
       "elNinoRisk": "Very High",
       "fertilizerRisk": "Moderate",
-      "ytdLabel": "-22%",
-      "pricedIn": "Partially — flowering window Sep-Nov is the test",
+      "ytdLabel": "-7%",
+      "pricedIn": "Partially — recovered from -22%; flowering window Sep-Nov is the test",
       "priority": 1
     },
     {
@@ -88,8 +88,8 @@
       "symbol": "SB=F",
       "elNinoRisk": "Very High",
       "fertilizerRisk": "High",
-      "ytdLabel": "-7%",
-      "pricedIn": "Partially — deficits still being revised deeper (POSITION HELD)",
+      "ytdLabel": "+20%",
+      "pricedIn": "Repricing fast — 52-wk high Aug 18 on India duty signal; deficits still being revised deeper (POSITION HELD)",
       "priority": 1
     },
     {
@@ -97,8 +97,8 @@
       "symbol": "ZW=F",
       "elNinoRisk": "Very High",
       "fertilizerRisk": "Very High",
-      "ytdLabel": "+9%",
-      "pricedIn": "Repricing — US crop shock emerging",
+      "ytdLabel": "+34%",
+      "pricedIn": "Substantially repriced — Black Sea escalation + 61-yr-low US winter crop",
       "priority": 2
     },
     {
@@ -122,8 +122,8 @@
       "symbol": "ZC=F",
       "elNinoRisk": "Mixed (US neutral)",
       "fertilizerRisk": "Very High",
-      "ytdLabel": "+17%",
-      "pricedIn": "Yes — running",
+      "ytdLabel": "+11%",
+      "pricedIn": "Repricing resumed — +11% in 5 days on the Aug USDA yield cut",
       "priority": 3
     },
     {
@@ -131,7 +131,7 @@
       "symbol": "ZS=F",
       "elNinoRisk": "Negative (ARG benefits)",
       "fertilizerRisk": "Moderate",
-      "ytdLabel": "+13%",
+      "ytdLabel": "+18%",
       "pricedIn": "Mostly priced",
       "priority": 3
     }
@@ -142,7 +142,7 @@
       "conviction": "High Conviction",
       "ticker": "SB",
       "contract": "SBH7 Mar'27 — via Feb16'27 18¢ calls × 2 + 19.5¢ call × 1",
-      "why": "Triple-exposed — Brazil cane (drought sensitivity), Indian monsoon (rainfall failure risk), Australian crush. Sugarcane is also heavily N-dependent so fertilizer shock compounds. Currently grinding near multi-year lows on supply glut narrative that requires continued favorable weather. Lower volatility than cocoa, more liquid options chain than coffee.",
+      "why": "Triple-exposed — Brazil cane (drought sensitivity), Indian monsoon (rainfall failure risk), Australian crush — plus fertilizer compounding (heavily N-dependent crop). The multi-year-low entry thesis has played out: fresh 52-week high 17.59¢ on Aug 18 as India signalled it may scrap its 100% import duty, Brazil C-S sugar output -17.6% YoY in 2H July, and all three forecasters (Covrig, Green Pool, StoneX) now in 2026/27 deficit. Still the lowest-vol, most liquid expression of the calories leg.",
       "expression": "Executed: 2× Feb'27 18¢ calls, plus 1× Feb'27 19.5¢ call added Aug 2026 for convexity. Add trigger per plan: deepening UNICA ethanol-pivot data. Any further adds: consider later months (SBK7/SBN7) or higher strikes. Live marks on /sugar.",
       "tier": 1,
       "crossLinkHref": "/sugar",
@@ -153,8 +153,8 @@
       "conviction": "Speculative",
       "ticker": "CC",
       "contract": "CCH7 (Mar'27)",
-      "why": "The recovery narrative broke: excessive rains damaged Côte d'Ivoire/Ghana crops and Ivory Coast 2026/27 output is seen at 1.7-1.8 MMT (vs ~2.2 prior). NY cocoa crossed $5,000/t in June, 6-month highs in July; Citi's Q3 outlook flags $6,000 within a year if El Niño damages the main crop. No longer a contrarian entry — now a momentum/chase decision into the Oct-Dec pod-fill window.",
-      "expression": "Options only (DCC contracts) — outright futures are too volatile and margin-intensive for sizing discipline. Consider March 2027 call spreads, OTM strikes around $5,000/$7,000.",
+      "why": "The June flood spike came and went: NY cocoa ran ~$3,780 → $6,520 (Jun 12–Jul 9, +70%) on Côte d'Ivoire/Ghana flooding and weak 2026/27 crop surveys, then retraced to ~$5,900 (Aug 19) as ICE inventories hit a 2-year high and Ivory Coast port arrivals ran +20% YoY. Genuinely two-sided now — but the El Niño catalyst hasn't fired yet: the Oct-Dec pod-fill window is when main-crop damage gets priced. Ghana + Ivory Coast also aligned farm-gate pricing in dollars from 2026/27, a structural floor under farmgate supply economics.",
+      "expression": "Options only (DCC contracts) — outright futures are too volatile and margin-intensive for sizing discipline. With spot ~$5,900, consider March 2027 call spreads around $6,500/$8,500; the Aug pullback is the entry the June chase never offered.",
       "sizingNote": "Small relative to oil book — think 5-10% of oil notional. This is a satellite convex bet, not a portfolio allocation.",
       "tier": 1
     },
@@ -163,7 +163,7 @@
       "conviction": "Moderate Conviction",
       "ticker": "GC",
       "contract": "GCJ7 (Apr'27) or GLD-equivalent",
-      "why": "Per Jeff Currie (mid-Aug 2026), who re-entered gold that week: the 30-yr UST auction cleared 5.22% (highest since Aug 2001), CPI has been above 2% for 65 consecutive months, and Japan is selling Treasuries to defend the yen while the US reportedly sells euro reserves to support it — 'when one of them breaks, they probably all break at the same time.' Gold here is the hedge vs ALL fiat, not just USD, and the monetary leg of the HALO (Hard Assets, Local Operations) framework. Copper's all-time high confirms the hard-asset bid is already broadening.",
+      "why": "Per Jeff Currie (mid-Aug 2026), who re-entered gold that week: the 30-yr UST auction cleared 5.22% (highest since Aug 2001), CPI has been above 2% for 65 consecutive months, and Japan is selling Treasuries to defend the yen while the US reportedly sells euro reserves to support it — 'when one of them breaks, they probably all break at the same time.' Gold here is the hedge vs ALL fiat, not just USD, and the monetary leg of the HALO (Hard Assets, Local Operations) framework. Copper's all-time high confirms the hard-asset bid is already broadening — while gold itself sits roughly flat YTD (~$4,400, +2%), meaning this sleeve hasn't run yet.",
       "expression": "Outright futures or a GLD-equivalent for the sleeve. Currie's own caveat: a surprise Fed rate hike (a Warsh-style move) is the main drawdown risk — it would knock gold and the whole complex temporarily. Size so that scenario is survivable.",
       "tier": 2
     },
@@ -172,17 +172,17 @@
       "conviction": "Moderate Conviction",
       "ticker": "KC",
       "contract": "KCZ6 (Dec'26) or KCH7 (Mar'27)",
-      "why": "Down 22% YTD on Brazilian arabica bumper crop narrative. Minas Gerais (the heart of Brazilian arabica) is historically dry during El Niño phases. Vietnam (robusta) faces similar drought patterns. The next crop year flowering happens Sept-Nov 2026 — right when El Niño peaks. Current bearish positioning depends on assumptions that the climate models say are 2-3% likely.",
+      "why": "Recovered from -22% YTD to -7% (~331¢, Aug 19) but the contrarian setup is intact: the bear case rests on Brazil's record 2026/27 harvest (~69.3M bags, +10.1%) — yet ICE-certified stocks are at their lowest since late 2023, Brazil's Jan-Jul exports ran -12.2% YoY, and Minas Gerais is historically dry during El Niño phases. The 2027-crop flowering happens Sep-Nov 2026 — right at the El Niño peak. Still the least-repriced priority-1 soft.",
       "expression": "Long futures with stops, or December/March call options for defined risk.",
       "tier": 2
     },
     {
-      "name": "Long KC Wheat — Compound winner already showing strength",
+      "name": "Long KC Wheat — Compound winner, now substantially repriced",
       "conviction": "Moderate Conviction",
       "ticker": "KE",
-      "contract": "KEU6 (Sep'26) or KEZ6 (Dec'26)",
-      "why": "Hard red winter is more drought-sensitive than Chicago SRW. Compound exposure: fertilizer cost shock + Australian wheat at planting risk + Indian winter wheat import dynamics. Partially priced at +9% YTD but room to extend if Australian crop is hit.",
-      "expression": "Outright long, sized smaller than the softs trades (less asymmetric since some pricing is in).",
+      "contract": "KEZ6 (Dec'26) or KEH7 (Mar'27)",
+      "why": "The +9% 'room to extend' call extended: CBOT wheat is +34% YTD (~$6.70-6.80/bu, mid-Aug) on Black Sea escalation (Russia/Ukraine attacks on commercial shipping; USDA cut Russia's 2026/27 exports to 46 MMT and Ukraine's to 13.5 MMT) stacked on the smallest US winter wheat crop in 61 years (HRW lowest since the late 1950s) and southern-Plains dryness heading into 2027 planting. Hard red winter remains more drought-sensitive than Chicago SRW.",
+      "expression": "Much of the asymmetry has been captured — chasing here buys headline risk. Prefer buying pullbacks on Black Sea ceasefire headlines (the supply math survives them) or defined-risk calls; sized smaller than the softs trades.",
       "tier": 3
     }
   ],
