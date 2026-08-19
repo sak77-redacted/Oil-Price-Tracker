@@ -9,28 +9,30 @@ import ExecutedPosition from "./ExecutedPosition";
 
 interface Props {
   data: PersonalViewData;
-  executedPosition?: ExecutedPositionData;
+  executedPositions?: ExecutedPositionData[];
   liveSugarSpot: number | null;
 }
 
 export default function PersonalView({
   data,
-  executedPosition,
+  executedPositions,
   liveSugarSpot,
 }: Props) {
   const { mode } = useSugarView();
   if (mode !== "personal") return null;
 
-  const isExecuted = executedPosition?.executed === true;
+  const executedLegs = (executedPositions ?? []).filter((p) => p.executed === true);
+  const isExecuted = executedLegs.length > 0;
 
   return (
     <div className="flex flex-col gap-4">
-      {isExecuted && executedPosition && (
+      {executedLegs.map((leg) => (
         <ExecutedPosition
-          data={executedPosition}
+          key={`${leg.contractLabel}-${leg.strike}`}
+          data={leg}
           liveSugarSpot={liveSugarSpot}
         />
-      )}
+      ))}
 
       <section
         aria-label="Personal trade info"

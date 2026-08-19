@@ -7,7 +7,7 @@ import type {
 
 interface SugarVerdictProps {
   thesis: SugarThesis;
-  executedPosition?: ExecutedPositionData;
+  executedPositions?: ExecutedPositionData[];
 }
 
 const convictionStyle: Record<string, { ring: string; text: string; bg: string }> = {
@@ -28,16 +28,26 @@ function daysSinceExecution(executionDate: string): number {
   return Math.max(0, Math.floor((now - start) / (1000 * 60 * 60 * 24)));
 }
 
-export default function SugarVerdict({ thesis, executedPosition }: SugarVerdictProps) {
+export default function SugarVerdict({ thesis, executedPositions }: SugarVerdictProps) {
   const conviction = convictionStyle[thesis.conviction] ?? convictionStyle.moderate;
   const direction = directionStyle[thesis.direction] ?? directionStyle.sidelined;
 
-  const isExecuted = executedPosition?.executed === true;
-  const pnlPct = isExecuted && executedPosition
-    ? (executedPosition.asOfUnrealizedPnLDollars / executedPosition.costBasisDollars) * 100
-    : 0;
+  const legs = (executedPositions ?? []).filter((p) => p.executed === true);
+  const isExecuted = legs.length > 0;
+
+  // Aggregate across legs: total basis, total as-of MV, total unrealized P&L $ and %.
+  const totalBasis = legs.reduce((sum, p) => sum + p.costBasisDollars, 0);
+  const totalMarketValue = legs.reduce((sum, p) => sum + p.asOfMarketValueDollars, 0);
+  const totalPnL = legs.reduce((sum, p) => sum + p.asOfUnrealizedPnLDollars, 0);
+  const pnlPct = totalBasis > 0 ? (totalPnL / totalBasis) * 100 : 0;
   const positionLossTone = pnlPct < 0;
-  const day = isExecuted && executedPosition ? daysSinceExecution(executedPosition.executionDate) : 0;
+
+  // Day counter = days since the EARLIEST non-null execution date.
+  const earliestExecutionDate = legs
+    .map((p) => p.executionDate)
+    .filter((d): d is string => typeof d === "string" && d.length > 0)
+    .sort()[0];
+  const day = earliestExecutionDate ? daysSinceExecution(earliestExecutionDate) : 0;
 
   return (
     <section
@@ -85,13 +95,23 @@ export default function SugarVerdict({ thesis, executedPosition }: SugarVerdictP
               }`}
             >
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.7)]" />
-              Position Live ·{" "}
+              Position Live · {legs.length} leg{legs.length === 1 ? "" : "s"} ·{" "}
               <span className="tabular-nums">
-                {pnlPct >= 0 ? "+" : ""}
-                {pnlPct.toFixed(1)}%
+                {totalPnL >= 0 ? "+" : "-"}$
+                {Math.abs(totalPnL).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+              </span>{" "}
+              <span className="tabular-nums">
+                ({pnlPct >= 0 ? "+" : ""}
+                {pnlPct.toFixed(1)}%)
               </span>{" "}
               · Day {day}
             </span>
+            <p className="mt-2 text-[11px] uppercase tracking-[0.14em] text-white/45 tabular-nums">
+              Basis $
+              {totalBasis.toLocaleString(undefined, { maximumFractionDigits: 0 })} → MV $
+              {totalMarketValue.toLocaleString(undefined, { maximumFractionDigits: 0 })} across{" "}
+              {legs.length} leg{legs.length === 1 ? "" : "s"}
+            </p>
           </div>
         )}
       </div>

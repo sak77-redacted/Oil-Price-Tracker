@@ -224,7 +224,14 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
     }
   }
 
-  // Updated payoff table — for 18¢ strike, 2 contracts, $1,977 cost basis.
+  // Payoff table — computed from this leg's strike, qty, and cost basis.
+  const strikeLabelCents = strikeCents.toFixed(strikeCents % 1 === 0 ? 0 : 1);
+  const payoffScenarios: { cents: number; label: string; highlight?: boolean }[] = [
+    { cents: 22, label: "22¢" },
+    { cents: 28, label: "28¢ (BASE)", highlight: true },
+    { cents: 36, label: "36¢ (BULL)", highlight: true },
+    { cents: 50, label: "50¢ (TAIL)" },
+  ];
   const payoffRows: {
     label: string;
     intrinsicPerContract: number;
@@ -234,47 +241,33 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
     highlight?: boolean;
   }[] = [
     {
-      label: "≤18¢ (OTM)",
+      label: `≤${strikeLabelCents}¢ (OTM)`,
       intrinsicPerContract: 0,
       totalIntrinsic: 0,
       pnl: -data.costBasisDollars,
       multiple: "-100% (max loss)",
     },
-    {
-      label: "22¢",
-      intrinsicPerContract: 4480,
-      totalIntrinsic: 8960,
-      pnl: 6983,
-      multiple: "~3.5x",
-    },
-    {
-      label: "28¢ (BASE)",
-      intrinsicPerContract: 11200,
-      totalIntrinsic: 22400,
-      pnl: 20423,
-      multiple: "~10x",
-      highlight: true,
-    },
-    {
-      label: "36¢ (BULL)",
-      intrinsicPerContract: 20160,
-      totalIntrinsic: 40320,
-      pnl: 38343,
-      multiple: "~19x",
-      highlight: true,
-    },
-    {
-      label: "50¢ (TAIL)",
-      intrinsicPerContract: 35840,
-      totalIntrinsic: 71680,
-      pnl: 69703,
-      multiple: "~35x",
-    },
+    ...payoffScenarios
+      .filter((s) => s.cents > strikeCents)
+      .map((s) => {
+        const intrinsicPerContract = ((s.cents - strikeCents) / 100) * data.contractSizeLbs;
+        const totalIntrinsic = intrinsicPerContract * data.qty;
+        const pnl = totalIntrinsic - data.costBasisDollars;
+        const mult = data.costBasisDollars > 0 ? pnl / data.costBasisDollars : 0;
+        return {
+          label: s.label,
+          intrinsicPerContract,
+          totalIntrinsic,
+          pnl,
+          multiple: `~${mult >= 10 ? Math.round(mult).toString() : mult.toFixed(1)}x`,
+          highlight: s.highlight,
+        };
+      }),
   ];
 
   return (
     <SugarCard
-      title="Executed Position — Live"
+      title={`Executed Position — ${data.contractLabel} ×${data.qty}`}
       badge={{ label: "Position Live", tone: "emerald" }}
       footnote={`Snapshot P&L from broker (${formatTimeShort(data.asOfDate)} ${formatDateShort(data.asOfDate)}). Live SB=F spot refreshes every 15 minutes via ISR. Greeks captured at entry — re-pull from broker for current values.`}
       source="Broker snapshot · Yahoo Finance SB=F · CME Sugar #11 specs"
@@ -291,7 +284,8 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
             </span>
             <span className="text-white/30">·</span>
             <span className="text-sm text-white/70">
-              Sugar #11 · {data.qty} × {data.contractLabel}s
+              Sugar #11 · {data.qty} × {data.contractLabel}
+              {data.qty === 1 ? "" : "s"}
             </span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -375,6 +369,10 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
             <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
               Position Details
             </div>
+            <DetailRow
+              label="Executed"
+              value={data.executionDate ? formatDateShort(data.executionDate) : "Aug 2026"}
+            />
             <DetailRow label="Cost Basis" value={formatCurrencyWhole(data.costBasisDollars)} />
             <DetailRow label="Market Value" value={formatCurrencyWhole(data.asOfMarketValueDollars)} />
             <DetailRow
@@ -426,10 +424,12 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
               value={data.greeks.vega === 0 ? "~0" : data.greeks.vega.toFixed(3)}
             />
             <GreekChip label="IV" value={`${data.greeks.impliedVolPct.toFixed(1)}%`} />
-            <GreekChip
-              label="P(profit)"
-              value={`${data.profitProbabilityPct.toFixed(0)}%`}
-            />
+            {typeof data.profitProbabilityPct === "number" && (
+              <GreekChip
+                label="P(profit)"
+                value={`${data.profitProbabilityPct.toFixed(0)}%`}
+              />
+            )}
             <GreekChip label="OI" value={data.openInterest.toLocaleString()} />
           </div>
         </div>
@@ -592,10 +592,10 @@ export default function ExecutedPosition({ data, liveSugarSpot }: Props) {
         {/* Live intrinsic floor */}
         {liveBlock}
 
-        {/* Updated payoff table — 18¢ strike, 2 contracts */}
+        {/* Payoff table — this leg's strike × qty */}
         <div>
           <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
-            Payoff at Expiry · 18¢ Strike × 2 Contracts · vs ${data.costBasisDollars.toLocaleString()} Cost
+            Payoff at Expiry · {strikeLabelCents}¢ Strike × {data.qty} Contract{data.qty === 1 ? "" : "s"} · vs ${data.costBasisDollars.toLocaleString()} Cost
           </div>
           <div className="overflow-x-auto rounded-lg border border-zinc-800/70">
             <table className="min-w-full text-sm">

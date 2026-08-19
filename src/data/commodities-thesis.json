@@ -1,11 +1,11 @@
 {
   "verdictHeadline": "COMMODITY COMPLEX · COMPOUND CRISIS REGIME",
-  "verdictSubtitle": "Live YTD across 17 contracts · Sector dispersion is the trade",
+  "verdictSubtitle": "Live YTD across 17 contracts · Molecules · atoms · calories — the whole hard-asset complex vs overvalued equities (per Jeff Currie, mid-Aug 2026) · Dispersion is still the trade",
   "sectorDrivers": {
-    "Energy": "Hormuz disruption, supply premium, refined product squeeze",
-    "Precious Metals": "Geopolitical safe haven, real rate compression, CB buying",
-    "Grains": "Fertilizer input shock + US crop shock: wheat production forecast -23% YoY (smallest HRW crop since 1957/58), heatwave damage across US/Canada/Europe",
-    "Industrial Metals": "Mixed: energy-cost pass-through vs. China demand wobble",
+    "Energy": "Hormuz disruption + the refinery-strike wave: 25+ refineries hit globally (Russia, Iran, Gulf, Saudi, Libya — per Jeff Currie, mid-Aug 2026). Diesel ~$160–185/bbl is the real squeeze, not WTI/Brent",
+    "Precious Metals": "Geopolitical safe haven, CB buying; now a treasury/yen-fragility bid — Currie re-entered gold mid-Aug 2026 as the hedge vs ALL fiat, not just USD",
+    "Grains": "Fertilizer input shock + US crop shock: wheat production forecast -23% YoY (smallest HRW crop since 1957/58); latest USDA report cut corn yields significantly, and Ukraine is striking Black Sea grain export capacity (per Currie, mid-Aug 2026)",
+    "Industrial Metals": "REPRICED: copper hit an all-time high mid-Aug 2026 (per Currie) — the 'atoms' leg of the hard-asset bid; critical minerals weaponized by the East",
     "Livestock": "Range-bound; feed costs partly offsetting tight supply",
     "Softs": "REVERSED: cocoa at 6-month highs, sugar at multi-month highs — the market is now repricing El Niño supply risk it was ignoring in May"
   },
@@ -23,8 +23,16 @@
       "body": "In May this page argued softs were priced for the wrong direction (cocoa -30%, coffee -22% on recovery narratives incompatible with El Niño). That trade has now happened: NY cocoa broke $5,000/t in June (+19% in a month) on Ivory Coast 2026/27 output fears (1.7-1.8 MMT vs ~2.2 expected), and sugar hit multi-month highs as deficit forecasts deepened. The question is no longer IF El Niño reprices the softs — it's how far the damage runs through the Oct-Jan peak."
     },
     {
-      "headline": "Metals dispersion matters",
-      "body": "Silver outperforming gold (+22% vs +19%) is classic late-cycle, geopolitically-driven metals trade. Copper at only +8% suggests industrial demand is the lagging concern."
+      "headline": "Metals dispersion resolved — copper joined the bid",
+      "body": "The May read was that copper (+8%) lagging silver/gold flagged weak industrial demand. That's now stale: per Jeff Currie (mid-Aug 2026), copper hit an all-time high. The whole metals complex — precious AND industrial — is trading as one hard-asset bid, which is what a monetary-fragility regime looks like, not a growth trade."
+    },
+    {
+      "headline": "Refinery strikes are the new structural regime",
+      "body": "Per Jeff Currie (mid-Aug 2026): 16 major Russian refineries struck by Ukraine, 2 struck in Iran, 6 struck in the Gulf by Iran, 2 hit in Saudi by the Houthis, 1 in Libya. Cheap drones make energy infrastructure trivially attackable — targeting refineries is now a proven military strategy other actors will replicate, and 'the world is not prepared for that new reality.' The transmission is diesel: ~$160–185/bbl globally, the fuel that prices almost everything. Grade mismatch compounds it — GCC crudes are diesel-rich medium/heavy, 90% of US SPR releases have been medium-to-heavy but only ~60% of the SPR was sour to begin with, and Middle East + Russia diesel/gasoline loadings for 2026 are essentially written off vs 2024/25 ranges. Watch the August CPI print for the pass-through."
+    },
+    {
+      "headline": "The monetary endgame is the hard-asset bid",
+      "body": "Per Currie (mid-Aug 2026): the 30-yr UST auction cleared 5.22% (highest since Aug 2001), the 10-yr auction printed its highest yield since 2007, US debt is ~$40T at >120% of GDP, and CPI has run above 2% for 65 straight months. Japan — the most oil-import-dependent major economy — is selling USTs to defend the yen while the US reportedly sells euro reserves to support it: 'when one of them breaks, they probably all break at the same time.' His endgame sequence: oil pops → the long end reprices well above 5.25% → financial repression → equity de-rating. The expression is HALO — Hard Assets, Local Operations: long molecules, atoms, and calories against overvalued US equities. He re-entered gold that week as the hedge vs all fiat."
     }
   ],
   "compoundThesis": {
@@ -44,9 +52,17 @@
       {
         "label": "Ivory Coast 2026/27 cocoa output (vs ~2.2 MMT prior)",
         "value": "1.7–1.8 MMT"
+      },
+      {
+        "label": "Super El Niño odds chatter",
+        "value": "1-in-500 event (reports cited by Currie, Aug 2026)"
+      },
+      {
+        "label": "30-yr UST auction yield",
+        "value": "5.22% — highest since Aug 2001"
       }
     ],
-    "coreThesis": "The May setup — softs priced for weather recovery while a strong El Niño loomed — has largely played out: cocoa at 6-month highs, sugar at multi-month highs, all major sugar forecasters revised into deficit. El Niño is no longer a probability, it's an active NOAA Advisory forecast to peak very strong Oct–Jan. The remaining trade is duration and magnitude: the Oct–Dec West African pod-fill window, the Sep–Nov Brazilian coffee flowering, and the 2027/28 crop-cycle effects that lag the peak. Positioning has improved but history (2015-16, 2023) says the biggest price responses come DURING the peak, when crop damage becomes measurable."
+    "coreThesis": "The May setup — softs priced for weather recovery while a strong El Niño loomed — has largely played out: cocoa at 6-month highs, sugar at multi-month highs, all major sugar forecasters revised into deficit. El Niño is no longer a probability, it's an active NOAA Advisory forecast to peak very strong Oct–Jan. The remaining trade is duration and magnitude: the Oct–Dec West African pod-fill window, the Sep–Nov Brazilian coffee flowering, and the 2027/28 crop-cycle effects that lag the peak. Positioning has improved but history (2015-16, 2023) says the biggest price responses come DURING the peak, when crop damage becomes measurable. The frame has also widened: per Jeff Currie (mid-Aug 2026), the El Niño/Hormuz compound now sits inside a molecules/atoms/calories triad — molecules weaponized by the West, atoms (critical minerals) weaponized by the East, calories taken out by a possible super El Niño. What started as a softs dispersion trade has graduated to a whole-complex hard-asset regime call."
   },
   "exposureMapping": [
     {
@@ -122,12 +138,12 @@
   ],
   "tradeIdeas": [
     {
-      "name": "Long Sugar #11 — HELD since May 22 (+37% at Aug 12 mark)",
+      "name": "Long Sugar #11 — HELD since May 22, added Aug 2026",
       "conviction": "High Conviction",
       "ticker": "SB",
-      "contract": "SBH7 Mar'27 — via Feb16'27 18¢ calls × 2",
+      "contract": "SBH7 Mar'27 — via Feb16'27 18¢ calls × 2 + 19.5¢ call × 1",
       "why": "Triple-exposed — Brazil cane (drought sensitivity), Indian monsoon (rainfall failure risk), Australian crush. Sugarcane is also heavily N-dependent so fertilizer shock compounds. Currently grinding near multi-year lows on supply glut narrative that requires continued favorable weather. Lower volatility than cocoa, more liquid options chain than coffee.",
-      "expression": "Executed: 2× Feb'27 18¢ calls @ 0.88¢ ($1,977 basis). Add trigger per plan: deepening UNICA ethanol-pivot data. Any adds: consider later months (SBK7/SBN7) or higher strikes for convexity.",
+      "expression": "Executed: 2× Feb'27 18¢ calls, plus 1× Feb'27 19.5¢ call added Aug 2026 for convexity. Add trigger per plan: deepening UNICA ethanol-pivot data. Any further adds: consider later months (SBK7/SBN7) or higher strikes. Live marks on /sugar.",
       "tier": 1,
       "crossLinkHref": "/sugar",
       "crossLinkLabel": "View full thesis on /sugar"
@@ -141,6 +157,15 @@
       "expression": "Options only (DCC contracts) — outright futures are too volatile and margin-intensive for sizing discipline. Consider March 2027 call spreads, OTM strikes around $5,000/$7,000.",
       "sizingNote": "Small relative to oil book — think 5-10% of oil notional. This is a satellite convex bet, not a portfolio allocation.",
       "tier": 1
+    },
+    {
+      "name": "Long Gold — Systemic hedge on the yen/UST loop",
+      "conviction": "Moderate Conviction",
+      "ticker": "GC",
+      "contract": "GCJ7 (Apr'27) or GLD-equivalent",
+      "why": "Per Jeff Currie (mid-Aug 2026), who re-entered gold that week: the 30-yr UST auction cleared 5.22% (highest since Aug 2001), CPI has been above 2% for 65 consecutive months, and Japan is selling Treasuries to defend the yen while the US reportedly sells euro reserves to support it — 'when one of them breaks, they probably all break at the same time.' Gold here is the hedge vs ALL fiat, not just USD, and the monetary leg of the HALO (Hard Assets, Local Operations) framework. Copper's all-time high confirms the hard-asset bid is already broadening.",
+      "expression": "Outright futures or a GLD-equivalent for the sleeve. Currie's own caveat: a surprise Fed rate hike (a Warsh-style move) is the main drawdown risk — it would knock gold and the whole complex temporarily. Size so that scenario is survivable.",
+      "tier": 2
     },
     {
       "name": "Long Coffee (Arabica) — Contrarian narrative break",
@@ -181,10 +206,22 @@
       "tier": 1
     },
     {
+      "dateRange": "Sep 2026",
+      "event": "August CPI print",
+      "description": "The diesel pass-through test. Per Jeff Currie (mid-Aug 2026): the July survey caught the tail end of the price downdraft — the market has been straight up since ~Jul 13 — so expect the refinery-strike/diesel squeeze to show in the AUGUST print: groceries and anything moved by truck.",
+      "tier": 2
+    },
+    {
       "dateRange": "Sep–Nov 2026",
       "event": "Brazilian coffee flowering",
       "description": "Critical period for 2027 crop. Dry conditions during flowering trigger sharp arabica futures moves.",
       "tier": 1
+    },
+    {
+      "dateRange": "by Oct 31, 2026",
+      "event": "EU gas refill window closes",
+      "description": "Per Currie (mid-Aug 2026): European refill season is well behind schedule (TTF ~€61/MWh), and winter distillate + gas inventories should be rebuilding now and aren't — 'dangerously, precariously tight.' The refill window effectively closes ~Oct 31; whatever isn't in storage by then is winter's problem.",
+      "tier": 2
     },
     {
       "dateRange": "Oct 2026–Jan 2027",
@@ -201,10 +238,11 @@
   ],
   "riskFactors": [
     "Weaker-than-forecast El Niño peak — the event is confirmed (NOAA Advisory), so the residual risk is a peak below the very-strong threshold, muting Q4 crop impacts. Related: Indian monsoon has been RECOVERING (-42% Jun 30 → -12% Aug 10); a continued catch-up weakens the India leg.",
-    "Combined unwind — Hormuz resolves AND El Niño underperforms. Worst case for both legs; size accordingly.",
+    "Combined unwind — Hormuz resolves AND El Niño underperforms. Worst case for both legs; size accordingly. The standing unwind now has a third leg: a yen/UST stabilization (successful coordinated defense, long end settles back) would remove the monetary tailwind under the gold/metals sleeve.",
+    "Surprise Fed hike — Currie's own caveat (mid-Aug 2026): a Warsh-style surprise rate hike would knock gold and the whole hard-asset complex temporarily. He views it as a drawdown risk to manage, not a thesis-killer, but it's the main near-term air pocket for the monetary leg.",
     "Cocoa-specific: faster-than-expected Ghana/Ivory Coast harvest recovery announcement before El Niño impacts show in production data.",
     "Coffee-specific: Brazilian Real strength would cap upside even with weather issues (export economics). Sugar-specific: Indian export policy shifts or Brazilian ethanol mix shifts toward sugar could add supply independent of weather."
   ],
-  "oilBookConnection": "This thesis is complementary, not redundant, to the Hormuz oil position. Both express variants of the same macro view (global supply shock, geopolitical/weather catalyst convergence), but they're driven by largely independent transmission mechanisms and will move on different news flow. Suggested allocation: 20-30% of oil notional, spread across 2-3 of the trades above. Cleanest portfolio construction: sugar as core (lowest vol), cocoa as convex satellite (options only), coffee as opportunistic add if it breaks lower.",
-  "dispersionCallout": "The May dispersion trade (softs priced against El Niño) has largely converged — cocoa +19% in June to 6-month highs, sugar at multi-month highs. What remains: coffee hasn't fully repriced ahead of its Sep-Nov flowering test, and the 2027/28 lagged effects (the 2011 analogue: the 36¢ sugar ATH came AFTER consecutive damaged seasons) are not in the curve. The asymmetry has shifted from 'positioning is wrong' to 'duration is underpriced.'"
+  "oilBookConnection": "This thesis is complementary, not redundant, to the Hormuz oil position. Both express variants of the same macro view (global supply shock, geopolitical/weather catalyst convergence), but they're driven by largely independent transmission mechanisms and will move on different news flow. Suggested allocation: 20-30% of oil notional, spread across 2-3 of the trades above. Cleanest portfolio construction: sugar as core (lowest vol), cocoa as convex satellite (options only), coffee as opportunistic add if it breaks lower. In Jeff Currie's HALO framing (mid-Aug 2026), the oil + sugar book already covers the molecules + calories legs — gold/copper is the missing atoms/monetary leg, which is what the new gold idea addresses.",
+  "dispersionCallout": "The May dispersion trade (softs priced against El Niño) has largely converged — cocoa +19% in June to 6-month highs, sugar at multi-month highs. What remains: coffee hasn't fully repriced ahead of its Sep-Nov flowering test, and the 2027/28 lagged effects (the 2011 analogue: the 36¢ sugar ATH came AFTER consecutive damaged seasons) are not in the curve. The asymmetry has shifted from 'positioning is wrong' to 'duration is underpriced.' And per Jeff Currie (mid-Aug 2026), the dispersion frame itself has widened: with copper at an all-time high and gold re-bid on treasury/yen fragility, the residual mispricing is between the hard-asset complex as a whole — molecules, atoms, calories — and overvalued US equities."
 }

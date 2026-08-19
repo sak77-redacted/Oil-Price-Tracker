@@ -28,7 +28,15 @@ interface Props {
   entryDate?: string;
   positionLabel?: string;
   catalysts?: CatalystTimelineEntry[];
-  executedPosition?: ExecutedPosition;
+  executedPositions?: ExecutedPosition[];
+}
+
+interface PositionLine {
+  key: string;
+  strikeCents: number;
+  breakevenCents: number | null;
+  qty: number;
+  label: string; // e.g. "18¢ ×2"
 }
 
 type TimeRange = "1M" | "3M" | "6M" | "1Y" | "YTD";
@@ -145,18 +153,31 @@ export default function SugarFuturesChart({
   entryDate,
   positionLabel,
   catalysts,
-  executedPosition,
+  executedPositions,
 }: Props) {
   const [range, setRange] = useState<TimeRange>("6M");
 
+  // One strike + breakeven line PER position.
   // Breakeven (cents/lb): strike (dollars/lb × 100) + averagePrice (already in cents/lb)
-  const breakevenCents = useMemo(() => {
-    if (!executedPosition) return null;
-    const strikeCents = executedPosition.strike * 100;
-    const premiumCents = executedPosition.averagePrice;
-    if (!Number.isFinite(strikeCents) || !Number.isFinite(premiumCents)) return null;
-    return strikeCents + premiumCents;
-  }, [executedPosition]);
+  const positionLines: PositionLine[] = useMemo(() => {
+    if (!executedPositions || executedPositions.length === 0) return [];
+    const out: PositionLine[] = [];
+    for (const p of executedPositions) {
+      const strikeCents = p.strike * 100;
+      if (!Number.isFinite(strikeCents)) continue;
+      const premiumCents = p.averagePrice;
+      const breakevenCents = Number.isFinite(premiumCents) ? strikeCents + premiumCents : null;
+      const strikeLabel = strikeCents.toFixed(strikeCents % 1 === 0 ? 0 : 1);
+      out.push({
+        key: `${p.contractLabel}-${strikeCents}`,
+        strikeCents,
+        breakevenCents,
+        qty: p.qty,
+        label: `${strikeLabel}¢ ×${p.qty}`,
+      });
+    }
+    return out;
+  }, [executedPositions]);
 
   // 1. Build full series (raw history → ChartPoints, all marked non-future)
   const fullSeries: ChartPoint[] = useMemo(() => {
@@ -272,7 +293,7 @@ export default function SugarFuturesChart({
   const firstDateLabel = paddedSeries.length > 0 ? paddedSeries[0].dateLabel : "";
   const lastRealLabel = slicedSeries.length > 0 ? slicedSeries[slicedSeries.length - 1].dateLabel : "";
 
-  // Y-axis bounds: data extremes + entry + strike + breakeven, padded ±2¢.
+  // Y-axis bounds: data extremes + entry + every leg's strike/breakeven, padded ±2¢.
   const yBounds = useMemo(() => {
     if (slicedSeries.length === 0) return { min: 0, max: 1 };
     const closes = slicedSeries
@@ -280,11 +301,14 @@ export default function SugarFuturesChart({
       .filter((v): v is number => typeof v === "number");
     const extras: number[] = [strikePriceCents];
     if (typeof entryPriceCents === "number") extras.push(entryPriceCents);
-    if (typeof breakevenCents === "number") extras.push(breakevenCents);
+    for (const line of positionLines) {
+      extras.push(line.strikeCents);
+      if (typeof line.breakevenCents === "number") extras.push(line.breakevenCents);
+    }
     const min = Math.min(...closes, ...extras);
     const max = Math.max(...closes, ...extras);
     return { min: Math.floor(min - 2), max: Math.ceil(max + 2) };
-  }, [slicedSeries, strikePriceCents, entryPriceCents, breakevenCents]);
+  }, [slicedSeries, strikePriceCents, entryPriceCents, positionLines]);
 
   // Volume axis bounds — 0 to max × 1.5.
   const volBounds = useMemo(() => {
@@ -370,7 +394,7 @@ export default function SugarFuturesChart({
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart
               data={paddedSeries}
-              margin={{ top: 24, right: 72, bottom: 8, left: 8 }}
+              margin={{ top: 24, right: 108, bottom: 8, left: 8 }}
             >
               <CartesianGrid stroke="#3f3f46" strokeDasharray="2 4" vertical={false} />
               <XAxis
@@ -435,36 +459,61 @@ export default function SugarFuturesChart({
                 maxBarSize={6}
               />
 
-              {/* Strike line — amber dashed */}
-              <ReferenceLine
-                yAxisId="price"
-                y={strikePriceCents}
-                stroke="#f59e0b"
-                strokeDasharray="4 4"
-                strokeWidth={1.5}
-                ifOverflow="extendDomain"
-                label={{
-                  value: `Strike ${strikePriceCents.toFixed(strikePriceCents % 1 === 0 ? 0 : 1)}¢`,
-                  position: "right",
-                  fill: "#fbbf24",
-                  fontSize: 10,
-                  fontWeight: 600,
-                }}
-              />
-
-              {/* Breakeven line — red dashed */}
-              {typeof breakevenCents === "number" && (
+              {/* Strike + breakeven lines — one pair per executed leg */}
+              {positionLines.length > 0 ? (
+                positionLines.flatMap((line) => {
+                  const nodes = [
+                    <ReferenceLine
+                      key={`strike-${line.key}`}
+                      yAxisId="price"
+                      y={line.strikeCents}
+                      stroke="#f59e0b"
+                      strokeDasharray="4 4"
+                      strokeWidth={1.5}
+                      ifOverflow="extendDomain"
+                      label={{
+                        value: `Strike ${line.label}`,
+                        position: "right",
+                        fill: "#fbbf24",
+                        fontSize: 10,
+                        fontWeight: 600,
+                      }}
+                    />,
+                  ];
+                  if (typeof line.breakevenCents === "number") {
+                    nodes.push(
+                      <ReferenceLine
+                        key={`be-${line.key}`}
+                        yAxisId="price"
+                        y={line.breakevenCents}
+                        stroke="#ef4444"
+                        strokeDasharray="4 4"
+                        strokeWidth={1.5}
+                        ifOverflow="extendDomain"
+                        label={{
+                          value: `BE ${line.breakevenCents.toFixed(line.breakevenCents % 1 === 0 ? 0 : 1)}¢ (${line.label})`,
+                          position: "right",
+                          fill: "#fca5a5",
+                          fontSize: 10,
+                          fontWeight: 600,
+                        }}
+                      />,
+                    );
+                  }
+                  return nodes;
+                })
+              ) : (
                 <ReferenceLine
                   yAxisId="price"
-                  y={breakevenCents}
-                  stroke="#ef4444"
+                  y={strikePriceCents}
+                  stroke="#f59e0b"
                   strokeDasharray="4 4"
                   strokeWidth={1.5}
                   ifOverflow="extendDomain"
                   label={{
-                    value: `Breakeven ${breakevenCents.toFixed(breakevenCents % 1 === 0 ? 0 : 1)}¢`,
+                    value: `Strike ${strikePriceCents.toFixed(strikePriceCents % 1 === 0 ? 0 : 1)}¢`,
                     position: "right",
-                    fill: "#fca5a5",
+                    fill: "#fbbf24",
                     fontSize: 10,
                     fontWeight: 600,
                   }}

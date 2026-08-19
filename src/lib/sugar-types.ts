@@ -169,7 +169,7 @@ export interface ExecutedPositionGreeks {
 
 export interface ExecutedPosition {
   executed: boolean;
-  executionDate: string;             // ISO date
+  executionDate: string | null;      // ISO date, or null when the exact fill date wasn't captured
   contractLabel: string;             // "SBG7 Feb'27 18¢ Call"
   qty: number;
   strike: number;                    // 0.18 (dollars per lb)
@@ -182,7 +182,7 @@ export interface ExecutedPosition {
   asOfRealizedPnLDollars: number;    // 0
   breakeven: number;                 // 0.19 (sugar price)
   greeks: ExecutedPositionGreeks;
-  profitProbabilityPct: number;
+  profitProbabilityPct?: number | null; // broker-reported; may be absent on some snapshots
   openInterest: number;
   pctOfPortfolio: number;
   contractSizeLbs: number;           // 112000
@@ -217,5 +217,5 @@ export interface SugarData {
   tailScenario: TailScenarioData;
   ytdPerformance: YTDPerformanceEntry[];
   personalView: PersonalViewData;
-  executedPosition?: ExecutedPosition;
+  executedPositions?: ExecutedPosition[];
 }

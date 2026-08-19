@@ -1,26 +1,26 @@
 {
   "metadata": {
     "title": "Sugar #11 — El Niño + Hormuz Compound Thesis",
-    "subtitle": "Feb'27 SBG7 18¢ calls × 2 · executed May 22, 2026",
-    "lastUpdated": "2026-08-12",
+    "subtitle": "Feb'27 SB calls: 18¢ ×2 (May 22) + 19.5¢ ×1 (Aug 12) — compound thesis",
+    "lastUpdated": "2026-08-19",
     "tradeInitiated": "2026-05-11"
   },
   "thesis": {
     "direction": "long",
     "conviction": "high",
-    "convictionPct": 78,
-    "headline": "Thesis confirming: El Niño Advisory ACTIVE (NOAA, Aug 2026) + all three forecasters revised deeper into deficit in August. Entered 15.0¢ — sugar now ~16.7¢, highest since March.",
-    "summary": "Every leg is moving the right way: India's monsoon is tracking 12% below normal (IMD warns Aug–Sep below normal; possibly weakest in 11 years), Brazil's Center-South mills have pivoted hard to ethanol (sugar mix 41.4% vs 50.1% last year, output -2.0% YoY), and El Niño is forecast to peak very strong Oct–Jan. Deficit revisions are accelerating, not stabilizing."
+    "convictionPct": 82,
+    "headline": "Thesis accelerating: fresh 52-week high 17.59¢ hit Aug 18 as India signals it may scrap its 100% sugar import duty. Entered 15.0¢ — sugar +3.1% on the day to 17.4¢.",
+    "summary": "Every leg is moving the right way, faster: India's wholesale sugar prices are at all-time highs (+~20% since early August on festival demand and depleted stocks) and the government is weighing removal of the 100% import duty. Brazil's Center-South 2H-July crush fell 8.4% YoY with sugar output -17.6% as mills divert cane to ethanol (blend mandate raised to 32%). Covrig, Green Pool and StoneX are all now in 2026/27 deficit."
   },
   "todaysTape": {
-    "spot": 16.74,
+    "spot": 17.4,
     "fiveYrLow": 14.0,
     "twentyYrATH": 36.0,
     "twentyYrLow": 9.0,
-    "rangePosition": 29,
-    "marH7IV": 26.9,
+    "rangePosition": 31,
+    "marH7IV": 30.1,
     "elNinoProbability": 99,
-    "ytdPct": 4
+    "ytdPct": 8
   },
   "elNino": {
     "probability": 99,
@@ -68,7 +68,7 @@
   "millMix": {
     "brazilCenterSouthSugarMixPct": 41.42,
     "brazilCenterSouthOutputMMT": 45,
-    "brazilOutputNote": "2026/27 through May: sugar mix collapsed to 41.4% (from 50.1% a year ago) as mills pivot to ethanol — C-S sugar output 6.84 MMT, -2.0% YoY. This is the 'mill mix shift' leg of the tail scenario actually happening.",
+    "brazilOutputNote": "2026/27 through May: sugar mix collapsed to 41.4% (from 50.1% a year ago) as mills pivot to ethanol — C-S sugar output 6.84 MMT, -2.0% YoY. This is the 'mill mix shift' leg of the tail scenario actually happening. 2H-July update: crush -8.4% YoY, sugar output -17.6% YoY, with the ethanol blend mandate raised to 32%.",
     "indiaOutputMMT": 15.9,
     "indiaOutputYoYPct": 22,
     "indiaEthanolDiversionFromMMT": 5,
@@ -133,9 +133,9 @@
     },
     {
       "year": "Today",
-      "event": "5-year low; surplus narrative breaking",
-      "priceCents": 15,
-      "contractDollars": 16800,
+      "event": "52-wk high — India duty signal + deficit consensus",
+      "priceCents": 17.4,
+      "contractDollars": 19488,
       "highlight": true,
       "current": true
     }
@@ -150,6 +150,11 @@
       "date": "Jul-Aug 2026",
       "event": "Australian ABARES estimates",
       "tier": 2
+    },
+    {
+      "date": "Aug-Sep 2026",
+      "event": "India weighing removal of 100% sugar import duty — domestic wholesale ATH, festival-season squeeze",
+      "tier": 1
     },
     {
       "date": "Aug-Oct 2026",
@@ -250,8 +255,8 @@
     },
     {
       "name": "Brazilian mill mix stays at sugar",
-      "rationale": "Mills keep flooding market above ethanol parity.",
-      "status": "monitoring"
+      "rationale": "Largely retired — mills have pivoted hard to ethanol: 2H-July crush -8.4% YoY, sugar output -17.6% YoY, with the ethanol blend mandate raised to 32%. Residual risk is a mix reversal if ethanol parity flips.",
+      "status": "receding"
     },
     {
       "name": "India ethanol policy reversal",
@@ -299,7 +304,7 @@
   "ytdPerformance": [
     {
       "commodity": "Sugar",
-      "ytd": -7,
+      "ytd": 8,
       "sector": "Softs",
       "highlight": true
     },
@@ -335,8 +340,8 @@
     }
   ],
   "personalView": {
-    "qtyExecuted": 2,
-    "executionTarget": "EXECUTED May 22: 2 × Feb'27 SBG7 18¢ calls @ 0.88¢ avg ($1,977 cost basis)",
+    "qtyExecuted": 3,
+    "executionTarget": "EXECUTED: 2 × Feb'27 18¢ calls @ 0.88 avg ($1,977) + 1 × Feb'27 19.5¢ call @ 0.80 ($899) — $2,876 total basis",
     "alternativeExecution": "1 × Mar'27 SBH7 17¢ ATM",
     "maxRiskDollars": 3300,
     "executionTiming": "NY hours 8am-1pm ET (10pm-3am AEST)",
@@ -348,7 +353,7 @@
     ],
     "sizingLogic": "Sugar at 20-30% of oil book notional (satellite, not core). Don't size up at entry — add into confirming trend (India monsoon data, Brazilian mix reports)."
   },
-  "executedPosition": {
+  "executedPositions": [{
     "executed": true,
     "executionDate": "2026-05-22",
     "contractLabel": "SBG7 Feb'27 18¢ Call",
@@ -375,5 +380,31 @@
     "contractSizeLbs": 112000,
     "notes": "Selected 18¢ strike vs planned 19¢ — slightly closer to ATM, marginally less asymmetric but higher delta (0.364 vs ~0.30 estimate for 19¢). Feb'27 expiry vs planned Mar'27 — one less month of time value but catches all major catalysts (Indian monsoon Jun-Sep, Brazilian C-S Aug-Oct, El Niño peak Nov-Feb). Net: cleaner risk-reward with marginally tighter convexity.",
     "entryUnderlyingPriceCents": 15.0
-  }
+  },
+  {
+    "executed": true,
+    "executionDate": "2026-08-12",
+    "contractLabel": "SBG7 Feb'27 19.5¢ Call",
+    "qty": 1,
+    "strike": 0.195,
+    "expiryDate": "2027-02-16",
+    "averagePrice": 0.80,
+    "costBasisDollars": 898.96,
+    "asOfDate": "2026-08-19T10:33:00+10:00",
+    "asOfMarketValueDollars": 1267,
+    "asOfUnrealizedPnLDollars": 368.04,
+    "asOfRealizedPnLDollars": 0,
+    "breakeven": 0.203,
+    "greeks": {
+      "delta": 0.434,
+      "gamma": 9.943,
+      "theta": 0,
+      "vega": 0,
+      "impliedVolPct": 30.1
+    },
+    "openInterest": 4260,
+    "pctOfPortfolio": 1.01,
+    "contractSizeLbs": 112000,
+    "notes": "Added into the Aug 2026 leg-up, before the Aug 18 India-duty gap. Day's range at snapshot 1.03–1.08; volume 423."
+  }]
 }

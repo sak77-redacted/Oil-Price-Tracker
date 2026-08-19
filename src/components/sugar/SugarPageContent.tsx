@@ -42,13 +42,19 @@ export default function SugarPageContent({
   liveSugarSpot = null,
   sugarFuturesHistory = null,
 }: Props) {
-  const positionLive = data.executedPosition?.executed === true;
-  const executed = data.executedPosition;
-  // strike in cents/lb (executedPosition.strike is in $/lb e.g. 0.18 → 18)
-  const strikePriceCents = executed?.strike ? executed.strike * 100 : 18;
-  const entryPriceCents = executed?.entryUnderlyingPriceCents;
-  const entryDate = executed?.executionDate;
-  const positionLabel = executed?.contractLabel;
+  const executedPositions = data.executedPositions ?? [];
+  const positionLive = executedPositions.some((p) => p.executed === true);
+  const primary = executedPositions[0];
+  // strike in cents/lb (position strike is in $/lb e.g. 0.18 → 18)
+  const strikePriceCents = primary?.strike ? primary.strike * 100 : 18;
+  const entryPriceCents = executedPositions.find(
+    (p) => typeof p.entryUnderlyingPriceCents === "number",
+  )?.entryUnderlyingPriceCents;
+  const entryDate = executedPositions.find((p) => p.executionDate)?.executionDate ?? undefined;
+  const positionLabel =
+    executedPositions.length > 1
+      ? `${primary?.contractLabel} +${executedPositions.length - 1} leg${executedPositions.length > 2 ? "s" : ""}`
+      : primary?.contractLabel;
 
   return (
     <SugarViewProvider>
@@ -75,7 +81,7 @@ export default function SugarPageContent({
 
         <div className="mt-6 flex flex-col gap-4">
           {/* Tier 1 — Action */}
-          <SugarVerdict thesis={data.thesis} executedPosition={data.executedPosition} />
+          <SugarVerdict thesis={data.thesis} executedPositions={executedPositions} />
           <SugarTodaysTape data={data.todaysTape} />
           <SugarFuturesChart
             history={sugarFuturesHistory}
@@ -84,14 +90,14 @@ export default function SugarPageContent({
             entryDate={entryDate}
             positionLabel={positionLabel}
             catalysts={data.catalystTimeline}
-            executedPosition={data.executedPosition}
+            executedPositions={executedPositions}
           />
           <CatalystTimeline events={data.catalystTimeline} />
 
           {/* Personal view (only when toggled) */}
           <PersonalView
             data={data.personalView}
-            executedPosition={data.executedPosition}
+            executedPositions={executedPositions}
             liveSugarSpot={liveSugarSpot}
           />
 
