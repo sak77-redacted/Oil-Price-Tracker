@@ -172,7 +172,7 @@
       "ticker": "GC",
       "contract": "GCJ7 (Apr'27) or GLD-equivalent",
       "why": "Per Jeff Currie (mid-Aug 2026), who re-entered gold that week: the 30-yr UST auction cleared 5.22% (highest since Aug 2001), CPI has been above 2% for 65 consecutive months, and Japan is selling Treasuries to defend the yen while the US reportedly sells euro reserves to support it — 'when one of them breaks, they probably all break at the same time.' Gold here is the hedge vs ALL fiat, not just USD, and the monetary leg of the HALO (Hard Assets, Local Operations) framework. Copper's all-time high confirms the hard-asset bid is already broadening — while gold itself sits roughly flat YTD (~$4,400, +2%), meaning this sleeve hasn't run yet.",
-      "expression": "Outright futures or a GLD-equivalent for the sleeve. Currie's own caveat: a surprise Fed rate hike (a Warsh-style move) is the main drawdown risk — it would knock gold and the whole complex temporarily. Size so that scenario is survivable.",
+      "expression": "Outright futures or a GLD-equivalent for the sleeve. Currie's own caveat: a surprise Fed rate hike (a Warsh-style move) is the main drawdown risk — it would knock gold and the whole complex temporarily. Size so that scenario is survivable. High-beta alternative: silver (-10.5% YTD, ~$63) historically outruns gold in monetary-fear regimes as the gold/silver ratio (~70) compresses — but its industrial half carries a structural drag (solar makers thrifting silver loadings), so treat it as a leveraged expression of this card, not a substitute.",
       "tier": 2
     },
     {
@@ -202,6 +202,15 @@
       "contract": "KEZ6 (Dec'26) or KEH7 (Mar'27)",
       "why": "The +9% 'room to extend' call extended: CBOT wheat is +34% YTD (~$6.70-6.80/bu, mid-Aug) on Black Sea escalation (Russia/Ukraine attacks on commercial shipping; USDA cut Russia's 2026/27 exports to 46 MMT and Ukraine's to 13.5 MMT) stacked on the smallest US winter wheat crop in 61 years (HRW lowest since the late 1950s) and southern-Plains dryness heading into 2027 planting. Hard red winter remains more drought-sensitive than Chicago SRW.",
       "expression": "Much of the asymmetry has been captured — chasing here buys headline risk. Prefer buying pullbacks on Black Sea ceasefire headlines (the supply math survives them) or defined-risk calls; sized smaller than the softs trades.",
+      "tier": 3
+    },
+    {
+      "name": "Long Platinum — Deep value after a positioning crash, no dated catalyst",
+      "conviction": "Speculative",
+      "ticker": "PL",
+      "contract": "PLJ7 (Apr'27)",
+      "why": "The -19% YTD (~$1,727) is a burst positioning bubble, not a broken fundamental story: platinum spiked toward ~$2,900 around the turn of the year on investment inflows, then crashed on ETF liquidation. Underneath, the market is in its 4th consecutive annual deficit and WPIC projects deficits averaging ~331koz/yr through 2030 — 2026 demand falls 8% only because last year's investment mania isn't repeating (industrial +11%, auto just -3%). It trades at ~0.39× gold vs a historical premium. Currie kicker: South African supply is extremely energy-intensive, so the diesel/power squeeze curbs output at exactly the wrong time. The catch: no dated catalyst — this is a regime trade that fires with the monetary leg, and 'structural deficit' hasn't stopped a 40% drawdown before. Flows set the price here, not the deficit.",
+      "expression": "The 50-oz contract ($50 per $1 move) makes PL one of the most retail-sizable metals — outright futures or long-dated calls, but options are thinner than gold/silver so check spreads. Expect the ETF overhang to sell rallies: scale in on weakness rather than chase, and treat it as the deep-value satellite of the atoms leg.",
       "tier": 3
     }
   ],
