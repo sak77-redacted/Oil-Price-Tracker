@@ -149,14 +149,22 @@
       "crossLinkLabel": "View full thesis on /sugar"
     },
     {
-      "name": "Long Cocoa — Most asymmetric, highest convexity",
-      "conviction": "Speculative",
-      "ticker": "CC",
-      "contract": "CCH7 (Mar'27)",
-      "why": "The June flood spike came and went: NY cocoa ran ~$3,780 → $6,520 (Jun 12–Jul 9, +70%) on Côte d'Ivoire/Ghana flooding and weak 2026/27 crop surveys, then retraced to ~$5,900 (Aug 19) as ICE inventories hit a 2-year high and Ivory Coast port arrivals ran +20% YoY. Genuinely two-sided now — but the El Niño catalyst hasn't fired yet: the Oct-Dec pod-fill window is when main-crop damage gets priced. Ghana + Ivory Coast also aligned farm-gate pricing in dollars from 2026/27, a structural floor under farmgate supply economics.",
-      "expression": "Options only (DCC contracts) — outright futures are too volatile and margin-intensive for sizing discipline. With spot ~$5,900, consider March 2027 call spreads around $6,500/$8,500; the Aug pullback is the entry the June chase never offered.",
-      "sizingNote": "Small relative to oil book — think 5-10% of oil notional. This is a satellite convex bet, not a portfolio allocation.",
+      "name": "Long Coffee (Arabica) — Best new-money entry: least repriced, catalyst imminent",
+      "conviction": "Moderate Conviction",
+      "ticker": "KC",
+      "contract": "KCZ6 (Dec'26) or KCH7 (Mar'27)",
+      "why": "Recovered from -22% YTD to -7% (~331¢, Aug 19) but the contrarian setup is intact: the bear case rests on Brazil's record 2026/27 harvest (~69.3M bags, +10.1%) — yet ICE-certified stocks are at their lowest since late 2023, Brazil's Jan-Jul exports ran -12.2% YoY, and Minas Gerais is historically dry during El Niño phases. The 2027-crop flowering happens Sep-Nov 2026 — right at the El Niño peak. Still the least-repriced priority-1 soft.",
+      "expression": "Long futures with stops, or December/March call options for defined risk.",
       "tier": 1
+    },
+    {
+      "name": "Long EU Natural Gas (TTF) — Hard-deadline refill trade",
+      "conviction": "Moderate Conviction",
+      "ticker": "TTF",
+      "contract": "TTF Q1'27 strip, or Dec'26–Feb'27 calls (ICE Endex)",
+      "why": "EU storage was 60.4% full on Aug 15 — roughly 9-10pp below the 5-yr seasonal norm and the lowest early-August reading on record — with Qatari LNG cargoes delayed by shipping disruptions and TTF already ~€62.5/MWh. Even hitting the relaxed 80% Nov-1 target leaves Europe entering winter with buffer in the low-70s vs 90%+ in normal years: no headroom for cold snaps. Per Currie (mid-Aug 2026): 'dangerously, precariously tight.' Note US natgas (-23% YTD) is NOT the expression — the US is an island; this must be TTF (or JKM).",
+      "expression": "Defined-risk winter calls (Dec'26–Feb'27) rather than outright futures — the payoff is weather-contingent and a mild winter plus LNG recovery kills it. Check IBKR permissions for ICE Endex TTF; US-listed gas ETPs track Henry Hub, not TTF, and do not express this trade.",
+      "tier": 2
     },
     {
       "name": "Long Gold — Systemic hedge on the yen/UST loop",
@@ -168,13 +176,24 @@
       "tier": 2
     },
     {
-      "name": "Long Coffee (Arabica) — Contrarian narrative break",
-      "conviction": "Moderate Conviction",
-      "ticker": "KC",
-      "contract": "KCZ6 (Dec'26) or KCH7 (Mar'27)",
-      "why": "Recovered from -22% YTD to -7% (~331¢, Aug 19) but the contrarian setup is intact: the bear case rests on Brazil's record 2026/27 harvest (~69.3M bags, +10.1%) — yet ICE-certified stocks are at their lowest since late 2023, Brazil's Jan-Jul exports ran -12.2% YoY, and Minas Gerais is historically dry during El Niño phases. The 2027-crop flowering happens Sep-Nov 2026 — right at the El Niño peak. Still the least-repriced priority-1 soft.",
-      "expression": "Long futures with stops, or December/March call options for defined risk.",
+      "name": "Long Cocoa — High convexity, now genuinely two-sided",
+      "conviction": "Speculative",
+      "ticker": "CC",
+      "contract": "CCH7 (Mar'27)",
+      "why": "The June flood spike came and went: NY cocoa ran ~$3,780 → $6,520 (Jun 12–Jul 9, +70%) on Côte d'Ivoire/Ghana flooding and weak 2026/27 crop surveys, then retraced to ~$5,900 (Aug 19) as ICE inventories hit a 2-year high and Ivory Coast port arrivals ran +20% YoY. Genuinely two-sided now — but the El Niño catalyst hasn't fired yet: the Oct-Dec pod-fill window is when main-crop damage gets priced. Ghana + Ivory Coast also aligned farm-gate pricing in dollars from 2026/27, a structural floor under farmgate supply economics.",
+      "expression": "Options only (DCC contracts) — outright futures are too volatile and margin-intensive for sizing discipline. With spot ~$5,900, consider March 2027 call spreads around $6,500/$8,500; the Aug pullback is the entry the June chase never offered.",
+      "sizingNote": "Small relative to oil book — think 5-10% of oil notional. This is a satellite convex bet, not a portfolio allocation.",
       "tier": 2
+    },
+    {
+      "name": "Long Distillates (HO) — Strongest fundamentals, worst entry",
+      "conviction": "Moderate Conviction",
+      "ticker": "HO",
+      "contract": "HOZ6 (Dec'26), or HO-CL crack",
+      "why": "The most confirmed leg of the Currie thesis: the US diesel crack broke $100/bbl for the FIRST TIME EVER on Aug 17 ($102.20 intraday), US distillate inventories (~107.1M bbl) are the lowest for the date since 1996, and a Russian export ban tied to Ukrainian refinery strikes stacks on the refinery-strike wave and the SPR grade mismatch. Structural tightness into winter — but it is also the most repriced idea on this page (HO +106% YTD), so the risk-adjusted entry is poor at the record print.",
+      "expression": "Don't chase the record: buy pullbacks or use defined-risk Dec/Jan calls. The crack spread (long HO / short CL) isolates refining tightness from crude-level ceasefire risk. The oil book already carries correlated exposure — size as a satellite, not a new core.",
+      "sizingNote": "Overlaps the existing oil position — treat as an extension of the molecules leg, not a diversifier.",
+      "tier": 3
     },
     {
       "name": "Long KC Wheat — Compound winner, now substantially repriced",
