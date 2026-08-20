@@ -3407,7 +3407,7 @@
     "latestDate": "2026-08-12",
     "latestSource": "HDFCSky Aug 12 2026 (Brent $89.7 on fading deal hopes); Trump Aug 11 'We'll know in 48 hours'; CNBC (ship traffic near 3-month low, 8 total vessels Tuesday).",
     "jawboneCount": 21,
-    "daysSinceFirstJawbone": 140,
+    "daysSinceFirstJawbone": 142,
     "firstJawboneDate": "2026-03-31",
     "physicalConfirmationGates": [
       {
@@ -3562,7 +3562,7 @@
     "phase": 1,
     "phaseName": "Excess Cash Burn",
     "phaseDescription": "[Updated 2026-08-10] ROUND 2 SPECIFIC_TERMS_LEAKED \u2014 but deal increasingly uncertain. Iran hardened positions Aug 10; Brent surged +5% to $87.72. Insurance re-escalated to 8.5% hull. Ship transit ~2/day. Brent-Dubai discount widening back to $6.72 as diplomatic optimism fades. SPR: 304.8 Mb (Jul 31, EIA wk) \u2014 1983 record low territory. Phase 1 continues with diplomatic exit path increasingly uncertain. If Round 2 collapses: Phase 2 risk (SPR Draws) re-elevates rapidly.",
-    "daysInPhase": 172,
+    "daysInPhase": 173,
     "transitionTrigger": "US commercial inventory approaches MOI floor (~300 mb) OR SPR draws accelerate past 10 mb/wk sustained",
     "weeksToNextPhase": 118.9,
     "priceImplication": "Volatility violent in both directions while buffer remains. Spot price suppressed by paper-market deleveraging (Signal 14), but physical signals will eventually force re-rating. Phase 3 = sidelined participants forced into desperate bidding.",
