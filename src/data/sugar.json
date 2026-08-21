@@ -2,18 +2,18 @@
   "metadata": {
     "title": "Sugar #11 — El Niño + Hormuz Compound Thesis",
     "subtitle": "Feb'27 SB calls: 18¢ ×2 (May 22) + 19.5¢ ×1 (Aug 12) — compound thesis",
-    "lastUpdated": "2026-08-19",
+    "lastUpdated": "2026-08-21",
     "tradeInitiated": "2026-05-11"
   },
   "thesis": {
     "direction": "long",
     "conviction": "high",
     "convictionPct": 82,
-    "headline": "Thesis accelerating: fresh 52-week high 17.59¢ hit Aug 18 as India signals it may scrap its 100% sugar import duty. Entered 15.0¢ — sugar +3.1% on the day to 17.4¢.",
-    "summary": "Every leg is moving the right way, faster: India's wholesale sugar prices are at all-time highs (+~20% since early August on festival demand and depleted stocks) and the government is weighing removal of the 100% import duty. Brazil's Center-South 2H-July crush fell 8.4% YoY with sugar output -17.6% as mills divert cane to ethanol (blend mandate raised to 32%). Covrig, Green Pool and StoneX are all now in 2026/27 deficit."
+    "headline": "India catalyst CONFIRMED Aug 20: 1 MMT raw imports at NIL duty (vs 100%) through Oct 31 — first import opening in ~10 years. Spot spiked 4.1% to 18.26¢ (highest since Apr 2025), then sold the fact back to 17.50¢.",
+    "summary": "The India leg went from rumor to policy: after domestic spot hit a 16-year high (₹5,530/quintal Aug 19), the government opened a 1 MMT nil-duty raw sugar import quota to Oct 31 and imposed stockholding limits on bulk consumers (Sep 1–Nov 30). That is ~1 MMT of new demand pulled onto the world market — structurally bullish — but the confirmation triggered sell-the-fact profit-taking and an IV deflation after a ~25% run from the mid-July 14.4¢ low. Brazil leg unchanged: C-S 2H-July crush -8.4% YoY, sugar output -17.6%, ethanol mandate 32%. Covrig, Green Pool and StoneX all remain in 2026/27 deficit. Next question: is 1 MMT enough — watch for quota extension/enlargement after Oct 31."
   },
   "todaysTape": {
-    "spot": 17.4,
+    "spot": 17.5,
     "fiveYrLow": 14.0,
     "twentyYrATH": 36.0,
     "twentyYrLow": 9.0,
@@ -133,9 +133,9 @@
     },
     {
       "year": "Today",
-      "event": "52-wk high — India duty signal + deficit consensus",
-      "priceCents": 17.4,
-      "contractDollars": 19488,
+      "event": "India opens 1 MMT nil-duty imports — spike to 18.26¢ sold to 17.5¢",
+      "priceCents": 17.5,
+      "contractDollars": 19600,
       "highlight": true,
       "current": true
     }
@@ -152,8 +152,8 @@
       "tier": 2
     },
     {
-      "date": "Aug-Sep 2026",
-      "event": "India weighing removal of 100% sugar import duty — domestic wholesale ATH, festival-season squeeze",
+      "date": "Aug 20 – Oct 31, 2026",
+      "event": "India CONFIRMED: 1 MMT nil-duty raw import quota (first in ~10 yrs) + bulk stockholding limits Sep 1–Nov 30. Next catalyst: quota extension/enlargement if 1 MMT proves insufficient",
       "tier": 1
     },
     {
@@ -362,9 +362,9 @@
     "expiryDate": "2027-02-16",
     "averagePrice": 0.88,
     "costBasisDollars": 1977,
-    "asOfDate": "2026-08-12T11:06:00+10:00",
-    "asOfMarketValueDollars": 2718,
-    "asOfUnrealizedPnLDollars": 740.56,
+    "asOfDate": "2026-08-21T13:14:00+10:00",
+    "asOfMarketValueDollars": 3564,
+    "asOfUnrealizedPnLDollars": 1587,
     "asOfRealizedPnLDollars": 0,
     "breakeven": 0.19,
     "greeks": {
@@ -375,10 +375,10 @@
       "impliedVolPct": 26.9
     },
     "profitProbabilityPct": 25,
-    "openInterest": 15400,
-    "pctOfPortfolio": 2.33,
+    "openInterest": 18500,
+    "pctOfPortfolio": 2.61,
     "contractSizeLbs": 112000,
-    "notes": "Selected 18¢ strike vs planned 19¢ — slightly closer to ATM, marginally less asymmetric but higher delta (0.364 vs ~0.30 estimate for 19¢). Feb'27 expiry vs planned Mar'27 — one less month of time value but catches all major catalysts (Indian monsoon Jun-Sep, Brazilian C-S Aug-Oct, El Niño peak Nov-Feb). Net: cleaner risk-reward with marginally tighter convexity.",
+    "notes": "Selected 18¢ strike vs planned 19¢ — slightly closer to ATM, marginally less asymmetric but higher delta (0.364 vs ~0.30 estimate for 19¢). Feb'27 expiry vs planned Mar'27 — one less month of time value but catches all major catalysts (Indian monsoon Jun-Sep, Brazilian C-S Aug-Oct, El Niño peak Nov-Feb). Net: cleaner risk-reward with marginally tighter convexity. Aug 21 snapshot: last 1.61 (-4.17% vs prior close 1.68), closing bid/ask 1.57/1.63, day range 1.59–2.04 — the 2.04 print during the Aug 20 India spike was +132% on premium, two-thirds of the way to the 200% profit-take-1 trigger. Greeks/IV fields are from the Aug 12 snapshot (market closed at capture; delta now higher with spot 17.5 vs 16.42).",
     "entryUnderlyingPriceCents": 15.0
   },
   {
@@ -390,9 +390,9 @@
     "expiryDate": "2027-02-16",
     "averagePrice": 0.80,
     "costBasisDollars": 898.96,
-    "asOfDate": "2026-08-19T10:33:00+10:00",
-    "asOfMarketValueDollars": 1267,
-    "asOfUnrealizedPnLDollars": 368.04,
+    "asOfDate": "2026-08-21T13:14:00+10:00",
+    "asOfMarketValueDollars": 1179,
+    "asOfUnrealizedPnLDollars": 280.04,
     "asOfRealizedPnLDollars": 0,
     "breakeven": 0.203,
     "greeks": {
@@ -402,9 +402,9 @@
       "vega": 0,
       "impliedVolPct": 30.1
     },
-    "openInterest": 4260,
-    "pctOfPortfolio": 1.01,
+    "openInterest": 4760,
+    "pctOfPortfolio": 0.86,
     "contractSizeLbs": 112000,
-    "notes": "Added into the Aug 2026 leg-up, before the Aug 18 India-duty gap. Day's range at snapshot 1.03–1.08; volume 423."
+    "notes": "Added into the Aug 2026 leg-up, before the Aug 18 India-duty gap. Aug 21 snapshot: last print 1.44 is stale from the Aug 20 spike (day range 1.25–1.44); closing bid/ask 1.04/1.08 puts the real mark ~1.05 — IBKR MV $1,179 reflects that, not the last. Thin leg: volume 84, OI 4.76K. Greeks/IV fields are from the Aug 19 snapshot (market closed at capture)."
   }]
 }
