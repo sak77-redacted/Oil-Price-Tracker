@@ -3,15 +3,15 @@
     "title": "AI Bubble Tracker",
     "thesis": "The AI capex/circular-financing structure fails not when the numbers fall — it fails when they stop accelerating. Watch the speed, not the level.",
     "videoSource": "The Jay Martin Show — 'The 2006 Question' (Aug 2026)",
-    "lastSweep": "2026-08-17",
+    "lastSweep": "2026-08-23",
     "crisisFrame": "2006: loans failed when prices rose 8% instead of 15%. Watch the speed."
   },
   "verdict": {
     "status": "ACCELERATION INTACT — WATCH THE SPEED",
-    "compositeNote": "Big Tech's AI spending and order books are still growing faster every year — and that growth is the only thing holding the whole structure up. Warning signs: OpenAI's next fundraise is expected to value it at only about 1.2x its last round (every earlier round was 1.7-1.9x), and free Chinese models are eating into the revenue growth that justifies those valuations. The event that would mark the turn hasn't happened yet. The lesson of 2006: this structure doesn't need the numbers to fall — it breaks as soon as they stop growing faster each year. Independent corroboration (Eisman, Aug 13): AI infrastructure earnings still accelerating — CoreWeave revenue +112% YoY (still unprofitable), Super Micro +91%, Cisco beat and raised — but a new $500B Nvidia securitization push moves data-center debt off hyperscaler balance sheets into banks and private credit, the most literal 2006 rhyme yet.",
-    "signalsAccelerating": 2,
+    "compositeNote": "Big Tech's AI spending and order books are still growing faster every year — and that growth is the only thing holding the whole structure up. This week's data leans toward MORE acceleration, not less: Anthropic's revenue run-rate hit $65B in July (7x year-over-year) and OpenAI's hit roughly $40B (doubling since spring), and Microsoft's order backlog jumped to $678B (from $625B) — closing in on Oracle's $638B — while Google Cloud and Amazon posted their own backlog growth for the first time in this tracker. Total hyperscaler 2026 spending guidance was raised again, to $775-800B (from $725B). Two things keep this from being a clean 'all clear': Washington moved from talking about banning Chinese AI to actual bill text (the No Adversarial AI Act has been introduced in both the House and Senate and referred to committee), and a 30-year Treasury bond auction on Aug 13 showed the weakest buyer demand in a year even as yields hit a 25-year high — a reminder that the government's own borrowing costs are rising at the same time it needs the AI boom to keep paying off. The event that would mark the turn — a capex CUT that the market cheers — still hasn't happened. Independent corroboration (Eisman, Aug 13): AI infrastructure earnings still accelerating — CoreWeave revenue +112% YoY (still unprofitable), Super Micro +91%, Cisco beat and raised — but the $500B Nvidia securitization push is now a formal deal with six of Wall Street's biggest firms (Apollo, BlackRock, Blackstone, Brookfield, Goldman Sachs, KKR), and new SEC guidance has removed a risk-retention rule that would otherwise have applied to this kind of debt — the most literal 2006 rhyme yet, now with less regulatory friction in its way.",
+    "signalsAccelerating": 3,
     "signalsDecelerating": 1,
-    "signalsWatch": 7,
+    "signalsWatch": 6,
     "signalsBroken": 0
   },
   "stack": [
@@ -131,13 +131,16 @@
         },
         {
           "name": "Microsoft",
-          "backlogB": 625
+          "backlogB": 678
         },
         {
-          "name": "Google"
+          "name": "Google",
+          "backlogB": 155,
+          "yoyGrowthPct": 82
         },
         {
-          "name": "Amazon"
+          "name": "Amazon",
+          "backlogB": 200
         }
       ],
       "totalB": 2100,
@@ -158,12 +161,17 @@
         }
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); platform earnings backlogs (RPO)",
-      "lastUpdated": "2026-08-17",
+      "lastUpdated": "2026-08-23",
       "notes": [
         {
           "date": "2026-08-17",
           "text": "The dependency of the hyperscalers on Anthropic and OpenAI is just huge — both lose billions and rely on raising capital for survival. Oracle's debt is rated barely above junk. There is no hedge for the LLMs: hyperscalers have fallback franchises, the labs don't.",
           "attribution": "Steve Eisman, The Real Eisman Playbook"
+        },
+        {
+          "date": "2026-08-23",
+          "text": "First full read across all four hyperscalers: Microsoft's commercial backlog jumped to $678B (from $625B), closing in on Oracle's $638B. Google Cloud posted $155B (+82% YoY) and Amazon's AWS posted ~$200B — both reported here for the first time. Backlog growth is not just an Oracle story anymore; it's broad-based across the sector.",
+          "attribution": "Weekly sweep synthesis, Aug 23 2026"
         }
       ]
     },
@@ -187,7 +195,7 @@
         },
         {
           "year": 2026,
-          "capexB": 725,
+          "capexB": 787,
           "planned": true
         }
       ],
@@ -213,12 +221,12 @@
         },
         {
           "date": "2026-12",
-          "value": 725,
-          "label": "Planned"
+          "value": 787,
+          "label": "Planned (raised from $725B)"
         }
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); hyperscaler capex guidance",
-      "lastUpdated": "2026-08-17",
+      "lastUpdated": "2026-08-23",
       "notes": [
         {
           "date": "2026-08-17",
@@ -229,6 +237,11 @@
           "date": "2026-08-17",
           "text": "Kill-trigger watch candidate: Meta is getting squeezed — latest quarter revenue +28% but expenses +55%, no cloud business to monetize AI through. Most likely first major player to cut; watch how the market reacts when it does.",
           "attribution": "Steve Eisman, The Real Eisman Playbook"
+        },
+        {
+          "date": "2026-08-23",
+          "text": "The five biggest spenders (Amazon, Alphabet, Microsoft, Meta, Oracle) now guide to a combined $775-800B for 2026 — roughly 3x the ~$238B spent in 2024. This is the opposite of the kill trigger so far: Alphabet RAISED its 2026 capex guidance (to $195-205B) and its stock fell about 7% over the following week — a capex increase punished, not a capex cut rewarded. That's still consistent with the current framing (investors want the spending to keep climbing), just a reminder the market is getting twitchier about how big the numbers are getting.",
+          "attribution": "Weekly sweep synthesis, Aug 23 2026"
         }
       ]
     },
@@ -268,7 +281,7 @@
         }
       ],
       "source": "OpenRouter usage share via The Jay Martin Show (Aug 2026)",
-      "lastUpdated": "2026-08-11",
+      "lastUpdated": "2026-08-23",
       "notes": [
         {
           "date": "2026-08-11",
@@ -279,6 +292,11 @@
           "date": "2026-08-17",
           "text": "Independent corroboration: enterprises are using Chinese open-weight models more and more; 'overcharging for tokens is going to be very difficult with good-enough competition.' A price war is possible — and Anthropic + OpenAI are ~70% of hyperscaler AI revenue, so a price war transmits straight into the backlog.",
           "attribution": "Steve Eisman, The Real Eisman Playbook"
+        },
+        {
+          "date": "2026-08-23",
+          "text": "New Chinese releases kept coming this week (Alibaba's Qwen3.8 Max Aug 2, Z.AI's GLM-5.2 Turbo Aug 17), but the readings on actual Chinese-model traffic share are noisy right now — trackers show anywhere from ~45% to over 60% of OpenRouter volume depending on whether you measure the top 10 models or all traffic. Treat the exact percentage as uncertain this week; the direction (more competitive Chinese releases, more enterprises adopting them) is not.",
+          "attribution": "Weekly sweep synthesis, Aug 23 2026"
         }
       ]
     },
@@ -286,7 +304,7 @@
       "id": "revenueSpeed",
       "name": "Revenue Speed",
       "question": "Is US AI revenue growth still accelerating?",
-      "status": "watch",
+      "status": "accelerating",
       "openai": {
         "revenue2025B": 20,
         "yoyMultiple": 3,
@@ -302,10 +320,27 @@
           "date": "2025-12",
           "value": 20,
           "label": "OpenAI revenue ($B)"
+        },
+        {
+          "date": "2026-08",
+          "value": 40,
+          "label": "OpenAI annualized revenue run-rate ($B) — doubled since spring 2026"
+        },
+        {
+          "date": "2026-08",
+          "value": 65,
+          "label": "Anthropic annualized revenue run-rate ($B) — 7x year-over-year"
         }
       ],
-      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026)",
-      "lastUpdated": "2026-08-11"
+      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); TechCrunch/CNBC/Axios reporting on Anthropic + OpenAI run-rates, Aug 17 2026",
+      "lastUpdated": "2026-08-23",
+      "notes": [
+        {
+          "date": "2026-08-23",
+          "text": "Both labs are still accelerating, not just growing. Anthropic told investors its annualized revenue run-rate hit $65B in July — up 7x from a year earlier — and investors expect it to keep growing at roughly that pace, finishing 2026 around $100-120B. OpenAI's run-rate reached about $40B, roughly double where it stood in the spring. This is the strongest reading this signal has had — moved from 'watch' to 'accelerating' this week — but both companies are still deeply unprofitable, so the speed is what's propping up their valuations, not earnings.",
+          "attribution": "Weekly sweep synthesis, Aug 23 2026"
+        }
+      ]
     },
     "policyWatch": {
       "id": "policyWatch",
@@ -318,9 +353,9 @@
         "DRAFT_LEGISLATION",
         "ENACTED"
       ],
-      "current": "DEBATE",
-      "headline": "Washington debating emergency ban on Chinese AI; David Sacks: 'this is concerning'",
-      "interpretation": "The catfish effect run backwards — China used competition to grow strong; a US ban removes the pressure that forces improvement while cutting US businesses off from a nearly-free tool. Either path stresses the structure: ban → protected stagnation; no ban → growth curve flattens.",
+      "current": "DRAFT_LEGISLATION",
+      "headline": "No Adversarial AI Act introduced in both House (H.R.4142) and Senate (S.2177), referred to committee — debate has become bill text",
+      "interpretation": "The catfish effect run backwards — China used competition to grow strong; a US ban removes the pressure that forces improvement while cutting US businesses off from a nearly-free tool. Either path stresses the structure: ban → protected stagnation; no ban → growth curve flattens. This week the debate moved from talk to an actual bill (restricting federal agencies and contractors from using AI from 'foreign adversarial' entities), though it hasn't been voted out of committee yet and enforcement is questionable since open-weight Chinese model files are already freely downloadable.",
       "history": [
         {
           "date": "2026-07-16",
@@ -331,10 +366,15 @@
           "date": "2026-08-08",
           "value": 1,
           "label": "DEBATE"
+        },
+        {
+          "date": "2026-08-23",
+          "value": 2,
+          "label": "DRAFT_LEGISLATION"
         }
       ],
-      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); Washington policy debate coverage",
-      "lastUpdated": "2026-08-11"
+      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); Washington policy debate coverage; Congress.gov H.R.4142 / S.2177",
+      "lastUpdated": "2026-08-23"
     },
     "concentration": {
       "id": "concentration",
@@ -351,7 +391,14 @@
         }
       ],
       "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); S&P index weights",
-      "lastUpdated": "2026-08-11"
+      "lastUpdated": "2026-08-23",
+      "notes": [
+        {
+          "date": "2026-08-23",
+          "text": "Reconfirmed this week at the same ~40-41% level — no material change. Still record-high concentration, just not moving faster or slower than before.",
+          "attribution": "Weekly sweep synthesis, Aug 23 2026"
+        }
+      ]
     },
     "treasuryStack": {
       "id": "treasuryStack",
@@ -369,10 +416,22 @@
           "date": "2026-08",
           "value": 39.8,
           "label": "National debt ($T)"
+        },
+        {
+          "date": "2026-08-13",
+          "value": 2.39,
+          "label": "30-year Treasury auction bid-to-cover ratio"
         }
       ],
-      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); US Treasury data",
-      "lastUpdated": "2026-08-11"
+      "source": "The Jay Martin Show — 'The 2006 Question' (Aug 2026); US Treasury data; Aug 13 2026 30-year bond auction results",
+      "lastUpdated": "2026-08-23",
+      "notes": [
+        {
+          "date": "2026-08-23",
+          "text": "First concrete auction data point for this signal: the Aug 13 30-year bond auction ($31.3B) drew a bid-to-cover of 2.39 — weaker than the trailing 12-month average of 2.43 — at a high yield of 5.216%, the highest 30-year yield in 25 years. Demand wasn't a failure, but it was softer than normal at a moment when the government needs buyers to keep showing up. Worth watching whether this is noise or the start of a trend.",
+          "attribution": "Weekly sweep synthesis, Aug 23 2026"
+        }
+      ]
     },
     "securitization": {
       "id": "securitization",
@@ -400,8 +459,15 @@
           "label": "Announced compute-financing push ($B)"
         }
       ],
-      "source": "The Real Eisman Playbook — weekly rap, week ending Aug 14, 2026 (recorded Aug 13)",
-      "lastUpdated": "2026-08-17"
+      "source": "The Real Eisman Playbook — weekly rap, week ending Aug 14, 2026 (recorded Aug 13); Nvidia Newsroom Aug 11 2026; SEC guidance coverage",
+      "lastUpdated": "2026-08-23",
+      "notes": [
+        {
+          "date": "2026-08-23",
+          "text": "The deal now has names attached: Nvidia formalized memorandums of understanding with six of the biggest names in finance — Apollo, BlackRock, Blackstone, Brookfield, Goldman Sachs, and KKR — to raise the $500B+ in compute financing. Two new details sharpen the risk picture: the SEC issued guidance in July that removes a risk-retention rule which would otherwise have required sponsors to keep a slice of this debt on their own books, and Nvidia has personally guaranteed (with its own money) that the chips used as collateral will hold their value. Both moves make it easier for capital to flow into these deals and easier for the risk to end up somewhere other than where it was created — exactly the 2006 dynamic this signal is watching for.",
+          "attribution": "Weekly sweep synthesis, Aug 23 2026"
+        }
+      ]
     },
     "ipoWatch": {
       "id": "ipoWatch",
@@ -427,7 +493,7 @@
           "name": "OpenAI",
           "confidentialFiling": "2026-05-22",
           "expectedWindow": "Q4 2026 – early 2027",
-          "expectedWindowNote": "Targeting a debut 'as soon as Q4 2026'; no ticker, price range, or confirmed date yet",
+          "expectedWindowNote": "Targeting a debut 'as soon as Q4 2026', but reporting this week (Digitimes, Aug 20) says OpenAI has told employees a listing could wait until 2027 — an earlier date remains possible if conditions improve, but the company itself is now hedging the timeline. No ticker, price range, or confirmed date yet",
           "exchange": null,
           "underwriters": ["Goldman Sachs", "Morgan Stanley"],
           "raiseTargetB": null,
@@ -457,6 +523,10 @@
         {
           "date": "2026-08-14",
           "text": "Reports: Anthropic investors expect an October IPO at $2T+; other reports say near $1T vs the $965B last private round"
+        },
+        {
+          "date": "2026-08-20",
+          "text": "OpenAI signals internally that its IPO could slip into 2027 rather than Q4 2026, per Digitimes — the first sign of the timeline itself softening, separate from the valuation question"
         }
       ],
       "history": [
@@ -466,37 +536,45 @@
           "label": "Listings completed (of 2)"
         }
       ],
-      "source": "IPO filing/timeline press coverage, Aug 2026 (Reuters via MarketScreener, Forge Global, prediction-market consensus); The Real Eisman Playbook (Aug 13, 2026)",
-      "lastUpdated": "2026-08-17"
+      "source": "IPO filing/timeline press coverage, Aug 2026 (Reuters via MarketScreener, Forge Global, prediction-market consensus; Digitimes Aug 20 2026); The Real Eisman Playbook (Aug 13, 2026)",
+      "lastUpdated": "2026-08-23"
     }
   },
   "weeklyBrief": {
-    "date": "2026-08-17",
-    "headline": "Eisman independently converges on the Achilles-heel thesis — and flags the Nvidia $500B securitization push",
+    "date": "2026-08-23",
+    "headline": "Revenue speed signal flips to accelerating (Anthropic $65B/OpenAI $40B run-rates) — but the Chinese-AI ban moved from talk to an actual bill, and Treasury auction demand softened",
     "changes": [
       {
-        "signalId": "securitization",
-        "text": "NEW SIGNAL: Compute Securitization Watch — Nvidia + six asset managers, $500B, CRE/toll-road style financing of AI data centers"
+        "signalId": "revenueSpeed",
+        "text": "Revenue Speed upgraded WATCH → ACCELERATING: Anthropic's annualized run-rate hit $65B in July (7x YoY); OpenAI's reached ~$40B, roughly double its spring level"
       },
       {
         "signalId": "backlog",
-        "text": "Backlog: quantified lab dependency — ~70% of hyperscaler AI revenue and 25–35% of total cloud revenue from Anthropic + OpenAI; Oracle debt barely above junk"
+        "text": "Backlog broadens beyond Oracle: Microsoft's commercial RPO jumped to $678B (from $625B); Google Cloud ($155B, +82% YoY) and Amazon ($200B) posted for the first time"
       },
       {
         "signalId": "capex",
-        "text": "Capex: Meta squeeze noted (rev +28% vs expenses +55%) — kill-trigger watch candidate; FCF masking-effect caveat added"
+        "text": "Capex: total 2026 hyperscaler guidance raised again to $775-800B (from $725B); Alphabet raised its own guidance and its stock fell ~7% over the week — a capex increase punished, not a cut rewarded, so the kill trigger has still not fired"
       },
       {
-        "signalId": "verdict",
-        "text": "Confirming data: CoreWeave rev +112%, Super Micro +91%, Cisco beat-and-raise — acceleration intact as of Aug 13"
+        "signalId": "policyWatch",
+        "text": "Policy Watch escalates DEBATE → DRAFT_LEGISLATION: the No Adversarial AI Act has been formally introduced in the House (H.R.4142) and Senate (S.2177) and referred to committee"
       },
       {
-        "signalId": "chinaShare",
-        "text": "China share: Eisman corroborates price-war transmission mechanism"
+        "signalId": "treasuryStack",
+        "text": "Treasury Stack gets its first hard data point: the Aug 13 30-year bond auction drew weaker-than-average demand (bid-to-cover 2.39 vs 2.43 average) at a 25-year-high yield of 5.216%"
+      },
+      {
+        "signalId": "securitization",
+        "text": "Securitization Watch: the $500B Nvidia financing push now has six named partners (Apollo, BlackRock, Blackstone, Brookfield, Goldman Sachs, KKR); new SEC guidance removed a risk-retention rule that would have applied to this debt, and Nvidia is personally guaranteeing the collateral's value"
       },
       {
         "signalId": "ipoWatch",
-        "text": "NEW SIGNAL: IPO Watch — Anthropic filed Jun 1, targeting late Sep–Oct Nasdaq listing ($1T–$2T expectations vs $965B last round); OpenAI filed S-1 May 22, Q4 2026–early 2027 window at ~$1T (1.17x step-up). Post-IPO performance slots ready for the sweep to fill at pricing."
+        "text": "IPO Watch: OpenAI is now signaling internally its listing could slip into 2027 rather than Q4 2026 (Digitimes, Aug 20) — separate from the valuation question, the timeline itself is softening"
+      },
+      {
+        "signalId": "chinaShare",
+        "text": "China Share: two more Chinese model releases this week (Qwen3.8 Max, GLM-5.2 Turbo), but exact traffic-share readings are noisy (45-60% depending on methodology) — direction unchanged, precision uncertain"
       }
     ],
     "nextSweep": "weekly"

@@ -2,36 +2,36 @@
   "metadata": {
     "title": "Sugar #11 — El Niño + Hormuz Compound Thesis",
     "subtitle": "Feb'27 SB calls: 18¢ ×2 (May 22) + 19.5¢ ×1 (Aug 12) — compound thesis",
-    "lastUpdated": "2026-08-21",
+    "lastUpdated": "2026-08-23",
     "tradeInitiated": "2026-05-11"
   },
   "thesis": {
     "direction": "long",
     "conviction": "high",
     "convictionPct": 82,
-    "headline": "India catalyst CONFIRMED Aug 20: 1 MMT raw imports at NIL duty (vs 100%) through Oct 31 — first import opening in ~10 years. Spot spiked 4.1% to 18.26¢ (highest since Apr 2025), then sold the fact back to 17.50¢.",
-    "summary": "The India leg went from rumor to policy: after domestic spot hit a 16-year high (₹5,530/quintal Aug 19), the government opened a 1 MMT nil-duty raw sugar import quota to Oct 31 and imposed stockholding limits on bulk consumers (Sep 1–Nov 30). That is ~1 MMT of new demand pulled onto the world market — structurally bullish — but the confirmation triggered sell-the-fact profit-taking and an IV deflation after a ~25% run from the mid-July 14.4¢ low. Brazil leg unchanged: C-S 2H-July crush -8.4% YoY, sugar output -17.6%, ethanol mandate 32%. Covrig, Green Pool and StoneX all remain in 2026/27 deficit. Next question: is 1 MMT enough — watch for quota extension/enlargement after Oct 31."
+    "headline": "El Niño forecast strengthened again (NOAA Aug: 95% very strong, up from 81% in July) while NY sugar pushed to a fresh 15-month high on tightening deficit forecasts — India's nil-duty import quota still the swing factor into Oct 31.",
+    "summary": "Two legs moved this week. El Niño: NOAA's mid-August update raised the odds of a very-strong Oct-Dec peak to 95% (from 81% in July), with a 69% chance the RONI index tops +2.5°C — which would exceed every El Niño since 1950. That's a further upgrade on top of an already-active Advisory, not a weakening. Price: NY #11 posted a 15-month high and London a 17-month high this week on the same deficit-tightening logic that's been building since Green Pool (-3.3 MMT) and StoneX (-1.7 MMT) revised deeper into deficit in late July. India's domestic retail prices are still climbing (~40% MoM by some counts) despite the Aug 20 nil-duty import quota, which is fueling political pushback at home even as it pulls ~1 MMT of new demand onto the world market. Brazil leg unchanged from last week: C-S 2H-July crush -8.4% YoY, sugar output -17.6%, ethanol mandate 32% — full 2026/27-season USDA estimates still peg the sugar/ethanol mix around 48/52%, well below the ~50/50 split of a year ago. Next question is unchanged: is 1 MMT of Indian imports enough, or does the quota get extended/enlarged after Oct 31."
   },
   "todaysTape": {
-    "spot": 17.5,
+    "spot": 17.6,
     "fiveYrLow": 14.0,
     "twentyYrATH": 36.0,
     "twentyYrLow": 9.0,
-    "rangePosition": 31,
+    "rangePosition": 32,
     "marH7IV": 30.1,
     "elNinoProbability": 99,
-    "ytdPct": 8
+    "ytdPct": 9
   },
   "elNino": {
     "probability": 99,
     "probabilityWindow": "El Niño Advisory ACTIVE (NOAA CPC, Aug 2026) — event formed and intensifying",
     "persistencePct": 97,
     "persistenceWindow": "through early spring 2027 (NOAA)",
-    "strongEventOdds": "63% very strong (Niño 3.4 ≥ +2.0°C); 23 of 26 models",
+    "strongEventOdds": "95% very strong (Niño 3.4/RONI ≥ +2.0°C) — up from 81% in July's CPC assessment; 69% chance RONI reaches +2.5°C+, which would exceed every El Niño on record since 1950",
     "strongEventWindow": "Oct–Jan peak (OND 2026)",
     "nino34Anomaly": 0.9,
     "soiIndex": -11.2,
-    "soiNote": "Atmospheric coupling confirmed — all 30 GFDL ensemble members peak among strongest events on record (Aug 2026 update)"
+    "soiNote": "NOAA's Aug RONI forecast puts the median Oct-Dec value at +2.66°C (middle 50% range +2.37 to +2.95°C); little indication of a transition away from El Niño before spring 2027"
   },
   "hormuzTransmission": {
     "ureaPctViaHormuz": 50,
@@ -68,7 +68,7 @@
   "millMix": {
     "brazilCenterSouthSugarMixPct": 41.42,
     "brazilCenterSouthOutputMMT": 45,
-    "brazilOutputNote": "2026/27 through May: sugar mix collapsed to 41.4% (from 50.1% a year ago) as mills pivot to ethanol — C-S sugar output 6.84 MMT, -2.0% YoY. This is the 'mill mix shift' leg of the tail scenario actually happening. 2H-July update: crush -8.4% YoY, sugar output -17.6% YoY, with the ethanol blend mandate raised to 32%.",
+    "brazilOutputNote": "2026/27 through May: sugar mix collapsed to 41.4% (from 50.1% a year ago) as mills pivot to ethanol — C-S sugar output 6.84 MMT, -2.0% YoY. This is the 'mill mix shift' leg of the tail scenario actually happening. 2H-July update: crush -8.4% YoY, sugar output -17.6% YoY, with the ethanol blend mandate raised to 32%. USDA's full-season 2026/27 Sugar Annual still projects the mix averaging closer to 48% sugar / 52% ethanol for the year — meaning the mid-year prints (41.4%, -17.6%) are running well below even that already-bearish full-season forecast. Exact first-half-August UNICA crush/mix figures were not obtainable this week (carried forward); processing volumes were reported 'up' in early August without a specific mix percentage.",
     "indiaOutputMMT": 15.9,
     "indiaOutputYoYPct": 22,
     "indiaEthanolDiversionFromMMT": 5,
@@ -133,9 +133,9 @@
     },
     {
       "year": "Today",
-      "event": "India opens 1 MMT nil-duty imports — spike to 18.26¢ sold to 17.5¢",
-      "priceCents": 17.5,
-      "contractDollars": 19600,
+      "event": "15-month NY high on deepening deficit forecasts + a strengthening El Niño outlook",
+      "priceCents": 17.6,
+      "contractDollars": 19712,
       "highlight": true,
       "current": true
     }
@@ -143,7 +143,7 @@
   "catalystTimeline": [
     {
       "date": "Jun-Sep 2026",
-      "event": "Indian monsoon — LIVE: 12% below normal cumulative (Aug 10); IMD warns Aug–Sep below normal, possibly weakest in 11 years",
+      "event": "Indian monsoon — LIVE: cumulative deficit steady at ~11.5% below normal (Aug 1) vs 12% (Aug 10) — recovery has stalled; IMD's Aug-Sep outlook still points below 94% of the long-period average",
       "tier": 1
     },
     {
@@ -245,7 +245,7 @@
   "exitTriggers": [
     {
       "name": "El Niño weakens / fails",
-      "rationale": "Was the primary risk — now largely retired: NOAA Advisory active, 97% persistence through early spring 2027, 23/26 models very strong. Residual risk is a weaker-than-forecast peak.",
+      "rationale": "Was the primary risk — now essentially retired: NOAA's Aug update raised the odds of a very-strong Oct-Dec peak to 95% (from 81% in July), with a 69% chance of exceeding every El Niño on record since 1950. Persistence holds at 97% through early spring 2027. Residual risk is now just a peak that undershoots this already-elevated forecast, not a failure of the event itself.",
       "status": "receding"
     },
     {
@@ -304,7 +304,7 @@
   "ytdPerformance": [
     {
       "commodity": "Sugar",
-      "ytd": 8,
+      "ytd": 9,
       "sector": "Softs",
       "highlight": true
     },

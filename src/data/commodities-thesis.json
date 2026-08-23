@@ -4,7 +4,7 @@
   "sectorDrivers": {
     "Energy": "Hormuz disruption + the refinery-strike wave: 25+ refineries hit globally (Russia, Iran, Gulf, Saudi, Libya — per Jeff Currie, mid-Aug 2026). Diesel ~$160–185/bbl is the real squeeze, not WTI/Brent",
     "Precious Metals": "Geopolitical safe haven, CB buying; now a treasury/yen-fragility bid — Currie re-entered gold mid-Aug 2026 as the hedge vs ALL fiat, not just USD. CONFIRMED Aug 19: gold +$100 in 45 min to ~$4,460 when the Treasury doubled long-bond buybacks — hard assets read yield 'support' as soft debt monetization",
-    "Grains": "Fertilizer input shock + US crop shock: wheat production forecast -23% YoY (smallest HRW crop since 1957/58); latest USDA report cut corn yields significantly, and Ukraine is striking Black Sea grain export capacity (per Currie, mid-Aug 2026)",
+    "Grains": "Fertilizer input shock + US crop shock: wheat production forecast -23% YoY (smallest HRW crop since 1957/58) inside a global wheat crop the Aug WASDE cut to 819.3 Mt, -2.9% YoY; the same report cut US corn yield to 11.34 t/ha (from 11.49) with condition ratings 11pts below last year, and Ukraine is striking Black Sea grain export capacity (per Currie, mid-Aug 2026)",
     "Industrial Metals": "REPRICED: copper hit an all-time high mid-Aug 2026 (per Currie) — the 'atoms' leg of the hard-asset bid; critical minerals weaponized by the East",
     "Livestock": "Range-bound; feed costs partly offsetting tight supply",
     "Softs": "REVERSED: cocoa at 6-month highs, sugar at multi-month highs — the market is now repricing El Niño supply risk it was ignoring in May"
@@ -46,8 +46,8 @@
         "value": "ADVISORY ACTIVE"
       },
       {
-        "label": "Odds of very strong peak (Niño 3.4 ≥ +2.0°C), Oct–Jan",
-        "value": "63% · 23/26 models"
+        "label": "Odds of very strong peak (Niño 3.4/RONI ≥ +2.0°C), Oct–Dec",
+        "value": "95% (up from 81% in July) · 69% chance of exceeding every El Niño since 1950"
       },
       {
         "label": "Persistence through early spring 2027",
@@ -79,7 +79,7 @@
       "elNinoRisk": "Very High",
       "fertilizerRisk": "Moderate",
       "ytdLabel": "+1% (post-spike)",
-      "pricedIn": "June spike +70% partially retraced — two-sided: ICE stocks at 2-yr high vs weak 26/27 surveys",
+      "pricedIn": "June spike +70% partially retraced — two-sided: ICE stocks at 2-yr high vs weak 26/27 surveys; added complication this week — Ivory Coast/Ghana EUDR compliance risk stays unresolved into the Aug-Oct pod-development window that's the key weather test",
       "priority": 1
     },
     {
@@ -226,7 +226,7 @@
     {
       "dateRange": "Jun–Sep 2026",
       "event": "India monsoon",
-      "description": "LIVE AND CONFIRMING: cumulative rainfall 12% below normal (Aug 10); IMD warns Aug-Sep below normal — possibly weakest monsoon in 11 years. Drives sugar, rice, cotton, Indian wheat.",
+      "description": "LIVE, RECOVERY STALLED: cumulative deficit essentially flat at ~11.5% below normal (Aug 1) vs 12% (Aug 10); IMD's Aug-Sep outlook still points below 94% of the long-period average — the earlier catch-up from the Jun 30 -42% low has plateaued rather than continued. Drives sugar, rice, cotton, Indian wheat.",
       "tier": 1
     },
     {
@@ -238,7 +238,7 @@
     {
       "dateRange": "Aug–Oct 2026",
       "event": "Brazilian Centre-South cane",
-      "description": "LIVE: sugar mix collapsed to 41.4% (from 50.1%) as mills pivot to ethanol; C-S sugar output -2.0% YoY through May. UNICA biweekly reports are the add/trim trigger for the sugar position.",
+      "description": "LIVE: sugar mix collapsed to 41.4% (from 50.1%) as mills pivot to ethanol; C-S sugar output -2.0% YoY through May, crush -8.4% YoY and sugar output -17.6% YoY in 2H-July. USDA's full 2026/27 Sugar Annual still forecasts a 48/52% sugar/ethanol mix for the season — well above the mid-year prints — meaning the pivot is currently running ahead of even that bearish full-season number. First-half-August UNICA mix% not obtainable this week (carried forward); UNICA biweekly reports remain the add/trim trigger for the sugar position.",
       "tier": 1
     },
     {
@@ -279,7 +279,7 @@
     }
   ],
   "riskFactors": [
-    "Weaker-than-forecast El Niño peak — the event is confirmed (NOAA Advisory), so the residual risk is a peak below the very-strong threshold, muting Q4 crop impacts. Related: Indian monsoon has been RECOVERING (-42% Jun 30 → -12% Aug 10); a continued catch-up weakens the India leg.",
+    "Weaker-than-forecast El Niño peak — the event is confirmed (NOAA Advisory) and NOAA's Aug update raised very-strong-peak odds further to 95% (from 81% in July), so the residual risk keeps shrinking. Related: the Indian monsoon's earlier recovery (-42% Jun 30 → -12% Aug 10) has stalled around -11.5% (Aug 1) rather than continuing to close the gap — a genuine catch-up to normal would still weaken the India leg, but that hasn't happened yet.",
     "Combined unwind — Hormuz resolves AND El Niño underperforms. Worst case for both legs; size accordingly. The standing unwind now has a third leg: a yen/UST stabilization (successful coordinated defense, long end settles back) would remove the monetary tailwind under the gold/metals sleeve. IMPORTANT DISTINCTION after Aug 19: the Treasury buyback is NOT that unwind — yields stabilizing because the Treasury buys its own debt CONFIRMS the repression thesis (gold rallied ON the stabilization). The real unwind is organic long-end demand returning (strong auctions without buyback support, Japan ceasing UST sales) — watch auction tails and indirect-bidder takedown, not the yield level itself.",
     "Surprise Fed hike — Currie's own caveat (mid-Aug 2026): a Warsh-style surprise rate hike would knock gold and the whole hard-asset complex temporarily. He views it as a drawdown risk to manage, not a thesis-killer, but it's the main near-term air pocket for the monetary leg.",
     "Cocoa-specific: faster-than-expected Ghana/Ivory Coast harvest recovery announcement before El Niño impacts show in production data.",
