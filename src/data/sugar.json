@@ -2,25 +2,25 @@
   "metadata": {
     "title": "Sugar #11 — El Niño + Hormuz Compound Thesis",
     "subtitle": "Feb'27 SB calls: 18¢ ×2 (May 22) + 19.5¢ ×1 (Aug 12) — compound thesis",
-    "lastUpdated": "2026-08-23",
+    "lastUpdated": "2026-08-28",
     "tradeInitiated": "2026-05-11"
   },
   "thesis": {
     "direction": "long",
     "conviction": "high",
     "convictionPct": 82,
-    "headline": "El Niño forecast strengthened again (NOAA Aug: 95% very strong, up from 81% in July) while NY sugar pushed to a fresh 15-month high on tightening deficit forecasts — India's nil-duty import quota still the swing factor into Oct 31.",
-    "summary": "Two legs moved this week. El Niño: NOAA's mid-August update raised the odds of a very-strong Oct-Dec peak to 95% (from 81% in July), with a 69% chance the RONI index tops +2.5°C — which would exceed every El Niño since 1950. That's a further upgrade on top of an already-active Advisory, not a weakening. Price: NY #11 posted a 15-month high and London a 17-month high this week on the same deficit-tightening logic that's been building since Green Pool (-3.3 MMT) and StoneX (-1.7 MMT) revised deeper into deficit in late July. India's domestic retail prices are still climbing (~40% MoM by some counts) despite the Aug 20 nil-duty import quota, which is fueling political pushback at home even as it pulls ~1 MMT of new demand onto the world market. Brazil leg unchanged from last week: C-S 2H-July crush -8.4% YoY, sugar output -17.6%, ethanol mandate 32% — full 2026/27-season USDA estimates still peg the sugar/ethanol mix around 48/52%, well below the ~50/50 split of a year ago. Next question is unchanged: is 1 MMT of Indian imports enough, or does the quota get extended/enlarged after Oct 31."
+    "headline": "Aug 27: Oct SB +3.5% to 18.21¢ — 15-month high (highest since Mar 2025), through the 18¢ strike. CPC: 90% odds of a very strong El Niño, 65% 'historic'; record 2.3M ICE open interest; India diverting 3.5 lakh t of export sugar back home.",
+    "summary": "The post-India-confirmation dip (17.50¢ Aug 21) lasted four sessions. On Aug 27 five drivers stacked: (1) US CPC put 90% odds on a very strong 2H26–1H27 El Niño and 65% on a 'historic' one exceeding anything since 1950 (NOAA's mid-Aug RONI update: 95% very strong, 69% chance of +2.5°C+); (2) deficit revisions keep widening — Covrig −0.3, StoneX −1.7, Green Pool −3.3 MMT for 2026/27, with 2027/28 now flagged worse on lower cane/beet plantings; (3) India ordered 3.5 lakh t of export-quota sugar diverted to the domestic market (Aug 26) — the 1 MMT nil-duty import window is not calming things (ex-mill eased ₹67→₹54–55/kg but political pushback persists), strengthening the quota-enlargement case; (4) Brazil unchanged: C-S 2H-July crush −8.4% YoY, sugar −17.6%, mills favoring ethanol, world price ~$474/t (Jun) → ~$552/t (Aug); (5) positioning — record 2.3M ICE open interest (beats Feb 2010) and ~$2.5B fund inflows, which amplifies both up-days and Aug 20-style sell-the-fact air pockets. Spot +25% in a month, +22% YTD: extended and crowded, so expect whipsaws. Next: Oct 31 India quota decision, UNICA 1H-Aug crush, monsoon close-out."
   },
   "todaysTape": {
-    "spot": 17.6,
+    "spot": 18.21,
     "fiveYrLow": 14.0,
     "twentyYrATH": 36.0,
     "twentyYrLow": 9.0,
-    "rangePosition": 32,
+    "rangePosition": 34,
     "marH7IV": 30.1,
     "elNinoProbability": 99,
-    "ytdPct": 9
+    "ytdPct": 22
   },
   "elNino": {
     "probability": 99,
@@ -133,9 +133,9 @@
     },
     {
       "year": "Today",
-      "event": "15-month NY high on deepening deficit forecasts + a strengthening El Niño outlook",
-      "priceCents": 17.6,
-      "contractDollars": 19712,
+      "event": "Aug 27 breakout to 18.21¢ — 15-mo high through the 18¢ strike; record OI, El Niño odds 90%/65% 'historic'",
+      "priceCents": 18.21,
+      "contractDollars": 20395,
       "highlight": true,
       "current": true
     }
@@ -353,58 +353,60 @@
     ],
     "sizingLogic": "Sugar at 20-30% of oil book notional (satellite, not core). Don't size up at entry — add into confirming trend (India monsoon data, Brazilian mix reports)."
   },
-  "executedPositions": [{
-    "executed": true,
-    "executionDate": "2026-05-22",
-    "contractLabel": "SBG7 Feb'27 18¢ Call",
-    "qty": 2,
-    "strike": 0.18,
-    "expiryDate": "2027-02-16",
-    "averagePrice": 0.88,
-    "costBasisDollars": 1977,
-    "asOfDate": "2026-08-21T13:14:00+10:00",
-    "asOfMarketValueDollars": 3564,
-    "asOfUnrealizedPnLDollars": 1587,
-    "asOfRealizedPnLDollars": 0,
-    "breakeven": 0.19,
-    "greeks": {
-      "delta": 0.497,
-      "gamma": 11.569,
-      "theta": 0,
-      "vega": 0,
-      "impliedVolPct": 26.9
+  "executedPositions": [
+    {
+      "executed": true,
+      "executionDate": "2026-05-22",
+      "contractLabel": "SBG7 Feb'27 18¢ Call",
+      "qty": 2,
+      "strike": 0.18,
+      "expiryDate": "2027-02-16",
+      "averagePrice": 0.88,
+      "costBasisDollars": 1977,
+      "asOfDate": "2026-08-21T13:14:00+10:00",
+      "asOfMarketValueDollars": 3564,
+      "asOfUnrealizedPnLDollars": 1587,
+      "asOfRealizedPnLDollars": 0,
+      "breakeven": 0.19,
+      "greeks": {
+        "delta": 0.497,
+        "gamma": 11.569,
+        "theta": 0,
+        "vega": 0,
+        "impliedVolPct": 26.9
+      },
+      "profitProbabilityPct": 25,
+      "openInterest": 18500,
+      "pctOfPortfolio": 2.61,
+      "contractSizeLbs": 112000,
+      "notes": "Selected 18¢ strike vs planned 19¢ — slightly closer to ATM, marginally less asymmetric but higher delta (0.364 vs ~0.30 estimate for 19¢). Feb'27 expiry vs planned Mar'27 — one less month of time value but catches all major catalysts (Indian monsoon Jun-Sep, Brazilian C-S Aug-Oct, El Niño peak Nov-Feb). Net: cleaner risk-reward with marginally tighter convexity. Aug 21 snapshot: last 1.61 (-4.17% vs prior close 1.68), closing bid/ask 1.57/1.63, day range 1.59–2.04 — the 2.04 print during the Aug 20 India spike was +132% on premium, two-thirds of the way to the 200% profit-take-1 trigger. Greeks/IV fields are from the Aug 12 snapshot (market closed at capture; delta now higher with spot 17.5 vs 16.42).",
+      "entryUnderlyingPriceCents": 15.0
     },
-    "profitProbabilityPct": 25,
-    "openInterest": 18500,
-    "pctOfPortfolio": 2.61,
-    "contractSizeLbs": 112000,
-    "notes": "Selected 18¢ strike vs planned 19¢ — slightly closer to ATM, marginally less asymmetric but higher delta (0.364 vs ~0.30 estimate for 19¢). Feb'27 expiry vs planned Mar'27 — one less month of time value but catches all major catalysts (Indian monsoon Jun-Sep, Brazilian C-S Aug-Oct, El Niño peak Nov-Feb). Net: cleaner risk-reward with marginally tighter convexity. Aug 21 snapshot: last 1.61 (-4.17% vs prior close 1.68), closing bid/ask 1.57/1.63, day range 1.59–2.04 — the 2.04 print during the Aug 20 India spike was +132% on premium, two-thirds of the way to the 200% profit-take-1 trigger. Greeks/IV fields are from the Aug 12 snapshot (market closed at capture; delta now higher with spot 17.5 vs 16.42).",
-    "entryUnderlyingPriceCents": 15.0
-  },
-  {
-    "executed": true,
-    "executionDate": "2026-08-12",
-    "contractLabel": "SBG7 Feb'27 19.5¢ Call",
-    "qty": 1,
-    "strike": 0.195,
-    "expiryDate": "2027-02-16",
-    "averagePrice": 0.80,
-    "costBasisDollars": 898.96,
-    "asOfDate": "2026-08-21T13:14:00+10:00",
-    "asOfMarketValueDollars": 1179,
-    "asOfUnrealizedPnLDollars": 280.04,
-    "asOfRealizedPnLDollars": 0,
-    "breakeven": 0.203,
-    "greeks": {
-      "delta": 0.434,
-      "gamma": 9.943,
-      "theta": 0,
-      "vega": 0,
-      "impliedVolPct": 30.1
-    },
-    "openInterest": 4760,
-    "pctOfPortfolio": 0.86,
-    "contractSizeLbs": 112000,
-    "notes": "Added into the Aug 2026 leg-up, before the Aug 18 India-duty gap. Aug 21 snapshot: last print 1.44 is stale from the Aug 20 spike (day range 1.25–1.44); closing bid/ask 1.04/1.08 puts the real mark ~1.05 — IBKR MV $1,179 reflects that, not the last. Thin leg: volume 84, OI 4.76K. Greeks/IV fields are from the Aug 19 snapshot (market closed at capture)."
-  }]
+    {
+      "executed": true,
+      "executionDate": "2026-08-12",
+      "contractLabel": "SBG7 Feb'27 19.5¢ Call",
+      "qty": 1,
+      "strike": 0.195,
+      "expiryDate": "2027-02-16",
+      "averagePrice": 0.8,
+      "costBasisDollars": 898.96,
+      "asOfDate": "2026-08-21T13:14:00+10:00",
+      "asOfMarketValueDollars": 1179,
+      "asOfUnrealizedPnLDollars": 280.04,
+      "asOfRealizedPnLDollars": 0,
+      "breakeven": 0.203,
+      "greeks": {
+        "delta": 0.434,
+        "gamma": 9.943,
+        "theta": 0,
+        "vega": 0,
+        "impliedVolPct": 30.1
+      },
+      "openInterest": 4760,
+      "pctOfPortfolio": 0.86,
+      "contractSizeLbs": 112000,
+      "notes": "Added into the Aug 2026 leg-up, before the Aug 18 India-duty gap. Aug 21 snapshot: last print 1.44 is stale from the Aug 20 spike (day range 1.25–1.44); closing bid/ask 1.04/1.08 puts the real mark ~1.05 — IBKR MV $1,179 reflects that, not the last. Thin leg: volume 84, OI 4.76K. Greeks/IV fields are from the Aug 19 snapshot (market closed at capture)."
+    }
+  ]
 }
