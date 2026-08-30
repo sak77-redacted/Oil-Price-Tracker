@@ -2,15 +2,15 @@
   "metadata": {
     "title": "Sugar #11 — El Niño + Hormuz Compound Thesis",
     "subtitle": "Feb'27 SB calls: 18¢ ×2 (May 22) + 19.5¢ ×1 (Aug 12) — compound thesis",
-    "lastUpdated": "2026-08-28",
+    "lastUpdated": "2026-08-30",
     "tradeInitiated": "2026-05-11"
   },
   "thesis": {
     "direction": "long",
     "conviction": "high",
-    "convictionPct": 82,
-    "headline": "Aug 27: Oct SB +3.5% to 18.21¢ — 15-month high (highest since Mar 2025), through the 18¢ strike. CPC: 90% odds of a very strong El Niño, 65% 'historic'; record 2.3M ICE open interest; India diverting 3.5 lakh t of export sugar back home.",
-    "summary": "The post-India-confirmation dip (17.50¢ Aug 21) lasted four sessions. On Aug 27 five drivers stacked: (1) US CPC put 90% odds on a very strong 2H26–1H27 El Niño and 65% on a 'historic' one exceeding anything since 1950 (NOAA's mid-Aug RONI update: 95% very strong, 69% chance of +2.5°C+); (2) deficit revisions keep widening — Covrig −0.3, StoneX −1.7, Green Pool −3.3 MMT for 2026/27, with 2027/28 now flagged worse on lower cane/beet plantings; (3) India ordered 3.5 lakh t of export-quota sugar diverted to the domestic market (Aug 26) — the 1 MMT nil-duty import window is not calming things (ex-mill eased ₹67→₹54–55/kg but political pushback persists), strengthening the quota-enlargement case; (4) Brazil unchanged: C-S 2H-July crush −8.4% YoY, sugar −17.6%, mills favoring ethanol, world price ~$474/t (Jun) → ~$552/t (Aug); (5) positioning — record 2.3M ICE open interest (beats Feb 2010) and ~$2.5B fund inflows, which amplifies both up-days and Aug 20-style sell-the-fact air pockets. Spot +25% in a month, +22% YTD: extended and crowded, so expect whipsaws. Next: Oct 31 India quota decision, UNICA 1H-Aug crush, monsoon close-out."
+    "convictionPct": 83,
+    "headline": "Aug 30: thesis strengthens on the physical side — Indian monsoon deficit widened to 13% (from 11.5% Aug 1), EU cut 2026/27 sugar production 19% to an 11-year low (13.4 MMT), and Hormuz remains fully disrupted (a Kuwaiti tanker was struck Aug 26) with no ceasefire in sight. Spot holding near the Aug 27 breakout (~18.2¢, 15-month high) through the 18¢ strike; no fresher print confirmed this week.",
+    "summary": "No reversal signals found this week — if anything the deficit case widened further even as spot consolidated near its Aug 27 breakout. New this week: the EU Sugar Market Observatory cut its 2026/27 production estimate to 13.4 MMT, down 19% YoY and an 11-year low, adding a fourth independent forecaster (alongside Covrig −300k MT, Green Pool −3.3 MMT, StoneX −1.7 MMT) to the deficit column. The Indian monsoon deficit, which had stalled around 11.5-12% below normal in early August, widened to 13% below normal by Aug 26 (IMD) — East/NE India worst-hit at -27% — with IMD's own outlook pointing to continued below-normal rainfall through September; this is deterioration, not the recovery that would weaken the thesis. NOAA's Aug 13 CPC ENSO diagnostic reconfirmed (did not downgrade) the very-strong-El-Niño call: Niño-3.4 at +1.4°C and still strengthening, >90% odds of a very strong Oct-Dec peak, 69% odds of exceeding every El Niño since 1950. Brazil's UNICA published a 2H-August report (38.31 MMT cane crushed, ethanol output +3.15%) confirming mills are still running hard, but the precise sugar-mix percentage versus last year could not be independently verified this week — treat the ethanol-pivot trend as continuing but the exact number as carried forward from 2H-July (41.4% mix, sugar output -17.6% YoY). India's demand-side response remains the key bearish counterweight: the 1 MMT nil-duty import quota (window Aug 20-Oct 31, corrected from an earlier assumed Sep-Nov window) plus the Aug 26 diversion of 3.5 lakh tonnes of export sugar to the domestic market are real supply relief, with the Oct 31 quota-enlargement decision the next catalyst to watch. Hormuz stays fully disrupted — a Kuwaiti-flagged tanker (Al Salam II) was struck Aug 26 transiting the Strait, and Trump's Aug 25 claim that all mines were cleared is disputed by JMIC — so the ceasefire-driven IV-crash exit trigger has not fired; nearby-tenor options IV (Jul '26 ~31%, Oct '26 ~23%) sits inside the normal 18-35% band, though Feb/Mar'27-specific IV (the position's actual tenor) could not be sourced this week. Spot is at/just through the 18¢ strike but still below both call breakevens (18.88¢ and 20.30¢); the 200%-profit-take trigger cannot be confirmed without current option marks."
   },
   "todaysTape": {
     "spot": 18.21,
@@ -63,12 +63,19 @@
       "from": "+100k MT surplus (Jun)",
       "to": "-300k MT DEFICIT (Aug)",
       "direction": "deficit flip"
+    },
+    {
+      "source": "EU Sugar Market Observatory",
+      "metric": "EU 2026/27 production",
+      "from": "~16.5 MMT (2025/26)",
+      "to": "13.4 MMT (-19% YoY — 11-year low)",
+      "direction": "deficit deepening"
     }
   ],
   "millMix": {
     "brazilCenterSouthSugarMixPct": 41.42,
     "brazilCenterSouthOutputMMT": 45,
-    "brazilOutputNote": "2026/27 through May: sugar mix collapsed to 41.4% (from 50.1% a year ago) as mills pivot to ethanol — C-S sugar output 6.84 MMT, -2.0% YoY. This is the 'mill mix shift' leg of the tail scenario actually happening. 2H-July update: crush -8.4% YoY, sugar output -17.6% YoY, with the ethanol blend mandate raised to 32%. USDA's full-season 2026/27 Sugar Annual still projects the mix averaging closer to 48% sugar / 52% ethanol for the year — meaning the mid-year prints (41.4%, -17.6%) are running well below even that already-bearish full-season forecast. Exact first-half-August UNICA crush/mix figures were not obtainable this week (carried forward); processing volumes were reported 'up' in early August without a specific mix percentage.",
+    "brazilOutputNote": "2026/27 through May: sugar mix collapsed to 41.4% (from 50.1% a year ago) as mills pivot to ethanol — C-S sugar output 6.84 MMT, -2.0% YoY. This is the 'mill mix shift' leg of the tail scenario actually happening. 2H-July update: crush -8.4% YoY, sugar output -17.6% YoY, with the ethanol blend mandate raised to 32%. USDA's full-season 2026/27 Sugar Annual still projects the mix averaging closer to 48% sugar / 52% ethanol for the year — meaning the mid-year prints (41.4%, -17.6%) are running well below even that already-bearish full-season forecast. 2H-August UNICA report: 38.31 MMT cane crushed (down 14.56% vs 1H-August, a normal seasonal sequential decline), ethanol production up 3.15% to 1.77 billion liters — mills are still running at scale. The precise sugar-mix percentage versus last year for this fortnight could not be independently verified this week (some secondary sources point directionally lower, toward the low-30s%, but that figure is unconfirmed) — treat the pivot as continuing, with the hard 41.4%/-17.6% 2H-July figures as the last confirmed data point.",
     "indiaOutputMMT": 15.9,
     "indiaOutputYoYPct": 22,
     "indiaEthanolDiversionFromMMT": 5,
@@ -143,7 +150,7 @@
   "catalystTimeline": [
     {
       "date": "Jun-Sep 2026",
-      "event": "Indian monsoon — LIVE: cumulative deficit steady at ~11.5% below normal (Aug 1) vs 12% (Aug 10) — recovery has stalled; IMD's Aug-Sep outlook still points below 94% of the long-period average",
+      "event": "Indian monsoon — LIVE, DETERIORATING: cumulative deficit widened to 13% below normal (Aug 26, IMD) from ~11.5% (Aug 1) — the earlier stall has reversed into further shortfall; East/NE India worst-hit at -27%. IMD's outlook still points below 94% of the long-period average through Aug-Sep",
       "tier": 1
     },
     {
@@ -250,7 +257,7 @@
     },
     {
       "name": "Hormuz ceasefire IV crush",
-      "rationale": "Options re-price down even before underlying moves. Pre-expiry risk.",
+      "rationale": "Options re-price down even before underlying moves. Pre-expiry risk. No de-escalation this week — a Kuwaiti-flagged tanker (Al Salam II) was struck transiting the Strait on Aug 26, and Trump's Aug 25 claim that all mines were cleared is disputed by JMIC; the Strait remains effectively closed to normal commercial traffic. Nearby-tenor options IV (Jul/Oct '26, ~23-31%) remains inside the normal band, no crush observed.",
       "status": "monitoring"
     },
     {

@@ -2,12 +2,12 @@
   "verdictHeadline": "COMMODITY COMPLEX · COMPOUND CRISIS REGIME",
   "verdictSubtitle": "Live YTD across 17 contracts · Molecules · atoms · calories — the whole hard-asset complex vs overvalued equities (per Jeff Currie, mid-Aug 2026) · Dispersion is still the trade",
   "sectorDrivers": {
-    "Energy": "Hormuz disruption + the refinery-strike wave: 25+ refineries hit globally (Russia, Iran, Gulf, Saudi, Libya — per Jeff Currie, mid-Aug 2026). Diesel ~$160–185/bbl is the real squeeze, not WTI/Brent",
-    "Precious Metals": "Geopolitical safe haven, CB buying; now a treasury/yen-fragility bid — Currie re-entered gold mid-Aug 2026 as the hedge vs ALL fiat, not just USD. CONFIRMED Aug 19: gold +$100 in 45 min to ~$4,460 when the Treasury doubled long-bond buybacks — hard assets read yield 'support' as soft debt monetization",
-    "Grains": "Fertilizer input shock + US crop shock: wheat production forecast -23% YoY (smallest HRW crop since 1957/58) inside a global wheat crop the Aug WASDE cut to 819.3 Mt, -2.9% YoY; the same report cut US corn yield to 11.34 t/ha (from 11.49) with condition ratings 11pts below last year, and Ukraine is striking Black Sea grain export capacity (per Currie, mid-Aug 2026)",
-    "Industrial Metals": "REPRICED: copper hit an all-time high mid-Aug 2026 (per Currie) — the 'atoms' leg of the hard-asset bid; critical minerals weaponized by the East",
+    "Energy": "Hormuz disruption + the refinery-strike wave, still escalating: the Russian tally alone grew by at least 3 more hits since mid-Aug (Afipsky's 5th strike this year, Astrakhan gas-processing, Novoshakhtinsk halted, and a fresh Aug 30 drone strike on Kirishi, one of Russia's largest refineries) — Reuters estimates ~17% of Russian refining capacity now disrupted. Diesel crack spread settled above $100/bbl for the first time ever (Aug 17-18) and distillate stocks kept falling to ~105.6M bbl, lowest for the date since the mid-1990s",
+    "Precious Metals": "Geopolitical safe haven, CB buying; now a treasury/yen-fragility bid — Currie re-entered gold mid-Aug 2026 as the hedge vs ALL fiat, not just USD. CONFIRMED Aug 19: gold +$100 in 45 min to ~$4,460 when the Treasury doubled long-bond buybacks; the move has extended, gold ~$4,647 (highest since mid-May) and silver ~$67 (briefly topped $71) by late Aug — but a new complication emerged Aug 28: incoming Fed Chair Warsh's hawkish Jackson Hole speech pushed short-end yields back up",
+    "Grains": "Fertilizer input shock + US crop shock, now stacked with a fresh Black Sea escalation: Ukrainian strikes have knocked out over 90% of Russia's Azov-Black Sea grain export capacity, pushing CBOT wheat to ~$7.70/bu (highest since Feb 2023, +35% YTD) inside a global wheat crop the Aug WASDE cut to 819.3 Mt, -2.9% YoY; the same report cut US corn yield to 11.34 t/ha (from 11.49) with condition ratings 11pts below last year",
+    "Industrial Metals": "Copper set a fresh all-time high (~$6.77/lb COMEX, Aug 7) but has since cooled to ~$6.55/lb as exchange inventories built — the 'atoms' leg of the hard-asset bid is real but not extending every week; critical minerals still weaponized by the East",
     "Livestock": "Range-bound; feed costs partly offsetting tight supply",
-    "Softs": "REVERSED: cocoa at 6-month highs, sugar at multi-month highs — the market is now repricing El Niño supply risk it was ignoring in May"
+    "Softs": "REVERSED and still running: cocoa jumped to ~$6,233/t (Aug 30, a 4.2% single-day move) on worsening Ivory Coast (1.35-1.45 MMT) and Ghana (450-550k MT) crop estimates; sugar holding a 15-month high near 18.2¢ on deepening deficit forecasts (EU cut production 19% to an 11-year low this week) — the market is still repricing El Niño supply risk it was ignoring in May"
   },
   "keyObservations": [
     {
@@ -15,28 +15,28 @@
       "body": "Refined products (RBOB, heating oil) are outperforming crude as the Hormuz disruption hits product flow more than crude supply — confirming the structural thesis that this isn't just a barrel issue, it's a logistics issue."
     },
     {
-      "headline": "Grains are the second-order Hormuz trade",
-      "body": "Corn and soy strength began as fertilizer cost transmission; now a direct US supply shock is stacking on top — 2026/27 US wheat production forecast down 23% (HRW smallest since 1957/58), corn crop projected -7% with season-average farm price raised to $6.50/bu. Watch the August and September WASDE reports."
+      "headline": "Grains are the second-order Hormuz trade — now escalating on a second front",
+      "body": "Corn and soy strength began as fertilizer cost transmission and a direct US supply shock (2026/27 US wheat production forecast down 23%, HRW smallest since 1957/58). A new driver stacked on top in late August: Ukrainian strikes knocked out over 90% of Russia's Azov-Black Sea grain export capacity (all three Novorossiysk terminals suspended), pushing CBOT wheat to ~$7.70/bu — highest since Feb 2023, +35% YTD, up from +34% two weeks ago. Watch the Sept 11 WASDE report for corn/soy yield updates."
     },
     {
-      "headline": "Softs flipped — the May mispricing resolved",
-      "body": "In May this page argued softs were priced for the wrong direction (cocoa -30%, coffee -22% on recovery narratives incompatible with El Niño). That trade has now happened: NY cocoa broke $5,000/t in June (+19% in a month) on Ivory Coast 2026/27 output fears (1.7-1.8 MMT vs ~2.2 expected), and sugar hit multi-month highs as deficit forecasts deepened. The question is no longer IF El Niño reprices the softs — it's how far the damage runs through the Oct-Jan peak."
+      "headline": "Softs flipped — the May mispricing resolved, and the move is still extending",
+      "body": "In May this page argued softs were priced for the wrong direction (cocoa -30%, coffee -22% on recovery narratives incompatible with El Niño). That trade has now happened and kept going: NY cocoa jumped another 4.2% on Aug 30 to ~$6,233/t as Ivory Coast (1.35-1.45 MMT) and Ghana (450-550k MT) 2026/27 crop estimates worsened further, and sugar is holding a 15-month high near 18.2¢ with a fourth independent forecaster (the EU Sugar Market Observatory, cutting EU 2026/27 production 19% to an 11-year low) joining the deficit call this week. The question is no longer IF El Niño reprices the softs — it's how far the damage runs through the Oct-Jan peak."
     },
     {
-      "headline": "Metals dispersion resolved — copper joined the bid",
-      "body": "The May read was that copper (+8%) lagging silver/gold flagged weak industrial demand. That's now stale: per Jeff Currie (mid-Aug 2026), copper hit an all-time high. The whole metals complex — precious AND industrial — is trading as one hard-asset bid, which is what a monetary-fragility regime looks like, not a growth trade."
+      "headline": "Metals dispersion resolved — copper joined the bid, then cooled",
+      "body": "The May read was that copper (+8%) lagging silver/gold flagged weak industrial demand. That's now stale: copper set an all-time COMEX high (~$6.77/lb) on Aug 7. Since then it has eased back to ~$6.55/lb as exchange inventories built — not a reversal of the structural (electrification/AI demand, tariff) thesis, just no fresh record this particular week. The whole metals complex — precious AND industrial — is still trading as one hard-asset bid, which is what a monetary-fragility regime looks like, not a growth trade."
     },
     {
-      "headline": "Refinery strikes are the new structural regime",
-      "body": "Per Jeff Currie (mid-Aug 2026): 16 major Russian refineries struck by Ukraine, 2 struck in Iran, 6 struck in the Gulf by Iran, 2 hit in Saudi by the Houthis, 1 in Libya. Cheap drones make energy infrastructure trivially attackable — targeting refineries is now a proven military strategy other actors will replicate, and 'the world is not prepared for that new reality.' The transmission is diesel: ~$160–185/bbl globally, the fuel that prices almost everything. Grade mismatch compounds it — GCC crudes are diesel-rich medium/heavy, 90% of US SPR releases have been medium-to-heavy but only ~60% of the SPR was sour to begin with, and Middle East + Russia diesel/gasoline loadings for 2026 are essentially written off vs 2024/25 ranges. Watch the August CPI print for the pass-through."
+      "headline": "Refinery strikes are the new structural regime — and the tally keeps growing",
+      "body": "The mid-Aug count (per Jeff Currie: 16 major Russian refineries struck by Ukraine, 2 in Iran, 6 in the Gulf by Iran, 2 in Saudi by the Houthis, 1 in Libya) has already grown: since Aug 19, Ukraine hit the Afipsky refinery for a 5th time this year, struck the Astrakhan gas-processing plant, halted the Novoshakhtinsk refinery, and on Aug 30 a drone strike sparked a fire at Kirishi — one of Russia's largest refineries, just weeks after it resumed operations from earlier repairs. Reuters now estimates roughly 17% of Russian refining capacity is disrupted, and Moscow is threatening 'massive strikes' in retaliation. Cheap drones make energy infrastructure trivially attackable — targeting refineries is now a proven strategy other actors will replicate. The transmission is diesel: the US crack spread broke $100/bbl for the first time ever (Aug 17) and has settled in triple digits since, with distillate stocks at their lowest for the date since the mid-1990s. Watch the Sept 11 CPI print for the pass-through — the earlier August survey caught the tail end of the price downdraft, before the market moved."
     },
     {
       "headline": "The monetary endgame is the hard-asset bid",
       "body": "Per Currie (mid-Aug 2026): the 30-yr UST auction cleared 5.22% (highest since Aug 2001), the 10-yr auction printed its highest yield since 2007, US debt is ~$40T at >120% of GDP, and CPI has run above 2% for 65 straight months. Japan — the most oil-import-dependent major economy — is selling USTs to defend the yen while the US reportedly sells euro reserves to support it: 'when one of them breaks, they probably all break at the same time.' His endgame sequence: oil pops → the long end reprices well above 5.25% → financial repression → equity de-rating. The expression is HALO — Hard Assets, Local Operations: long molecules, atoms, and calories against overvalued US equities. He re-entered gold that week as the hedge vs all fiat."
     },
     {
-      "headline": "Financial repression arrived on schedule — the Aug 19 Treasury buyback pivot",
-      "body": "Currie's endgame step 3 just showed up, early. After the 30-yr yield hit 5.31% on Aug 18 (highest since 2007) on Iran-escalation and fiscal fears, Treasury Secretary Bessent announced on Aug 19 that liquidity-support buybacks for 10–20yr and 20–30yr nominal coupons would AT LEAST double, from $2B to $4B+ per operation (Sep 9–Nov 4 window, an up-to-~$128B/yr pace). The 30-yr fell ~10bp to 5.19%, the 10-yr to 4.65%, and the dollar sank 0.8% — but the commodity tape delivered the verdict: gold jumped $100 in 45 minutes to ~$4,460 (GLD +3.2%, its best day in ~4 years), silver reclaimed $65. Equities read it as relief; hard assets read the mechanism — the Treasury buying its own long debt, funded by bill issuance, is soft yield-curve control, not fiscal repair. Evercore ISI's caveat cuts the same way: a tactically brilliant squeeze of bond shorts on a thin August tape, but it doesn't finance the 'tidal wave' of maturing debt and deficits. Either the $4B ops hold the long end down (repression confirmed → bullish gold/hard assets) or they don't (the >5.25% repricing resumes → same destination). The buyback turned Currie's monetary leg from forecast into policy."
+      "headline": "Financial repression arrived on schedule — the Aug 19 Treasury buyback pivot, now complicated by Warsh",
+      "body": "Currie's endgame step 3 just showed up, early. After the 30-yr yield hit 5.31% on Aug 18 (highest since 2007) on Iran-escalation and fiscal fears, Treasury Secretary Bessent announced on Aug 19 that liquidity-support buybacks for 10–20yr and 20–30yr nominal coupons would AT LEAST double, from $2B to $4B+ per operation (Sep 9–Nov 4 window). The 30-yr fell ~10bp to 5.19%, the 10-yr to 4.65%, and the dollar sank 0.8% — but the commodity tape delivered the verdict: gold jumped $100 in 45 minutes to ~$4,460 (its best ETF day in ~4 years), silver reclaimed $65. The move has extended since: gold reached ~$4,647 and silver briefly topped $71 by late August. Equities read the buyback as relief; hard assets read the mechanism as soft debt monetization. The new wrinkle: on Aug 28, incoming Fed Chair Kevin Warsh used his first Jackson Hole speech to signal rate hikes may still be needed given elevated inflation, pushing 2-year yields from 4.22% to 4.30% — a hawkish surprise that works against the idea that buybacks alone can hold the curve down. Either the buybacks hold the long end (repression confirmed → bullish hard assets) or a hawkish Fed forces the >5.25% repricing anyway (same destination, different path) — watch the Sep 9 buyback operations and any further Fed commentary."
     }
   ],
   "compoundThesis": {
@@ -67,7 +67,11 @@
       },
       {
         "label": "Treasury long-bond buybacks (Sep 9–Nov 4)",
-        "value": "Doubled: $2B → $4B+ per op · gold +$100 on the announcement"
+        "value": "Doubled: $2B → $4B+ per op · gold +$100 on the announcement, extended to ~$4,647 by Aug 30"
+      },
+      {
+        "label": "Fed Chair Warsh, Jackson Hole (Aug 28)",
+        "value": "Signaled hikes may still be needed; 2-yr yield 4.22% → 4.30% — a new complication for the buyback-holds-yields story"
       }
     ],
     "coreThesis": "The May setup — softs priced for weather recovery while a strong El Niño loomed — has largely played out: cocoa at 6-month highs, sugar at multi-month highs, all major sugar forecasters revised into deficit. El Niño is no longer a probability, it's an active NOAA Advisory forecast to peak very strong Oct–Jan. The remaining trade is duration and magnitude: the Oct–Dec West African pod-fill window, the Sep–Nov Brazilian coffee flowering, and the 2027/28 crop-cycle effects that lag the peak. Positioning has improved but history (2015-16, 2023) says the biggest price responses come DURING the peak, when crop damage becomes measurable. The frame has also widened: per Jeff Currie (mid-Aug 2026), the El Niño/Hormuz compound now sits inside a molecules/atoms/calories triad — molecules weaponized by the West, atoms (critical minerals) weaponized by the East, calories taken out by a possible super El Niño. What started as a softs dispersion trade has graduated to a whole-complex hard-asset regime call."
@@ -78,8 +82,8 @@
       "symbol": "CC=F",
       "elNinoRisk": "Very High",
       "fertilizerRisk": "Moderate",
-      "ytdLabel": "+1% (post-spike)",
-      "pricedIn": "June spike +70% partially retraced — two-sided: ICE stocks at 2-yr high vs weak 26/27 surveys; added complication this week — Ivory Coast/Ghana EUDR compliance risk stays unresolved into the Aug-Oct pod-development window that's the key weather test",
+      "ytdLabel": "Extending — spot ~$6,233/t (Aug 30)",
+      "pricedIn": "Reprice resumed: +4.2% single-day move Aug 30 on worsening Ivory Coast (1.35-1.45 MMT) and Ghana (450-550k MT) crop estimates — two-sided risk persists (ICE stocks at 2-yr high vs weak surveys) into the Oct-Dec pod-fill window that's the key weather test",
       "priority": 1
     },
     {
@@ -87,8 +91,8 @@
       "symbol": "KC=F",
       "elNinoRisk": "Very High",
       "fertilizerRisk": "Moderate",
-      "ytdLabel": "-7%",
-      "pricedIn": "Tail roughly fairly priced (~1-in-6 for a 400 retest) — Sep rainfall is the trigger",
+      "ytdLabel": "-7% (spot ~$3.24/lb)",
+      "pricedIn": "Tail roughly fairly priced (~1-in-6 for a 400 retest) — ICE-certified stocks fell further to 226,242 bags (near the 1999 low); Sep-Oct Minas Gerais rainfall is the live trigger, no failure confirmed yet",
       "priority": 1
     },
     {
@@ -96,8 +100,8 @@
       "symbol": "SB=F",
       "elNinoRisk": "Very High",
       "fertilizerRisk": "High",
-      "ytdLabel": "+20%",
-      "pricedIn": "India CONFIRMED 1 MMT nil-duty imports Aug 20 — spike to 18.26¢ sold to 17.5¢; deficits still deepening (POSITION HELD)",
+      "ytdLabel": "+22%",
+      "pricedIn": "India CONFIRMED 1 MMT nil-duty imports Aug 20 (window to Oct 31) — spike to 18.26¢ sold to 17.5¢, now consolidating near the 18¢ breakout; deficits still deepening (EU cut production 19% this week) and Indian monsoon deficit widened to 13% (POSITION HELD)",
       "priority": 1
     },
     {
@@ -105,8 +109,8 @@
       "symbol": "ZW=F",
       "elNinoRisk": "Very High",
       "fertilizerRisk": "Very High",
-      "ytdLabel": "+34%",
-      "pricedIn": "Substantially repriced — Black Sea escalation + 61-yr-low US winter crop",
+      "ytdLabel": "+35% (spot ~$7.70/bu)",
+      "pricedIn": "Escalated further: >90% of Russia's Azov-Black Sea grain export capacity offline (all Novorossiysk terminals suspended) pushed wheat to its highest since Feb 2023 — substantially repriced on top of the 61-yr-low US winter crop",
       "priority": 2
     },
     {
@@ -150,7 +154,7 @@
       "conviction": "High Conviction",
       "ticker": "SB",
       "contract": "SBH7 Mar'27 — via Feb16'27 18¢ calls × 2 + 19.5¢ call × 1",
-      "why": "Triple-exposed — Brazil cane (drought sensitivity), Indian monsoon (rainfall failure risk), Australian crush — plus fertilizer compounding (heavily N-dependent crop). The multi-year-low entry thesis has played out: India CONFIRMED a 1 MMT nil-duty raw import quota on Aug 20 (first opening in ~10 years) — spot spiked to 18.26¢, highest since Apr 2025, then sold the fact to 17.5¢ — Brazil C-S sugar output -17.6% YoY in 2H July, and all three forecasters (Covrig, Green Pool, StoneX) now in 2026/27 deficit. Still the lowest-vol, most liquid expression of the calories leg.",
+      "why": "Triple-exposed — Brazil cane (drought sensitivity), Indian monsoon (rainfall failure risk), Australian crush — plus fertilizer compounding (heavily N-dependent crop). The multi-year-low entry thesis has played out and kept extending: India CONFIRMED a 1 MMT nil-duty raw import quota on Aug 20 (window to Oct 31, first opening in ~10 years) — spot spiked to 18.26¢, highest since Apr 2025, sold the fact to 17.5¢, then broke back through 18¢ to a fresh 15-month high (Aug 27). This week added a fourth deficit forecaster (EU Sugar Market Observatory, -19% YoY EU production to an 11-year low) and a widening Indian monsoon deficit (13% below normal, up from 11.5%) on top of Covrig/Green Pool/StoneX's existing 2026/27 deficit calls.",
       "expression": "Executed: 2× Feb'27 18¢ calls, plus 1× Feb'27 19.5¢ call added Aug 2026 for convexity. Add trigger per plan: deepening UNICA ethanol-pivot data. Any further adds: consider later months (SBK7/SBN7) or higher strikes. Live marks on /sugar.",
       "tier": 1,
       "crossLinkHref": "/sugar",
@@ -161,7 +165,7 @@
       "conviction": "Speculative",
       "ticker": "CC",
       "contract": "CCH7 (Mar'27)",
-      "why": "Odds check (Aug 19, spot ~6,070, realized vol ~58%): implied P(>6,520 — the July high) ≈ 35%, P(>8,500 — the suggested spread's short leg) ≈ 15%. Both targets have deep recent precedent: 6,520+ traded in 19 of the last 154 months and 8,500+ in 13 of them (the 2024-25 shortage regime, ATH ~12,260). Compare coffee, where the equivalent tail strike has NEVER traded. So the market pays ~6:1 on a level cocoa occupied for over a year, with a dated catalyst (Oct-Dec pod-fill at the El Niño peak) still ahead. The two-sided caveats stand — ICE inventories at a 2-yr high, Ivory Coast arrivals +20% YoY — which is exactly why the odds are this fat.",
+      "why": "Odds check (Aug 19, spot ~6,070, realized vol ~58%): implied P(>6,520 — the July high) ≈ 35%, P(>8,500 — the suggested spread's short leg) ≈ 15%. Both targets have deep recent precedent: 6,520+ traded in 19 of the last 154 months and 8,500+ in 13 of them (the 2024-25 shortage regime, ATH ~12,260). Compare coffee, where the equivalent tail strike has NEVER traded. So the market pays ~6:1 on a level cocoa occupied for over a year, with a dated catalyst (Oct-Dec pod-fill at the El Niño peak) still ahead. The two-sided caveats stand — ICE inventories at a 2-yr high, Ivory Coast arrivals +20% YoY — which is exactly why the odds are this fat. UPDATE (Aug 30): spot has since jumped to ~$6,233/t on a fresh 4.2% single-day move, already inside the 6,520 target zone, as Ivory Coast (1.35-1.45 MMT) and Ghana (450-550k MT) 2026/27 estimates worsened further — the odds picture above needs re-pricing at the higher spot.",
       "expression": "Options only (DCC contracts) — outright futures are too volatile and margin-intensive for sizing discipline. With spot ~6,070, Mar'27 call spreads around 7,000/9,000 keep defined risk; the Aug pullback zone is the entry the June chase never offered. Trigger to add: first weak pod-count/arrivals data in Oct.",
       "sizingNote": "Small relative to oil book — think 5-10% of oil notional. This is a satellite convex bet, not a portfolio allocation.",
       "tier": 1
@@ -171,8 +175,8 @@
       "conviction": "Moderate Conviction",
       "ticker": "TTF",
       "contract": "TTF Q1'27 strip, or Dec'26–Feb'27 calls (ICE Endex)",
-      "why": "EU storage was 60.4% full on Aug 15 — roughly 9-10pp below the 5-yr seasonal norm and the lowest early-August reading on record — with Qatari LNG cargoes delayed by shipping disruptions and TTF already ~€62.5/MWh. Even hitting the relaxed 80% Nov-1 target leaves Europe entering winter with buffer in the low-70s vs 90%+ in normal years: no headroom for cold snaps. Per Currie (mid-Aug 2026): 'dangerously, precariously tight.' Note US natgas (-23% YTD) is NOT the expression — the US is an island; this must be TTF (or JKM). Odds check (Aug 19, TTF ~€63, realized vol ~73%): implied P(>€100) ≈ 13%, P(>€150) ≈ 2.6%. Precedent is real — €100+ traded in 12 of the last 92 months and €150+ in 6 (the 2021-22 crisis) — and winter option IV runs above realized, so true market odds are richer. The counterexample: 2023, 2024 and 2025 each opened with storage scares that mild winters fizzled — this trade has lost three years running; what's different now is starting from the lowest early-August storage on record.",
-      "expression": "Defined-risk winter calls (Dec'26–Feb'27) rather than outright futures — the payoff is weather-contingent and a mild winter plus LNG recovery kills it. Check IBKR permissions for ICE Endex TTF; US-listed gas ETPs track Henry Hub, not TTF, and do not express this trade. Trigger discipline: if the EU storage trajectory closes the gap to the 5-yr norm by late Sep, the edge is gone — stand down.",
+      "why": "EU storage was 60.4% full on Aug 15 — roughly 9-10pp below the 5-yr seasonal norm and the lowest early-August reading on record — with Qatari LNG cargoes delayed by shipping disruptions and TTF already ~€62.5/MWh. UPDATE (late Aug): TTF has extended to ~€69/MWh (a 3-year high above €68 around Aug 25, briefly dipping to €65.40 on Aug 26) and storage has risen only to 63% by Aug 26 — described by trackers as the lowest seasonal level since 2021 (or, by some sources, since 2009), still well below the 5-yr average. Even hitting the relaxed 80% Nov-1 target leaves Europe entering winter with buffer in the low-70s vs 90%+ in normal years: no headroom for cold snaps. Per Currie (mid-Aug 2026): 'dangerously, precariously tight' — a read the subsequent price action supports. Note US natgas is NOT the expression — the US is an island; this must be TTF (or JKM).",
+      "expression": "Defined-risk winter calls (Dec'26–Feb'27) rather than outright futures — the payoff is weather-contingent and a mild winter plus LNG recovery kills it. Check IBKR permissions for ICE Endex TTF; US-listed gas ETPs track Henry Hub, not TTF, and do not express this trade. Trigger discipline: if the EU storage trajectory closes the gap to the 5-yr norm by late Sep (the Oct 31 refill-window close), the edge is gone — stand down. So far storage is not closing that gap.",
       "tier": 2
     },
     {
@@ -180,8 +184,8 @@
       "conviction": "Moderate Conviction",
       "ticker": "GC",
       "contract": "GCJ7 (Apr'27) or GLD-equivalent",
-      "why": "Correction to the earlier framing (Aug 19 review): 'flat YTD' hides the path — gold spiked to $5,586 on Jan 29, 2026, held $5,300-5,400 into early March, and has retraced ~21% to ~$4,420. It HAS run; Currie's mid-Aug re-entry is a dip-buy of that spike, not a pre-breakout entry. Odds check (realized vol ~29%): implied P(>5,000) ≈ 24% — a retest of levels that traded for weeks in Q1 — and P(>6,000) ≈ 5.5% (never traded). The thesis (30-yr UST at 5.22%, 65-month CPI streak, Japan selling USTs to defend the yen, US selling euro reserves — 'when one breaks, they probably all break') is unchanged; what changed is knowing you're buying a 5-month drawdown, with the risk that January WAS the blow-off. Then the Aug 19 buyback announcement provided the first live test of the thesis: within 45 minutes of Treasury doubling long-bond buybacks, gold ripped $100 to ~$4,460 — its best gold-ETF day in ~4 years — on FALLING yields plus a -0.8% dollar. That's the tell: gold is trading as the debt-monetization hedge, not the rate-level trade. The dip-buy entry is now ~$40 worse, but the mechanism just proved itself in real time.",
-      "expression": "Outright futures or a GLD-equivalent for the sleeve. Currie's own caveat: a surprise Fed rate hike (a Warsh-style move) is the main drawdown risk. Size so that scenario is survivable. High-beta alternative: silver (-10.5% YTD, ~$63) historically outruns gold in monetary-fear regimes as the gold/silver ratio (~70) compresses — but its industrial half carries a structural drag (solar makers thrifting silver loadings), so treat it as a leveraged expression of this card, not a substitute.",
+      "why": "Correction to the earlier framing (Aug 19 review): 'flat YTD' hides the path — gold spiked to $5,586 on Jan 29, 2026, held $5,300-5,400 into early March, and has retraced ~21% to ~$4,420. It HAS run; Currie's mid-Aug re-entry is a dip-buy of that spike, not a pre-breakout entry. Odds check (realized vol ~29%): implied P(>5,000) ≈ 24% — a retest of levels that traded for weeks in Q1 — and P(>6,000) ≈ 5.5% (never traded). The thesis (30-yr UST at 5.22%, 65-month CPI streak, Japan selling USTs to defend the yen, US selling euro reserves — 'when one breaks, they probably all break') is unchanged; what changed is knowing you're buying a 5-month drawdown, with the risk that January WAS the blow-off. Then the Aug 19 buyback announcement provided the first live test of the thesis: within 45 minutes of Treasury doubling long-bond buybacks, gold ripped $100 to ~$4,460 — its best gold-ETF day in ~4 years — on FALLING yields plus a -0.8% dollar. That's the tell: gold is trading as the debt-monetization hedge, not the rate-level trade. UPDATE (Aug 30): the move has extended, not faded — gold reached ~$4,647 (highest since mid-May) and silver briefly topped $71 before settling near $67. But the caveat just got less hypothetical: on Aug 28, incoming Fed Chair Warsh's hawkish Jackson Hole remarks pushed 2-year yields from 4.22% to 4.30% — the exact 'surprise hawkish Fed' risk this idea already flagged, now live rather than theoretical, though it hasn't yet dented the gold move.",
+      "expression": "Outright futures or a GLD-equivalent for the sleeve. Currie's own caveat: a surprise Fed rate hike (a Warsh-style move) is the main drawdown risk — Warsh's Aug 28 Jackson Hole comments are a live instance of exactly that risk, worth watching for follow-through. Size so that scenario is survivable. High-beta alternative: silver (~$67, briefly $71 intraday) historically outruns gold in monetary-fear regimes as the gold/silver ratio compresses — but its industrial half carries a structural drag (solar makers thrifting silver loadings), so treat it as a leveraged expression of this card, not a substitute.",
       "tier": 2
     },
     {
@@ -198,7 +202,7 @@
       "conviction": "Moderate Conviction",
       "ticker": "HO",
       "contract": "HOZ6 (Dec'26), or HO-CL crack",
-      "why": "The most confirmed leg of the Currie thesis: the US diesel crack broke $100/bbl for the FIRST TIME EVER on Aug 17 ($102.20 intraday), US distillate inventories (~107.1M bbl) are the lowest for the date since 1996, and a Russian export ban tied to Ukrainian refinery strikes stacks on the refinery-strike wave and the SPR grade mismatch. Structural tightness into winter — but it is also the most repriced idea on this page (HO +106% YTD), so the risk-adjusted entry is poor at the record print. Odds check (Aug 19, spot ~$4.32, realized vol ~57%): implied P(>$5.15 — the 2022 all-time-high zone, traded in just 1 of 154 months) ≈ 26%, P(>$6.00 — never traded) ≈ 15%. Like coffee's 470 strike, the upside targets here are record prints, not revisits — the odds look generous only because crisis-year vol is in the input. Confirms the tier-3 'worst entry' call.",
+      "why": "The most confirmed leg of the Currie thesis: the US diesel crack broke $100/bbl for the FIRST TIME EVER on Aug 17 ($102.20 intraday) and settled in triple digits from Aug 18 onward — confirmed structural, not a spike. Distillate stocks kept falling, ~105.6M bbl for the week ended Aug 14, the lowest for the date since the mid-1990s, ~12-13% below the 5-yr average. Refinery strikes have only intensified since (Kirishi hit Aug 30, one of Russia's largest, weeks after resuming operations) and Russia's own export constraints continue to stack on the SPR grade mismatch. Structural tightness into winter — but it is also the most repriced idea on this page (HO +106% YTD), so the risk-adjusted entry is poor at the record print. Odds check (Aug 19, spot ~$4.32, realized vol ~57%): implied P(>$5.15 — the 2022 all-time-high zone, traded in just 1 of 154 months) ≈ 26%, P(>$6.00 — never traded) ≈ 15%. Like coffee's 470 strike, the upside targets here are record prints, not revisits — the odds look generous only because crisis-year vol is in the input. Confirms the tier-3 'worst entry' call.",
       "expression": "Don't chase the record: buy pullbacks or use defined-risk Dec/Jan calls. The crack spread (long HO / short CL) isolates refining tightness from crude-level ceasefire risk. The oil book already carries correlated exposure — size as a satellite, not a new core.",
       "sizingNote": "Overlaps the existing oil position — treat as an extension of the molecules leg, not a diversifier.",
       "tier": 3
@@ -208,8 +212,8 @@
       "conviction": "Moderate Conviction",
       "ticker": "KE",
       "contract": "KEZ6 (Dec'26) or KEH7 (Mar'27)",
-      "why": "The +9% 'room to extend' call extended: CBOT wheat is +34% YTD (~$6.70-6.80/bu, mid-Aug) on Black Sea escalation (Russia/Ukraine attacks on commercial shipping; USDA cut Russia's 2026/27 exports to 46 MMT and Ukraine's to 13.5 MMT) stacked on the smallest US winter wheat crop in 61 years (HRW lowest since the late 1950s) and southern-Plains dryness heading into 2027 planting. Hard red winter remains more drought-sensitive than Chicago SRW. Odds check (Aug 19, ZW ~684¢, realized vol ~27%): implied P(>800¢) ≈ 18% — a 3-year high; wheat hasn't printed 800 since 2023 (high 798) — and P(>1,000¢) ≈ 2% (2022-crisis territory, ATH 1,425). Reasonable odds for the 800 retest, but after +34% YTD you're paying up for a level the market rejected last time.",
-      "expression": "Much of the asymmetry has been captured — chasing here buys headline risk. Prefer buying pullbacks on Black Sea ceasefire headlines (the supply math survives them) or defined-risk calls; sized smaller than the softs trades.",
+      "why": "The +9% 'room to extend' call extended further still: CBOT wheat is now +35% YTD (~$7.70/bu, late Aug), highest since Feb 2023, after Ukrainian strikes knocked out over 90% of Russia's Azov-Black Sea grain export capacity (all three Novorossiysk terminals suspended; Ukraine's own wheat exports collapsed to just 340kt Aug 1-21) — a second escalation stacked on the smallest US winter wheat crop in 61 years (HRW lowest since the late 1950s). Odds check (Aug 19, ZW ~684¢, realized vol ~27%): implied P(>800¢) ≈ 18% — wheat hasn't printed 800 since 2023 (high 798). At ~770¢ now, spot sits much closer to that level than the Aug 19 odds check assumed; the market has already done most of the work the 800-retest odds were pricing.",
+      "expression": "Much of the asymmetry has been captured, and more so after the late-August move — chasing here buys headline risk at an even worse entry than two weeks ago. Prefer buying pullbacks on Black Sea ceasefire headlines (the supply math survives them) or defined-risk calls; sized smaller than the softs trades.",
       "tier": 3
     },
     {
@@ -226,7 +230,7 @@
     {
       "dateRange": "Jun–Sep 2026",
       "event": "India monsoon",
-      "description": "LIVE, RECOVERY STALLED: cumulative deficit essentially flat at ~11.5% below normal (Aug 1) vs 12% (Aug 10); IMD's Aug-Sep outlook still points below 94% of the long-period average — the earlier catch-up from the Jun 30 -42% low has plateaued rather than continued. Drives sugar, rice, cotton, Indian wheat.",
+      "description": "LIVE, DETERIORATING: cumulative deficit widened to 13% below normal (Aug 26, IMD) from ~11.5% (Aug 1) — the earlier stall has reversed into further shortfall, East/NE India worst-hit at -27%; IMD's Aug-Sep outlook still points below 94% of the long-period average. Drives sugar, rice, cotton, Indian wheat.",
       "tier": 1
     },
     {
@@ -238,31 +242,31 @@
     {
       "dateRange": "Aug–Oct 2026",
       "event": "Brazilian Centre-South cane",
-      "description": "LIVE: sugar mix collapsed to 41.4% (from 50.1%) as mills pivot to ethanol; C-S sugar output -2.0% YoY through May, crush -8.4% YoY and sugar output -17.6% YoY in 2H-July. USDA's full 2026/27 Sugar Annual still forecasts a 48/52% sugar/ethanol mix for the season — well above the mid-year prints — meaning the pivot is currently running ahead of even that bearish full-season number. First-half-August UNICA mix% not obtainable this week (carried forward); UNICA biweekly reports remain the add/trim trigger for the sugar position.",
+      "description": "LIVE: sugar mix collapsed to 41.4% (from 50.1%) as mills pivot to ethanol; C-S sugar output -2.0% YoY through May, crush -8.4% YoY and sugar output -17.6% YoY in 2H-July. UNICA's 2H-August report (38.31 MMT crushed, ethanol output +3.15%) confirms mills are still running hard, but the precise sugar-mix% versus last year for this fortnight could not be independently verified this week — some secondary sources point directionally lower (toward the low-30s%) but that figure is unconfirmed. USDA's full 2026/27 Sugar Annual still forecasts a 48/52% sugar/ethanol mix for the season — well above the mid-year prints. UNICA biweekly reports remain the add/trim trigger for the sugar position.",
       "tier": 1
     },
     {
-      "dateRange": "Sep 2026",
-      "event": "August CPI print",
-      "description": "The diesel pass-through test. Per Jeff Currie (mid-Aug 2026): the July survey caught the tail end of the price downdraft — the market has been straight up since ~Jul 13 — so expect the refinery-strike/diesel squeeze to show in the AUGUST print: groceries and anything moved by truck.",
+      "dateRange": "Sep 11 2026",
+      "event": "August CPI print + WASDE report",
+      "description": "Both land the same day. The diesel pass-through test: per Jeff Currie (mid-Aug 2026), the July CPI survey caught the tail end of the price downdraft, so expect the refinery-strike/diesel squeeze (crack spread over $100/bbl since Aug 17) to show up here — groceries and anything moved by truck. The Sept WASDE is also the next corn/soybean yield update; no changes to those crops confirmed since the Aug 12 report.",
       "tier": 2
     },
     {
       "dateRange": "Sep 9 – Nov 4, 2026",
       "event": "Treasury upsized buyback window",
-      "description": "The doubled ($4B+/op) long-bond buybacks run through this window — the live test of the monetary leg. If the ops hold the 30-yr below ~5.25%, repression is confirmed (bullish gold/hard assets via the monetization channel). If yields punch back through despite the buying, Currie's repricing scenario resumes (bullish the same sleeve, harder path for equities). The bearish-for-gold outcome is neither: organic demand returning at auctions without buyback support. Watch each buyback op's results and the quarterly refunding.",
+      "description": "The doubled ($4B+/op) long-bond buybacks run through this window — the live test of the monetary leg. If the ops hold the 30-yr below ~5.25%, repression is confirmed (bullish gold/hard assets via the monetization channel). If yields punch back through despite the buying, Currie's repricing scenario resumes (bullish the same sleeve, harder path for equities). A new complication: incoming Fed Chair Warsh's hawkish Aug 28 Jackson Hole remarks already pushed 2-yr yields up before the window even opened. The bearish-for-gold outcome is neither of these: organic demand returning at auctions without buyback support. Watch each buyback op's results and the quarterly refunding.",
       "tier": 1
     },
     {
       "dateRange": "Sep–Nov 2026",
       "event": "Brazilian coffee flowering",
-      "description": "Critical period for the 2027 crop. Dry conditions during flowering trigger sharp arabica futures moves. This is now the explicit ENTRY TRIGGER for the coffee trade idea — September rainfall data in Minas Gerais decides whether the position gets opened at all.",
+      "description": "Critical period for the 2027 crop. Dry conditions during flowering trigger sharp arabica futures moves. This is now the explicit ENTRY TRIGGER for the coffee trade idea — early data (5.8mm/92% of normal for the week ended Aug 9, after a dry prior week) is not yet a failure signal; September rainfall data in Minas Gerais still decides whether the position gets opened at all. ICE-certified stocks fell further to 226,242 bags, near the 1999 low, sharpening the setup either way.",
       "tier": 1
     },
     {
       "dateRange": "by Oct 31, 2026",
       "event": "EU gas refill window closes",
-      "description": "Per Currie (mid-Aug 2026): European refill season is well behind schedule (TTF ~€61/MWh), and winter distillate + gas inventories should be rebuilding now and aren't — 'dangerously, precariously tight.' The refill window effectively closes ~Oct 31; whatever isn't in storage by then is winter's problem.",
+      "description": "Per Currie (mid-Aug 2026): European refill season is well behind schedule, and winter distillate + gas inventories should be rebuilding now and aren't — 'dangerously, precariously tight.' Storage has since risen only to 63% (Aug 26, from 60.4% Aug 15) as TTF rallied to ~€69/MWh, a 3-year high — the gap to the 5-yr norm is not closing. The refill window effectively closes ~Oct 31; whatever isn't in storage by then is winter's problem.",
       "tier": 2
     },
     {
@@ -279,12 +283,12 @@
     }
   ],
   "riskFactors": [
-    "Weaker-than-forecast El Niño peak — the event is confirmed (NOAA Advisory) and NOAA's Aug update raised very-strong-peak odds further to 95% (from 81% in July), so the residual risk keeps shrinking. Related: the Indian monsoon's earlier recovery (-42% Jun 30 → -12% Aug 10) has stalled around -11.5% (Aug 1) rather than continuing to close the gap — a genuine catch-up to normal would still weaken the India leg, but that hasn't happened yet.",
-    "Combined unwind — Hormuz resolves AND El Niño underperforms. Worst case for both legs; size accordingly. The standing unwind now has a third leg: a yen/UST stabilization (successful coordinated defense, long end settles back) would remove the monetary tailwind under the gold/metals sleeve. IMPORTANT DISTINCTION after Aug 19: the Treasury buyback is NOT that unwind — yields stabilizing because the Treasury buys its own debt CONFIRMS the repression thesis (gold rallied ON the stabilization). The real unwind is organic long-end demand returning (strong auctions without buyback support, Japan ceasing UST sales) — watch auction tails and indirect-bidder takedown, not the yield level itself.",
-    "Surprise Fed hike — Currie's own caveat (mid-Aug 2026): a Warsh-style surprise rate hike would knock gold and the whole hard-asset complex temporarily. He views it as a drawdown risk to manage, not a thesis-killer, but it's the main near-term air pocket for the monetary leg.",
+    "Weaker-than-forecast El Niño peak — the event is confirmed (NOAA Advisory) and NOAA's Aug 13 CPC diagnostic reconfirmed very-strong-peak odds above 90% with a 69% chance of exceeding every El Niño since 1950, so the residual risk keeps shrinking. Related: the Indian monsoon's earlier recovery has now reversed into further deterioration (deficit widened to 13% below normal by Aug 26, from 11.5% on Aug 1) — a genuine catch-up to normal would still weaken the India leg, but the data moved the other way this week.",
+    "Combined unwind — Hormuz resolves AND El Niño underperforms. Worst case for both legs; size accordingly. The standing unwind now has a third leg: a yen/UST stabilization (successful coordinated defense, long end settles back) would remove the monetary tailwind under the gold/metals sleeve. IMPORTANT DISTINCTION after Aug 19: the Treasury buyback is NOT that unwind — yields stabilizing because the Treasury buys its own debt CONFIRMS the repression thesis (gold rallied ON the stabilization, and extended further through late August). The real unwind is organic long-end demand returning (strong auctions without buyback support, Japan ceasing UST sales) — watch auction tails and indirect-bidder takedown, not the yield level itself.",
+    "Surprise Fed hike — Currie's own caveat (mid-Aug 2026): a Warsh-style surprise rate hike would knock gold and the whole hard-asset complex temporarily. This risk is no longer purely hypothetical: incoming Fed Chair Kevin Warsh's Aug 28 Jackson Hole speech signaled rate hikes may still be needed given elevated inflation, pushing 2-year yields from 4.22% to 4.30%. Gold hadn't visibly cracked on this as of Aug 30, but it's the clearest live instance yet of the main near-term air pocket for the monetary leg — worth watching for follow-through.",
     "Cocoa-specific: faster-than-expected Ghana/Ivory Coast harvest recovery announcement before El Niño impacts show in production data.",
     "Coffee-specific: Brazilian Real strength would cap upside even with weather issues (export economics). Sugar-specific: Indian export policy shifts or Brazilian ethanol mix shifts toward sugar could add supply independent of weather."
   ],
   "oilBookConnection": "This thesis is complementary, not redundant, to the Hormuz oil position. Both express variants of the same macro view (global supply shock, geopolitical/weather catalyst convergence), but they're driven by largely independent transmission mechanisms and will move on different news flow. Suggested allocation: 20-30% of oil notional, spread across 2-3 of the trades above. Cleanest portfolio construction: sugar as core (lowest vol), cocoa as convex satellite (options only), coffee as opportunistic add if it breaks lower. In Jeff Currie's HALO framing (mid-Aug 2026), the oil + sugar book already covers the molecules + calories legs — gold/copper is the missing atoms/monetary leg, which is what the new gold idea addresses.",
-  "dispersionCallout": "The May dispersion trade (softs priced against El Niño) has largely converged — cocoa +19% in June to 6-month highs, sugar at multi-month highs. What remains: coffee hasn't fully repriced ahead of its Sep-Nov flowering test, and the 2027/28 lagged effects (the 2011 analogue: the 36¢ sugar ATH came AFTER consecutive damaged seasons) are not in the curve. The asymmetry has shifted from 'positioning is wrong' to 'duration is underpriced.' And per Jeff Currie (mid-Aug 2026), the dispersion frame itself has widened: with copper at an all-time high and gold re-bid on treasury/yen fragility, the residual mispricing is between the hard-asset complex as a whole — molecules, atoms, calories — and overvalued US equities. The Aug 19 session was that trade in miniature: Treasury doubles long-bond buybacks, equities bounce on 'relief' — while gold has its best ETF day in ~4 years pricing the same event as monetization."
+  "dispersionCallout": "The May dispersion trade (softs priced against El Niño) has largely converged and, this week, kept extending — cocoa jumped another 4.2% on Aug 30 to a fresh multi-month high (~$6,233/t), sugar is consolidating at a 15-month high, and wheat broke to its highest since Feb 2023 (+35% YTD) on a fresh Black Sea escalation. What remains: coffee hasn't fully repriced ahead of its Sep-Nov flowering test (ICE stocks near the 1999 low, but no confirmed rainfall failure yet), and the 2027/28 lagged effects (the 2011 analogue: the 36¢ sugar ATH came AFTER consecutive damaged seasons) are not in the curve. The asymmetry has shifted from 'positioning is wrong' to 'duration is underpriced.' Per Jeff Currie's widened frame (mid-Aug 2026), the residual mispricing is between the hard-asset complex as a whole — molecules, atoms, calories — and overvalued US equities; copper has since cooled off its all-time high (~$6.77/lb → ~$6.55/lb) but gold and silver kept extending (gold ~$4,647, silver briefly above $71) even as incoming Fed Chair Warsh's Aug 28 hawkish Jackson Hole remarks introduced the first real crack in the 'buybacks hold yields down' logic underneath that bid."
 }
