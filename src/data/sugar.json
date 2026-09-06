@@ -2,15 +2,15 @@
   "metadata": {
     "title": "Sugar #11 — El Niño + Hormuz Compound Thesis",
     "subtitle": "Feb'27 SB calls: 18¢ ×2 (May 22) + 19.5¢ ×1 (Aug 12) — compound thesis",
-    "lastUpdated": "2026-09-04",
+    "lastUpdated": "2026-09-06",
     "tradeInitiated": "2026-05-11"
   },
   "thesis": {
     "direction": "long",
     "conviction": "high",
     "convictionPct": 80,
-    "headline": "Sep 3: Oct SB −3.4% to 18.07¢ (intraday low 17.65¢) a day after a 16.75-month high of 18.77¢. Trigger: India halved dealer stock-holding limits (400→200 MT, Sep 15–Nov 20), read as less need for the 1 MMT import window; record fund longs liquidated. Second failed test of ~18.7¢. Deficit stack unchanged; Mar'27 SBH7 19.04¢.",
-    "summary": "The Sep 2 push to 18.77¢ (Reuters: Indian tightness, a 50 mm rain forecast for Ribeirão Preto set to halt harvest, EU/Thai output cuts, and ISO's Sep 1 flip to a −200k MT 2026/27 deficit from a +1.1 MMT 2025/26 surplus) reversed hard on Sep 3: Oct SB traded 18.67→17.65 and settled 18.07¢ (−3.4%) on the heaviest volume of the rally; Mar'27 SBH7 19.64→19.04¢, ~18.96¢ in the Sep 4 pre-open. Trigger: India's government halved the dealer stock-holding limit to 200 MT (from 400) for Sep 15–Nov 20 to force hoarded stock onto the domestic market — traders read it as India needing less of the 1 MMT nil-duty import window, and domestic Indian prices are already ~₹2,000/qtl off their highs on fortnightly quota releases. Fuel: funds were a record 70,766 net-long London whites (COT to Aug 25, most since 2011), so a bearish headline became a liquidation — same pattern as Aug 28's BRL-driven reversal from 18.66¢. Macro was supportive, not the cause: BRL firmed 5.19→5.09 and WTI ran $85→$91 over the week, which points at India + positioning rather than a fundamental break. Technically 18.66–18.77¢ is now a double top; 17.65¢ (Sep 3 low) and 17.44¢ (Aug 28 low) are the lines — a close through both turns this into a failed breakout rather than a pullback. Nothing in the deficit stack changed (ISO −200k, Green Pool −3.3 MMT, StoneX −1.7, EU −19%, monsoon 13% below normal as of Sep 2, El Niño intact). Conviction trimmed 83→80 for the crowded-long/technical risk, not the thesis. Correction to the Aug 30 note: UNICA's 2H-August 2026 report is NOT out yet (due ~Sep 10); the 38.31 MMT / +3.15% ethanol figures traced to the 2H-Aug 2025 report and have been removed. Next: COT (Sep 4, week to Sep 1) for whether longs grew into the high; UNICA 2H-Aug ~Sep 10; India's Oct 31 quota decision. Position: GTC to add 1× Feb'27 19.5¢ call raised to 1.18 (mid ~1.30) — it fills on a second flush, not a bounce."
+    "headline": "Quiet stabilization week: Oct SB held flat at 18.07¢ through the Sep 4 close (2nd session unchanged), staying above both double-top invalidation lines (17.65¢/17.44¢); no fresh catalysts — NOAA's next ENSO update is Sep 10, UNICA's 2H-Aug report is still pending (~Sep 10), and IMD's monsoon deficit is little changed (~13-14% below normal, Sept itself forecast <91% LPA). Correction: India's dealer stock-limit cut runs Sep 15–Nov 30 (not Nov 20 as previously logged). Hormuz conflict escalated, not eased, this week (US struck 3+ Iranian tankers Sep 1–5 under a 'tanker-for-tanker' policy; Strait transit near-zero). Deficit stack and conviction unchanged.",
+    "summary": "A consolidation week with no new fundamental inputs. Oct SB closed unchanged at 18.07¢ on Sep 4 (per ChiniMandi/Barchart market wraps) — a second flat session after Sep 3's washout — holding above both technical invalidation lines (17.65¢ Sep 3 low, 17.44¢ Aug 28 low) without a fresh test of the 18.66–18.77¢ double top in either direction; markets were closed Sep 5–6 (weekend). A reported Mar'27 SBH7 print of 16.56¢ surfaced in one secondary aggregator this week but contradicts the flat front-month tape and could not be corroborated against a primary source, so it was not used — the Sep 4 pre-open figure (~18.96¢) is carried forward unchanged, as is 30.1% implied vol (no fresh options-market data found). El Niño: no update — NOAA CPC's next ENSO Diagnostic Discussion is scheduled Sep 10, so the Aug assessment (95% odds of a very-strong Oct–Jan peak, 97% persistence through spring 2027) stands unrevised. Indian monsoon: IMD's cumulative deficit was reported at 13.8-14% below normal as of end-August (Business Standard, citing IMD), essentially flat versus the 13% logged Aug 26/Sep 2, and IMD's own September outlook calls for continued below-normal rain (<91% of LPA) — this is NOT a recovery toward normal; several 'monsoon improves' wire headlines that surfaced in search this week were confirmed to be recycled July 2026 stories (23%→15% deficit narrowing then) and were disregarded. Brazil: UNICA's 2H-August 2026 Centre-South report remains unpublished (~Sep 10 due); a set of figures (38.31 MMT crush, ethanol +3.15%) resurfaced this week and were re-verified as the 2H-August 2025 release, not 2026 — confirming last week's correction was right, and this trap was avoided again. Correction: India's dealer stock-holding cut (4,000→2,000 quintals, i.e. 400→200 MT) is confirmed by multiple independent Indian outlets (Business Standard, Organiser, IBTimes India, National Herald) to run September 15–November 30, 2026 — not Sep 15–Nov 20 as previously logged; Kolkata's metro area keeps the 4,000-quintal (400 MT) limit. Hormuz: no ceasefire — the opposite. US forces struck/disabled multiple Iranian oil tankers Sep 1–5 under a declared 'tanker-for-tanker' retaliation policy, Iran fired on US warships near the Strait, and Strait transit sits near-zero (~2-6 tankers/day vs. an ~85/day pre-war baseline per PortWatch) — the IV-crush exit trigger recedes further, not closer. No new deficit-forecast revisions found from Green Pool, StoneX, Covrig, Czarnikow, or ISO this week (all four carried forward at their Aug 1/Sep 1 levels). Conviction held at 80 — nothing this week materially strengthened or weakened a leg; this was a data-quiet week, not a thesis-changing one. Position: the GTC order to add 1× Feb'27 19.5¢ call at 1.18 remains logged as working; with the front-month flat at 18.07 (not the 17.65 retest level it was sized against) there is no confirmation it filled, and no option-quote source was found this week to verify either way."
   },
   "todaysTape": {
     "spot": 18.07,
@@ -82,7 +82,7 @@
   "millMix": {
     "brazilCenterSouthSugarMixPct": 41.42,
     "brazilCenterSouthOutputMMT": 45,
-    "brazilOutputNote": "2026/27 through May: sugar mix collapsed to 41.4% (from 50.1% a year ago) as mills pivot to ethanol — C-S sugar output 6.84 MMT, -2.0% YoY. This is the 'mill mix shift' leg of the tail scenario actually happening. 2H-July update: crush -8.4% YoY, sugar output -17.6% YoY, with the ethanol blend mandate raised to 32%. USDA's full-season 2026/27 Sugar Annual still projects the mix averaging closer to 48% sugar / 52% ethanol for the year — meaning the mid-year prints (41.4%, -17.6%) are running well below even that already-bearish full-season forecast. CORRECTION (Sep 4): the '2H-August UNICA report' cited on Aug 30 (38.31 MMT crush, ethanol +3.15%) was UNICA's 2H-Aug 2025 release, not 2026 — removed. UNICA's 2H-Aug 2026 report is due ~Sep 10; 1H-Aug 2026 figures also remain unconfirmed. Last hard data point is still 2H-July (41.4% mix, sugar -17.6% YoY).",
+    "brazilOutputNote": "2026/27 through May: sugar mix collapsed to 41.4% (from 50.1% a year ago) as mills pivot to ethanol — C-S sugar output 6.84 MMT, -2.0% YoY. This is the 'mill mix shift' leg of the tail scenario actually happening. 2H-July update: crush -8.4% YoY, sugar output -17.6% YoY, with the ethanol blend mandate raised to 32%. USDA's full-season 2026/27 Sugar Annual still projects the mix averaging closer to 48% sugar / 52% ethanol for the year — meaning the mid-year prints (41.4%, -17.6%) are running well below even that already-bearish full-season forecast. CORRECTION (Sep 4): the '2H-August UNICA report' cited on Aug 30 (38.31 MMT crush, ethanol +3.15%) was UNICA's 2H-Aug 2025 release, not 2026 — removed. UNICA's 2H-Aug 2026 report is due ~Sep 10; 1H-Aug 2026 figures also remain unconfirmed. Last hard data point is still 2H-July (41.4% mix, sugar -17.6% YoY). RE-VERIFIED (Sep 6): the same 38.31 MMT / +3.15% figures resurfaced in this week's search results and were re-confirmed as the 2H-Aug 2025 release (sugar output 3.87 MMT that half, per a corroborating secondary source) — still not 2026 data. No 2026 UNICA report found this week; still awaiting ~Sep 10.",
     "indiaOutputMMT": 15.9,
     "indiaOutputYoYPct": 22,
     "indiaEthanolDiversionFromMMT": 5,
@@ -147,7 +147,7 @@
     },
     {
       "year": "Today",
-      "event": "Sep 3 washout to 18.07¢ (low 17.65¢) from a 16.75-mo high of 18.77¢ — India stock-limit cut + record-long liquidation; double top at ~18.7¢",
+      "event": "Sep 3 washout to 18.07¢ (low 17.65¢) from a 16.75-mo high of 18.77¢, then flat at 18.07¢ through the Sep 4 close (2nd unchanged session) — India stock-limit cut (corrected: Sep 15–Nov 30) + record-long liquidation; double top at ~18.7¢ still intact",
       "priceCents": 18.07,
       "contractDollars": 20238,
       "highlight": true,
@@ -157,7 +157,7 @@
   "catalystTimeline": [
     {
       "date": "Jun-Sep 2026",
-      "event": "Indian monsoon — LIVE: cumulative deficit 13% below normal as of Sep 2 (IMD), unchanged from Aug 26 and down from 42% on Jun 30; Earth Science Ministry warns of the weakest monsoon in 11 years; IMD expects below-normal September rain",
+      "event": "Indian monsoon — LIVE: cumulative deficit 13.8-14% below normal as of end-Aug (IMD via Business Standard), essentially flat vs. 13% on Aug 26/Sep 2 and down from 42% on Jun 30; IMD's own Sep outlook calls for further below-normal rain (<91% of LPA) — NOT a recovery toward normal despite some recycled July wire headlines suggesting improvement",
       "tier": 1
     },
     {
@@ -167,7 +167,7 @@
     },
     {
       "date": "Aug 20 – Oct 31, 2026",
-      "event": "India CONFIRMED: 1 MMT nil-duty raw import quota (first in ~10 yrs) + bulk stockholding limits Sep 1–Nov 30. Sep 3: dealer stock limit HALVED to 200 MT (Sep 15–Nov 20) to release hoarded stock — market read it as less import need and sold off 3.4%. Next catalyst: whether the 1 MMT window is used at all, then extension/enlargement at Oct 31",
+      "event": "India CONFIRMED: 1 MMT nil-duty raw import quota (first in ~10 yrs) + bulk stockholding limits Sep 1–Nov 30. Sep 1-2: dealer stock limit HALVED to 2,000 quintals/200 MT (CORRECTED: Sep 15–Nov 30, not Nov 20 — confirmed by multiple Indian outlets; Kolkata metro keeps 4,000 quintals/400 MT) to release hoarded stock — market read it as less import need and sold off 3.4% on Sep 3. Next catalyst: whether the 1 MMT window is used at all, then extension/enlargement at Oct 31",
       "tier": 1
     },
     {
@@ -264,8 +264,8 @@
     },
     {
       "name": "Hormuz ceasefire IV crush",
-      "rationale": "Options re-price down even before underlying moves. Pre-expiry risk. No de-escalation this week — a Kuwaiti-flagged tanker (Al Salam II) was struck transiting the Strait on Aug 26, and Trump's Aug 25 claim that all mines were cleared is disputed by JMIC; the Strait remains effectively closed to normal commercial traffic. Nearby-tenor options IV (Jul/Oct '26, ~23-31%) remains inside the normal band, no crush observed.",
-      "status": "monitoring"
+      "rationale": "Options re-price down even before underlying moves. Pre-expiry risk. This week brought escalation, not de-escalation: US forces struck/disabled multiple Iranian oil tankers Sep 1-5 under a declared 'tanker-for-tanker' retaliation policy, Iran fired on US warships and hit tankers near the Strait, and Strait transit sits near-zero (~2-6 tankers/day vs. an ~85/day pre-war baseline per PortWatch). Nearby-tenor options IV (~23-31%) remains inside the normal band, no crush observed — if anything the ceasefire trigger recedes further this week.",
+      "status": "receding"
     },
     {
       "name": "Brazilian mill mix stays at sugar",
@@ -284,7 +284,7 @@
     },
     {
       "name": "Crowded-long unwind / failed breakout",
-      "rationale": "Funds held a record 70,766 net-long in London whites (COT to Aug 25). Two high-volume reversals from 18.66–18.77¢ (Aug 28, Sep 3) make that zone a double top. Lines: 17.65¢ (Sep 3 low) then 17.44¢ (Aug 28 low). A close through both = failed breakout — reassess adds and consider trimming the 19.5¢ leg. A volume close above 18.77¢ retires this trigger.",
+      "rationale": "Funds held a record 70,766 net-long in London whites (COT to Aug 25); no fresher COT print (week to Sep 1) was found this week. Two high-volume reversals from 18.66–18.77¢ (Aug 28, Sep 3) make that zone a double top. Lines: 17.65¢ (Sep 3 low) then 17.44¢ (Aug 28 low). Sep 4 closed flat at 18.07¢ — still above both invalidation lines and without a fresh test of the 18.66-18.77¢ top in either direction, so the double top is neither confirmed nor retired. A close through both lines = failed breakout — reassess adds and consider trimming the 19.5¢ leg. A volume close above 18.77¢ retires this trigger.",
       "status": "monitoring"
     }
   ],
@@ -369,7 +369,8 @@
       "Check bid-ask: if >5 ticks wide on 19¢, move to more liquid strike (18¢ or 20¢)",
       "Check IV: fair = 22-28%, if 35%+ news has moved without us",
       "Don't market-order — work limits",
-      "Sep 4: GTC add @ 1.18 implies SBH7 ~18.7¢ at 30% IV — fills on a retest of 17.65¢ front-month, not on a bounce. A fill takes total basis to ~$4,198, above the $3,300 max-risk rule (accepted). Breakeven on that leg at expiry: 20.68¢."
+      "Sep 4: GTC add @ 1.18 implies SBH7 ~18.7¢ at 30% IV — fills on a retest of 17.65¢ front-month, not on a bounce. A fill takes total basis to ~$4,198, above the $3,300 max-risk rule (accepted). Breakeven on that leg at expiry: 20.68¢.",
+      "Sep 6 check: front-month closed flat at 18.07¢ through Sep 4 (Sep 3's 17.65¢ print was intraday only, not a settle); no option-quote source was found this week to confirm whether the 1.18 GTC has filled — treat as still working/unconfirmed pending a broker check."
     ],
     "sizingLogic": "Sugar at 20-30% of oil book notional (satellite, not core). Don't size up at entry — add into confirming trend (India monsoon data, Brazilian mix reports)."
   },
